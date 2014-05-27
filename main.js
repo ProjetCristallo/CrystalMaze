@@ -3,6 +3,7 @@ var game = new Phaser.Game(600,480,Phaser.AUTO,'', {preload:preload,create:creat
 var Ball;
 var BallMoving;
 var BallSpeed = 1000;
+var breakableBlocks;
 var endBlocks;
 var endTile;
 
@@ -19,6 +20,13 @@ function create() {
 	game.add.tileSprite(0,0,600,480,'Fond');
 
 	game.physics.startSystem(Phaser.Physics.ARCADE);
+	Ball = game.add.sprite(30,30,'logo');
+	Ball.anchor.setTo(0.5,0.5);
+	Ball.checkWorldBounds = true;
+	game.physics.enable(Ball,Phaser.Physics.ARCADE);
+	Ball.body.collideWorldBounds = true;
+	BallMoving = false;
+
 
 	createLevel();
 
@@ -74,17 +82,15 @@ function createLevel()
 	endTile = endBlocks.create(558, 438, 'Star');
 	game.physics.enable(endTile,Phaser.Physics.ARCADE);	
 	endTile.body.immovable = true;
-/*
-        breakBlock.sprite = breakableBlocks.create(480, 0, 'BVert');
-        breakBlock.val = 3;
+
+        breakBlock = breakableBlocks.create(480, 0, 'BVert');
         game.physics.enable(breakBlock,Phaser.Physics.ARCADE);
 	breakBlock.body.immovable = true;       
 
-        breakBlock.sprite = breakableBlocks.create(0, 360, 'BVert');
-        breakBlock.val = 3;
+        breakBlock = breakableBlocks.create(0, 360, 'BVert');
         game.physics.enable(breakBlock,Phaser.Physics.ARCADE);
 	breakBlock.body.immovable = true;
-*/
+
 	block = normalBlocks.create(540, 0, 'BNoir');
 	game.physics.enable(block,Phaser.Physics.ARCADE);
 	block.body.immovable = true;
@@ -105,12 +111,10 @@ function normalBlockCollide()
 
 function breakBlockCollide(Ball, breakBlock)
 {
-    breakBlock.val = breakBlock.val - 1;
-    if(breakBlock.val == 0){
-	breakBlock.kill();
-    }
+	breakBlock.kill();    
 }
 
+/*
 function parser(filename) {
 	var file = new ActiveXObject("Scripting.FileSystemObject");
 	var f_in = file.OpenTextFile(filename,1);
@@ -193,3 +197,4 @@ function parser(filename) {
 		}
 	}
 }
+*/
