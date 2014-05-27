@@ -2,7 +2,7 @@ var game = new Phaser.Game(640,480,Phaser.AUTO,'', {preload:preload,create:creat
 
 var Ball;
 var BallMoving;
-var BallSpeed = 400;
+var BallSpeed = 1000;
 var blackBlocks
 var greenBlocks
 
