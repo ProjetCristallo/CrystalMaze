@@ -78,7 +78,7 @@ function createLevel()
 	greenBlocks = game.add.group();
 	endBlocks = game.add.group();
 	
-	endTile = endBlocks.create(540, 420, 'Star');
+	endTile = endBlocks.create(558, 438, 'Star');
 	game.physics.enable(endTile,Phaser.Physics.ARCADE);	
 	endTile.body.immovable = true;
 
