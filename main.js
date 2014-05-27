@@ -84,6 +84,7 @@ function createLevel()
 	endTile.body.immovable = true;
 
         breakBlock = breakableBlocks.create(480, 0, 'BVert');
+        breakBlock.health = 4;
         game.physics.enable(breakBlock,Phaser.Physics.ARCADE);
 	breakBlock.body.immovable = true;       
 
@@ -111,7 +112,7 @@ function normalBlockCollide()
 
 function breakBlockCollide(Ball, breakBlock)
 {
-	breakBlock.kill();    
+	breakBlock.damage(1);   
 }
 
 /*
