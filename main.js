@@ -7,6 +7,8 @@ var blackBlocks
 var greenBlocks
 var endBlocks;
 var endTile;
+var EndScreen;
+var endButton;
 
 function preload() {
 	game.load.image('logo','ressources/Bille.png');
@@ -14,6 +16,8 @@ function preload() {
 	game.load.image('BNoir','ressources/Block_Noir.png');
 	game.load.image('BVert','ressources/Block_Vert.png');
 	game.load.image('Star','ressources/Star.png');
+	game.load.image('Win','ressources/win.png');
+	game.load.spritesheet('button','ressources/ContinueButton.png');
 }
 
 function create() {
@@ -94,6 +98,13 @@ function createLevel()
 function endLevel(Ball, endTile)
 {
 	endTile.kill();
+	EndScreen = game.add.sprite(300, 240, 'Win');
+	endButton = game.add.button(420, 240, 'button', actionOnClickEnd, this, 0,1,2);
+}
+
+function actionOnClickEnd()
+{
+	
 }
 
 function blackBlockCollide()
