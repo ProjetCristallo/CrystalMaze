@@ -8,7 +8,8 @@ var endBlocks;
 var endTile;
 var EndScreen;
 var endButton;
-
+//Boolean indicating if the player hasn't won yet.
+var playing=true;
 
 function preload() {
 	game.load.image('logo','ressources/Bille.png');
@@ -16,8 +17,8 @@ function preload() {
 	game.load.image('BNoir','ressources/Block_Noir.png');
 	game.load.image('BVert','ressources/Block_Vert.png');
 	game.load.image('Star','ressources/Star.png');
-	game.load.image('Win','ressources/win.png');
-	game.load.spritesheet('button','ressources/ContinueButton.png');
+	game.load.image('Win','ressources/Win.png');
+	game.load.spritesheet('button','ressources/button_sprite_sheet.png',193,71);
 }
 
 function create() {
@@ -37,7 +38,9 @@ function create() {
 }
 
 function update() {
-	moveBall();
+	if(playing){
+		moveBall();
+	}
 }
 
 function moveBall() {
@@ -105,14 +108,16 @@ function createLevel()
 
 function endLevel(Ball, endTile)
 {
+	playing = false;
 	endTile.kill();
-	EndScreen = game.add.sprite(300, 240, 'Win');
-	endButton = game.add.button(420, 240, 'button', actionOnClickEnd, this, 0,1,2);
+	EndScreen = game.add.sprite(25, 25, 'Win');
+	endButton = game.add.button(200,250, 'button', actionOnClickEnd, this, 2,1,0);
 }
 
 function actionOnClickEnd()
 {
-	
+	playing = true;
+	create();
 }
 
 function blackBlockCollide()
