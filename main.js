@@ -1,4 +1,4 @@
-var game = new Phaser.Game(640,480,Phaser.AUTO,'', {preload:preload,create:create,update:update});
+var game = new Phaser.Game(600,480,Phaser.AUTO,'', {preload:preload,create:create,update:update});
 
 var Ball;
 var BallMoving;
@@ -14,7 +14,7 @@ function preload() {
 }
 
 function create() {
-	game.add.tileSprite(0,0,640,480,'Fond');
+	game.add.tileSprite(0,0,600,480,'Fond');
 
 	game.physics.startSystem(Phaser.Physics.ARCADE);
 	Ball = game.add.sprite(30,30,'logo');
@@ -73,7 +73,7 @@ function createLevel()
 	blackBlocks = game.add.group();
 	greenBlocks = game.add.group();
 
-	block = blackBlocks.create(580, 0, 'BVert');
+	block = blackBlocks.create(540, 0, 'BVert');
 	game.physics.enable(block,Phaser.Physics.ARCADE);
 	block.body.immovable = true;
 
