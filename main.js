@@ -128,9 +128,10 @@ function normalBlockCollide()
 
 function breakBlockCollide(Ball, breakBlock)
 {
-	breakBlock.damage(1);   
+	if(BallMoving){
+		breakBlock.damage(1);   
+	}
 }
-
 /*
 function parser(filename) {
 	var file = new ActiveXObject("Scripting.FileSystemObject");
