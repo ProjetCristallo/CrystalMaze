@@ -3,19 +3,28 @@ var game = new Phaser.Game(640,480,Phaser.AUTO,'', {preload:preload,create:creat
 var Ball;
 var BallMoving;
 var BallSpeed = 400;
+var blackBlocks
+var greenBlocks
 
 function preload() {
 	game.load.image('logo','ressources/Bille.png');
+	game.load.image('Fond','ressources/Fond.png');
+	game.load.image('BNoir','ressources/Block_Noir.png');
+	game.load.image('BVert','ressources/Block_Vert.png');
 }
 
 function create() {
+	game.add.tileSprite(0,0,640,480,'Fond');
+
 	game.physics.startSystem(Phaser.Physics.ARCADE);
 	Ball = game.add.sprite(30,30,'logo');
 	Ball.anchor.setTo(0.5,0.5);
 	Ball.checkWorldBounds = true;
 	game.physics.enable(Ball,Phaser.Physics.ARCADE);
 	Ball.body.collideWorldBounds = true;
-	BallMoving = false
+	BallMoving = false;
+
+	createLevel();
 
 	controller = game.input.keyboard.createCursorKeys();
 }
@@ -52,4 +61,31 @@ function moveBall() {
 			Ball.body.velocity.y = +BallSpeed;
 		}
 	}
+	else
+	{
+		game.physics.arcade.collide(Ball, blackBlocks, blackBlockCollide, null, this);
+		game.physics.arcade.collide(Ball, greenBlocks, greenBlockCollide, null, this);
+	}
+}
+
+function createLevel()
+{
+	blackBlocks = game.add.group();
+	greenBlocks = game.add.group();
+
+	block = blackBlocks.create(580, 0, 'BVert');
+	game.physics.enable(block,Phaser.Physics.ARCADE);
+	block.body.immovable = true;
+
+	block = blackBlocks.create(0, 420, 'BNoir');
+	game.physics.enable(block,Phaser.Physics.ARCADE);
+	block.body.immovable = true;
+}
+
+function blackBlockCollide()
+{
+}
+
+function greenBlockCollide()
+{
 }
