@@ -78,15 +78,15 @@ function moveBall() {
 
 function createLevel()
 {
-	blackBlocks = game.add.group();
-	greenBlocks = game.add.group();
+	normalBlocks = game.add.group();
+	breakableBlocks = game.add.group();
 	endBlocks = game.add.group();
 	
-	endTile = endBlocks.create(540, 420, 'Star');
+	endTile = endBlocks.create(558, 438, 'Star');
 	game.physics.enable(endTile,Phaser.Physics.ARCADE);	
 	endTile.body.immovable = true;
 
-	block = blackBlocks.create(540, 0, 'BVert');
+	block = blackBlocks.create(540, 0, 'BNoir');
 	game.physics.enable(block,Phaser.Physics.ARCADE);
 	block.body.immovable = true;
 
