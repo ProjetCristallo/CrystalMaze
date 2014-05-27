@@ -5,6 +5,7 @@ var BallMoving;
 var BallSpeed = 1000;
 var breakBlock;
 var endBlocks;
+var holeBlocks;
 var endTile;
 
 
@@ -14,6 +15,7 @@ function preload() {
 	game.load.image('BNoir','ressources/Block_Noir.png');
 	game.load.image('BVert','ressources/Block_Vert.png');
 	game.load.image('Star','ressources/Star.png');
+	game.load.image('Hole','ressources/Hole.png');
 }
 
 function create() {
@@ -69,6 +71,7 @@ function moveBall() {
 	    game.physics.arcade.collide(Ball, normalBlocks, blackBlockCollide, null, this);
 	    game.physics.arcade.collide(Ball, breakableBlocks, greenBlockCollide, null, this);
 	    game.physics.arcade.overlap(Ball, endBlocks, endLevel, null, this);
+            game.physics.arcade.overlap(Ball, holeBlocks, playerFailed, null, this); 
 	}	
 }
 
@@ -102,6 +105,12 @@ function createLevel()
 function endLevel(Ball, endTile)
 {
 	endTile.kill();
+}
+
+function playerFailed(Ball, holeSprite)
+{
+	alert("Perdu !");
+        create();
 }
 
 function blackBlockCollide()
