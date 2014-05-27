@@ -5,12 +5,15 @@ var BallMoving;
 var BallSpeed = 1000;
 var blackBlocks
 var greenBlocks
+var endBlocks;
+var endTile;
 
 function preload() {
 	game.load.image('logo','ressources/Bille.png');
 	game.load.image('Fond','ressources/Fond.png');
 	game.load.image('BNoir','ressources/Block_Noir.png');
 	game.load.image('BVert','ressources/Block_Vert.png');
+	game.load.image('Star','ressources/Star.png');
 }
 
 function create() {
@@ -65,13 +68,19 @@ function moveBall() {
 	{
 		game.physics.arcade.collide(Ball, blackBlocks, blackBlockCollide, null, this);
 		game.physics.arcade.collide(Ball, greenBlocks, greenBlockCollide, null, this);
-	}
+	game.physics.arcade.overlap(Ball, endBlocks, endLevel, null, this);
+	}	
 }
 
 function createLevel()
 {
 	blackBlocks = game.add.group();
 	greenBlocks = game.add.group();
+	endBlocks = game.add.group();
+	
+	endTile = endBlocks.create(540, 420, 'Star');
+	game.physics.enable(endTile,Phaser.Physics.ARCADE);	
+	endTile.body.immovable = true;
 
 	block = blackBlocks.create(540, 0, 'BVert');
 	game.physics.enable(block,Phaser.Physics.ARCADE);
@@ -80,6 +89,11 @@ function createLevel()
 	block = blackBlocks.create(0, 420, 'BNoir');
 	game.physics.enable(block,Phaser.Physics.ARCADE);
 	block.body.immovable = true;
+}
+
+function endLevel(Ball, endTile)
+{
+	endTile.kill();
 }
 
 function blackBlockCollide()
