@@ -3,10 +3,10 @@ var game = new Phaser.Game(600,480,Phaser.AUTO,'', {preload:preload,create:creat
 var Ball;
 var BallMoving;
 var BallSpeed = 1000;
-var blackBlocks
-var greenBlocks
+var breakBlock;
 var endBlocks;
 var endTile;
+
 
 function preload() {
 	game.load.image('logo','ressources/Bille.png');
@@ -66,9 +66,9 @@ function moveBall() {
 	}
 	else
 	{
-		game.physics.arcade.collide(Ball, blackBlocks, blackBlockCollide, null, this);
-		game.physics.arcade.collide(Ball, greenBlocks, greenBlockCollide, null, this);
-	game.physics.arcade.overlap(Ball, endBlocks, endLevel, null, this);
+	    game.physics.arcade.collide(Ball, normalBlocks, blackBlockCollide, null, this);
+	    game.physics.arcade.collide(Ball, breakableBlocks, greenBlockCollide, null, this);
+	    game.physics.arcade.overlap(Ball, endBlocks, endLevel, null, this);
 	}	
 }
 
@@ -81,12 +81,20 @@ function createLevel()
 	endTile = endBlocks.create(558, 438, 'Star');
 	game.physics.enable(endTile,Phaser.Physics.ARCADE);	
 	endTile.body.immovable = true;
+/*
+        breakBlock.sprite = breakableBlocks.create(480, 0, 'BVert');
+        game.physics.enable(block,Phaser.Physics.ARCADE);
+	block.body.immovable = true;
 
-	block = blackBlocks.create(540, 0, 'BNoir');
+        breakBlock.sprite = breakableBlocks.create(0, 360, 'BVert');
+        game.physics.enable(block,Phaser.Physics.ARCADE);
+	block.body.immovable = true;
+*/
+	block = normalBlocks.create(540, 0, 'BNoir');
 	game.physics.enable(block,Phaser.Physics.ARCADE);
 	block.body.immovable = true;
 
-	block = blackBlocks.create(0, 420, 'BNoir');
+	block = normalBlocks.create(0, 420, 'BNoir');
 	game.physics.enable(block,Phaser.Physics.ARCADE);
 	block.body.immovable = true;
 }
