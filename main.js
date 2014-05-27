@@ -3,7 +3,6 @@ var game = new Phaser.Game(600,480,Phaser.AUTO,'', {preload:preload,create:creat
 var Ball;
 var BallMoving;
 var BallSpeed = 1000;
-var breakBlock;
 var endBlocks;
 var endTile;
 
@@ -66,8 +65,8 @@ function moveBall() {
 	}
 	else
 	{
-	    game.physics.arcade.collide(Ball, normalBlocks, blackBlockCollide, null, this);
-	    game.physics.arcade.collide(Ball, breakableBlocks, greenBlockCollide, null, this);
+	    game.physics.arcade.collide(Ball, normalBlocks, normalBlockCollide, null, this);
+	    game.physics.arcade.collide(Ball, breakableBlocks, breakBlockCollide, null, this);
 	    game.physics.arcade.overlap(Ball, endBlocks, endLevel, null, this);
 	}	
 }
@@ -83,12 +82,14 @@ function createLevel()
 	endTile.body.immovable = true;
 /*
         breakBlock.sprite = breakableBlocks.create(480, 0, 'BVert');
-        game.physics.enable(block,Phaser.Physics.ARCADE);
-	block.body.immovable = true;
+        breakBlock.val = 3;
+        game.physics.enable(breakBlock,Phaser.Physics.ARCADE);
+	breakBlock.body.immovable = true;       
 
         breakBlock.sprite = breakableBlocks.create(0, 360, 'BVert');
-        game.physics.enable(block,Phaser.Physics.ARCADE);
-	block.body.immovable = true;
+        breakBlock.val = 3;
+        game.physics.enable(breakBlock,Phaser.Physics.ARCADE);
+	breakBlock.body.immovable = true;
 */
 	block = normalBlocks.create(540, 0, 'BNoir');
 	game.physics.enable(block,Phaser.Physics.ARCADE);
@@ -104,10 +105,14 @@ function endLevel(Ball, endTile)
 	endTile.kill();
 }
 
-function blackBlockCollide()
+function normalBlockCollide()
 {
 }
 
-function greenBlockCollide()
+function breakBlockCollide(Ball, breakBlock)
 {
+    breakBlock.val = breakBlock.val - 1;
+    if(breakBlock.val == 0){
+	breakBlock.kill();
+    }
 }
