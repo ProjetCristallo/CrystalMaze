@@ -6,7 +6,6 @@ var BallSpeed = 1000;
 var breakBlock;
 var endBlocks;
 var holeBlocks;
-var endTile;
 
 
 function preload() {
@@ -77,13 +76,15 @@ function moveBall() {
 
 function createLevel()
 {
+        var sprite;
 	normalBlocks = game.add.group();
 	breakableBlocks = game.add.group();
 	endBlocks = game.add.group();
-	
-	endTile = endBlocks.create(558, 438, 'Star');
-	game.physics.enable(endTile,Phaser.Physics.ARCADE);	
-	endTile.body.immovable = true;
+	holeBlocks = game.add.group();
+
+	sprite  = endBlocks.create(540, 420, 'Star');
+	game.physics.enable(sprite,Phaser.Physics.ARCADE);	
+	sprite.body.immovable = true;
 /*
         breakBlock.sprite = breakableBlocks.create(480, 0, 'BVert');
         game.physics.enable(block,Phaser.Physics.ARCADE);
@@ -93,13 +94,18 @@ function createLevel()
         game.physics.enable(block,Phaser.Physics.ARCADE);
 	block.body.immovable = true;
 */
-	block = normalBlocks.create(540, 0, 'BNoir');
-	game.physics.enable(block,Phaser.Physics.ARCADE);
-	block.body.immovable = true;
+	sprite = normalBlocks.create(540, 0, 'BNoir');
+	game.physics.enable(sprite,Phaser.Physics.ARCADE);
+	sprite.body.immovable = true;
 
-	block = normalBlocks.create(0, 420, 'BNoir');
-	game.physics.enable(block,Phaser.Physics.ARCADE);
-	block.body.immovable = true;
+	sprite = normalBlocks.create(0, 420, 'BNoir');
+	game.physics.enable(sprite,Phaser.Physics.ARCADE);
+	sprite.body.immovable = true;
+
+        sprite = holeBlocks.create(0,100,'Hole');
+        game.physics.enable(sprite,Phaser.Physics.ARCADE);
+	sprite.body.immovable = true;
+        
 }
 
 function endLevel(Ball, endTile)
