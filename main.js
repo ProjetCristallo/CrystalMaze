@@ -21,6 +21,10 @@ function create() {
 }
 
 function update() {
+	moveBall();
+}
+
+function moveBall() {
 	if(Ball.body.velocity.x == 0 && Ball.body.velocity.y == 0)
 	{
 		BallMoving = false;
