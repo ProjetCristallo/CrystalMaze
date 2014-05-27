@@ -1,0 +1,11 @@
+body
+{
+	padding=0;
+	margin=0;
+}
+
+#test 
+{
+	margin=auto;
+	display=table;
+}
