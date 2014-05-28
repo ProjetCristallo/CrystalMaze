@@ -1,15 +1,26 @@
 function parser(filename) {
-	var file = new ActiveXObject("Scripting.FileSystemObject");
-	var f_in = file.OpenTextFile(filename,1);
-	while (!f_in.AtEndOfStream) {
+	if(document.all) {
+		var file = new ActiveXObject("Scripting.FileSystemObject");
+	}
+	else
+	{
+		var file = new XMLHttpRequest();
+	}
+	file.open("GET", filename, false);
+	file.send();
+	var arrLines = file.responseText.split("\n");
+	for(var i = 0 ; i < arrLines.length ; i++) {
+		//	var f_in = file.OpenTextFile(filename,1);
+		//	while (!f_in.AtEndOfStream) {
 		var block;
-		var line = f_in.ReadLine();
+		//		var line = f_in.ReadLine();
+		var line = arrLines[i];
 		var res = line.split(" ");
-		x = 30+60*parseInt(res[1]);
-		y = 30+60*parseInt(res[2]);
+		x = 60*parseInt(res[1]);
+		y = 60*parseInt(res[2]);
 		switch(res[0]) {
 			case "begin":
-				Ball = game.add.sprite(x,y,'logo');
+				Ball = game.add.sprite(x,y,'ball');
 				Ball.anchor.setTo(0.5,0.5);
 				Ball.checkWorldBounds = true;
 				game.physics.enable(Ball,Phaser.Physics.ARCADE);
@@ -19,7 +30,7 @@ function parser(filename) {
 			case "end":
 				break;
 			case "hole":
-				block = Hole.create(x,y,'hole');
+				block = Hole.create(x,y,'Hole');
 				game.physics.enable(block,Phaser.Physics.ARCADE);
 				block.body.immovable = true;
 				break;
@@ -77,5 +88,7 @@ function parser(filename) {
 				block.body.immovable = true;
 				break;
 		}
+		//	}
 	}
 }
+
