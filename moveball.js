@@ -56,9 +56,13 @@ function checkMove(breakableBlock, dir, authorized){
 
 function checkMoveGroup(dir)
 {
+	var current;
 	authorized = true;
 	for(var i=0; i<Breakable.length;i++){
-		authorized = authorized && checkMove(Breakable.getAt(i), dir, authorized);
+		current = Breakable.getAt(i);
+		if(current.alive) {
+			authorized = authorized && checkMove(current, dir, authorized);
+		}
 	}
 	return authorized;
 }
