@@ -19,6 +19,16 @@ var playing=true;
 //variable indicating what the last direction taken was.
 var lastDir;
 
+// Blocks groups
+var Hole = group();
+var Simple = group();
+var Unilateral = group();
+var Fragile = group();
+var C_up = group();
+var C_down = group();
+var C_left = group();
+var C_right = group();
+
 
 function preload() {
 	game.load.image('logo','ressources/Bille.png');
@@ -88,10 +98,15 @@ function moveBall() {
 	}
 	else
 	{
-	    game.physics.arcade.collide(Ball, normalBlocks, normalBlockCollide, null, this);
-	    game.physics.arcade.collide(Ball, breakableBlocks, breakBlockCollide, null, this);
-	    game.physics.arcade.overlap(Ball, endBlocks, endLevel, null, this);
-        game.physics.arcade.overlap(Ball, holeBlocks, playerFailed, null, this); 
+		game.physics.arcade.collide(Ball, normalBlocks, normalBlockCollide, null, this);
+		game.physics.arcade.collide(Ball, breakableBlocks, breakBlockCollide, null, this);
+		game.physics.arcade.overlap(Ball, endBlocks, endLevel, null, this);
+		game.physics.arcade.overlap(Ball, C_up, changeUp, null, this);
+		game.physics.arcade.overlap(Ball, C_down, changeDown, null, this);
+		game.physics.arcade.overlap(Ball, C_right, changeRight, null, this);
+		game.physics.arcade.overlap(Ball, C_left, changeLeft, null, this);
+		game.physics.arcade.overlap(Ball, Hole, holeOverlap, null, this);
+		game.physics.arcade.collide(Ball, Fragile, fragileCollide, null, this);
 	}	
 }
 
@@ -149,6 +164,31 @@ function normalBlockCollide()
 {
 }
 
+function changeUp()
+{
+}
+
+function changeDown()
+{
+}
+
+function changeRight()
+{
+}
+
+function changeLeft()
+{
+}
+
+function holeOverlap()
+{
+}
+
+function fragileCollide()
+{
+}
+
+
 function breakBlockCollide(Ball, breakBlock)
 {
 	breakBlock.damage(1);
@@ -157,7 +197,6 @@ function breakBlockCollide(Ball, breakBlock)
 	}   
 }
 
-/*
 function parser(filename) {
 	var file = new ActiveXObject("Scripting.FileSystemObject");
 	var f_in = file.OpenTextFile(filename,1);
@@ -236,8 +275,6 @@ function parser(filename) {
 				game.physics.enable(block,Phaser.Physics.ARCADE);
 				block.body.immovable = true;
 				break;
-			}
 		}
 	}
 }
-*/
