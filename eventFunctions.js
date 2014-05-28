@@ -30,6 +30,13 @@ function actionOnClickEnd2()
 	create();
 }
 
+function actionOnClick1()
+{
+    button_jouer.kill();
+    blop = true;
+    create();
+}
+
 function playerFailed(Ball, holeSprite)
 {
 	alert("Perdu !");
