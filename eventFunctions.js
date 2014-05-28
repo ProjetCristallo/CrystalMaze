@@ -1,7 +1,9 @@
-function endLevel(Ball, endTile)
+function endLevel(Ball, endSprite)
 {
         lastDir = null;
 	playing = false;
+	Ball.body.velocity.x=0;
+	Ball.body.velocity.y=0;
 	endSprite.kill();
 	EndScreen = game.add.sprite(25, 25, 'Win');
 	endButton = game.add.button(200,250, 'button', actionOnClickEnd, this, 2,1,0);
@@ -18,6 +20,18 @@ function playerFailed(Ball, holeSprite)
 	alert("Perdu !");
         create();
 }
+
+/*function pause() {
+	game.paused = true;
+	pauseMenu = game.add.sprite(300, 240, 'pauseMenu');
+	pauseMenu.anchor.setTo(0.5, 0.5);
+}*/
+
+/*function unpause() {
+	if (game.paused) {
+		game.paused = false;
+	}
+}*/
 
 function normalBlockCollide()
 {

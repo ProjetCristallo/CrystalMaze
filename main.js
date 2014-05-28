@@ -27,6 +27,7 @@ var C_left;
 var C_right;
 var Begin;
 var End;
+var Item;
 
 
 
@@ -49,6 +50,8 @@ function preload() {
         game.load.image('C','ressources/C.png');
         game.load.image('G','ressources/G.png');
         game.load.image('T','ressources/T.png');
+    game.load.image('pause', 'ressources/pause.png');
+     game.load.image('pauseMenu', 'ressources/pauseMenu.png');
     
 	game.load.spritesheet('button','ressources/button_sprite_sheet.png',193,71);
 }
