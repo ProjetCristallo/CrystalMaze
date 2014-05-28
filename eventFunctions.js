@@ -24,18 +24,66 @@ function normalBlockCollide()
 
 function changeUp()
 {
+    if(Ball.body.velocity.x == 0 && Ball.body.velocity.y == 0)
+    {
+	BallMoving = false;
+    }
+    else
+    {
+	BallMoving = true;
+    }
+    if(!BallMoving){
+	lastDir = 'u';
+        Ball.body.velocity.y = -Ballspeed; 
+    }
 }
 
 function changeDown()
 {
+    if(Ball.body.velocity.x == 0 && Ball.body.velocity.y == 0)
+    {
+	BallMoving = false;
+    }
+    else
+    {
+	BallMoving = true;
+    }
+    if(!BallMoving){
+	lastDir = 'd'
+	Ball.body.velocity.y = +BallSpeed;  
+    }
 }
 
 function changeRight()
 {
+    if(Ball.body.velocity.x == 0 && Ball.body.velocity.y == 0)
+    {
+	BallMoving = false;
+    }
+    else
+    {
+	BallMoving = true;
+    }
+    if(!BallMoving){
+	lastDir = 'r'
+	Ball.body.velocity.x = +BallSpeed;
+    }
 }
 
 function changeLeft()
 {
+    if(Ball.body.velocity.x == 0 && Ball.body.velocity.y == 0)
+    {
+	BallMoving = false;
+    }
+    else
+    {
+	BallMoving = true;
+    }
+    if(!BallMoving){
+	lastDir = 'l'
+	Ball.body.velocity.x = -BallSpeed;
+    }
 }
 
 function holeOverlap(Ball, holeSprite)
