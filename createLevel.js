@@ -5,5 +5,7 @@ function createLevel()
         chaine3 = ".txt";
         chaine2 = chaine1.concat(chaine2);
         chaine = chaine2.concat(chaine3);
+	listItem = [];
+	listItem.length = 0;
 	parser(chaine);
 }
