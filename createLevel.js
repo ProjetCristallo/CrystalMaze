@@ -1,7 +1,7 @@
 function createLevel()
 {
 	normalBlocks = game.add.group();
-	breakableBlocks = game.add.group();
+	Breakable = game.add.group();
 	endBlocks = game.add.group();
 	Hole = game.add.group();
 	Simple = game.add.group();
