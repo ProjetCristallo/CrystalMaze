@@ -41,5 +41,10 @@ function preload() {
 	game.load.image('Star','ressources/Star.png');
 	game.load.image('Hole','ressources/Hole.png');
 	game.load.image('Win','ressources/Win.png');
+        game.load.image('u_r','ressources/unilateral_right.png');
+        game.load.image('u_u','ressources/unilateral_up.png');
+        game.load.image('u_d','ressources/unilateral_down.png');
+        game.load.image('u_l','ressources/unilateral_left.png');
+    
 	game.load.spritesheet('button','ressources/button_sprite_sheet.png',193,71);
 }
