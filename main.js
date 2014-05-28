@@ -3,17 +3,32 @@ var game = new Phaser.Game(600,480,Phaser.AUTO,'', {preload:preload,create:creat
 var Ball;
 var BallMoving;
 var BallSpeed = 1000;
-var breakableBlocks;
-var endBlocks;
+
+var holeBlocks;
+
+var endTile;
 var endSprite;
+
 var EndScreen;
 var endButton;
 //Boolean indicating if the player hasn't won yet.
 var playing=true;
 
+
 //variable indicating what the last direction taken was.
 var lastDir;
 
+// Blocks groups
+
+var Hole = group();
+var Simple = group();
+var Unilateral = group();
+var Fragile = group();
+var C_up = group();
+var C_down = group();
+var C_left = group();
+var C_right = group();
+var endBlocks = group();
 
 function preload() {
 	game.load.image('logo','ressources/Bille.png');
@@ -21,6 +36,7 @@ function preload() {
 	game.load.image('BNoir','ressources/Block_Noir.png');
 	game.load.image('BVert','ressources/Block_Vert.png');
 	game.load.image('Star','ressources/Star.png');
+	game.load.image('Hole','ressources/Hole.png');
 	game.load.image('Win','ressources/Win.png');
 	game.load.image('Cup','ressources/Change_up.png');
 	game.load.image('Cdown','ressources/Change_down.png');
@@ -29,6 +45,7 @@ function preload() {
     
 	game.load.spritesheet('button','ressources/button_sprite_sheet.png',193,71);
 }
+
 
 function create() {
 	game.add.tileSprite(0,0,600,480,'Fond');
@@ -87,8 +104,8 @@ function moveBall() {
 	}
 	else
 	{
-		game.physics.arcade.collide(Ball, normalBlocks, normalBlockCollide, null, this);
-		game.physics.arcade.collide(Ball, breakableBlocks, breakBlockCollide, null, this);
+		game.physics.arcade.collide(Ball, Simple, simpleBlockCollide, null, this);
+	    	game.physics.arcade.collide(Ball, Fragile, fragileBlockCollide, null, this);
 		game.physics.arcade.collide(Ball, C_up, changeUpCollide, null, this);
 		game.physics.arcade.collide(Ball, C_down, changeDownCollide, null, this);
 		game.physics.arcade.collide(Ball, C_left, changeLeftCollide, null, this);
@@ -100,35 +117,35 @@ function moveBall() {
 
 function createLevel()
 {
-	normalBlocks = game.add.group();
-	breakableBlocks = game.add.group();
-	endBlocks = game.add.group();
-        C_up = game.add.group();
-        C_down = game.add.group();
-        C_left = game.add.group();
-        C_right = game.add.group();
+        Simple = game.add.group();
+ 	Fragile = game.add.group();
+ 	endBlocks = game.add.group();
+         C_up = game.add.group();
+         C_down = game.add.group();
+         C_left = game.add.group();
+         C_right = game.add.group();
+	
 
-	endSprite = endBlocks.create(558, 438, 'Star');
+endSprite = endBlocks.create(558, 438, 'Star');
 	game.physics.enable(endSprite,Phaser.Physics.ARCADE);	
 	endSprite.body.immovable = true;
 
-
     
-	block = breakableBlocks.create(480, 0, 'BVert');
+	block = Fragile.create(480, 0, 'BVert');
 	block.health = 4;
 	game.physics.enable(block,Phaser.Physics.ARCADE);
 	block.body.immovable = true;       
 
-	block = breakableBlocks.create(0, 360, 'BVert');
+	block = Fragile.create(0, 360, 'BVert');
 	block.health = 4;
 	game.physics.enable(block,Phaser.Physics.ARCADE);
 	block.body.immovable = true;
 
-	block = normalBlocks.create(540, 0, 'BNoir');
+	block = Simple.create(540, 0, 'BNoir');
 	game.physics.enable(block,Phaser.Physics.ARCADE);
 	block.body.immovable = true;
 
-	block = normalBlocks.create(0, 420, 'BNoir');
+	block = Simple.create(0, 420, 'BNoir');
 	game.physics.enable(block,Phaser.Physics.ARCADE);
 	block.body.immovable = true;
 
@@ -152,14 +169,14 @@ function actionOnClickEnd()
 	create();
 }
 
-function normalBlockCollide()
+function simpleBlockCollide(Ball, block)
 {
 }
 
-function breakBlockCollide(Ball, breakBlock)
+function fragileBlockCollide(Ball, block)
 {
-	breakBlock.damage(1);
-	if(breakBlock.health == 0){
+	block.damage(1);
+	if(block.health == 0){
 		lastDir=null;
 	}   
 }
@@ -312,3 +329,4 @@ break;
 }
 }
 */
+
