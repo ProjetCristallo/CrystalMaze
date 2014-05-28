@@ -3,9 +3,6 @@ var game = new Phaser.Game(600,480,Phaser.AUTO,'', {preload:preload,create:creat
 var Ball;
 var BallMoving;
 var BallSpeed = 1000;
-var Breakable;
-var endBlocks;
-var holeBlocks;
 
 var endTile;
 var endSprite;
@@ -23,16 +20,19 @@ var lastDir;
 var Hole;
 var Simple;
 var Unilateral;
+var Breakable;
 var C_up;
 var C_down;
 var C_left;
 var C_right;
+var Begin;
+var End;
 
 
 function preload() {
-	game.load.image('logo','ressources/Bille.png');
+	game.load.image('ball','ressources/Bille.png');
 	game.load.image('Fond','ressources/Fond.png');
-	game.load.image('Simple','ressources/Block_Noir.png');
+	game.load.image('breakable','ressources/Breakable.png');
 	game.load.image('Simple','ressources/Block_Noir.png');
 	game.load.image('c_up','ressources/Change_up.png');
 	game.load.image('c_down','ressources/Change_down.png');

@@ -28,15 +28,14 @@ function moveBall() {
 	}
 	else
 	{
-		game.physics.arcade.collide(Ball, normalBlocks, normalBlockCollide, null, this);
+		game.physics.arcade.collide(Ball, Simple, normalBlockCollide, null, this);
 		game.physics.arcade.collide(Ball, Breakable, breakBlockCollide, null, this);
-		game.physics.arcade.overlap(Ball, endBlocks, endLevel, null, this);
-		game.physics.arcade.overlap(Ball, C_up, changeUp, null, this);
-		game.physics.arcade.overlap(Ball, C_down, changeDown, null, this);
-		game.physics.arcade.overlap(Ball, C_right, changeRight, null, this);
-		game.physics.arcade.overlap(Ball, C_left, changeLeft, null, this);
+		game.physics.arcade.overlap(Ball, End, endLevel, null, this);
+		game.physics.arcade.collide(Ball, C_up, changeUp, null, this);
+		game.physics.arcade.collide(Ball, C_down, changeDown, null, this);
+		game.physics.arcade.collide(Ball, C_right, changeRight, null, this);
+		game.physics.arcade.collide(Ball, C_left, changeLeft, null, this);
 		game.physics.arcade.overlap(Ball, Hole, holeOverlap, null, this);
-		game.physics.arcade.collide(Ball, Fragile, fragileCollide, null, this);
 	}	
 }
 
@@ -55,7 +54,8 @@ function checkMove(breakableBlock, Ball, dir, authorized)
 
 function checkMoveGroup(Ball, Breakable, dir)
 {
+	alert(Breakable.length);
 	var authorized = true;
-	(Phaser.Group)(Breakable).forEachAlive(checkMove, this, Ball, dir, authorized);
+	Breakable.callAll(checkMove, null, Ball, dir, authorized);
 	return authorized;
 }
