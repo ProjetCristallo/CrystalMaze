@@ -13,7 +13,8 @@ function create() {
 	Breakable = game.add.group();
 	Begin = game.add.group();
 	End = game.add.group();
-
+	Item = game.add.group();
+	
 	createLevel();
 	
 	//Controller
