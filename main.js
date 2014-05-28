@@ -3,9 +3,6 @@ var game = new Phaser.Game(600,480,Phaser.AUTO,'', {preload:preload,create:creat
 var Ball;
 var BallMoving;
 var BallSpeed = 1000;
-var breakableBlocks;
-var endBlocks;
-var holeBlocks;
 
 var endTile;
 var endSprite;
@@ -20,14 +17,16 @@ var playing=true;
 var lastDir;
 
 // Blocks groups
-var Hole = group();
-var Simple = group();
-var Unilateral = group();
-var Fragile = group();
-var C_up = group();
-var C_down = group();
-var C_left = group();
-var C_right = group();
+var Hole;
+var Simple;
+var Unilateral;
+var Breakable;
+var C_up;
+var C_down;
+var C_left;
+var C_right;
+var Begin;
+var End;
 
 
 function preload() {
