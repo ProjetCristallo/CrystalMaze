@@ -44,11 +44,6 @@ function holeOverlap(Ball, holeSprite)
     create();
 }
 
-function fragileCollide()
-{
-}
-
-
 function breakBlockCollide(Ball, breakBlock)
 {
 	breakBlock.damage(1);
