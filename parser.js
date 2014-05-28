@@ -22,7 +22,7 @@ function parser(filename) {
 		switch(res[0]) {
 			case "begin":
 				Ball = game.add.sprite(x,y,'ball');
-				Ball.anchor.setTo(0.5,0.5);
+				Ball.anchor.setTo(0,0);
 				Ball.checkWorldBounds = true;
 				game.physics.enable(Ball,Phaser.Physics.ARCADE);
 				Ball.body.collideWorldBounds = true;
@@ -72,23 +72,55 @@ function parser(filename) {
 				block.body.immovable = true;
 				break;
 			case "change_up":
+		                block = Simple.create(x,y,'Simple');
+				game.physics.enable(block,Phaser.Physics.ARCADE);
+				block.body.immovable = true;
+		                block.body.checkCollision.left = false;
+		                block.body.checkCollision.up = false;
+		                block.body.checkCollision.right = false;
+
 				block = C_up.create(x,y,'c_up');
 				game.physics.enable(block,Phaser.Physics.ARCADE);
+		                block.body.checkCollision.down = false;
 				block.body.immovable = true;
 				break;
 			case "change_down":
+		                block = Simple.create(x,y,'Simple');
+				game.physics.enable(block,Phaser.Physics.ARCADE);
+				block.body.immovable = true;
+		                block.body.checkCollision.left = false;
+		                block.body.checkCollision.down = false;
+		                block.body.checkCollision.right = false;
+
 				block = C_down.create(x,y,'c_down');
 				game.physics.enable(block,Phaser.Physics.ARCADE);
+		                block.body.checkCollision.up = false;
 				block.body.immovable = true;
 				break;
 			case "change_right":
+		                block = Simple.create(x,y,'Simple');
+				game.physics.enable(block,Phaser.Physics.ARCADE);
+				block.body.immovable = true;
+		                block.body.checkCollision.up = false;
+		                block.body.checkCollision.down = false;
+		                block.body.checkCollision.right = false;
+
 				block = C_right.create(x,y,'c_right');
 				game.physics.enable(block,Phaser.Physics.ARCADE);
+		                block.body.checkCollision.left = false;
 				block.body.immovable = true;
 				break;
 			case "change_left":
+		                block = Simple.create(x,y,'Simple');
+				game.physics.enable(block,Phaser.Physics.ARCADE);
+				block.body.immovable = true;
+		                block.body.checkCollision.up = false;
+		                block.body.checkCollision.down = false;
+		                block.body.checkCollision.left = false;
+
 				block = C_left.create(x,y,'c_left');
 				game.physics.enable(block,Phaser.Physics.ARCADE);
+		                block.body.checkCollision.right = false;
 				block.body.immovable = true;
 				break;
 		}

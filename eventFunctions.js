@@ -1,5 +1,6 @@
 function endLevel(Ball, endTile)
 {
+        lastDir = null;
 	playing = false;
 	endSprite.kill();
 	EndScreen = game.add.sprite(25, 25, 'Win');
@@ -34,7 +35,7 @@ function changeUp()
     }
     if(!BallMoving){
 	lastDir = 'u';
-        Ball.body.velocity.y = -Ballspeed; 
+        Ball.body.velocity.y = -BallSpeed; 
     }
 }
 
@@ -55,7 +56,7 @@ function changeDown()
 }
 
 function changeRight()
-{
+{    
     if(Ball.body.velocity.x == 0 && Ball.body.velocity.y == 0)
     {
 	BallMoving = false;
@@ -88,6 +89,7 @@ function changeLeft()
 
 function holeOverlap(Ball, holeSprite)
 {
+    lastDir = null;
     alert("Perdu !");
     create();
 }
