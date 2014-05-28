@@ -46,24 +46,30 @@ function parser(filename) {
 			case "unilateral":			
 				switch(res[3]) {
 					case "up":
-						block = Unilateral.create(x,y,'u_up');
-						block.body.checkCollision.up = false;
+						block = Unilateral.create(x,y,'u_u');
+				                game.physics.enable(block,Phaser.Physics.ARCADE);
+				                block.body.immovable = true;
+						block.body.checkCollision.down = false;
 						break;
 					case "down":
 						block = Unilateral.create(x,y,'u_d');
-						block.body.checkCollision.down = false;
+				                game.physics.enable(block,Phaser.Physics.ARCADE);
+				                block.body.immovable = true;
+						block.body.checkCollision.up = false;
 						break;
 					case "right":
 						block = Unilateral.create(x,y,'u_r');
-						block.body.checkCollision.right = false;
+				                game.physics.enable(block,Phaser.Physics.ARCADE);
+				                block.body.immovable = true;
+						block.body.checkCollision.left = false;
 						break;
 					case "left":
 						block = Unilateral.create(x,y,'u_l');
-						block.body.checkCollision.left = false;
+				                game.physics.enable(block,Phaser.Physics.ARCADE);
+				                block.body.immovable = true;
+						block.body.checkCollision.right = false;
 						break;
 				}
-				game.physics.enable(block,Phaser.Physics.ARCADE);
-				block.body.immovable = true;
 				break;
 			case "breakable":
 				block = Breakable.create(x,y,'breakable');
