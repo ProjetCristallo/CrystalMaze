@@ -1,12 +1,4 @@
 function parser(filename) {
-	Hole = game.add.group();
-	Simple = game.add.group();
-	Unilateral = game.add.group();
-	Fragile = game.add.group();
-	C_up = game.add.group();
-	C_down = game.add.group();
-	C_left = game.add.group();
-	C_right = game.add.group();
 	if(document.all) {
 		var file = new ActiveXObject("Scripting.FileSystemObject");
 	}
@@ -38,7 +30,7 @@ function parser(filename) {
 			case "end":
 				break;
 			case "hole":
-				block = Hole.create(x,y,'hole');
+				block = Hole.create(x,y,'Hole');
 				game.physics.enable(block,Phaser.Physics.ARCADE);
 				block.body.immovable = true;
 				break;
@@ -70,7 +62,7 @@ function parser(filename) {
 				block.body.immovable = true;
 				break;
 			case "fragile":
-				block = Fragile.create(x,y,'fragile');
+				block = breakableBlocks.create(x,y,'fragile');
 				block.health = parseInt(res[3]);
 				game.physics.enable(block,Phaser.Physics.ARCADE);
 				block.body.immovable = true;

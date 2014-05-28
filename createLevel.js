@@ -3,26 +3,13 @@ function createLevel()
 	normalBlocks = game.add.group();
 	breakableBlocks = game.add.group();
 	endBlocks = game.add.group();
+	Hole = game.add.group();
+	Simple = game.add.group();
+	Unilateral = game.add.group();
+	C_up = game.add.group();
+	C_down = game.add.group();
+	C_left = game.add.group();
+	C_right = game.add.group();
 
-	endSprite = endBlocks.create(558, 438, 'Star');
-	game.physics.enable(endSprite,Phaser.Physics.ARCADE);	
-	endSprite.body.immovable = true;
-
-	breakBlock = breakableBlocks.create(480, 0, 'BVert');
-	breakBlock.health = 4;
-	game.physics.enable(breakBlock,Phaser.Physics.ARCADE);
-	breakBlock.body.immovable = true;       
-
-	breakBlock = breakableBlocks.create(0, 360, 'BVert');
-	breakBlock.health = 4;
-	game.physics.enable(breakBlock,Phaser.Physics.ARCADE);
-	breakBlock.body.immovable = true;
-
-	block = normalBlocks.create(540, 0, 'BNoir');
-	game.physics.enable(block,Phaser.Physics.ARCADE);
-	block.body.immovable = true;
-
-	block = normalBlocks.create(0, 420, 'BNoir');
-	game.physics.enable(block,Phaser.Physics.ARCADE);
-	block.body.immovable = true;
+	parser("levels/1.txt");
 }
