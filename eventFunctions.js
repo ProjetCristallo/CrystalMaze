@@ -38,8 +38,10 @@ function changeLeft()
 {
 }
 
-function holeOverlap()
+function holeOverlap(Ball, holeSprite)
 {
+    alert("Perdu !");
+    create();
 }
 
 function fragileCollide()
