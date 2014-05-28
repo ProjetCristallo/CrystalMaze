@@ -12,13 +12,6 @@ function actionOnClickEnd()
 	create();
 }
 
-function playerFailed(Ball, holeSprite)
-{
-	alert("Perdu !");
-        create();
-}
-
-
 function normalBlockCollide()
 {
 }
@@ -39,8 +32,10 @@ function changeLeft()
 {
 }
 
-function holeOverlap()
+function holeOverlap(Ball, holeSprite)
 {
+    alert("Perdu !");
+    create();
 }
 
 function fragileCollide()
