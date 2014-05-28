@@ -22,6 +22,11 @@ function preload() {
 	game.load.image('BVert','ressources/Block_Vert.png');
 	game.load.image('Star','ressources/Star.png');
 	game.load.image('Win','ressources/Win.png');
+	game.load.image('Cup','ressources/Change_up.png');
+	game.load.image('Cdown','ressources/Change_down.png');
+	game.load.image('Cleft','ressources/Change_left.png');
+	game.load.image('Cright','ressources/Change_right.png');
+    
 	game.load.spritesheet('button','ressources/button_sprite_sheet.png',193,71);
 }
 
@@ -84,6 +89,11 @@ function moveBall() {
 	{
 		game.physics.arcade.collide(Ball, normalBlocks, normalBlockCollide, null, this);
 		game.physics.arcade.collide(Ball, breakableBlocks, breakBlockCollide, null, this);
+		game.physics.arcade.collide(Ball, C_up, changeUpCollide, null, this);
+		game.physics.arcade.collide(Ball, C_down, changeDownCollide, null, this);
+		game.physics.arcade.collide(Ball, C_left, changeLeftCollide, null, this);
+		game.physics.arcade.collide(Ball, C_right, changeRightCollide, null, this);
+	    
 		game.physics.arcade.overlap(Ball, endBlocks, endLevel, null, this);
 	}	
 }
@@ -93,20 +103,26 @@ function createLevel()
 	normalBlocks = game.add.group();
 	breakableBlocks = game.add.group();
 	endBlocks = game.add.group();
+        C_up = game.add.group();
+        C_down = game.add.group();
+        C_left = game.add.group();
+        C_right = game.add.group();
 
 	endSprite = endBlocks.create(558, 438, 'Star');
 	game.physics.enable(endSprite,Phaser.Physics.ARCADE);	
 	endSprite.body.immovable = true;
 
-	breakBlock = breakableBlocks.create(480, 0, 'BVert');
-	breakBlock.health = 4;
-	game.physics.enable(breakBlock,Phaser.Physics.ARCADE);
-	breakBlock.body.immovable = true;       
 
-	breakBlock = breakableBlocks.create(0, 360, 'BVert');
-	breakBlock.health = 4;
-	game.physics.enable(breakBlock,Phaser.Physics.ARCADE);
-	breakBlock.body.immovable = true;
+    
+	block = breakableBlocks.create(480, 0, 'BVert');
+	block.health = 4;
+	game.physics.enable(block,Phaser.Physics.ARCADE);
+	block.body.immovable = true;       
+
+	block = breakableBlocks.create(0, 360, 'BVert');
+	block.health = 4;
+	game.physics.enable(block,Phaser.Physics.ARCADE);
+	block.body.immovable = true;
 
 	block = normalBlocks.create(540, 0, 'BNoir');
 	game.physics.enable(block,Phaser.Physics.ARCADE);
@@ -115,6 +131,11 @@ function createLevel()
 	block = normalBlocks.create(0, 420, 'BNoir');
 	game.physics.enable(block,Phaser.Physics.ARCADE);
 	block.body.immovable = true;
+
+        block = C_left.create(420, 0, 'Cleft');
+        game.physics.enable(block,Phaser.Physics.ARCADE);
+	block.body.immovable = true;
+        
 }
 
 function endLevel(Ball, endTile)
@@ -142,6 +163,71 @@ function breakBlockCollide(Ball, breakBlock)
 		lastDir=null;
 	}   
 }
+
+function changeUpCollide(Ball, block)
+{
+    if(Ball.body.velocity.x == 0 && Ball.body.velocity.y == 0)
+    {
+	BallMoving = false;
+    }
+    else
+    {
+	BallMoving = true;
+    }
+    if(!BallMoving){
+	lastDir = 'u';
+        Ball.body.velocity.y = -Ballspeed; 
+    }
+}
+
+function changeDownCollide(Ball, block)
+{
+    if(Ball.body.velocity.x == 0 && Ball.body.velocity.y == 0)
+    {
+	BallMoving = false;
+    }
+    else
+    {
+	BallMoving = true;
+    }
+    if(!BallMoving){
+	lastDir = 'd'
+	Ball.body.velocity.y = +BallSpeed;  
+    }
+}
+
+function changeRightCollide(Ball, block)
+{
+    if(Ball.body.velocity.x == 0 && Ball.body.velocity.y == 0)
+    {
+	BallMoving = false;
+    }
+    else
+    {
+	BallMoving = true;
+    }
+    if(!BallMoving){
+	lastDir = 'r'
+	Ball.body.velocity.x = +BallSpeed;
+    }
+}
+
+function changeLeftCollide(Ball, block)
+{
+    if(Ball.body.velocity.x == 0 && Ball.body.velocity.y == 0)
+    {
+	BallMoving = false;
+    }
+    else
+    {
+	BallMoving = true;
+    }
+    if(!BallMoving){
+	lastDir = 'l'
+	Ball.body.velocity.x = -BallSpeed;
+    }
+}
+
 /*
    function parser(filename) {
    var file = new ActiveXObject("Scripting.FileSystemObject");
