@@ -118,7 +118,6 @@ function breakBlockCollide(Ball, breakBlock)
 
 function itemCollide(Ball, itemSprite)
 {
-	listItem.length++;
-	listItem[listItem.length-1] = itemSprite.type;
+	listItem.push(itemSprite.type);
 	itemSprite.kill();
 }
