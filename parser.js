@@ -43,6 +43,13 @@ function parser(filename) {
 				game.physics.enable(block,Phaser.Physics.ARCADE);
 				block.body.immovable = true;
 				break;
+			case "item":	
+				var type=res[3];
+				block = Item.create(x,y,type);
+				game.physics.enable(block,Phaser.Physics.ARCADE);
+				block.body.immovable = true;
+				block.type=type;
+				break;
 			case "unilateral":			
 				switch(res[3]) {
 					case "up":
