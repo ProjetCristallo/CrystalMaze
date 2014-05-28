@@ -8,7 +8,7 @@ var endTile;
 var endSprite;
 
 var EndScreen;
-var endButton;
+
 //Boolean indicating if the player hasn't won yet.
 var playing=true;
 
@@ -52,8 +52,9 @@ function preload() {
         game.load.image('C','ressources/C.png');
         game.load.image('G','ressources/G.png');
         game.load.image('T','ressources/T.png');
-    game.load.image('pause', 'ressources/pause.png');
-     game.load.image('pauseMenu', 'ressources/pauseMenu.png');
+        game.load.image('pause', 'ressources/pause.png');
+        game.load.image('pauseMenu', 'ressources/pauseMenu.png');
     
-	game.load.spritesheet('button','ressources/button_sprite_sheet.png',193,71);
+	game.load.spritesheet('button','ressources/Button.png',249,36);
+        game.load.spritesheet('button2','ressources/Button_rejouer.png',140,35);
 }
