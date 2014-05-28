@@ -31,9 +31,8 @@ var C_right = group();
 
 
 function preload() {
-	game.load.image('logo','ressources/Bille.png');
+	game.load.image('ball','ressources/Bille.png');
 	game.load.image('Fond','ressources/Fond.png');
-	game.load.image('Simple','ressources/Block_Noir.png');
 	game.load.image('Simple','ressources/Block_Noir.png');
 	game.load.image('c_up','ressources/Change_up.png');
 	game.load.image('c_down','ressources/Change_down.png');

@@ -32,7 +32,7 @@ function moveBall() {
 	}
 	else
 	{
-		game.physics.arcade.collide(Ball, normalBlocks, normalBlockCollide, null, this);
+		game.physics.arcade.collide(Ball, Simple, normalBlockCollide, null, this);
 		game.physics.arcade.collide(Ball, breakableBlocks, breakBlockCollide, null, this);
 		game.physics.arcade.overlap(Ball, endBlocks, endLevel, null, this);
 		game.physics.arcade.overlap(Ball, C_up, changeUp, null, this);
@@ -40,6 +40,5 @@ function moveBall() {
 		game.physics.arcade.overlap(Ball, C_right, changeRight, null, this);
 		game.physics.arcade.overlap(Ball, C_left, changeLeft, null, this);
 		game.physics.arcade.overlap(Ball, Hole, holeOverlap, null, this);
-		game.physics.arcade.collide(Ball, Fragile, fragileCollide, null, this);
 	}	
 }
