@@ -9,19 +9,19 @@ function moveBall() {
 	}
 	if(!BallMoving)
 	{
-		if(controller.left.isDown && checkMoveGroup(Breakable,Ball,'left'))
+		if(controller.left.isDown && checkMoveGroup('left'))
 		{
 			Ball.body.velocity.x = -BallSpeed;
 		}
-		else if(controller.right.isDown && checkMoveGroup(Breakable,Ball,'right'))
+		else if(controller.right.isDown && checkMoveGroup('right'))
 		{
 			Ball.body.velocity.x = +BallSpeed;
 		}
-		else if(controller.up.isDown && checkMoveGroup(Breakable,Ball,'up'))
+		else if(controller.up.isDown && checkMoveGroup('up'))
 		{
 			Ball.body.velocity.y = -BallSpeed;
 		}
-		else if(controller.down.isDown && checkMoveGroup(Breakable,Ball,'down'))
+		else if(controller.down.isDown && checkMoveGroup('down'))
 		{
 			Ball.body.velocity.y = +BallSpeed;
 		}
@@ -39,7 +39,7 @@ function moveBall() {
 	}	
 }
 
-function checkMove(breakableBlock, Ball, dir, authorized)
+function checkMove(breakableBlock, dir, authorized)
 {
         if(dir=='up' && ((breakableBlock.y-Ball.y)==-60)){
                 authorized = false;
@@ -52,10 +52,9 @@ function checkMove(breakableBlock, Ball, dir, authorized)
 	}
 }
 
-function checkMoveGroup(Ball, Breakable, dir)
+function checkMoveGroup(Ball, dir)
 {
-	alert(Breakable.length);
 	var authorized = true;
-	Breakable.callAll(checkMove, null, Ball, dir, authorized);
+	Breakable.forEachAlive(checkMove, this, dir, authorized);
 	return authorized;
 }
