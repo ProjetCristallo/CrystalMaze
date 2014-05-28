@@ -31,7 +31,7 @@ var Begin;
 var End;
 var Item;
 var listItem;
-
+var score;
 
 function preload() {
 	game.load.image('ball','ressources/Bille.png');

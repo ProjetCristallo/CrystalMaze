@@ -10,7 +10,7 @@ function endLevel(Ball, endSprite)
 	endButton = game.add.button(200,250, 'button', actionOnClickEnd, this, 2,1,0);
 
         current_level = current_level + 1;
-	alert(listItem.join(" "));
+	alert(listItem.join(" ")+ '\nscore :' + score);
 }
 
 function actionOnClickEnd()

@@ -11,18 +11,22 @@ function moveBall() {
 	{
 		if(controller.left.isDown && checkMoveGroup('left'))
 		{
+			score++;
 			Ball.body.velocity.x = -BallSpeed;
 		}
 		else if(controller.right.isDown && checkMoveGroup('right'))
 		{
+			score++;
 			Ball.body.velocity.x = +BallSpeed;
 		}
 		else if(controller.up.isDown && checkMoveGroup('up'))
 		{
+			score++;
 			Ball.body.velocity.y = -BallSpeed;
 		}
 		else if(controller.down.isDown && checkMoveGroup('down'))
 		{
+			score++;
 			Ball.body.velocity.y = +BallSpeed;
 		}
 	}
@@ -42,15 +46,15 @@ function moveBall() {
 }
 
 
-function checkMove(breakableBlock, dir){
+function checkMove(block, dir){
 	var authorized =true;
-	if(dir=='up' && (breakableBlock.y-Ball.y==-60) && (breakableBlock.x==Ball.x)){
+	if(dir=='up' && (block.y-Ball.y==-60) && (block.x==Ball.x)){
 		authorized = false;
-	} else if(dir=='down' && (breakableBlock.y-Ball.y==60) && (breakableBlock.x==Ball.x)){
+	} else if(dir=='down' && (block.y-Ball.y==60) && (block.x==Ball.x)){
 		authorized = false;
-	} else if(dir=='left' && (breakableBlock.x-Ball.x==-60) && (breakableBlock.y==Ball.y)){
+	} else if(dir=='left' && (block.x-Ball.x==-60) && (block.y==Ball.y)){
 		authorized = false;
-	} else if(dir=='right' && ((breakableBlock.x-Ball.x)==60) && (breakableBlock.y==Ball.y)){
+	} else if(dir=='right' && ((block.x-Ball.x)==60) && (block.y==Ball.y)){
 		authorized = false;
 	}
 	return authorized;
@@ -59,7 +63,19 @@ function checkMove(breakableBlock, dir){
 function checkMoveGroup(dir)
 {
 	var current;
-	authorized = true;
+	var authorized = true;
+
+	
+	//alert(Ball.y + ' ' + game.height + ' ' + Ball.height);
+	//We check with the game boundaries
+	if((dir=='up' && Ball.y==0) || 
+			(dir=='down' && Ball.y==game.height-Ball.height) || 
+			(dir=='right' && Ball.x==game.width-Ball.width) || 
+			(dir=='left' && Ball.x==0)) {
+		return false;
+	}
+
+
 	for(var i=0; i<Breakable.length;i++){
 		current = Breakable.getAt(i);
 		if(current.alive) {
@@ -67,5 +83,14 @@ function checkMoveGroup(dir)
 
 		}
 	}
+	for(var i=0; i<Simple.length;i++){
+		current = Simple.getAt(i);
+		if(current.alive) {
+			authorized = authorized && checkMove(current, dir);
+
+		}
+	}
+	//alert(authorized);
+
 	return authorized;
 }

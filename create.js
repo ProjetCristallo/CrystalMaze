@@ -14,9 +14,18 @@ function create() {
 	Begin = game.add.group();
 	End = game.add.group();
 	Item = game.add.group();
-	
+	score = 0;	
+
 	createLevel();
 	
+	text = game.add.text(500, 30, "Score : 0", {
+        font: "40px Arial",
+        fill: "#ff0044",
+        align: "center"
+    });
+
+    text.anchor.setTo(0.5, 0.5);
+		
 	//Controller
 	controller = game.input.keyboard.createCursorKeys();
 	
