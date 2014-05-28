@@ -1,5 +1,7 @@
 function moveBall() {
-	if(Ball.body.velocity.x == 0 && Ball.body.velocity.y == 0)
+	//if(Ball.body.velocity.x == 0 && Ball.body.velocity.y == 0)
+	
+	if(Phaser.Point.equals(Ball.body.position, Ball.body.prev))
 	{
 		BallMoving = false;
 	}
@@ -65,8 +67,6 @@ function checkMoveGroup(dir)
 	var current;
 	var authorized = true;
 
-	
-	//alert(Ball.y + ' ' + game.height + ' ' + Ball.height);
 	//We check with the game boundaries
 	if((dir=='up' && Ball.y==0) || 
 			(dir=='down' && Ball.y==game.height-Ball.height) || 
