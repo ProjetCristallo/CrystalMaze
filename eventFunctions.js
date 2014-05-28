@@ -7,6 +7,9 @@ function endLevel(Ball, endSprite)
 	endSprite.kill();
 	EndScreen = game.add.sprite(25, 25, 'Win');
 	endButton = game.add.button(200,250, 'button', actionOnClickEnd, this, 2,1,0);
+	for(var i = 0; i<listItem.length; i++){
+		console.log(listItem[i]);
+	}
 }
 
 function actionOnClickEnd()
@@ -111,4 +114,10 @@ function holeOverlap(Ball, holeSprite)
 function breakBlockCollide(Ball, breakBlock)
 {
 	breakBlock.damage(1);
+}
+
+function itemCollide(Ball, itemSprite)
+{
+	listItem.length++;
+	listItem[listItem.length-1] = itemSprite.type;
 }
