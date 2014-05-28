@@ -15,6 +15,7 @@ function parser(filename) {
 		var block;
 		//		var line = f_in.ReadLine();
 		var line = arrLines[i];
+		console.info(line);
 		var res = line.split(" ");
 		x = 60*parseInt(res[1]);
 		y = 60*parseInt(res[2]);

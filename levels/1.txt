@@ -2,3 +2,7 @@ begin 0 0
 simple 6 0
 hole 2 2
 fragile 1 5
+change_up 0 1
+change_down 0 2
+change_left 0 3
+change_right 0 4

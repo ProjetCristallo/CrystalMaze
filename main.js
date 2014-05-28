@@ -33,8 +33,12 @@ var C_right = group();
 function preload() {
 	game.load.image('logo','ressources/Bille.png');
 	game.load.image('Fond','ressources/Fond.png');
-	game.load.image('BNoir','ressources/Block_Noir.png');
-	game.load.image('BVert','ressources/Block_Vert.png');
+	game.load.image('Simple','ressources/Block_Noir.png');
+	game.load.image('Simple','ressources/Block_Noir.png');
+	game.load.image('c_up','ressources/Change_up.png');
+	game.load.image('c_down','ressources/Change_down.png');
+	game.load.image('c_right','ressources/Change_right.png');
+	game.load.image('c_left','ressources/Change_left.png');
 	game.load.image('Star','ressources/Star.png');
 	game.load.image('Hole','ressources/Hole.png');
 	game.load.image('Win','ressources/Win.png');
