@@ -7,9 +7,7 @@ function endLevel(Ball, endSprite)
 	endSprite.kill();
 	EndScreen = game.add.sprite(25, 25, 'Win');
 	endButton = game.add.button(200,250, 'button', actionOnClickEnd, this, 2,1,0);
-	for(var i = 0; i<listItem.length; i++){
-		console.log(listItem[i]);
-	}
+	alert(listItem.join(" "));
 }
 
 function actionOnClickEnd()
