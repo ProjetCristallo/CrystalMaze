@@ -29,6 +29,9 @@ function parser(filename) {
 				BallMoving = false;
 				break;
 			case "end":
+				block = End.create(x,y,'end');
+				game.physics.enable(block,Phaser.Physics.ARCADE);
+				block.body.immovable = true;
 				break;
 			case "hole":
 				block = Hole.create(x,y,'Hole');
