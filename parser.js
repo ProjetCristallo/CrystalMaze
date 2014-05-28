@@ -62,8 +62,8 @@ function parser(filename) {
 				game.physics.enable(block,Phaser.Physics.ARCADE);
 				block.body.immovable = true;
 				break;
-			case "fragile":
-				block = breakableBlocks.create(x,y,'fragile');
+			case "breakable":
+				block = Breakable.create(x,y,'breakable');
 				block.health = parseInt(res[3]);
 				game.physics.enable(block,Phaser.Physics.ARCADE);
 				block.body.immovable = true;
