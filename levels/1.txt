@@ -1,6 +1,7 @@
 begin 0 0
 simple 6 0
 breakable 5 0 3
+
 simple 2 0
 simple 2 1
 simple 3 7
@@ -12,3 +13,4 @@ end 7 7
 item 1 2 C
 item 2 3 G
 item 3 5 T
+

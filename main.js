@@ -13,6 +13,8 @@ var endButton;
 var playing=true;
 
 
+var current_level = 1;
+
 //variable indicating what the last direction taken was.
 var lastDir;
 
