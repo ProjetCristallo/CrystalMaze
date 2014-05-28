@@ -18,7 +18,6 @@ function playerFailed(Ball, holeSprite)
         create();
 }
 
-
 function normalBlockCollide()
 {
 }

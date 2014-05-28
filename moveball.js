@@ -33,8 +33,8 @@ function moveBall() {
 	else
 	{
 		game.physics.arcade.collide(Ball, Simple, normalBlockCollide, null, this);
-		game.physics.arcade.collide(Ball, breakableBlocks, breakBlockCollide, null, this);
-		game.physics.arcade.overlap(Ball, endBlocks, endLevel, null, this);
+		game.physics.arcade.collide(Ball, Breakable, breakBlockCollide, null, this);
+		game.physics.arcade.overlap(Ball, End, endLevel, null, this);
 		game.physics.arcade.overlap(Ball, C_up, changeUp, null, this);
 		game.physics.arcade.overlap(Ball, C_down, changeDown, null, this);
 		game.physics.arcade.overlap(Ball, C_right, changeRight, null, this);
