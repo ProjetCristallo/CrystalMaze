@@ -1,4 +1,5 @@
 function create() {
+    if(blop){
 	game.add.tileSprite(0,0,600,480,'Fond');
 	game.physics.startSystem(Phaser.Physics.ARCADE);
 	
@@ -22,5 +23,10 @@ function create() {
 	
 	//Pause button
 	//var pauseButton = game.add.button(0,300,'pause', pause);
-	
+    } else {
+	mainMenu = game.add.sprite(0, 0, 'mainMenu');
+	title = game.add.sprite(11, 50, 'title');
+	button_jouer = game.add.button(200,300, 'button1', actionOnClick1, this, 1,0,2);
+
+    }	
 }

@@ -1,5 +1,5 @@
 function update() {
-	if(playing){
+	if(playing && blop){
 		moveBall();
 	}
 }
