@@ -46,6 +46,8 @@ function preload() {
         game.load.image('u_u','ressources/unilateral_up.png');
         game.load.image('u_d','ressources/unilateral_down.png');
         game.load.image('u_l','ressources/unilateral_left.png');
+    game.load.image('pause', 'ressources/pause.png');
+     game.load.image('pauseMenu', 'ressources/pauseMenu.png');
     
 	game.load.spritesheet('button','ressources/button_sprite_sheet.png',193,71);
 }

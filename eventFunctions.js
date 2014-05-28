@@ -19,17 +19,17 @@ function playerFailed(Ball, holeSprite)
         create();
 }
 
-function pause() {
+/*function pause() {
 	game.paused = true;
-	pauseMenu = game.add.sprite(300, 240, 'pause');
+	pauseMenu = game.add.sprite(300, 240, 'pauseMenu');
 	pauseMenu.anchor.setTo(0.5, 0.5);
-}
+}*/
 
-function unpause() {
+/*function unpause() {
 	if (game.paused) {
 		game.paused = false;
 	}
-}
+}*/
 
 function normalBlockCollide()
 {
