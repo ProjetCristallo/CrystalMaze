@@ -120,4 +120,5 @@ function itemCollide(Ball, itemSprite)
 {
 	listItem.length++;
 	listItem[listItem.length-1] = itemSprite.type;
+	itemSprite.kill();
 }
