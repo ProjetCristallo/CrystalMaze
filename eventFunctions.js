@@ -7,14 +7,25 @@ function endLevel(Ball, endSprite)
 	Ball.body.velocity.y=0;
 	endSprite.kill();
 	EndScreen = game.add.sprite(25, 25, 'Win');
-	endButton = game.add.button(200,250, 'button', actionOnClickEnd, this, 2,1,0);
+	Button = game.add.button(200,250, 'button', actionOnClickEnd, this, 2,1,0);
+	Button2 = game.add.button(200,300, 'button2', actionOnClickEnd2, this, 2,1,0);
 
-        current_level = current_level + 1;
 	alert(listItem.join(" "));
 }
 
 function actionOnClickEnd()
 {
+        Button.kill();
+        Button2.kill();
+        current_level = current_level + 1;
+	playing = true;
+	create();
+}
+
+function actionOnClickEnd2()
+{
+        Button.kill();
+        Button2.kill();
 	playing = true;
 	create();
 }
