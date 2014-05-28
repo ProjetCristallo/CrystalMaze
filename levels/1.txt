@@ -3,9 +3,9 @@ simple 6 0
 hole 2 2
 breakable 5 0 3
 change_up 0 1
-change_down 6 1
+change_down 4 0
 change_left 5 6
-change_right 4 0
+change_right 6 1
 unilateral 2 0 right
 
 
