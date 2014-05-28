@@ -14,8 +14,13 @@ function create() {
 	Begin = game.add.group();
 	End = game.add.group();
 
-
 	createLevel();
-
 	controller = game.input.keyboard.createCursorKeys();
+	
+	//Pause menu
+	pauseLabel = game.add.text(0,480,'Pause');
+	pauseLabel.inputEnabled = true;
+	pauseLabel.events.onInputUp.add(pause);
+	//pauseLabel.events.onDown.add(unpause);
+	
 }

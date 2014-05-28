@@ -9,24 +9,20 @@ function moveBall() {
 	}
 	if(!BallMoving)
 	{
-		if(controller.left.isDown && lastDir!='l')
+		if(controller.left.isDown && checkMoveGroup('left'))
 		{
-			lastDir='l';
 			Ball.body.velocity.x = -BallSpeed;
 		}
-		else if(controller.right.isDown && lastDir!='r')
+		else if(controller.right.isDown && checkMoveGroup('right'))
 		{
-			lastDir = 'r';
 			Ball.body.velocity.x = +BallSpeed;
 		}
-		else if(controller.up.isDown && lastDir!='u')
+		else if(controller.up.isDown && checkMoveGroup('up'))
 		{
-			lastDir='u';
 			Ball.body.velocity.y = -BallSpeed;
 		}
-		else if(controller.down.isDown && lastDir!='d')
+		else if(controller.down.isDown && checkMoveGroup('down'))
 		{
-			lastDir='d';
 			Ball.body.velocity.y = +BallSpeed;
 		}
 	}
@@ -39,7 +35,34 @@ function moveBall() {
 		game.physics.arcade.collide(Ball, C_down, changeDown, null, this);
 		game.physics.arcade.collide(Ball, C_right, changeRight, null, this);
 		game.physics.arcade.collide(Ball, C_left, changeLeft, null, this);
-	        game.physics.arcade.collide(Ball, Unilateral, normalBlockCollide, null, this);
+		game.physics.arcade.collide(Ball, Unilateral, normalBlockCollide, null, this);
 		game.physics.arcade.overlap(Ball, Hole, holeOverlap, null, this);
 	}	
+}
+
+
+function checkMove(breakableBlock, dir, authorized){
+	if(dir=='up' && ((breakableBlock.y-Ball.y)==-60)){
+		authorized = false;
+	} else if(dir=='down' && ((breakableBlock.y-Ball.y)==60)){
+		authorized = false;
+	} else if(dir=='left' && ((breakableBlock.x-Ball.x)==-60)){
+		authorized = false;
+	} else if(dir=='right' && ((breakableBlock.x-Ball.x)==60)){
+		authorized = false;
+	}
+	return authorized;
+}
+
+function checkMoveGroup(dir)
+{
+	var current;
+	authorized = true;
+	for(var i=0; i<Breakable.length;i++){
+		current = Breakable.getAt(i);
+		if(current.alive) {
+			authorized = authorized && checkMove(current, dir, authorized);
+		}
+	}
+	return authorized;
 }

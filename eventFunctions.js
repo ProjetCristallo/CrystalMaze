@@ -19,6 +19,18 @@ function playerFailed(Ball, holeSprite)
         create();
 }
 
+function pause() {
+	game.paused = true;
+	pauseMenu = game.add.sprite(300, 240, 'pause');
+	pauseMenu.anchor.setTo(0.5, 0.5);
+}
+
+function unpause() {
+	if (game.paused) {
+		game.paused = false;
+	}
+}
+
 function normalBlockCollide()
 {
 }
@@ -97,7 +109,4 @@ function holeOverlap(Ball, holeSprite)
 function breakBlockCollide(Ball, breakBlock)
 {
 	breakBlock.damage(1);
-	if(breakBlock.health == 0){
-		lastDir=null;
-	}   
 }
