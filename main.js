@@ -8,10 +8,16 @@ var endBlocks;
 var holeBlocks;
 
 var endTile;
+var endSprite;
+
 var EndScreen;
 var endButton;
 //Boolean indicating if the player hasn't won yet.
 var playing=true;
+
+
+//variable indicating what the last direction taken was.
+var lastDir;
 
 
 function preload() {
@@ -59,20 +65,24 @@ function moveBall() {
 	}
 	if(!BallMoving)
 	{
-		if(controller.left.isDown)
+		if(controller.left.isDown && lastDir!='l')
 		{
+			lastDir='l';
 			Ball.body.velocity.x = -BallSpeed;
 		}
-		else if(controller.right.isDown)
+		else if(controller.right.isDown && lastDir!='r')
 		{
+			lastDir = 'r';
 			Ball.body.velocity.x = +BallSpeed;
 		}
-		else if(controller.up.isDown)
+		else if(controller.up.isDown && lastDir!='u')
 		{
+			lastDir='u';
 			Ball.body.velocity.y = -BallSpeed;
 		}
-		else if(controller.down.isDown)
+		else if(controller.down.isDown && lastDir!='d')
 		{
+			lastDir='d';
 			Ball.body.velocity.y = +BallSpeed;
 		}
 	}
@@ -87,44 +97,37 @@ function moveBall() {
 
 function createLevel()
 {
-    var block;
-    normalBlocks = game.add.group();
-    breakableBlocks = game.add.group();
-    endBlocks = game.add.group();
-    holeBlocks = game.add.group();
-    
-    block  = endBlocks.create(540, 420, 'Star');
-    game.physics.enable(block,Phaser.Physics.ARCADE);	
-    block.body.immovable = true;
-    
-    block = breakableBlocks.create(480, 0, 'BVert');
-    block.health=4;
-    game.physics.enable(block,Phaser.Physics.ARCADE);
-    block.body.immovable = true;
-    
-    block = breakableBlocks.create(0, 360, 'BVert');
-    block.health=4;
-    game.physics.enable(block,Phaser.Physics.ARCADE);
-    block.body.immovable = true;
-    
-    block = normalBlocks.create(540, 0, 'BNoir');
-    game.physics.enable(block,Phaser.Physics.ARCADE);
-    block.body.immovable = true;
-    
-    block = normalBlocks.create(0, 420, 'BNoir');
-    game.physics.enable(block,Phaser.Physics.ARCADE);
-    block.body.immovable = true;
-    
-    block = holeBlocks.create(0,100,'Hole');
-    game.physics.enable(block,Phaser.Physics.ARCADE);
-    block.body.immovable = true;
-        
+	normalBlocks = game.add.group();
+	breakableBlocks = game.add.group();
+	endBlocks = game.add.group();
+
+	endSprite = endBlocks.create(558, 438, 'Star');
+	game.physics.enable(endSprite,Phaser.Physics.ARCADE);	
+	endSprite.body.immovable = true;
+
+	breakBlock = breakableBlocks.create(480, 0, 'BVert');
+	breakBlock.health = 4;
+	game.physics.enable(breakBlock,Phaser.Physics.ARCADE);
+	breakBlock.body.immovable = true;       
+
+	breakBlock = breakableBlocks.create(0, 360, 'BVert');
+	breakBlock.health = 4;
+	game.physics.enable(breakBlock,Phaser.Physics.ARCADE);
+	breakBlock.body.immovable = true;
+
+	block = normalBlocks.create(540, 0, 'BNoir');
+	game.physics.enable(block,Phaser.Physics.ARCADE);
+	block.body.immovable = true;
+
+	block = normalBlocks.create(0, 420, 'BNoir');
+	game.physics.enable(block,Phaser.Physics.ARCADE);
+	block.body.immovable = true;
 }
 
 function endLevel(Ball, endTile)
 {
 	playing = false;
-	endTile.kill();
+	endSprite.kill();
 	EndScreen = game.add.sprite(25, 25, 'Win');
 	endButton = game.add.button(200,250, 'button', actionOnClickEnd, this, 2,1,0);
 }
@@ -148,7 +151,10 @@ function normalBlockCollide()
 
 function breakBlockCollide(Ball, breakBlock)
 {
-	breakBlock.damage(1);   
+	breakBlock.damage(1);
+	if(breakBlock.health == 0){
+		lastDir=null;
+	}   
 }
 
 /*
