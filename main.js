@@ -28,7 +28,7 @@ var C_right;
 var Begin;
 var End;
 var Item;
-
+var listItem;
 
 
 function preload() {

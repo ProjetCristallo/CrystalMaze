@@ -37,6 +37,7 @@ function moveBall() {
 		game.physics.arcade.collide(Ball, C_left, changeLeft, null, this);
 		game.physics.arcade.collide(Ball, Unilateral, normalBlockCollide, null, this);
 		game.physics.arcade.overlap(Ball, Hole, holeOverlap, null, this);
+		game.physics.arcade.collide(Ball, Item, itemCollide, null, this);
 	}	
 }
 
