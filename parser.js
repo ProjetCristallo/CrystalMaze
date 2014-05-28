@@ -29,7 +29,7 @@ function parser(filename) {
 				BallMoving = false;
 				break;
 			case "end":
-				block = End.create(x,y,'end');
+				block = End.create(x,y,'End');
 				game.physics.enable(block,Phaser.Physics.ARCADE);
 				block.body.immovable = true;
 				break;
@@ -42,6 +42,13 @@ function parser(filename) {
 				block = Simple.create(x,y,'Simple');
 				game.physics.enable(block,Phaser.Physics.ARCADE);
 				block.body.immovable = true;
+				break;
+			case "item":	
+				var type=res[3];
+				block = Item.create(x,y,type);
+				game.physics.enable(block,Phaser.Physics.ARCADE);
+				block.body.immovable = true;
+				block.type=type;
 				break;
 			case "unilateral":			
 				switch(res[3]) {

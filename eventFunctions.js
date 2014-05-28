@@ -1,10 +1,16 @@
-function endLevel(Ball, endTile)
+
+function endLevel(Ball, endSprite)
 {
         lastDir = null;
 	playing = false;
+	Ball.body.velocity.x=0;
+	Ball.body.velocity.y=0;
 	endSprite.kill();
 	EndScreen = game.add.sprite(25, 25, 'Win');
 	endButton = game.add.button(200,250, 'button', actionOnClickEnd, this, 2,1,0);
+
+        current_level = current_level + 1;
+	alert(listItem.join(" "));
 }
 
 function actionOnClickEnd()
@@ -19,17 +25,17 @@ function playerFailed(Ball, holeSprite)
         create();
 }
 
-function pause() {
+/*function pause() {
 	game.paused = true;
-	pauseMenu = game.add.sprite(300, 240, 'pause');
+	pauseMenu = game.add.sprite(300, 240, 'pauseMenu');
 	pauseMenu.anchor.setTo(0.5, 0.5);
-}
+}*/
 
-function unpause() {
+/*function unpause() {
 	if (game.paused) {
 		game.paused = false;
 	}
-}
+}*/
 
 function normalBlockCollide()
 {
@@ -109,4 +115,10 @@ function holeOverlap(Ball, holeSprite)
 function breakBlockCollide(Ball, breakBlock)
 {
 	breakBlock.damage(1);
+}
+
+function itemCollide(Ball, itemSprite)
+{
+	listItem.push(itemSprite.type);
+	itemSprite.kill();
 }

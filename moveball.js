@@ -37,18 +37,20 @@ function moveBall() {
 		game.physics.arcade.collide(Ball, C_left, changeLeft, null, this);
 		game.physics.arcade.collide(Ball, Unilateral, normalBlockCollide, null, this);
 		game.physics.arcade.overlap(Ball, Hole, holeOverlap, null, this);
+		game.physics.arcade.overlap(Ball, Item, itemCollide, null, this);
 	}	
 }
 
 
-function checkMove(breakableBlock, dir, authorized){
-	if(dir=='up' && ((breakableBlock.y-Ball.y)==-60)){
+function checkMove(breakableBlock, dir){
+	var authorized =true;
+	if(dir=='up' && (breakableBlock.y-Ball.y==-60) && (breakableBlock.x==Ball.x)){
 		authorized = false;
-	} else if(dir=='down' && ((breakableBlock.y-Ball.y)==60)){
+	} else if(dir=='down' && (breakableBlock.y-Ball.y==60) && (breakableBlock.x==Ball.x)){
 		authorized = false;
-	} else if(dir=='left' && ((breakableBlock.x-Ball.x)==-60)){
+	} else if(dir=='left' && (breakableBlock.x-Ball.x==-60) && (breakableBlock.y==Ball.y)){
 		authorized = false;
-	} else if(dir=='right' && ((breakableBlock.x-Ball.x)==60)){
+	} else if(dir=='right' && ((breakableBlock.x-Ball.x)==60) && (breakableBlock.y==Ball.y)){
 		authorized = false;
 	}
 	return authorized;
@@ -61,7 +63,8 @@ function checkMoveGroup(dir)
 	for(var i=0; i<Breakable.length;i++){
 		current = Breakable.getAt(i);
 		if(current.alive) {
-			authorized = authorized && checkMove(current, dir, authorized);
+			authorized = authorized && checkMove(current, dir);
+
 		}
 	}
 	return authorized;

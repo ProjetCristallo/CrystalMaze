@@ -13,6 +13,8 @@ var endButton;
 var playing=true;
 
 
+var current_level = 1;
+
 //variable indicating what the last direction taken was.
 var lastDir;
 
@@ -27,7 +29,8 @@ var C_left;
 var C_right;
 var Begin;
 var End;
-
+var Item;
+var listItem;
 
 
 function preload() {
@@ -39,13 +42,18 @@ function preload() {
 	game.load.image('c_down','ressources/Change_down.png');
 	game.load.image('c_right','ressources/Change_right.png');
 	game.load.image('c_left','ressources/Change_left.png');
-	game.load.image('Star','ressources/Star.png');
+	game.load.image('End','ressources/Star.png');
 	game.load.image('Hole','ressources/Hole.png');
 	game.load.image('Win','ressources/Win.png');
         game.load.image('u_r','ressources/unilateral_right.png');
         game.load.image('u_u','ressources/unilateral_up.png');
         game.load.image('u_d','ressources/unilateral_down.png');
         game.load.image('u_l','ressources/unilateral_left.png');
+        game.load.image('C','ressources/C.png');
+        game.load.image('G','ressources/G.png');
+        game.load.image('T','ressources/T.png');
+    game.load.image('pause', 'ressources/pause.png');
+     game.load.image('pauseMenu', 'ressources/pauseMenu.png');
     
 	game.load.spritesheet('button','ressources/button_sprite_sheet.png',193,71);
 }

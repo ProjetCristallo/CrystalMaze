@@ -13,14 +13,14 @@ function create() {
 	Breakable = game.add.group();
 	Begin = game.add.group();
 	End = game.add.group();
-
+	Item = game.add.group();
+	
 	createLevel();
+	
+	//Controller
 	controller = game.input.keyboard.createCursorKeys();
 	
-	//Pause menu
-	pauseLabel = game.add.text(0,480,'Pause');
-	pauseLabel.inputEnabled = true;
-	pauseLabel.events.onInputUp.add(pause);
-	//pauseLabel.events.onDown.add(unpause);
+	//Pause button
+	//var pauseButton = game.add.button(0,300,'pause', pause);
 	
 }
