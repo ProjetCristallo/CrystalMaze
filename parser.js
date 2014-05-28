@@ -36,7 +36,7 @@ function parser(filename) {
 				block.body.immovable = true;
 				break;
 			case "simple":
-				block = Simple.create(x,y,'simple');
+				block = Simple.create(x,y,'Simple');
 				game.physics.enable(block,Phaser.Physics.ARCADE);
 				block.body.immovable = true;
 				break;
