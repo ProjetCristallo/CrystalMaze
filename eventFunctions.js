@@ -51,6 +51,7 @@ function fragileCollide()
 
 function breakBlockCollide(Ball, breakBlock)
 {
+	breakBlock.damage(1);
 	if(breakBlock.health == 0){
 		lastDir=null;
 	}   
