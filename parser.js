@@ -29,7 +29,7 @@ function parser(filename) {
 				BallMoving = false;
 				break;
 			case "end":
-				block = End.create(x,y,'end');
+				block = End.create(x,y,'End');
 				game.physics.enable(block,Phaser.Physics.ARCADE);
 				block.body.immovable = true;
 				break;
