@@ -49,6 +49,9 @@ function preload() {
         game.load.image('u_u','ressources/unilateral_up.png');
         game.load.image('u_d','ressources/unilateral_down.png');
         game.load.image('u_l','ressources/unilateral_left.png');
+        game.load.image('C','ressources/C.png');
+        game.load.image('G','ressources/G.png');
+        game.load.image('T','ressources/T.png');
     game.load.image('pause', 'ressources/pause.png');
      game.load.image('pauseMenu', 'ressources/pauseMenu.png');
     
