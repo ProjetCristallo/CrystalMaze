@@ -7,6 +7,12 @@ var breakableBlocks;
 var endBlocks;
 var holeBlocks;
 
+var endTile;
+var EndScreen;
+var endButton;
+//Boolean indicating if the player hasn't won yet.
+var playing=true;
+
 
 function preload() {
 	game.load.image('logo','ressources/Bille.png');
@@ -15,6 +21,8 @@ function preload() {
 	game.load.image('BVert','ressources/Block_Vert.png');
 	game.load.image('Star','ressources/Star.png');
 	game.load.image('Hole','ressources/Hole.png');
+	game.load.image('Win','ressources/Win.png');
+	game.load.spritesheet('button','ressources/button_sprite_sheet.png',193,71);
 }
 
 function create() {
@@ -35,7 +43,9 @@ function create() {
 }
 
 function update() {
-	moveBall();
+	if(playing){
+		moveBall();
+	}
 }
 
 function moveBall() {
@@ -88,10 +98,12 @@ function createLevel()
     block.body.immovable = true;
     
     block = breakableBlocks.create(480, 0, 'BVert');
+    block.health=4;
     game.physics.enable(block,Phaser.Physics.ARCADE);
     block.body.immovable = true;
     
     block = breakableBlocks.create(0, 360, 'BVert');
+    block.health=4;
     game.physics.enable(block,Phaser.Physics.ARCADE);
     block.body.immovable = true;
     
@@ -111,7 +123,16 @@ function createLevel()
 
 function endLevel(Ball, endTile)
 {
+	playing = false;
 	endTile.kill();
+	EndScreen = game.add.sprite(25, 25, 'Win');
+	endButton = game.add.button(200,250, 'button', actionOnClickEnd, this, 2,1,0);
+}
+
+function actionOnClickEnd()
+{
+	playing = true;
+	create();
 }
 
 function playerFailed(Ball, holeSprite)
@@ -127,7 +148,7 @@ function normalBlockCollide()
 
 function breakBlockCollide(Ball, breakBlock)
 {
-	breakBlock.kill();    
+	breakBlock.damage(1);   
 }
 
 /*
