@@ -1,0 +1,9 @@
+begin 5 3
+change_up 9 6
+change_down 0 2
+change_down 6 1
+change_right 1 7
+change_left 5 1
+change_left 8 0
+change_left 7 5
+end 2 4

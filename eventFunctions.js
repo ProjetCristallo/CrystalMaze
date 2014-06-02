@@ -34,7 +34,7 @@ function actionOnClickEnd2()
 function actionOnClick1()
 {
     button_jouer.kill();
-    blop = true;
+    main_menu = true;
     create();
 }
 

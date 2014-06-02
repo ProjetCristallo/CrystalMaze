@@ -1,5 +1,5 @@
 function update() {
-	if(playing && blop){
+	if(playing && main_menu){
 		moveBall();
 		text.setText("Score : " + score);
 	}

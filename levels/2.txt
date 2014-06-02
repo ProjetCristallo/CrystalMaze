@@ -1,0 +1,15 @@
+begin 0 0
+breakable 4 3 3
+simple 5 0
+unilateral 7 2 right
+simple 6 3
+item 6 0 G
+change_left 6 5
+change_left 4 6
+simple 8 4
+simple 9 4
+item 9 5 T
+simple 5 6
+simple 2 7
+item 1 7 C
+end 3 7
