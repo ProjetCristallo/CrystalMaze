@@ -74,20 +74,20 @@ function turnBall(turnBlock)
 	if(Ball.body.velocity.x != 0){
 		Ball.body.velocity.x = 0;
 		if(turnBlock.body.checkCollision.up === false){
-			Ball.body.velocity.y = -BallSpeed;
-			Ball.body.y -= 20;
+			Ball.body.velocity.y = -BALL_SPEED;
+			Ball.body.y -= TILE_SIZE/3;
 		}else{
-			Ball.body.velocity.y = BallSpeed;
-			Ball.body.y += 20;
+			Ball.body.velocity.y = BALL_SPEED;
+			Ball.body.y += TILE_SIZE/3;
 		}
 	}else{
 		Ball.body.velocity.y = 0; 
 		if(turnBlock.body.checkCollision.left === false){
-			Ball.body.velocity.x = -BallSpeed;
-			Ball.body.x -= 20;
+			Ball.body.velocity.x = -BALL_SPEED;
+			Ball.body.x -= TILE_SIZE/3;
 		}else{
-			Ball.body.velocity.x = BallSpeed;
-			Ball.body.x += 20;
+			Ball.body.velocity.x = BALL_SPEED;
+			Ball.body.x += TILE_SIZE/3;
 		}
 	}
 
