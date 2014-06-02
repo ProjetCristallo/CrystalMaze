@@ -82,7 +82,7 @@ function checkTurn()
 		current = Turn.getAt(i);
 		if(current.alive && current != lastTurn &&
 				game.physics.arcade.distanceBetween
-				(current, Ball) < 0.7*TILE_SIZE) {
+				(current, Ball) < TURN_SENSOR_PERCENTAGE*TILE_SIZE) {
 			lastTurn = current;
 			turnBall(current);				
 		}
