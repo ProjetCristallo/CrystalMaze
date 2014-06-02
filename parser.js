@@ -17,8 +17,8 @@ function parser(filename) {
 		var line = arrLines[i];
 		console.info(line);
 		var res = line.split(" ");
-		x = 60*parseInt(res[1]);
-		y = 60*parseInt(res[2]);
+		x = TILE_SIZE*parseInt(res[1]);
+		y = TILE_SIZE*parseInt(res[2]);
 		switch(res[0]) {
 			case "begin":
 				Ball = game.add.sprite(x,y,'ball');

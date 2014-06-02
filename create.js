@@ -1,6 +1,6 @@
 function create() {
     if(blop){
-	game.add.tileSprite(0,0,600,480,'Fond');
+	game.add.tileSprite(0,0,BACKGROUND_HEIGHT,BACKGROUND_WIDTH,'Fond');
 	game.physics.startSystem(Phaser.Physics.ARCADE);
 	
 	//Obstacle groups

@@ -14,22 +14,22 @@ function moveBall() {
 		if(controller.left.isDown && checkMoveGroup('left'))
 		{
 			score++;
-			Ball.body.velocity.x = -BallSpeed;
+			Ball.body.velocity.x = -BALL_SPEED;
 		}
 		else if(controller.right.isDown && checkMoveGroup('right'))
 		{
 			score++;
-			Ball.body.velocity.x = +BallSpeed;
+			Ball.body.velocity.x = +BALL_SPEED;
 		}
 		else if(controller.up.isDown && checkMoveGroup('up'))
 		{
 			score++;
-			Ball.body.velocity.y = -BallSpeed;
+			Ball.body.velocity.y = -BALL_SPEED;
 		}
 		else if(controller.down.isDown && checkMoveGroup('down'))
 		{
 			score++;
-			Ball.body.velocity.y = +BallSpeed;
+			Ball.body.velocity.y = +BALL_SPEED;
 		}
 	}
 	else
@@ -50,13 +50,13 @@ function moveBall() {
 
 function checkMove(block, dir){
 	var authorized =true;
-	if(dir=='up' && (block.y-Ball.y==-60) && (block.x==Ball.x)){
+	if(dir=='up' && (block.y-Ball.y==-TILE_SIZE) && (block.x==Ball.x)){
 		authorized = false;
-	} else if(dir=='down' && (block.y-Ball.y==60) && (block.x==Ball.x)){
+	} else if(dir=='down' && (block.y-Ball.y==TILE_SIZE) && (block.x==Ball.x)){
 		authorized = false;
-	} else if(dir=='left' && (block.x-Ball.x==-60) && (block.y==Ball.y)){
+	} else if(dir=='left' && (block.x-Ball.x==-TILE_SIZE) && (block.y==Ball.y)){
 		authorized = false;
-	} else if(dir=='right' && ((block.x-Ball.x)==60) && (block.y==Ball.y)){
+	} else if(dir=='right' && ((block.x-Ball.x)==TILE_SIZE) && (block.y==Ball.y)){
 		authorized = false;
 	}
 	return authorized;

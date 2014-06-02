@@ -1,8 +1,7 @@
-var game = new Phaser.Game(600,480,Phaser.AUTO,'', {preload:preload,create:create,update:update});
+var game = new Phaser.Game(BACKGROUND_HEIGHT,BACKGROUND_WIDTH,Phaser.AUTO,'', {preload:preload,create:create,update:update});
 
 var Ball;
 var BallMoving;
-var BallSpeed = 1000;
 
 var endTile;
 var endSprite;
@@ -12,7 +11,7 @@ var blop = false;
 
 //Boolean indicating if the player hasn't won yet.
 var playing=true;
-
+var ballAnimation;
 
 var current_level = 1;
 
