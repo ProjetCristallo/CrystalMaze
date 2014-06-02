@@ -15,6 +15,7 @@ function create() {
 	Begin = game.add.group();
 	End = game.add.group();
 	Item = game.add.group();
+	Turn = game.add.group();
 	score = 0;	
 
 	createLevel();

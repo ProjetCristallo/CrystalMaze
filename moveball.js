@@ -43,11 +43,52 @@ function moveBall() {
 		game.physics.arcade.collide(Ball, Unilateral, normalBlockCollide, null, this);
 		game.physics.arcade.overlap(Ball, Hole, holeOverlap, null, this);
 		game.physics.arcade.overlap(Ball, Item, itemCollide, null, this);
+		game.physics.arcade.collide(Ball, Turn, normalBlockCollide, null, this);
+	}	
+	checkTurn();
+}
+
+function checkTurn()
+{
+	for(var i=0; i<Turn.length;i++){
+		current = Turn.getAt(i);
+		if(current.alive && game.physics.arcade.distanceBetween
+				(current, Ball) < 20) {
+			turnBall(current);				
+		}
 	}	
 }
 
+function turnBall(turnBlock)
+{
+	Ball.body.x = turnBlock.body.x;
+	Ball.body.y = turnBlock.body.y;
+	if(Ball.body.velocity.x != 0){
+		Ball.body.velocity.x = 0;
+		if(turnBlock.body.checkCollision.up === false){
+			Ball.body.velocity.y = -BallSpeed;
+			Ball.body.y -= 20;
+		}else{
+			Ball.body.velocity.y = BallSpeed;
+			Ball.body.y += 20;
+		}
+	}else{
+		Ball.body.velocity.y = 0; 
+		if(turnBlock.body.checkCollision.left === false){
+			Ball.body.velocity.x = -BallSpeed;
+			Ball.body.x -= 20;
+		}else{
+			Ball.body.velocity.x = BallSpeed;
+			Ball.body.x += 20;
+		}
+	}
 
-function checkMove(block, dir){
+	// we check for any overlap (i.e. incorrect move)
+	
+}
+
+function checkMove(block, dir)
+{
 	var authorized =true;
 	if(dir=='up' && (block.y-Ball.y==-60) && (block.x==Ball.x) 
 			&& block.body.checkCollision.down){
@@ -97,6 +138,12 @@ function checkMoveGroup(dir)
 	for(var i=0; i<Unilateral.length; i++){
 		current = Unilateral.getAt(i);
 		if(current.alive) {
+			authorized = authorized && checkMove(current, dir);
+		}
+	}
+	for(var i=0; i<Turn.length; i++){
+		current = Turn.getAt(i);
+		if(current.alive){
 			authorized = authorized && checkMove(current, dir);
 		}
 	}

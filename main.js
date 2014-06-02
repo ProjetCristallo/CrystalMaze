@@ -33,6 +33,7 @@ var End;
 var Item;
 var listItem;
 var score;
+var Turn;
 
 function preload() {
 	game.load.image('ball','ressources/Bille.png');
@@ -57,6 +58,12 @@ function preload() {
         game.load.image('pauseMenu', 'ressources/pauseMenu.png');
         game.load.image('title', 'ressources/title.png');
         game.load.image('mainMenu', 'ressources/MainMenu.png');
+	game.load.image('t_ul','ressources/turn_ul.png')
+	game.load.image('t_ur','ressources/turn_ur.png')
+	game.load.image('t_dl','ressources/turn_dl.png')
+	game.load.image('t_dr','ressources/turn_dr.png')
+		
+
 
         game.load.spritesheet('button1', 'ressources/Button_Jouer.png',163,55);
 	game.load.spritesheet('button','ressources/Button.png',249,36);

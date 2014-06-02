@@ -1,16 +1,16 @@
 begin 0 0
-simple 6 0
-breakable 5 0 3
-
-simple 2 0
-simple 2 1
-simple 3 7
-simple 4 2
-
-
-
-end 7 7
-item 1 2 C
-item 2 3 G
-item 3 5 T
+breakable 4 3 3
+turn 5 0 dr
+turn 7 2 ul 
+simple 6 3
+item 6 0 G
+change_left 6 5
+change_left 4 6
+simple 8 4
+turn 9 4 dl
+item 9 5 T
+simple 5 6
+turn 2 7 ur
+item 1 7 C
+end 3 7
 
