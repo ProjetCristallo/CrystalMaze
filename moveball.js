@@ -1,7 +1,6 @@
 function moveBall() {
-	//if(Ball.body.velocity.x == 0 && Ball.body.velocity.y == 0)
-	
-	if(Phaser.Point.equals(Ball.body.position, Ball.body.prev))
+	if(Ball.body.position.x === Ball.body.prev.x 
+			&& Ball.body.position.y === Ball.body.prev.y)
 	{
 		BallMoving = false;
 	}
@@ -50,13 +49,17 @@ function moveBall() {
 
 function checkMove(block, dir){
 	var authorized =true;
-	if(dir=='up' && (block.y-Ball.y==-60) && (block.x==Ball.x)){
+	if(dir=='up' && (block.y-Ball.y==-60) && (block.x==Ball.x) 
+			&& block.body.checkCollision.down){
 		authorized = false;
-	} else if(dir=='down' && (block.y-Ball.y==60) && (block.x==Ball.x)){
+	} else if(dir=='down' && (block.y-Ball.y==60) && (block.x==Ball.x 
+				&& block.body.checkCollision.up)){
 		authorized = false;
-	} else if(dir=='left' && (block.x-Ball.x==-60) && (block.y==Ball.y)){
+	} else if(dir=='left' && (block.x-Ball.x==-60) && (block.y==Ball.y 
+				&& block.body.checkCollision.right)){
 		authorized = false;
-	} else if(dir=='right' && ((block.x-Ball.x)==60) && (block.y==Ball.y)){
+	} else if(dir=='right' && ((block.x-Ball.x)==60) && (block.y==Ball.y 
+				&& block.body.checkCollision.left)){
 		authorized = false;
 	}
 	return authorized;
@@ -66,6 +69,7 @@ function checkMoveGroup(dir)
 {
 	var current;
 	var authorized = true;
+
 
 	//We check with the game boundaries
 	if((dir=='up' && Ball.y==0) || 
@@ -88,6 +92,12 @@ function checkMoveGroup(dir)
 		if(current.alive) {
 			authorized = authorized && checkMove(current, dir);
 
+		}
+	}
+	for(var i=0; i<Unilateral.length; i++){
+		current = Unilateral.getAt(i);
+		if(current.alive) {
+			authorized = authorized && checkMove(current, dir);
 		}
 	}
 	//alert(authorized);
