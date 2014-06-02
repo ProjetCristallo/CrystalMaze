@@ -1,5 +1,5 @@
 function create() {
-    if(blop){
+    if(main_menu){
 	game.add.tileSprite(0,0,600,480,'Fond');
 	game.physics.startSystem(Phaser.Physics.ARCADE);
 	
