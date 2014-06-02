@@ -1,0 +1,5 @@
+const BACKGROUND_HEIGHT = 600;
+const BACKGROUND_WIDTH = 480;
+const TILE_SIZE = 60; //in pixels
+const BALL_SPEED = 1000;
+const BALL_ANIMATION_SPEED = 25;

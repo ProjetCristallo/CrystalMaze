@@ -1,7 +1,7 @@
 
 function endLevel(Ball, endSprite)
 {
-        lastDir = null;
+    lastDir = null;
 	playing = false;
 	Ball.body.velocity.x=0;
 	Ball.body.velocity.y=0;
@@ -73,7 +73,7 @@ function changeUp()
     }
     if(!BallMoving){
 	lastDir = 'u';
-        Ball.body.velocity.y = -BallSpeed; 
+        Ball.body.velocity.y = -BALL_SPEED; 
     }
 }
 
@@ -89,7 +89,7 @@ function changeDown()
     }
     if(!BallMoving){
 	lastDir = 'd'
-	Ball.body.velocity.y = +BallSpeed;  
+	Ball.body.velocity.y = +BALL_SPEED;  
     }
 }
 
@@ -105,7 +105,7 @@ function changeRight()
     }
     if(!BallMoving){
 	lastDir = 'r'
-	Ball.body.velocity.x = +BallSpeed;
+	Ball.body.velocity.x = +BALL_SPEED;
     }
 }
 
@@ -121,7 +121,7 @@ function changeLeft()
     }
     if(!BallMoving){
 	lastDir = 'l'
-	Ball.body.velocity.x = -BallSpeed;
+	Ball.body.velocity.x = -BALL_SPEED;
     }
 }
 
