@@ -35,6 +35,7 @@ function actionOnClick1()
 {
     button_jouer.kill();
     main_menu = true;
+     game.world.removeAll();
     create();
 }
 
