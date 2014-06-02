@@ -1,6 +1,13 @@
 function moveBall() {
 	//if(Ball.body.velocity.x == 0 && Ball.body.velocity.y == 0)
 	
+	if(BallMoving && ballAnimation.paused){
+		ballAnimation.play(BALL_ANIMATION_SPEED,true);
+	}
+	if(!BallMoving && !ballAnimation.paused){
+		ballAnimation.paused=true;
+	}
+	
 	if(Phaser.Point.equals(Ball.body.position, Ball.body.prev))
 	{
 		BallMoving = false;

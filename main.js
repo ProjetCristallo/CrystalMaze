@@ -34,7 +34,6 @@ var listItem;
 var score;
 
 function preload() {
-	game.load.image('ball','ressources/Bille.png');
 	game.load.image('Fond','ressources/Fond.png');
 	game.load.image('breakable','ressources/Breakable.png');
 	game.load.image('Simple','ressources/Block_Noir.png');
@@ -56,8 +55,9 @@ function preload() {
         game.load.image('pauseMenu', 'ressources/pauseMenu.png');
         game.load.image('title', 'ressources/title.png');
         game.load.image('mainMenu', 'ressources/MainMenu.png');
+        game.load.spritesheet('ball','ressources/ball.png',60,60);
 
         game.load.spritesheet('button1', 'ressources/Button_Jouer.png',163,55);
-	game.load.spritesheet('button','ressources/Button.png',249,36);
+	    game.load.spritesheet('button','ressources/Button.png',249,36);
         game.load.spritesheet('button2','ressources/Button_rejouer.png',140,35);
 }
