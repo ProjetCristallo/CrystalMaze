@@ -18,6 +18,7 @@ function actionOnClickEnd()
         Button2.kill();
         current_level = current_level + 1;
 	playing = true;
+        game.world.removeAll();
 	create();
 }
 
@@ -26,6 +27,7 @@ function actionOnClickEnd2()
         Button.kill();
         Button2.kill();
 	playing = true;
+        game.world.removeAll();
 	create();
 }
 
