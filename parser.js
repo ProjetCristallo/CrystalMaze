@@ -17,11 +17,12 @@ function parser(filename) {
 		var line = arrLines[i];
 		console.info(line);
 		var res = line.split(" ");
-		x = 60*parseInt(res[1]);
-		y = 60*parseInt(res[2]);
+		x = TILE_SIZE*parseInt(res[1]);
+		y = TILE_SIZE*parseInt(res[2]);
 		switch(res[0]) {
 			case "begin":
-				Ball = game.add.sprite(x,y,'ball');
+				Ball = game.add.sprite(x,y,'ball',4);
+				ballAnimation = Ball.animations.add('rolling');
 				Ball.anchor.setTo(0,0);
 				Ball.checkWorldBounds = true;
 				game.physics.enable(Ball,Phaser.Physics.ARCADE);
@@ -54,26 +55,26 @@ function parser(filename) {
 				switch(res[3]) {
 					case "up":
 						block = Unilateral.create(x,y,'u_u');
-				                game.physics.enable(block,Phaser.Physics.ARCADE);
-				                block.body.immovable = true;
+						game.physics.enable(block,Phaser.Physics.ARCADE);
+						block.body.immovable = true;
 						block.body.checkCollision.down = false;
 						break;
 					case "down":
 						block = Unilateral.create(x,y,'u_d');
-				                game.physics.enable(block,Phaser.Physics.ARCADE);
-				                block.body.immovable = true;
+						game.physics.enable(block,Phaser.Physics.ARCADE);
+						block.body.immovable = true;
 						block.body.checkCollision.up = false;
 						break;
 					case "right":
 						block = Unilateral.create(x,y,'u_r');
-				                game.physics.enable(block,Phaser.Physics.ARCADE);
-				                block.body.immovable = true;
+						game.physics.enable(block,Phaser.Physics.ARCADE);
+						block.body.immovable = true;
 						block.body.checkCollision.left = false;
 						break;
 					case "left":
 						block = Unilateral.create(x,y,'u_l');
-				                game.physics.enable(block,Phaser.Physics.ARCADE);
-				                block.body.immovable = true;
+						game.physics.enable(block,Phaser.Physics.ARCADE);
+						block.body.immovable = true;
 						block.body.checkCollision.right = false;
 						break;
 				}
@@ -85,59 +86,89 @@ function parser(filename) {
 				block.body.immovable = true;
 				break;
 			case "change_up":
-		                block = Simple.create(x,y,'Simple');
+				block = Simple.create(x,y,'Simple');
 				game.physics.enable(block,Phaser.Physics.ARCADE);
 				block.body.immovable = true;
-		                block.body.checkCollision.left = false;
-		                block.body.checkCollision.up = false;
-		                block.body.checkCollision.right = false;
+				block.body.checkCollision.left = false;
+				block.body.checkCollision.up = false;
+				block.body.checkCollision.right = false;
 
 				block = C_up.create(x,y,'c_up');
 				game.physics.enable(block,Phaser.Physics.ARCADE);
-		                block.body.checkCollision.down = false;
+				block.body.checkCollision.down = false;
 				block.body.immovable = true;
 				break;
 			case "change_down":
-		                block = Simple.create(x,y,'Simple');
+				block = Simple.create(x,y,'Simple');
 				game.physics.enable(block,Phaser.Physics.ARCADE);
 				block.body.immovable = true;
-		                block.body.checkCollision.left = false;
-		                block.body.checkCollision.down = false;
-		                block.body.checkCollision.right = false;
+				block.body.checkCollision.left = false;
+				block.body.checkCollision.down = false;
+				block.body.checkCollision.right = false;
 
 				block = C_down.create(x,y,'c_down');
 				game.physics.enable(block,Phaser.Physics.ARCADE);
-		                block.body.checkCollision.up = false;
+				block.body.checkCollision.up = false;
 				block.body.immovable = true;
 				break;
 			case "change_right":
-		                block = Simple.create(x,y,'Simple');
+				block = Simple.create(x,y,'Simple');
 				game.physics.enable(block,Phaser.Physics.ARCADE);
 				block.body.immovable = true;
-		                block.body.checkCollision.up = false;
-		                block.body.checkCollision.down = false;
-		                block.body.checkCollision.right = false;
+				block.body.checkCollision.up = false;
+				block.body.checkCollision.down = false;
+				block.body.checkCollision.right = false;
 
 				block = C_right.create(x,y,'c_right');
 				game.physics.enable(block,Phaser.Physics.ARCADE);
-		                block.body.checkCollision.left = false;
+				block.body.checkCollision.left = false;
 				block.body.immovable = true;
 				break;
 			case "change_left":
-		                block = Simple.create(x,y,'Simple');
+				block = Simple.create(x,y,'Simple');
 				game.physics.enable(block,Phaser.Physics.ARCADE);
 				block.body.immovable = true;
-		                block.body.checkCollision.up = false;
-		                block.body.checkCollision.down = false;
-		                block.body.checkCollision.left = false;
+				block.body.checkCollision.up = false;
+				block.body.checkCollision.down = false;
+				block.body.checkCollision.left = false;
 
 				block = C_left.create(x,y,'c_left');
 				game.physics.enable(block,Phaser.Physics.ARCADE);
-		                block.body.checkCollision.right = false;
+				block.body.checkCollision.right = false;
 				block.body.immovable = true;
 				break;
+			case "turn":
+				switch(res[3]){
+					case "ul":
+						block = Turn.create(x,y,'t_ul');
+						game.physics.enable(block,Phaser.Physics.ARCADE);
+						block.body.immovable = true;
+						block.body.checkCollision.up = false;
+						block.body.checkCollision.left = false;
+						break;
+					case "ur":
+						block = Turn.create(x,y,'t_ur');
+						game.physics.enable(block,Phaser.Physics.ARCADE);
+						block.body.immovable = true;
+						block.body.checkCollision.up = false;
+						block.body.checkCollision.right = false;
+						break;
+					case "dr":
+						block = Turn.create(x,y,'t_dr');
+						game.physics.enable(block,Phaser.Physics.ARCADE);
+						block.body.immovable = true;
+						block.body.checkCollision.down = false;
+						block.body.checkCollision.right = false;
+						break;
+					case "dl":
+						block = Turn.create(x,y,'t_dl');
+						game.physics.enable(block,Phaser.Physics.ARCADE);
+						block.body.immovable = true;
+						block.body.checkCollision.down = false;
+						block.body.checkCollision.left = false;
+						break;
+				}
+				break;
 		}
-		//	}
 	}
 }
-

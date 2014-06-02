@@ -1,18 +1,17 @@
-var game = new Phaser.Game(600,480,Phaser.AUTO,'', {preload:preload,create:create,update:update});
+var game = new Phaser.Game(BACKGROUND_HEIGHT,BACKGROUND_WIDTH,Phaser.AUTO,'', {preload:preload,create:create,update:update});
 
 var Ball;
 var BallMoving;
-var BallSpeed = 1000;
 
 var endTile;
 var endSprite;
 
 var EndScreen;
-var blop = false;
+var main_menu = false;
 
 //Boolean indicating if the player hasn't won yet.
 var playing=true;
-
+var ballAnimation;
 
 var current_level = 1;
 
@@ -33,9 +32,9 @@ var End;
 var Item;
 var listItem;
 var score;
+var Turn;
 
 function preload() {
-	game.load.image('ball','ressources/Bille.png');
 	game.load.image('Fond','ressources/Fond.png');
 	game.load.image('breakable','ressources/Breakable.png');
 	game.load.image('Simple','ressources/Block_Noir.png');
@@ -43,7 +42,7 @@ function preload() {
 	game.load.image('c_down','ressources/Change_down.png');
 	game.load.image('c_right','ressources/Change_right.png');
 	game.load.image('c_left','ressources/Change_left.png');
-	game.load.image('End','ressources/Star.png');
+	game.load.image('End','ressources/diamond.png');
 	game.load.image('Hole','ressources/Hole.png');
 	game.load.image('Win','ressources/Win.png');
         game.load.image('u_r','ressources/unilateral_right.png');
@@ -57,8 +56,15 @@ function preload() {
         game.load.image('pauseMenu', 'ressources/pauseMenu.png');
         game.load.image('title', 'ressources/title.png');
         game.load.image('mainMenu', 'ressources/MainMenu.png');
+	game.load.image('t_ul','ressources/turn_ul.png')
+	game.load.image('t_ur','ressources/turn_ur.png')
+	game.load.image('t_dl','ressources/turn_dl.png')
+	game.load.image('t_dr','ressources/turn_dr.png')
+		
+
+        game.load.spritesheet('ball','ressources/ball.png',60,60);
 
         game.load.spritesheet('button1', 'ressources/Button_Jouer.png',163,55);
-	game.load.spritesheet('button','ressources/Button.png',249,36);
+	    game.load.spritesheet('button','ressources/Button.png',249,36);
         game.load.spritesheet('button2','ressources/Button_rejouer.png',140,35);
 }
