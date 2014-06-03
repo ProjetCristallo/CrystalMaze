@@ -15,9 +15,6 @@ var ballAnimation;
 
 var current_level = 1;
 
-//variable indicating what the last direction taken was.
-var lastDir;
-
 // Blocks groups
 var Hole;
 var Simple;

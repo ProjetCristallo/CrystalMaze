@@ -19,7 +19,6 @@ function endLevel(Ball, endSprite)
 
 	if(!lastLevel){
 		file.abort();	
-		lastDir = null;
 		playing = false;
 		Ball.body.velocity.x=0;
 		Ball.body.velocity.y=0;
@@ -28,7 +27,6 @@ function endLevel(Ball, endSprite)
 		Button = game.add.button(200,250, 'button_next_level', actionOnClickNextLevel, this, 2,1,0);
 		Button2 = game.add.button(200,300, 'button_replay', actionOnClickReplay, this, 2,1,0);
 	}else{
-		lastDir = null;
 		playing = false;
 		Ball.body.velocity.x=0;
 		Ball.body.velocity.y=0;
@@ -108,7 +106,6 @@ function changeUp()
 		BallMoving = true;
 	}
 	if(!BallMoving){
-		lastDir = 'u';
 		Ball.body.velocity.y = -BALL_SPEED; 
 	}
 }
@@ -124,7 +121,6 @@ function changeDown()
 		BallMoving = true;
 	}
 	if(!BallMoving){
-		lastDir = 'd';
 		Ball.body.velocity.y = +BALL_SPEED;  
 	}
 }
@@ -140,7 +136,6 @@ function changeRight()
 		BallMoving = true;
 	}
 	if(!BallMoving){
-		lastDir = 'r';
 		Ball.body.velocity.x = +BALL_SPEED;
 	}
 }
@@ -156,14 +151,12 @@ function changeLeft()
 		BallMoving = true;
 	}
 	if(!BallMoving){
-		lastDir = 'l';
 		Ball.body.velocity.x = -BALL_SPEED;
 	}
 }
 
 function holeOverlap(Ball, holeSprite)
 {
-	lastDir = null;
 	alert("Perdu !");
 	create();
 }
