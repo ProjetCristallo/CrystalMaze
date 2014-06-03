@@ -161,7 +161,6 @@ function turnBall(turnBlock)
 		}
 		if(resetLastTurn){
 			lastTurnBlocked=null;
-			//lastTurn = null;
 		}
 	}
 }
@@ -188,7 +187,7 @@ function checkUniTurn(Ball, uniBlock)
 
 function checkMove(block, dir)
 {
-	var authorized =true;
+	var authorized = true;
 
 	if(dir === lastTurnBlocked){
 		authorized = false;

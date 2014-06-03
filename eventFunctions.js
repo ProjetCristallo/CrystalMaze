@@ -25,8 +25,8 @@ function endLevel(Ball, endSprite)
 		Ball.body.velocity.y=0;
 		endSprite.kill();
 		EndScreen = game.add.sprite(25, 25, 'Win');
-		Button = game.add.button(200,250, 'button_next_level', actionOnClickEnd, this, 2,1,0);
-		Button2 = game.add.button(200,300, 'button_replay', actionOnClickEnd2, this, 2,1,0);
+		Button = game.add.button(200,250, 'button_next_level', actionOnClickNextLevel, this, 2,1,0);
+		Button2 = game.add.button(200,300, 'button_replay', actionOnClickReplay, this, 2,1,0);
 	}else{
 		lastDir = null;
 		playing = false;
@@ -34,7 +34,7 @@ function endLevel(Ball, endSprite)
 		Ball.body.velocity.y=0;
 		endSprite.kill();
 		EndScreen = game.add.sprite(25, 25, 'Win');
-		Button = game.add.button(200,250, 'button_replay', actionOnClickEnd2, this, 2,1,0);
+		Button = game.add.button(200,250, 'button_replay', actionOnClickReplay, this, 2,1,0);
 		Button2 = game.add.button(200,300, 'button_restart', actionOnClickRestart, this, 2, 1, 0);
 	}
 }
@@ -48,7 +48,7 @@ function actionOnClickRestart(){
 	create();
 }
 
-function actionOnClickEnd()
+function actionOnClickNextLevel()
 {
 	Button.kill();
 	Button2.kill();
@@ -58,7 +58,7 @@ function actionOnClickEnd()
 	create();
 }
 
-function actionOnClickEnd2()
+function actionOnClickReplay()
 {
 	Button.kill();
 	Button2.kill();
@@ -67,10 +67,10 @@ function actionOnClickEnd2()
 	create();
 }
 
-function actionOnClick1()
+function actionOnClickPlay()
 {
 	button_jouer.kill();
-	main_menu = true;
+	main_menu = false;
 	game.world.removeAll();
 	create();
 }
