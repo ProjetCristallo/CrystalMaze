@@ -1,6 +1,5 @@
 function moveBall() {
 
-	console.log(Ball.body.position.x,Ball.body.position,y);
 	Ball.body.x = Math.round(Ball.body.x);
 	Ball.body.y = Math.round(Ball.body.y);
 	if(BallMoving && ballAnimation.paused){
