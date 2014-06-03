@@ -1,6 +1,5 @@
 function moveBall() {
 
-	console.log(Ball.body.position.x,Ball.body.position,y);
 	Ball.body.x = Math.round(Ball.body.x);
 	Ball.body.y = Math.round(Ball.body.y);
 	if(BallMoving && ballAnimation.paused){
@@ -162,7 +161,6 @@ function turnBall(turnBlock)
 		}
 		if(resetLastTurn){
 			lastTurnBlocked=null;
-			//lastTurn = null;
 		}
 	}
 }
@@ -189,7 +187,7 @@ function checkUniTurn(Ball, uniBlock)
 
 function checkMove(block, dir)
 {
-	var authorized =true;
+	var authorized = true;
 
 	if(dir === lastTurnBlocked){
 		authorized = false;

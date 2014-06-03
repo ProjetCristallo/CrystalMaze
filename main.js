@@ -7,7 +7,7 @@ var endTile;
 var endSprite;
 
 var EndScreen;
-var main_menu = false;
+var main_menu = true;
 
 //Boolean indicating if the player hasn't won yet.
 var playing=true;
@@ -45,26 +45,27 @@ function preload() {
 	game.load.image('End','ressources/diamond.png');
 	game.load.image('Hole','ressources/Hole.png');
 	game.load.image('Win','ressources/Win.png');
-        game.load.image('u_r','ressources/unilateral_right.png');
-        game.load.image('u_u','ressources/unilateral_up.png');
-        game.load.image('u_d','ressources/unilateral_down.png');
-        game.load.image('u_l','ressources/unilateral_left.png');
-        game.load.image('C','ressources/C.png');
-        game.load.image('G','ressources/G.png');
-        game.load.image('T','ressources/T.png');
-        game.load.image('pause', 'ressources/pause.png');
-        game.load.image('pauseMenu', 'ressources/pauseMenu.png');
-        game.load.image('title', 'ressources/title.png');
-        game.load.image('mainMenu', 'ressources/MainMenu.png');
-	game.load.image('t_ul','ressources/turn_ul.png')
-	game.load.image('t_ur','ressources/turn_ur.png')
-	game.load.image('t_dl','ressources/turn_dl.png')
-	game.load.image('t_dr','ressources/turn_dr.png')
-		
+	game.load.image('u_r','ressources/unilateral_right.png');
+	game.load.image('u_u','ressources/unilateral_up.png');
+	game.load.image('u_d','ressources/unilateral_down.png');
+	game.load.image('u_l','ressources/unilateral_left.png');
+	game.load.image('C','ressources/C.png');
+	game.load.image('G','ressources/G.png');
+	game.load.image('T','ressources/T.png');
+	game.load.image('pause', 'ressources/pause.png');
+	game.load.image('pauseMenu', 'ressources/pauseMenu.png');
+	game.load.image('title', 'ressources/title.png');
+	game.load.image('mainMenuSprite', 'ressources/MainMenu.png');
+	game.load.image('t_ul','ressources/turn_ul.png');
+	game.load.image('t_ur','ressources/turn_ur.png');
+	game.load.image('t_dl','ressources/turn_dl.png');
+	game.load.image('t_dr','ressources/turn_dr.png');
 
-        game.load.spritesheet('ball','ressources/ball.png',60,60);
 
-        game.load.spritesheet('button1', 'ressources/Button_Jouer.png',163,55);
-	    game.load.spritesheet('button','ressources/Button.png',249,36);
-        game.load.spritesheet('button2','ressources/Button_rejouer.png',140,35);
+	game.load.spritesheet('ball','ressources/ball.png',60,60);
+
+	game.load.spritesheet('button_play', 'ressources/Button_Jouer.png',163,55);
+	game.load.spritesheet('button_next_level','ressources/Button_next_level.png',249,36);
+	game.load.spritesheet('button_replay','ressources/Button_rejouer.png',140,35);
+	game.load.spritesheet('button_restart','ressources/Button_restart.png',138,29);
 }
