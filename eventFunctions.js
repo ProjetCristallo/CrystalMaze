@@ -1,7 +1,7 @@
 
 function endLevel(Ball, endSprite)
 {
-    lastDir = null;
+	lastDir = null;
 	playing = false;
 	Ball.body.velocity.x=0;
 	Ball.body.velocity.y=0;
@@ -9,53 +9,52 @@ function endLevel(Ball, endSprite)
 	EndScreen = game.add.sprite(25, 25, 'Win');
 	Button = game.add.button(200,250, 'button', actionOnClickEnd, this, 2,1,0);
 	Button2 = game.add.button(200,300, 'button2', actionOnClickEnd2, this, 2,1,0);
-
 }
 
 function actionOnClickEnd()
 {
-        Button.kill();
-        Button2.kill();
-        current_level = current_level + 1;
+	Button.kill();
+	Button2.kill();
+	current_level = current_level + 1;
 	playing = true;
-        game.world.removeAll();
+	game.world.removeAll();
 	create();
 }
 
 function actionOnClickEnd2()
 {
-        Button.kill();
-        Button2.kill();
+	Button.kill();
+	Button2.kill();
 	playing = true;
-        game.world.removeAll();
+	game.world.removeAll();
 	create();
 }
 
 function actionOnClick1()
 {
-    button_jouer.kill();
-    main_menu = true;
-     game.world.removeAll();
-    create();
+	button_jouer.kill();
+	main_menu = true;
+	game.world.removeAll();
+	create();
 }
 
 function playerFailed(Ball, holeSprite)
 {
 	alert("Perdu !");
-        create();
+	create();
 }
 
 /*function pause() {
-	game.paused = true;
-	pauseMenu = game.add.sprite(300, 240, 'pauseMenu');
-	pauseMenu.anchor.setTo(0.5, 0.5);
-}*/
+  game.paused = true;
+  pauseMenu = game.add.sprite(300, 240, 'pauseMenu');
+  pauseMenu.anchor.setTo(0.5, 0.5);
+  }*/
 
 /*function unpause() {
-	if (game.paused) {
-		game.paused = false;
-	}
-}*/
+  if (game.paused) {
+  game.paused = false;
+  }
+  }*/
 
 function normalBlockCollide()
 {
@@ -63,73 +62,73 @@ function normalBlockCollide()
 
 function changeUp()
 {
-    if(Ball.body.velocity.x == 0 && Ball.body.velocity.y == 0)
-    {
-	BallMoving = false;
-    }
-    else
-    {
-	BallMoving = true;
-    }
-    if(!BallMoving){
-	lastDir = 'u';
-        Ball.body.velocity.y = -BALL_SPEED; 
-    }
+	if(Ball.body.velocity.x == 0 && Ball.body.velocity.y == 0)
+	{
+		BallMoving = false;
+	}
+	else
+	{
+		BallMoving = true;
+	}
+	if(!BallMoving){
+		lastDir = 'u';
+		Ball.body.velocity.y = -BALL_SPEED; 
+	}
 }
 
 function changeDown()
 {
-    if(Ball.body.velocity.x == 0 && Ball.body.velocity.y == 0)
-    {
-	BallMoving = false;
-    }
-    else
-    {
-	BallMoving = true;
-    }
-    if(!BallMoving){
-	lastDir = 'd'
-	Ball.body.velocity.y = +BALL_SPEED;  
-    }
+	if(Ball.body.velocity.x == 0 && Ball.body.velocity.y == 0)
+	{
+		BallMoving = false;
+	}
+	else
+	{
+		BallMoving = true;
+	}
+	if(!BallMoving){
+		lastDir = 'd';
+		Ball.body.velocity.y = +BALL_SPEED;  
+	}
 }
 
 function changeRight()
 {    
-    if(Ball.body.velocity.x == 0 && Ball.body.velocity.y == 0)
-    {
-	BallMoving = false;
-    }
-    else
-    {
-	BallMoving = true;
-    }
-    if(!BallMoving){
-	lastDir = 'r'
-	Ball.body.velocity.x = +BALL_SPEED;
-    }
+	if(Ball.body.velocity.x == 0 && Ball.body.velocity.y == 0)
+	{
+		BallMoving = false;
+	}
+	else
+	{
+		BallMoving = true;
+	}
+	if(!BallMoving){
+		lastDir = 'r';
+		Ball.body.velocity.x = +BALL_SPEED;
+	}
 }
 
 function changeLeft()
 {
-    if(Ball.body.velocity.x == 0 && Ball.body.velocity.y == 0)
-    {
-	BallMoving = false;
-    }
-    else
-    {
-	BallMoving = true;
-    }
-    if(!BallMoving){
-	lastDir = 'l'
-	Ball.body.velocity.x = -BALL_SPEED;
-    }
+	if(Ball.body.velocity.x == 0 && Ball.body.velocity.y == 0)
+	{
+		BallMoving = false;
+	}
+	else
+	{
+		BallMoving = true;
+	}
+	if(!BallMoving){
+		lastDir = 'l';
+		Ball.body.velocity.x = -BALL_SPEED;
+	}
 }
 
 function holeOverlap(Ball, holeSprite)
 {
-    lastDir = null;
-    alert("Perdu !");
-    create();
+	lastDir = null;
+	alert("Perdu !");
+	create();
 }
 
 function breakBlockCollide(Ball, breakBlock)
