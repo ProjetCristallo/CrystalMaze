@@ -2,11 +2,12 @@ function moveBall() {
 
 	Ball.body.x = Math.round(Ball.body.x);
 	Ball.body.y = Math.round(Ball.body.y);
-	if(BallMoving && ballAnimation.paused){
-		ballAnimation.paused=false;
+	
+	if(BallMoving && Ball.animations.paused){
+		Ball.animations.paused=false;
 	}
-	if(!BallMoving && !ballAnimation.paused){
-		ballAnimation.paused=true;
+	if(!BallMoving && !Ball.animations.paused){
+		Ball.animations.paused=true;
 	}
 
 	if(Ball.body.position.x === Ball.body.prev.x 

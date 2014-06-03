@@ -171,6 +171,7 @@ function holeOverlap(Ball, holeSprite)
 function breakBlockCollide(Ball, breakBlock)
 {
 	breakBlock.damage(1);
+	breakBlock.animations.frame++;
 }
 
 function itemCollide(Ball, itemSprite)

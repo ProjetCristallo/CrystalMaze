@@ -36,7 +36,6 @@ var Turn;
 
 function preload() {
 	game.load.image('Fond','ressources/Fond.png');
-	game.load.image('breakable','ressources/Breakable.png');
 	game.load.image('Simple','ressources/Block_Noir.png');
 	game.load.image('c_up','ressources/Change_up.png');
 	game.load.image('c_down','ressources/Change_down.png');
@@ -61,7 +60,7 @@ function preload() {
 	game.load.image('t_dl','ressources/turn_dl.png');
 	game.load.image('t_dr','ressources/turn_dr.png');
 
-
+    game.load.spritesheet('breakable','ressources/Breakable.png',60,60);
 	game.load.spritesheet('ball','ressources/ball.png',60,60);
 
 	game.load.spritesheet('button_play', 'ressources/Button_Jouer.png',163,55);
