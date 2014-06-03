@@ -1,14 +1,12 @@
 begin 5 3
-simple 9 4
-simple 2 0
+turn 2 0 ur
 simple 1 4
 simple 3 5
 simple 5 6
 simple 6 7
 simple 7 5
-change_left 9 2
-change_down 0 0
-change_up 5 7
+turn 9 2 ul
+hole 5 7
 item 5 0 C
 item 9 7 T
 item 2 6 G
