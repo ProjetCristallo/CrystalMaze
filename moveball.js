@@ -2,7 +2,7 @@ function moveBall() {
 
 	Ball.body.x = Math.round(Ball.body.x);
 	Ball.body.y = Math.round(Ball.body.y);
-	
+
 	if(BallMoving && Ball.animations.paused){
 		Ball.animations.paused=false;
 	}
@@ -155,7 +155,7 @@ function turnBall(turnBlock)
 		for(var i=0; i<Turn.length; i++){
 			current = Turn.getAt(i);
 			if(current.alive && current != turnBlock && 
-				game.physics.arcade.overlap(Ball,current)){
+					game.physics.arcade.overlap(Ball,current)){
 				checkUniTurn(Ball,current); 
 				resetLastTurn =false				
 			}
@@ -186,6 +186,21 @@ function checkUniTurn(Ball, uniBlock)
 	}
 }
 
+function checkMoveTurn(block,dir)
+{
+	var authorized = checkMove(block, dir);
+	if(block.y === Ball.y && block.x == Ball.x) {
+		if((dir==='up' && block.body.checkCollision.up) ||
+			(dir==='down' && block.body.checkCollision.down) ||
+			(dir==='left' && block.body.checkCollision.left) ||
+			(dir==='right' && block.body.checkCollision.right)){
+			authorized = false;	
+		}
+	}
+	return authorized;
+}
+
+
 function checkMove(block, dir)
 {
 	var authorized = true;
@@ -208,6 +223,7 @@ function checkMove(block, dir)
 		authorized = false;
 	}
 	return authorized;
+
 }
 
 function checkMoveGroup(dir)
@@ -248,7 +264,7 @@ function checkMoveGroup(dir)
 	for(var i=0; i<Turn.length; i++){
 		current = Turn.getAt(i);
 		if(current.alive){
-			authorized = authorized && checkMove(current, dir);
+			authorized = authorized && checkMoveTurn(current, dir);
 		}
 	}
 	return authorized;
