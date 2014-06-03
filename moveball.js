@@ -4,7 +4,7 @@ function moveBall() {
 	Ball.body.x = Math.round(Ball.body.x);
 	Ball.body.y = Math.round(Ball.body.y);
 	if(BallMoving && ballAnimation.paused){
-		ballAnimation.play(BALL_ANIMATION_SPEED,true);
+		ballAnimation.paused=false;
 	}
 	if(!BallMoving && !ballAnimation.paused){
 		ballAnimation.paused=true;

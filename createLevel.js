@@ -8,4 +8,5 @@ function createLevel()
 	listItem = [];
 	listItem.length = 0;
 	parser(chaine);
+	ballAnimation.play(BALL_ANIMATION_SPEED,true);
 }
