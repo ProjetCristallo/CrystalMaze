@@ -13,4 +13,4 @@ simple 5 6
 turn 2 7 ur
 item 1 7 C
 end 3 7
-
+hole 2 2
