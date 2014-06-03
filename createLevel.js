@@ -4,5 +4,5 @@ function createLevel()
 	listItem = [];
 	listItem.length = 0;
 	parser(levelName);
-	ballAnimation.play(BALL_ANIMATION_SPEED,true);
+	Ball.animations.play("rolling",BALL_ANIMATION_SPEED,true);
 }

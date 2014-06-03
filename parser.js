@@ -22,7 +22,7 @@ function parser(filename) {
 		switch(res[0]) {
 			case "begin":
 				Ball = game.add.sprite(x,y,'ball',4);
-				ballAnimation = Ball.animations.add('rolling');
+				ballAnimation = Ball.animations.add('rolling',null,BALL_ANIMATION_SPEED,true);
 				Ball.anchor.setTo(0,0);
 				Ball.checkWorldBounds = true;
 				game.physics.enable(Ball,Phaser.Physics.ARCADE);
@@ -81,6 +81,7 @@ function parser(filename) {
 				break;
 			case "breakable":
 				block = Breakable.create(x,y,'breakable');
+				block.animations.add('breaking');
 				block.health = parseInt(res[3]);
 				game.physics.enable(block,Phaser.Physics.ARCADE);
 				block.body.immovable = true;
