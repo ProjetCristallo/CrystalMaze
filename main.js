@@ -65,7 +65,7 @@ function preload() {
 	game.load.spritesheet('ball','ressources/ball.png',60,60);
 
 	game.load.spritesheet('button1', 'ressources/Button_Jouer.png',163,55);
-	game.load.spritesheet('button','ressources/Button.png',249,36);
-	game.load.spritesheet('button2','ressources/Button_rejouer.png',140,35);
-	game.load.spritesheet('button_restart','ressources/Button_restart.png',249,36);
+	game.load.spritesheet('button_next_level','ressources/Button_next_level.png',249,36);
+	game.load.spritesheet('button_replay','ressources/Button_rejouer.png',140,35);
+	game.load.spritesheet('button_restart','ressources/Button_restart.png',138,29);
 }
