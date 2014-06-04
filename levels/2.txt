@@ -1,12 +1,14 @@
-begin 0 0
-turn 9 0 dl
-turn 9 7 ul
-hole 8 7
-end 8 6
-simple 0 6
-unilateral 8 5 left
-turn 7 7 ur
-simple 7 1
-turn 5 2 dr
-unilateral 5 3 down
-simple 5 7 
+begin 1 0
+breakable 4 3 3
+turn 5 0 dr
+turn 7 2 ul 
+simple 6 3
+item 6 0 O
+simple 8 4
+turn 9 4 dl
+item 9 5 H
+simple 5 6
+turn 2 7 ur
+item 1 7 C
+end 3 7
+hole 2 2

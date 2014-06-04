@@ -1,24 +1,13 @@
 begin 5 3
-turn 5 2 dl
-turn 1 2 dr
-turn 1 7 ur
-turn 9 7 ul
-turn 9 0 dl
-turn 7 0 dr
-turn 7 4 ul
-turn 0 0 dr
-turn 0 7 ul
-turn 1 1 ur
-turn 0 1 ul
-simple 0 2
-turn 5 1 ul
-turn 6 1 ur
-turn 6 2 dr
-turn 6 0 bl
-simple 8 4
-simple 8 5
+turn 2 0 ur
+simple 1 3
+simple 3 5
+simple 5 6
+simple 6 7
 simple 7 5
-turn 6 0 dl
-item 5 6 G
-item 0 4 T
-end 2 4
+turn 9 2 ul
+hole 5 7
+item 5 0 C
+item 9 7 H
+item 2 6 O
+end 6 2
