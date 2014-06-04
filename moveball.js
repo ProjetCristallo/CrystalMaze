@@ -1,72 +1,72 @@
 function moveBall() {
 
-	console.log(Ball.body.position.x,Ball.body.position,y);
-	Ball.body.x = Math.round(Ball.body.x);
-	Ball.body.y = Math.round(Ball.body.y);
-	if(BallMoving && ballAnimation.paused){
-		ballAnimation.play(BALL_ANIMATION_SPEED,true);
+	ball.body.x = Math.round(ball.body.x);
+	ball.body.y = Math.round(ball.body.y);
+
+	if(ball.isMoving && ball.animations.paused){
+		ball.animations.paused=false;
 	}
-	if(!BallMoving && !ballAnimation.paused){
-		ballAnimation.paused=true;
+	if(!ball.isMoving && !ball.animations.paused){
+		ball.animations.paused=true;
 	}
 
-	if(Ball.body.position.x === Ball.body.prev.x 
-			&& Ball.body.position.y === Ball.body.prev.y)
+	if(ball.body.position.x === ball.body.prev.x 
+			&& ball.body.position.y === ball.body.prev.y)
 	{
-		BallMoving = false;
+		ball.isMoving = false;
 	}
 	else
 	{
-		BallMoving = true;
+		ball.isMoving = true;
 	}
-	if(!BallMoving)
+	if(!ball.isMoving)
 	{
 		if(controller.left.isDown && checkMoveGroup('left'))
 		{
 			lastTurnBlocked = null;
 			lastTurn = null;
-			game.physics.arcade.overlap(Ball,Turn,setLastTurn);
+			game.physics.arcade.overlap(ball,turn,setLastTurn);
 			score++;
-			Ball.body.velocity.x = -BALL_SPEED;
+			ball.body.velocity.x = -BALL_SPEED;
 		}
 		else if(controller.right.isDown && checkMoveGroup('right'))
 		{
 			lastTurnBlocked = null;
 			lastTurn = null;
-			game.physics.arcade.overlap(Ball,Turn,setLastTurn);
+			game.physics.arcade.overlap(ball,turn,setLastTurn);
 			score++;
-			Ball.body.velocity.x = +BALL_SPEED;
+			ball.body.velocity.x = +BALL_SPEED;
 		}
 		else if(controller.up.isDown && checkMoveGroup('up'))
 		{
 			lastTurnBlocked = null;
 			lastTurn = null;
-			game.physics.arcade.overlap(Ball,Turn,setLastTurn);
+			game.physics.arcade.overlap(ball,turn,setLastTurn);
 			score++;
-			Ball.body.velocity.y = -BALL_SPEED;
+			ball.body.velocity.y = -BALL_SPEED;
 		}
 		else if(controller.down.isDown && checkMoveGroup('down'))
 		{
 			lastTurnBlocked = null;
 			lastTurn = null;
-			game.physics.arcade.overlap(Ball,Turn,setLastTurn);
+			game.physics.arcade.overlap(ball,turn,setLastTurn);
 			score++;
-			Ball.body.velocity.y = +BALL_SPEED;
+			ball.body.velocity.y = +BALL_SPEED;
 		}
 	}
 	else
 	{
-		game.physics.arcade.collide(Ball, Simple, normalBlockCollide, null, this);
-		game.physics.arcade.collide(Ball, Breakable, breakBlockCollide, null, this);
-		game.physics.arcade.overlap(Ball, End, endLevel, null, this);
-		game.physics.arcade.collide(Ball, C_up, changeUp, null, this);
-		game.physics.arcade.collide(Ball, C_down, changeDown, null, this);
-		game.physics.arcade.collide(Ball, C_right, changeRight, null, this);
-		game.physics.arcade.collide(Ball, C_left, changeLeft, null, this);
-		game.physics.arcade.collide(Ball, Unilateral, normalBlockCollide, null, this);
-		game.physics.arcade.overlap(Ball, Hole, holeOverlap, null, this);
-		game.physics.arcade.overlap(Ball, Item, itemCollide, null, this);
-		game.physics.arcade.collide(Ball, Turn, normalBlockCollide, null, this);
+		game.physics.arcade.collide(ball, simple, normalBlockCollide, null, this);
+		game.physics.arcade.collide(ball, breakable, breakBlockCollide, null, this);
+		game.physics.arcade.overlap(ball, end, endLevel, null, this);
+		game.physics.arcade.collide(ball, cUp, changeUp, null, this);
+		game.physics.arcade.collide(ball, cDown, changeDown, null, this);
+		game.physics.arcade.collide(ball, cRight, changeRight, null, this);
+		game.physics.arcade.collide(ball, cLeft, changeLeft, null, this);
+		game.physics.arcade.collide(ball, unilateral, normalBlockCollide, null, this);
+		game.physics.arcade.overlap(ball, hole, holeOverlap, null, this);
+		game.physics.arcade.overlap(ball, item, itemCollide, null, this);
+		game.physics.arcade.collide(ball, turn, normalBlockCollide, null, this);
 	}	
 	checkTurn();
 }
@@ -74,18 +74,18 @@ function moveBall() {
 var lastTurn;
 var lastTurnBlocked;
 
-function setLastTurn(Ball, turnBlock)
+function setLastTurn(ball, turnBlock)
 {
 	lastTurn = turnBlock;
 }
 
 function checkTurn()
 {
-	for(var i=0; i<Turn.length;i++){
-		current = Turn.getAt(i);
+	for(var i=0; i<turn.length;i++){
+		current = turn.getAt(i);
 		if(current.alive && current != lastTurn &&
 				game.physics.arcade.distanceBetween
-				(current, Ball) < TURN_SENSOR_PERCENTAGE*TILE_SIZE) {
+				(current, ball) < TURN_SENSOR_PERCENTAGE*TILE_SIZE) {
 			lastTurn = current;
 			turnBall(current);				
 		}
@@ -95,120 +95,135 @@ function checkTurn()
 function turnBall(turnBlock)
 {
 	//Definition of lastTurnedBlock
-	if(Ball.body.velocity.x > 0){
+	if(ball.body.velocity.x > 0){
 		lastTurnBlocked = 'right';
-	}else if(Ball.body.velocity.x < 0){
+	}else if(ball.body.velocity.x < 0){
 		lastTurnBlocked = 'left';
-	}else if(Ball.body.velocity.y > 0){
+	}else if(ball.body.velocity.y > 0){
 		lastTurnBlocked ='down';
-	}else if(Ball.body.velocity.y < 0){
+	}else if(ball.body.velocity.y < 0){
 		lastTurnBlocked = 'up';
 	}
 
-	Ball.body.x = turnBlock.body.x;
-	Ball.body.y = turnBlock.body.y;
+	ball.body.x = turnBlock.body.x;
+	ball.body.y = turnBlock.body.y;
 
-	if(Ball.body.velocity.x != 0){
-		Ball.body.velocity.x = 0;
+	if(ball.body.velocity.x != 0){
+		ball.body.velocity.x = 0;
 		if(turnBlock.body.checkCollision.up === false){
-			Ball.body.velocity.y = -BALL_SPEED;
-			Ball.body.y -= TILE_SIZE/3;
+			ball.body.velocity.y = -BALL_SPEED;
+			ball.body.y -= TILE_SIZE/3;
 		}else{
-			Ball.body.velocity.y = BALL_SPEED;
-			Ball.body.y += TILE_SIZE/3;
+			ball.body.velocity.y = BALL_SPEED;
+			ball.body.y += TILE_SIZE/3;
 		}
-	}else if(Ball.body.velocity.y != 0){
-		Ball.body.velocity.y = 0; 
+	}else if(ball.body.velocity.y != 0){
+		ball.body.velocity.y = 0; 
 		if(turnBlock.body.checkCollision.left === false){
-			Ball.body.velocity.x = -BALL_SPEED;
-			Ball.body.x -= TILE_SIZE/3;
+			ball.body.velocity.x = -BALL_SPEED;
+			ball.body.x -= TILE_SIZE/3;
 		}else{
-			Ball.body.velocity.x = BALL_SPEED;
-			Ball.body.x += TILE_SIZE/3;
+			ball.body.velocity.x = BALL_SPEED;
+			ball.body.x += TILE_SIZE/3;
 		}
 	}
 
 	// we check for any overlap (i.e. incorrect move)
-	if(game.physics.arcade.overlap(Ball, Unilateral, checkUniTurn))
+	if(game.physics.arcade.overlap(ball, unilateral, checkUniTurn))
 	{
 		return;
 	}
-	else if(game.physics.arcade.overlap(Ball, Simple))
+	else if(game.physics.arcade.overlap(ball, simple))
 	{
-		Ball.body.velocity.x=0;
-		Ball.body.velocity.y=0;
-		Ball.body.x = turnBlock.body.x;
-		Ball.body.y = turnBlock.body.y;
+		ball.body.velocity.x=0;
+		ball.body.velocity.y=0;
+		ball.body.x = turnBlock.body.x;
+		ball.body.y = turnBlock.body.y;
 		return;
 	}
-	else if(game.physics.arcade.overlap(Ball, Breakable, breakBlockCollide))
+	else if(game.physics.arcade.overlap(ball, breakable, breakBlockCollide))
 	{
-		Ball.body.velocity.x=0;
-		Ball.body.velocity.y=0;
-		Ball.body.x = turnBlock.body.x;
-		Ball.body.y = turnBlock.body.y;
+		ball.body.velocity.x=0;
+		ball.body.velocity.y=0;
+		ball.body.x = turnBlock.body.x;
+		ball.body.y = turnBlock.body.y;
 		return;
 	}
 	else 
 	{
 		var resetLastTurn = true;
-		for(var i=0; i<Turn.length; i++){
-			current = Turn.getAt(i);
+		for(var i=0; i<turn.length; i++){
+			current = turn.getAt(i);
 			if(current.alive && current != turnBlock && 
-				game.physics.arcade.overlap(Ball,current)){
-				checkUniTurn(Ball,current); 
+					game.physics.arcade.overlap(ball,current)){
+				checkUniTurn(ball,current); 
 				resetLastTurn =false				
 			}
 		}
 		if(resetLastTurn){
 			lastTurnBlocked=null;
-			//lastTurn = null;
 		}
 	}
 }
 
-function checkUniTurn(Ball, uniBlock)
+function checkUniTurn(ball, uniBlock)
 {
-	if((uniBlock.body.checkCollision.up && (Ball.body.velocity.y > 0)) ||
+	if((uniBlock.body.checkCollision.up && (ball.body.velocity.y > 0)) ||
 			(uniBlock.body.checkCollision.down && 
-			 (Ball.body.velocity.y < 0)) ||
+			 (ball.body.velocity.y < 0)) ||
 			(uniBlock.body.checkCollision.left && 
-			 (Ball.body.velocity.x > 0)) ||
+			 (ball.body.velocity.x > 0)) ||
 			(uniBlock.body.checkCollision.right && 
-			 (Ball.body.velocity.x < 0)))
+			 (ball.body.velocity.x < 0)))
 	{
-		//we put Ball back on the turn case
-		Ball.body.x -= Ball.body.velocity / BALL_SPEED * TILE_SIZE / 3;
-		Ball.body.y -= Ball.body.velocity / BALL_SPEED * TILE_SIZE / 3;
-		Ball.body.velocity.x = 0;
-		Ball.body.velocity.y = 0;
+		//we put ball back on the turn case
+		ball.body.x -= ball.body.velocity / BALL_SPEED * TILE_SIZE / 3;
+		ball.body.y -= ball.body.velocity / BALL_SPEED * TILE_SIZE / 3;
+		ball.body.velocity.x = 0;
+		ball.body.velocity.y = 0;
 	}else{
 		lastTurnBlocked=null;
 	}
 }
 
+function checkMoveTurn(block,dir)
+{
+	var authorized = checkMove(block, dir);
+	if(block.y === ball.y && block.x == ball.x) {
+		if((dir==='up' && block.body.checkCollision.up) ||
+			(dir==='down' && block.body.checkCollision.down) ||
+			(dir==='left' && block.body.checkCollision.left) ||
+			(dir==='right' && block.body.checkCollision.right)){
+			authorized = false;	
+		}
+	}
+	return authorized;
+}
+
+
 function checkMove(block, dir)
 {
-	var authorized =true;
+	var authorized = true;
 
 	if(dir === lastTurnBlocked){
 		authorized = false;
 	}
 
-	if(dir=='up' && (block.y-Ball.y==-TILE_SIZE) && (block.x==Ball.x) 
+	if(dir=='up' && (block.y-ball.y==-TILE_SIZE) && (block.x==ball.x) 
 			&& block.body.checkCollision.down){
 		authorized = false;
-	} else if(dir=='down' && (block.y-Ball.y==TILE_SIZE) && (block.x==Ball.x 
+	} else if(dir=='down' && (block.y-ball.y==TILE_SIZE) && (block.x==ball.x 
 				&& block.body.checkCollision.up)){
 		authorized = false;
-	} else if(dir=='left' && (block.x-Ball.x==-TILE_SIZE) && (block.y==Ball.y 
+	} else if(dir=='left' && (block.x-ball.x==-TILE_SIZE) && (block.y==ball.y 
 				&& block.body.checkCollision.right)){
 		authorized = false;
-	} else if(dir=='right' && ((block.x-Ball.x)==TILE_SIZE) && (block.y==Ball.y 
+	} else if(dir=='right' && ((block.x-ball.x)==TILE_SIZE) && (block.y==ball.y 
 				&& block.body.checkCollision.left)){
 		authorized = false;
 	}
 	return authorized;
+
 }
 
 function checkMoveGroup(dir)
@@ -218,38 +233,38 @@ function checkMoveGroup(dir)
 
 
 	//We check with the game boundaries
-	if((dir=='up' && Ball.y==0) || 
-			(dir=='down' && Ball.y==game.height-Ball.height) || 
-			(dir=='right' && Ball.x==game.width-Ball.width) || 
-			(dir=='left' && Ball.x==0)) {
+	if((dir=='up' && ball.y==0) || 
+			(dir=='down' && ball.y==game.height-ball.height) || 
+			(dir=='right' && ball.x==game.width-ball.width) || 
+			(dir=='left' && ball.x==0)) {
 		return false;
 	}
 
 
-	for(var i=0; i<Breakable.length;i++){
-		current = Breakable.getAt(i);
+	for(var i=0; i<breakable.length;i++){
+		current = breakable.getAt(i);
 		if(current.alive) {
 			authorized = authorized && checkMove(current, dir);
 
 		}
 	}
-	for(var i=0; i<Simple.length;i++){
-		current = Simple.getAt(i);
+	for(var i=0; i<simple.length;i++){
+		current = simple.getAt(i);
 		if(current.alive) {
 			authorized = authorized && checkMove(current, dir);
 
 		}
 	}
-	for(var i=0; i<Unilateral.length; i++){
-		current = Unilateral.getAt(i);
+	for(var i=0; i<unilateral.length; i++){
+		current = unilateral.getAt(i);
 		if(current.alive) {
 			authorized = authorized && checkMove(current, dir);
 		}
 	}
-	for(var i=0; i<Turn.length; i++){
-		current = Turn.getAt(i);
+	for(var i=0; i<turn.length; i++){
+		current = turn.getAt(i);
 		if(current.alive){
-			authorized = authorized && checkMove(current, dir);
+			authorized = authorized && checkMoveTurn(current, dir);
 		}
 	}
 	return authorized;

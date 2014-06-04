@@ -1,21 +1,21 @@
 function create() {
-    if(main_menu){
-	game.add.tileSprite(0,0,BACKGROUND_HEIGHT,BACKGROUND_WIDTH,'Fond');
+    if(!mainMenu){
+	game.add.tileSprite(0,0,BACKGROUND_HEIGHT,BACKGROUND_WIDTH,'fond');
 	game.physics.startSystem(Phaser.Physics.ARCADE);
 	
 	//Obstacle groups
-	Hole = game.add.group();
-	Simple = game.add.group();
-	Unilateral = game.add.group();
-	C_up = game.add.group();
-	C_down = game.add.group();
-	C_left = game.add.group();
-	C_right = game.add.group();
-	Breakable = game.add.group();
-	Begin = game.add.group();
-	End = game.add.group();
-	Item = game.add.group();
-	Turn = game.add.group();
+	hole = game.add.group();
+	simple = game.add.group();
+	unilateral = game.add.group();
+	cUp = game.add.group();
+	cDown = game.add.group();
+	cLeft = game.add.group();
+	cRight = game.add.group();
+	breakable = game.add.group();
+	begin = game.add.group();
+	end = game.add.group();
+	item = game.add.group();
+	turn = game.add.group();
 	score = 0;	
 
 	createLevel();
@@ -34,9 +34,9 @@ function create() {
 	//Pause button
 	//var pauseButton = game.add.button(0,300,'pause', pause);
     } else {
-	mainMenu = game.add.sprite(0, 0, 'mainMenu');
+	mainMenuSprite = game.add.sprite(0, 0, 'mainMenuSprite');
 	title = game.add.sprite(11, 50, 'title');
-	button_jouer = game.add.button(200,300, 'button1', actionOnClick1, this, 1,0,2);
+	buttonJouer = game.add.button(200,300, 'buttonPlay', actionOnClickPlay, this, 1,0,2);
 
     }	
 }

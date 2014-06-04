@@ -1,44 +1,73 @@
 
-function endLevel(Ball, endSprite)
+function endLevel(ball, endSprite)
 {
-	lastDir = null;
-	playing = false;
-	Ball.body.velocity.x=0;
-	Ball.body.velocity.y=0;
-	endSprite.kill();
-	EndScreen = game.add.sprite(25, 25, 'Win');
-	Button = game.add.button(200,250, 'button', actionOnClickEnd, this, 2,1,0);
-	Button2 = game.add.button(200,300, 'button2', actionOnClickEnd2, this, 2,1,0);
+	if(document.all) {
+		var file = new ActiveXObject("Scripting.FileSystemObject");
+	}
+	else
+	{
+		var file = new XMLHttpRequest();
+	}
+	file.open('HEAD',"levels/"+(currentLevel+1)+".txt",false);
+	try{
+		file.send();
+		file.abort();	
+		playing = false;
+		ball.body.velocity.x=0;
+		ball.body.velocity.y=0;
+		endSprite.kill();
+		endScreen = game.add.sprite(25, 25, 'win');
+		button = game.add.button(200,250, 'buttonNextLevel', actionOnClickNextLevel, this, 2,1,0);
+		button2 = game.add.button(200,300, 'buttonReplay', actionOnClickReplay, this, 2,1,0);
+	}
+	catch(err){
+	    playing = false;
+		ball.body.velocity.x=0;
+		ball.body.velocity.y=0;
+		endSprite.kill();
+		endScreen = game.add.sprite(25, 25, 'win');
+		button = game.add.button(200,250, 'buttonReplay', actionOnClickReplay, this, 2,1,0);
+		button2 = game.add.button(200,300, 'buttonRestart', actionOnClickRestart, this, 2, 1, 0);
+	}
 }
 
-function actionOnClickEnd()
-{
-	Button.kill();
-	Button2.kill();
-	current_level = current_level + 1;
+function actionOnClickRestart(){
+	button.kill();
+	button2.kill();
+	currentLevel = 1;
 	playing = true;
 	game.world.removeAll();
 	create();
 }
 
-function actionOnClickEnd2()
+function actionOnClickNextLevel()
 {
-	Button.kill();
-	Button2.kill();
+	button.kill();
+	button2.kill();
+	currentLevel = currentLevel + 1;
 	playing = true;
 	game.world.removeAll();
 	create();
 }
 
-function actionOnClick1()
+function actionOnClickReplay()
 {
-	button_jouer.kill();
-	main_menu = true;
+	button.kill();
+	button2.kill();
+	playing = true;
 	game.world.removeAll();
 	create();
 }
 
-function playerFailed(Ball, holeSprite)
+function actionOnClickPlay()
+{
+	buttonJouer.kill();
+	mainMenu = false;
+	game.world.removeAll();
+	create();
+}
+
+function playerFailed(ball, holeSprite)
 {
 	alert("Perdu !");
 	create();
@@ -62,81 +91,77 @@ function normalBlockCollide()
 
 function changeUp()
 {
-	if(Ball.body.velocity.x == 0 && Ball.body.velocity.y == 0)
+	if(ball.body.velocity.x == 0 && ball.body.velocity.y == 0)
 	{
-		BallMoving = false;
+		ball.isMoving = false;
 	}
 	else
 	{
-		BallMoving = true;
+		ball.isMoving = true;
 	}
-	if(!BallMoving){
-		lastDir = 'u';
-		Ball.body.velocity.y = -BALL_SPEED; 
+	if(!ball.isMoving){
+		ball.body.velocity.y = -BALL_SPEED; 
 	}
 }
 
 function changeDown()
 {
-	if(Ball.body.velocity.x == 0 && Ball.body.velocity.y == 0)
+	if(ball.body.velocity.x == 0 && ball.body.velocity.y == 0)
 	{
-		BallMoving = false;
+		ball.isMoving = false;
 	}
 	else
 	{
-		BallMoving = true;
+		ball.isMoving = true;
 	}
-	if(!BallMoving){
-		lastDir = 'd';
-		Ball.body.velocity.y = +BALL_SPEED;  
+	if(!ball.isMoving){
+		ball.body.velocity.y = +BALL_SPEED;  
 	}
 }
 
 function changeRight()
 {    
-	if(Ball.body.velocity.x == 0 && Ball.body.velocity.y == 0)
+	if(ball.body.velocity.x == 0 && ball.body.velocity.y == 0)
 	{
-		BallMoving = false;
+		ball.isMoving = false;
 	}
 	else
 	{
-		BallMoving = true;
+		ball.isMoving = true;
 	}
-	if(!BallMoving){
-		lastDir = 'r';
-		Ball.body.velocity.x = +BALL_SPEED;
+	if(!ball.isMoving){
+		ball.body.velocity.x = +BALL_SPEED;
 	}
 }
 
 function changeLeft()
 {
-	if(Ball.body.velocity.x == 0 && Ball.body.velocity.y == 0)
+	if(ball.body.velocity.x == 0 && ball.body.velocity.y == 0)
 	{
-		BallMoving = false;
+		ball.isMoving = false;
 	}
 	else
 	{
-		BallMoving = true;
+		ball.isMoving = true;
 	}
-	if(!BallMoving){
-		lastDir = 'l';
-		Ball.body.velocity.x = -BALL_SPEED;
+	if(!ball.isMoving){
+		ball.body.velocity.x = -BALL_SPEED;
 	}
 }
 
-function holeOverlap(Ball, holeSprite)
+function holeOverlap(ball, holeSprite)
 {
-	lastDir = null;
 	alert("Perdu !");
 	create();
 }
 
-function breakBlockCollide(Ball, breakBlock)
+function breakBlockCollide(ball, breakBlock)
 {
 	breakBlock.damage(1);
+	breakBlock.animations.frame++;
 }
 
-function itemCollide(Ball, itemSprite)
+function itemCollide(ball, itemSprite)
 {
 	listItem.push(itemSprite.type);
 	itemSprite.kill();
