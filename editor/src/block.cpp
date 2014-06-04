@@ -1,11 +1,15 @@
 #include "block.h"
 
+std::string resourceDir = "../ressources/";
 std::map<std::string, Block*> Block::TYPES;
+std::vector<std::string> uniqueBlocks;
 
 Block::Block(std::string name, std::string imageFile)
 {
 	this->m_name = name;
-	this->m_imageFile = imageFile;
+	QString imagePath = QString::fromStdString(resourceDir);
+	imagePath.append(QString::fromStdString(imageFile));
+	this->m_sprite = new QIcon(imagePath);
 }
 
 Block::~Block()
@@ -17,48 +21,30 @@ std::string Block::getName()
 	return this->m_name;
 }
 
-std::string Block::getImageFile()
+QIcon *Block::getSprite()
 {
-	return this->m_imageFile;
+	return this->m_sprite;
 }
 
 void Block::initBlockTypes()
 {
-	std::string blockNames[] = {
-						"Simple",
-						"Breakable",
-						"Hole",
-						"Unilateral_down",
-						"Unilateral_up",
-						"Unilateral_left",
-						"Unilateral_right",
-						"C_down",
-						"C_up",
-						"C_right",
-						"C_left",
-						"End",
-						"Begin",
-						"Empty"
-						};
-	std::string imageFiles[] = {
-						"Simple.png",
-						"Breakable.png",
-						"Hole.png",
-						"unilateral_down.png",
-						"unilateral_up.png",
-						"unilateral_left.png",
-						"unilateral_right.png",
-						"Change_down.png",
-						"Change_up.png",
-						"Change_right.png",
-						"Change_left.png",
-						"Star.png",
-						"Bille.png",
-						"Empty.png"
-						};
-	for(int i = 0 ; i < NB_TYPES ; i++)
+	QSettings settings("editor.ini", QSettings::IniFormat);
+	settings.beginGroup("Config");
+	resourceDir = settings.value("resourceDir").toString().toStdString();
+	settings.endGroup();
+
+	settings.beginGroup("Blocks");
+	const QStringList childKeys = settings.childKeys();
+	foreach(const QString &childKey, childKeys)
 	{
-		Block *b = new Block(blockNames[i],imageFiles[i]);
-		TYPES.insert(std::pair<std::string,Block*>(blockNames[i],b));
+		std::string name = childKey.toStdString();
+		std::string imageFile = settings.value(childKey).toString().toStdString();
+
+		Block *b = new Block(name,imageFile);
+		TYPES.insert(std::pair<std::string,Block*>(name,b));
 	}
+	settings.endGroup();
+
+	uniqueBlocks.push_back("Begin");
+	uniqueBlocks.push_back("End");
 }

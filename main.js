@@ -13,6 +13,11 @@ var playing=true;
 
 var currentLevel = 1;
 
+//Function called whan the user use his finger
+var hammertime = Hammer(element).on("swipe", function(event) {
+	console.log("swipe");
+});
+
 // Blocks groups
 var hole;
 var simple;

@@ -29,6 +29,16 @@ Block *Level::getBlock(int x, int y)
 	return this->m_grid[x][y];
 }
 
+int Level::getWidth()
+{
+	return this->m_dimX;
+}
+
+int Level::getHeight()
+{
+	return this->m_dimY;
+}
+
 void Level::setBlock(int x, int y, Block *b)
 {
 	if(x >= 0 && x < this->m_dimX && y >= 0 && y <= this->m_dimY)
@@ -54,8 +64,23 @@ void Level::setBlock(int x, int y, std::string name)
 	}
 }
 
-void Level::save(char *fileName)
+void Level::save(QString fileName)
 {
-	std::ofstream file;
-	file.open(fileName);
+	QFile file(fileName);
+	file.open(QIODevice::WriteOnly);
+	for(int i = 0 ; i < this->m_dimX ; i++)
+	{
+		for(int j = 0 ; j < this->m_dimY ; j++)
+		{
+			std::string name = this->m_grid[i][j]->getName();
+			if(name.compare("Empty") != 0)
+			{
+				std::stringstream lineStream;
+				lineStream << name << " " << i << " " << j << "\n";
+				std::string lineStr = lineStream.str();
+				file.write(lineStr.c_str());
+			}
+		}
+	}
+	file.close();
 }

@@ -3,6 +3,12 @@
 
 #include <map>
 #include <string>
+#include <QIcon>
+#include <vector>
+#include <QSettings>
+#include <QString>
+#include <QStringList>
+#include <iostream>
 
 class Block
 {
@@ -10,7 +16,7 @@ class Block
 		// Block name
 		std::string m_name;
 		// Block sprite
-		std::string m_imageFile;
+		QIcon *m_sprite;
 	public:
 		// Block types (name->block)
 		static std::map<std::string, Block*> TYPES;
@@ -18,7 +24,7 @@ class Block
 		~Block();
 
 		std::string getName();
-		std::string getImageFile();
+		QIcon *getSprite();
 
 		static void initBlockTypes();
 		static const int NB_TYPES = 14;
