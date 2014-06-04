@@ -1,5 +1,4 @@
 function moveBall() {
-
 	ball.body.x = Math.round(ball.body.x);
 	ball.body.y = Math.round(ball.body.y);
 
