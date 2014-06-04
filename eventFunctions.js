@@ -1,5 +1,5 @@
 
-function endLevel(Ball, endSprite)
+function endLevel(ball, endSprite)
 {
 	if(document.all) {
 		var file = new ActiveXObject("Scripting.FileSystemObject");
@@ -8,39 +8,33 @@ function endLevel(Ball, endSprite)
 	{
 		var file = new XMLHttpRequest();
 	}
-	var lastLevel = false;
-	file.open('HEAD',"levels/"+(current_level+1)+".txt",false);
+	file.open('HEAD',"levels/"+(currentLevel+1)+".txt",false);
 	try{
 		file.send();
-	}
-	catch(err){
-		lastLevel = true;
-	}
-
-	if(!lastLevel){
 		file.abort();	
 		playing = false;
-		Ball.body.velocity.x=0;
-		Ball.body.velocity.y=0;
+		ball.body.velocity.x=0;
+		ball.body.velocity.y=0;
 		endSprite.kill();
-		EndScreen = game.add.sprite(25, 25, 'Win');
-		Button = game.add.button(200,250, 'button_next_level', actionOnClickNextLevel, this, 2,1,0);
-		Button2 = game.add.button(200,300, 'button_replay', actionOnClickReplay, this, 2,1,0);
-	}else{
-		playing = false;
-		Ball.body.velocity.x=0;
-		Ball.body.velocity.y=0;
+		endScreen = game.add.sprite(25, 25, 'win');
+		button = game.add.button(200,250, 'buttonNextLevel', actionOnClickNextLevel, this, 2,1,0);
+		button2 = game.add.button(200,300, 'buttonReplay', actionOnClickReplay, this, 2,1,0);
+	}
+	catch(err){
+	    playing = false;
+		ball.body.velocity.x=0;
+		ball.body.velocity.y=0;
 		endSprite.kill();
-		EndScreen = game.add.sprite(25, 25, 'Win');
-		Button = game.add.button(200,250, 'button_replay', actionOnClickReplay, this, 2,1,0);
-		Button2 = game.add.button(200,300, 'button_restart', actionOnClickRestart, this, 2, 1, 0);
+		endScreen = game.add.sprite(25, 25, 'win');
+		button = game.add.button(200,250, 'buttonReplay', actionOnClickReplay, this, 2,1,0);
+		button2 = game.add.button(200,300, 'buttonRestart', actionOnClickRestart, this, 2, 1, 0);
 	}
 }
 
 function actionOnClickRestart(){
-	Button.kill();
-	Button2.kill();
-	current_level = 1;
+	button.kill();
+	button2.kill();
+	currentLevel = 1;
 	playing = true;
 	game.world.removeAll();
 	create();
@@ -48,9 +42,9 @@ function actionOnClickRestart(){
 
 function actionOnClickNextLevel()
 {
-	Button.kill();
-	Button2.kill();
-	current_level = current_level + 1;
+	button.kill();
+	button2.kill();
+	currentLevel = currentLevel + 1;
 	playing = true;
 	game.world.removeAll();
 	create();
@@ -58,8 +52,8 @@ function actionOnClickNextLevel()
 
 function actionOnClickReplay()
 {
-	Button.kill();
-	Button2.kill();
+	button.kill();
+	button2.kill();
 	playing = true;
 	game.world.removeAll();
 	create();
@@ -67,13 +61,13 @@ function actionOnClickReplay()
 
 function actionOnClickPlay()
 {
-	button_jouer.kill();
-	main_menu = false;
+	buttonJouer.kill();
+	mainMenu = false;
 	game.world.removeAll();
 	create();
 }
 
-function playerFailed(Ball, holeSprite)
+function playerFailed(ball, holeSprite)
 {
 	alert("Perdu !");
 	create();
@@ -97,77 +91,77 @@ function normalBlockCollide()
 
 function changeUp()
 {
-	if(Ball.body.velocity.x == 0 && Ball.body.velocity.y == 0)
+	if(ball.body.velocity.x == 0 && ball.body.velocity.y == 0)
 	{
-		BallMoving = false;
+		ball.isMoving = false;
 	}
 	else
 	{
-		BallMoving = true;
+		ball.isMoving = true;
 	}
-	if(!BallMoving){
-		Ball.body.velocity.y = -BALL_SPEED; 
+	if(!ball.isMoving){
+		ball.body.velocity.y = -BALL_SPEED; 
 	}
 }
 
 function changeDown()
 {
-	if(Ball.body.velocity.x == 0 && Ball.body.velocity.y == 0)
+	if(ball.body.velocity.x == 0 && ball.body.velocity.y == 0)
 	{
-		BallMoving = false;
+		ball.isMoving = false;
 	}
 	else
 	{
-		BallMoving = true;
+		ball.isMoving = true;
 	}
-	if(!BallMoving){
-		Ball.body.velocity.y = +BALL_SPEED;  
+	if(!ball.isMoving){
+		ball.body.velocity.y = +BALL_SPEED;  
 	}
 }
 
 function changeRight()
 {    
-	if(Ball.body.velocity.x == 0 && Ball.body.velocity.y == 0)
+	if(ball.body.velocity.x == 0 && ball.body.velocity.y == 0)
 	{
-		BallMoving = false;
+		ball.isMoving = false;
 	}
 	else
 	{
-		BallMoving = true;
+		ball.isMoving = true;
 	}
-	if(!BallMoving){
-		Ball.body.velocity.x = +BALL_SPEED;
+	if(!ball.isMoving){
+		ball.body.velocity.x = +BALL_SPEED;
 	}
 }
 
 function changeLeft()
 {
-	if(Ball.body.velocity.x == 0 && Ball.body.velocity.y == 0)
+	if(ball.body.velocity.x == 0 && ball.body.velocity.y == 0)
 	{
-		BallMoving = false;
+		ball.isMoving = false;
 	}
 	else
 	{
-		BallMoving = true;
+		ball.isMoving = true;
 	}
-	if(!BallMoving){
-		Ball.body.velocity.x = -BALL_SPEED;
+	if(!ball.isMoving){
+		ball.body.velocity.x = -BALL_SPEED;
 	}
 }
 
-function holeOverlap(Ball, holeSprite)
+function holeOverlap(ball, holeSprite)
 {
 	alert("Perdu !");
 	create();
 }
 
-function breakBlockCollide(Ball, breakBlock)
+function breakBlockCollide(ball, breakBlock)
 {
 	breakBlock.damage(1);
 	breakBlock.animations.frame++;
 }
 
-function itemCollide(Ball, itemSprite)
+function itemCollide(ball, itemSprite)
 {
 	listItem.push(itemSprite.type);
 	itemSprite.kill();

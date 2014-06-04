@@ -21,32 +21,32 @@ function parser(filename) {
 		y = TILE_SIZE*parseInt(res[2]);
 		switch(res[0]) {
 			case "begin":
-				Ball = game.add.sprite(x,y,'ball',4);
-				ballAnimation = Ball.animations.add('rolling',null,BALL_ANIMATION_SPEED,true);
-				Ball.anchor.setTo(0,0);
-				Ball.checkWorldBounds = true;
-				game.physics.enable(Ball,Phaser.Physics.ARCADE);
-				Ball.body.collideWorldBounds = true;
-				BallMoving = false;
+				ball = game.add.sprite(x,y,'ball',4);
+				ballAnimation = ball.animations.add('rolling',null,BALL_ANIMATION_SPEED,true);
+				ball.anchor.setTo(0,0);
+				ball.checkWorldBounds = true;
+				game.physics.enable(ball,Phaser.Physics.ARCADE);
+				ball.body.collideWorldBounds = true;
+				ball.isMoving = false;
 				break;
 			case "end":
-				block = End.create(x,y,'End');
+				block = end.create(x,y,'end');
 				game.physics.enable(block,Phaser.Physics.ARCADE);
 				block.body.immovable = true;
 				break;
 			case "hole":
-				block = Hole.create(x,y,'Hole');
+				block = hole.create(x,y,'hole');
 				game.physics.enable(block,Phaser.Physics.ARCADE);
 				block.body.immovable = true;
 				break;
 			case "simple":
-				block = Simple.create(x,y,'Simple');
+				block = simple.create(x,y,'simple');
 				game.physics.enable(block,Phaser.Physics.ARCADE);
 				block.body.immovable = true;
 				break;
 			case "item":	
 				var type=res[3];
-				block = Item.create(x,y,type);
+				block = item.create(x,y,type);
 				game.physics.enable(block,Phaser.Physics.ARCADE);
 				block.body.immovable = true;
 				block.type=type;
@@ -54,25 +54,25 @@ function parser(filename) {
 			case "unilateral":			
 				switch(res[3]) {
 					case "up":
-						block = Unilateral.create(x,y,'u_u');
+						block = unilateral.create(x,y,'uniUp');
 						game.physics.enable(block,Phaser.Physics.ARCADE);
 						block.body.immovable = true;
 						block.body.checkCollision.down = false;
 						break;
 					case "down":
-						block = Unilateral.create(x,y,'u_d');
+						block = unilateral.create(x,y,'uniDown');
 						game.physics.enable(block,Phaser.Physics.ARCADE);
 						block.body.immovable = true;
 						block.body.checkCollision.up = false;
 						break;
 					case "right":
-						block = Unilateral.create(x,y,'u_r');
+						block = unilateral.create(x,y,'uniRight');
 						game.physics.enable(block,Phaser.Physics.ARCADE);
 						block.body.immovable = true;
 						block.body.checkCollision.left = false;
 						break;
 					case "left":
-						block = Unilateral.create(x,y,'u_l');
+						block = unilateral.create(x,y,'uniLeft');
 						game.physics.enable(block,Phaser.Physics.ARCADE);
 						block.body.immovable = true;
 						block.body.checkCollision.right = false;
@@ -80,60 +80,60 @@ function parser(filename) {
 				}
 				break;
 			case "breakable":
-				block = Breakable.create(x,y,'breakable');
+				block = breakable.create(x,y,'breakable');
 				block.animations.add('breaking');
 				block.health = parseInt(res[3]);
 				game.physics.enable(block,Phaser.Physics.ARCADE);
 				block.body.immovable = true;
 				break;
 			case "change_up":
-				block = Simple.create(x,y,'Simple');
+				block = simple.create(x,y,'simple');
 				game.physics.enable(block,Phaser.Physics.ARCADE);
 				block.body.immovable = true;
 				block.body.checkCollision.left = false;
 				block.body.checkCollision.up = false;
 				block.body.checkCollision.right = false;
 
-				block = C_up.create(x,y,'c_up');
+				block = cUp.create(x,y,'cUp');
 				game.physics.enable(block,Phaser.Physics.ARCADE);
 				block.body.checkCollision.down = false;
 				block.body.immovable = true;
 				break;
 			case "change_down":
-				block = Simple.create(x,y,'Simple');
+				block = simple.create(x,y,'simple');
 				game.physics.enable(block,Phaser.Physics.ARCADE);
 				block.body.immovable = true;
 				block.body.checkCollision.left = false;
 				block.body.checkCollision.down = false;
 				block.body.checkCollision.right = false;
 
-				block = C_down.create(x,y,'c_down');
+				block = cDown.create(x,y,'cDown');
 				game.physics.enable(block,Phaser.Physics.ARCADE);
 				block.body.checkCollision.up = false;
 				block.body.immovable = true;
 				break;
 			case "change_right":
-				block = Simple.create(x,y,'Simple');
+				block = simple.create(x,y,'simple');
 				game.physics.enable(block,Phaser.Physics.ARCADE);
 				block.body.immovable = true;
 				block.body.checkCollision.up = false;
 				block.body.checkCollision.down = false;
 				block.body.checkCollision.right = false;
 
-				block = C_right.create(x,y,'c_right');
+				block = cRight.create(x,y,'cRight');
 				game.physics.enable(block,Phaser.Physics.ARCADE);
 				block.body.checkCollision.left = false;
 				block.body.immovable = true;
 				break;
 			case "change_left":
-				block = Simple.create(x,y,'Simple');
+				block = simple.create(x,y,'simple');
 				game.physics.enable(block,Phaser.Physics.ARCADE);
 				block.body.immovable = true;
 				block.body.checkCollision.up = false;
 				block.body.checkCollision.down = false;
 				block.body.checkCollision.left = false;
 
-				block = C_left.create(x,y,'c_left');
+				block = cLeft.create(x,y,'cLeft');
 				game.physics.enable(block,Phaser.Physics.ARCADE);
 				block.body.checkCollision.right = false;
 				block.body.immovable = true;
@@ -141,28 +141,28 @@ function parser(filename) {
 			case "turn":
 				switch(res[3]){
 					case "ul":
-						block = Turn.create(x,y,'t_ul');
+						block = turn.create(x,y,'turnUL');
 						game.physics.enable(block,Phaser.Physics.ARCADE);
 						block.body.immovable = true;
 						block.body.checkCollision.up = false;
 						block.body.checkCollision.left = false;
 						break;
 					case "ur":
-						block = Turn.create(x,y,'t_ur');
+						block = turn.create(x,y,'turnUR');
 						game.physics.enable(block,Phaser.Physics.ARCADE);
 						block.body.immovable = true;
 						block.body.checkCollision.up = false;
 						block.body.checkCollision.right = false;
 						break;
 					case "dr":
-						block = Turn.create(x,y,'t_dr');
+						block = turn.create(x,y,'turnDR');
 						game.physics.enable(block,Phaser.Physics.ARCADE);
 						block.body.immovable = true;
 						block.body.checkCollision.down = false;
 						block.body.checkCollision.right = false;
 						break;
 					case "dl":
-						block = Turn.create(x,y,'t_dl');
+						block = turn.create(x,y,'turnDL');
 						game.physics.enable(block,Phaser.Physics.ARCADE);
 						block.body.immovable = true;
 						block.body.checkCollision.down = false;

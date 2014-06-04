@@ -1,67 +1,65 @@
 var game = new Phaser.Game(BACKGROUND_HEIGHT,BACKGROUND_WIDTH,Phaser.AUTO,'', {preload:preload,create:create,update:update});
 
-var Ball;
-var BallMoving;
+var ball;
 
 var endTile;
 var endSprite;
 
-var EndScreen;
-var main_menu = true;
+var endScreen;
+var mainMenu = true;
 
 //Boolean indicating if the player hasn't won yet.
 var playing=true;
-var ballAnimation;
 
-var current_level = 1;
+var currentLevel = 1;
 
 // Blocks groups
-var Hole;
-var Simple;
-var Unilateral;
-var Breakable;
-var C_up;
-var C_down;
-var C_left;
-var C_right;
-var Begin;
-var End;
-var Item;
+var hole;
+var simple;
+var unilateral;
+var breakable;
+var cUp;
+var cDown;
+var cLeft;
+var cRight;
+var begin;
+var end;
+var item;
 var listItem;
 var score;
-var Turn;
+var turn;
 
 function preload() {
-	game.load.image('Fond','ressources/Fond.png');
-	game.load.image('Simple','ressources/Block_Noir.png');
-	game.load.image('c_up','ressources/Change_up.png');
-	game.load.image('c_down','ressources/Change_down.png');
-	game.load.image('c_right','ressources/Change_right.png');
-	game.load.image('c_left','ressources/Change_left.png');
-	game.load.image('End','ressources/diamond.png');
-	game.load.image('Hole','ressources/Hole.png');
-	game.load.image('Win','ressources/Win.png');
-	game.load.image('u_r','ressources/unilateral_right.png');
-	game.load.image('u_u','ressources/unilateral_up.png');
-	game.load.image('u_d','ressources/unilateral_down.png');
-	game.load.image('u_l','ressources/unilateral_left.png');
+	game.load.image('fond','ressources/Fond.png');
+	game.load.image('simple','ressources/Block_Noir.png');
+	game.load.image('cUp','ressources/Change_up.png');
+	game.load.image('cDown','ressources/Change_down.png');
+	game.load.image('cRight','ressources/Change_right.png');
+	game.load.image('cLeft','ressources/Change_left.png');
+	game.load.image('end','ressources/diamond.png');
+	game.load.image('hole','ressources/Hole.png');
+	game.load.image('win','ressources/Win.png');
+	game.load.image('uniRight','ressources/unilateral_right.png');
+	game.load.image('uniUp','ressources/unilateral_up.png');
+	game.load.image('uniDown','ressources/unilateral_down.png');
+	game.load.image('uniLeft','ressources/unilateral_left.png');
 	game.load.image('C','ressources/C.png');
-	game.load.image('G','ressources/G.png');
-	game.load.image('T','ressources/T.png');
+	game.load.image('H','ressources/H.png');
+	game.load.image('O','ressources/O.png');
 	game.load.image('pause', 'ressources/pause.png');
 	game.load.image('pauseMenu', 'ressources/pauseMenu.png');
 	game.load.image('title', 'ressources/title.png');
 	game.load.image('mainMenuSprite', 'ressources/MainMenu.png');
-	game.load.image('t_ul','ressources/turn_ul.png');
-	game.load.image('t_ur','ressources/turn_ur.png');
-	game.load.image('t_dl','ressources/turn_dl.png');
-	game.load.image('t_dr','ressources/turn_dr.png');
+	game.load.image('turnUL','ressources/turn_ul.png');
+	game.load.image('turnUR','ressources/turn_ur.png');
+	game.load.image('turnDL','ressources/turn_dl.png');
+	game.load.image('turnDR','ressources/turn_dr.png');
 
     game.load.spritesheet('breakable','ressources/Breakable.png',60,60);
 	game.load.spritesheet('ball','ressources/ball.png',60,60);
 
-	game.load.spritesheet('button_play', 'ressources/Button_Jouer.png',163,55);
-	game.load.spritesheet('button_next_level','ressources/Button_next_level.png',249,36);
-	game.load.spritesheet('button_replay','ressources/Button_rejouer.png',140,35);
-	game.load.spritesheet('button_restart','ressources/Button_restart.png',138,29);
+	game.load.spritesheet('buttonPlay', 'ressources/Button_Jouer.png',163,55);
+	game.load.spritesheet('buttonNextLevel','ressources/Button_next_level.png',249,36);
+	game.load.spritesheet('buttonReplay','ressources/Button_rejouer.png',140,35);
+	game.load.spritesheet('buttonRestart','ressources/Button_restart.png',138,29);
 }

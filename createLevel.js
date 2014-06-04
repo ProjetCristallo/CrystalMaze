@@ -1,8 +1,8 @@
 function createLevel()
 {
-        levelName = "levels/"+current_level+".txt";
+        levelName = "levels/"+currentLevel+".txt";
 	listItem = [];
 	listItem.length = 0;
 	parser(levelName);
-	Ball.animations.play("rolling",BALL_ANIMATION_SPEED,true);
+	ball.animations.play("rolling",BALL_ANIMATION_SPEED,true);
 }
