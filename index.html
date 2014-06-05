@@ -17,37 +17,44 @@ Unless required by applicable law or agreed to in writing,
        specific language governing permissions and limitations
        under the License.
        -->
-       <html>
-       <head>
-       <meta charset="utf-8" />
-       <meta name="format-detection" content="telephone=no" />
-       <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
-       <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-       <link rel="stylesheet" type="text/css" href="css/index.css" />
-       <title>Hello World</title>
-       </head>
-       <body>
-       <div class="app">
-       <h1>PhoneGap</h1>
-       <div id="deviceready" class="blink">
-       <p class="event listening">Connecting to Device</p>
-       <p class="event received">Device is Ready</p>
-       </div>
-       </div>
-       <script type="text/javascript" src="phonegap.js"></script>
-       <script type="text/javascript" src="js/index.js"></script>
-       <script type='text/javascript' src='constants.js'></script>
-       <script type='text/javascript' src='phaser.js'></script>
-       <script type='text/javascript' src='hammer.min.js'></script>
-       <script type='text/javascript' src='parser.js'></script>
-       <script type='text/javascript' src='createLevel.js'></script>
-       <script type='text/javascript' src='create.js'></script>
-       <script type='text/javascript' src='update.js'></script>
-       <script type='text/javascript' src='moveball.js'></script>
-       <script type='text/javascript' src='eventFunctions.js'></script>
-       <script type='text/javascript' src='main.js'></script>
-       <script type="text/javascript">
-       app.initialize();
-       </script>
-       </body>
-       </html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="viewport"/>
+        <script type='text/javascript'>
+        if (document.body) {
+        	var width = (document.body.clientWidth);
+        	var height = (document.body.clientHeight);
+        } else {
+        	var width = (window.innerWidth);
+        	var height = (window.innerHeight);
+        }
+        var scaleWidth = width/600;
+        var scaleHeight = height/480;
+        var scale = Math.min(scaleWidth,scaleHeight);
+        viewport = document.querySelector("meta[name=viewport]");
+		viewport.setAttribute('content', 'user-scalable=0, initial-scale='+scale+',maximum-scale=10, minimum-scale=0.2, target-densitydpi=device-dpi');
+        </script>
+        <script type='text/javascript' src='constants.js'></script>
+		<script type='text/javascript' src='phaser.js'></script>
+		<script type='text/javascript' src='parser.js'></script>
+		<script type='text/javascript' src='createLevel.js'></script>
+		<script type='text/javascript' src='create.js'></script>
+		<script type='text/javascript' src='update.js'></script>
+		<script type='text/javascript' src='moveball.js'></script>
+		<script type='text/javascript' src='eventFunctions.js'></script>
+		<script type='text/javascript' src='main.js'></script>
+		<script type='text/javascript' src='hammer.min.js'></script>
+		<link rel="stylesheet" type="text/css" href="css/index.css" />
+		<link rel='stylesheet' href='style.css'>
+        <title>Hello World</title>
+    </head>
+    <body>
+        <script type="text/javascript" src="phonegap.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript">
+            app.initialize();
+        </script>
+    </body>
+</html>
