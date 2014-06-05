@@ -72,10 +72,12 @@ function preload() {
 	game.load.image('turnUR','ressources/turn_ur.png');
 	game.load.image('turnDL','ressources/turn_dl.png');
 	game.load.image('turnDR','ressources/turn_dr.png');
+        game.load.image('energyUp','ressources/Energy_Up.png');
+        game.load.image('energyDown','ressources/Energy_Down.png');
+    
 
-    game.load.spritesheet('breakable','ressources/Breakable.png',60,60);
-	game.load.spritesheet('ball','ressources/ball.png',60,60);
-
+        game.load.spritesheet('breakable','ressources/Breakable.png',60,60);
+        game.load.spritesheet('ball','ressources/balle.png',60,60);
 	game.load.spritesheet('buttonPlay', 'ressources/Button_Jouer.png',163,55);
 	game.load.spritesheet('buttonNextLevel','ressources/Button_next_level.png',249,36);
 	game.load.spritesheet('buttonReplay','ressources/Button_rejouer.png',140,35);

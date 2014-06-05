@@ -161,8 +161,33 @@ function breakBlockCollide(ball, breakBlock)
 	breakBlock.animations.frame++;
 }
 
+
 function itemCollide(ball, itemSprite)
+{
+    if(itemSprite.type == "energyUp"){
+	if (ball.name == "ice"){
+	    ball.animations.play("water");
+	    ball.name = "water";
+	} else if (ball.name == "water"){
+	    ball.animations.play("steam");
+	    ball.name = "steam";
+	}
+    } else if (itemSprite.type == "energyDown"){
+	if (ball.name == "steam"){
+	    ball.animations.play("water");
+	    ball.name = "water";
+	} else if (ball.name == "water"){
+	    ball.animations.play("ice");
+	    ball.name = "ice";
+	}
+    }
+
+    itemSprite.kill();
+}
+
+/*function itemCollide(ball, itemSprite)
 {
 	listItem.push(itemSprite.type);
 	itemSprite.kill();
 }
+*/
