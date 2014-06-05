@@ -8,6 +8,7 @@ var endSprite;
 var endScreen;
 var mainMenu = true;
 
+
 //Boolean indicating if the player hasn't won yet.
 var playing=true;
 
@@ -15,8 +16,19 @@ var currentLevel = 1;
 
 //Function called whan the user use his finger
 var element = document.body;
-var hammertime = Hammer(element).on("swipe", function(event) {
-	alert("swipe");
+
+var swipe = null;
+Hammer(element).on("swipeleft", function(event) {
+	swipe='left';
+});
+Hammer(element).on("swiperight", function(event) {
+        swipe='right';
+});
+Hammer(element).on("swipedown", function(event) {
+        swipe='down';
+});
+Hammer(element).on("swipeup", function(event) {
+        swipe='up';
 });
 
 // Blocks groups

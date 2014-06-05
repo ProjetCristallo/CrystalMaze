@@ -20,32 +20,40 @@ function moveBall() {
 	}
 	if(!ball.isMoving)
 	{
-		if(controller.left.isDown && checkMoveGroup('left'))
+		if((controller.left.isDown || swipe==='left')
+				&& checkMoveGroup('left'))
 		{
+			swipe = null;
 			lastTurnBlocked = null;
 			lastTurn = null;
 			game.physics.arcade.overlap(ball,turn,setLastTurn);
 			score++;
 			ball.body.velocity.x = -BALL_SPEED;
 		}
-		else if(controller.right.isDown && checkMoveGroup('right'))
+		else if((controller.right.isDown || swipe==='right')
+				&& checkMoveGroup('right'))
 		{
+			swipe = null;	
 			lastTurnBlocked = null;
 			lastTurn = null;
 			game.physics.arcade.overlap(ball,turn,setLastTurn);
 			score++;
 			ball.body.velocity.x = +BALL_SPEED;
 		}
-		else if(controller.up.isDown && checkMoveGroup('up'))
+		else if((controller.up.isDown || swipe==='up')
+				&& checkMoveGroup('up'))
 		{
+			swipe = null;	
 			lastTurnBlocked = null;
 			lastTurn = null;
 			game.physics.arcade.overlap(ball,turn,setLastTurn);
 			score++;
 			ball.body.velocity.y = -BALL_SPEED;
 		}
-		else if(controller.down.isDown && checkMoveGroup('down'))
+		else if((controller.down.isDown || swipe==='down')
+				&& checkMoveGroup('down'))
 		{
+			swipe = null;	
 			lastTurnBlocked = null;
 			lastTurn = null;
 			game.physics.arcade.overlap(ball,turn,setLastTurn);
@@ -190,9 +198,9 @@ function checkMoveTurn(block,dir)
 	var authorized = checkMove(block, dir);
 	if(block.y === ball.y && block.x == ball.x) {
 		if((dir==='up' && block.body.checkCollision.up) ||
-			(dir==='down' && block.body.checkCollision.down) ||
-			(dir==='left' && block.body.checkCollision.left) ||
-			(dir==='right' && block.body.checkCollision.right)){
+				(dir==='down' && block.body.checkCollision.down) ||
+				(dir==='left' && block.body.checkCollision.left) ||
+				(dir==='right' && block.body.checkCollision.right)){
 			authorized = false;	
 		}
 	}
