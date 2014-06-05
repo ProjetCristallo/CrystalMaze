@@ -173,7 +173,7 @@ function saltBlackCollide(ball, saltBlock)
 	}
 }
 
-fuction porousBlockCollide(ball, porousBlock)
+function porousBlockCollide(ball, porousBlock)
 {
 	if (ball.name != "ice") {
 		porousBlock.checkCollision.left = false;

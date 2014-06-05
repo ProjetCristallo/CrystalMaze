@@ -1,0 +1,6 @@
+begin 0 0 ice
+porous 0 3
+simple 5 2
+item 4 2 energyUp
+item 0 9 energyUp
+end 6 2
