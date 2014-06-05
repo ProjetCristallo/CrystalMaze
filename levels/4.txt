@@ -7,7 +7,7 @@ simple 6 7
 simple 7 5
 turn 9 2 ul
 hole 5 7
-item 5 0 
-item 9 7 
-item 2 6 
+item 5 0 energyUp
+item 9 7 energyDown
+item 2 6 energyUp
 end 6 2

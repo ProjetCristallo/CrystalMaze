@@ -72,11 +72,11 @@ function parser(filename) {
 				block.body.immovable = true;
 				break;
 			case "item":	
-				//var type=res[3];
-				block = item.create(x,y,'energy');
+				var type=res[3];
+				block = item.create(x,y,type);
 				game.physics.enable(block,Phaser.Physics.ARCADE);
 				block.body.immovable = true;
-				block.type="energy";
+				block.type=type;
 				break;
 			case "unilateral":			
 				switch(res[3]) {
