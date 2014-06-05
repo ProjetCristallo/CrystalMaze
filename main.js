@@ -14,7 +14,7 @@ var playing=true;
 
 var currentLevel = 1;
 
-//Function called whan the user use his finger
+//Function called when the user uses his finger
 var element = document.body;
 
 var swipe = null;
