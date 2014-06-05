@@ -17,44 +17,44 @@ Unless required by applicable law or agreed to in writing,
        specific language governing permissions and limitations
        under the License.
        -->
-<html>
-    <head>
-        <meta charset="utf-8" />
-        <meta name="format-detection" content="telephone=no" />
-        <meta name="viewport"/>
-        <script type='text/javascript'>
-        if (document.body) {
-        	var width = (document.body.clientWidth);
-        	var height = (document.body.clientHeight);
-        } else {
-        	var width = (window.innerWidth);
-        	var height = (window.innerHeight);
-        }
-        var scaleWidth = width/600;
-        var scaleHeight = height/480;
-        var scale = Math.min(scaleWidth,scaleHeight);
-        viewport = document.querySelector("meta[name=viewport]");
-		viewport.setAttribute('content', 'user-scalable=0, initial-scale='+scale+',maximum-scale=10, minimum-scale=0.2, target-densitydpi=device-dpi');
-        </script>
-        <script type='text/javascript' src='constants.js'></script>
-		<script type='text/javascript' src='phaser.js'></script>
-		<script type='text/javascript' src='parser.js'></script>
-		<script type='text/javascript' src='createLevel.js'></script>
-		<script type='text/javascript' src='create.js'></script>
-		<script type='text/javascript' src='update.js'></script>
-		<script type='text/javascript' src='moveball.js'></script>
-		<script type='text/javascript' src='eventFunctions.js'></script>
-		<script type='text/javascript' src='main.js'></script>
-		<script type='text/javascript' src='hammer.min.js'></script>
-		<link rel="stylesheet" type="text/css" href="css/index.css" />
-		<link rel='stylesheet' href='style.css'>
-        <title>Hello World</title>
-    </head>
-    <body>
-        <script type="text/javascript" src="phonegap.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
-        <script type="text/javascript">
-            app.initialize();
-        </script>
-    </body>
+       <html>
+       <head>
+       <meta charset="utf-8" />
+       <meta name="format-detection" content="telephone=no" />
+       <meta name="viewport"/>
+       <script type='text/javascript'>
+       if (document.body) {
+	       var width = (document.body.clientWidth);
+	       var height = (document.body.clientHeight);
+       } else {
+	       var width = (window.innerWidth);
+	       var height = (window.innerHeight);
+       }
+var scaleWidth = width/600;
+var scaleHeight = height/480;
+var scale = Math.min(scaleWidth,scaleHeight);
+viewport = document.querySelector("meta[name=viewport]");
+viewport.setAttribute('content', 'user-scalable=0, initial-scale='+scale+',maximum-scale=10, minimum-scale=0.2, target-densitydpi=device-dpi');
+</script>
+<link rel="stylesheet" type="text/css" href="css/index.css" />
+<link rel='stylesheet' href='style.css'>
+<title>Crystal Maze</title>
+</head>
+<body>
+<script type="text/javascript" src="phonegap.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+<script type='text/javascript' src='constants.js'></script>
+<script type='text/javascript' src='phaser.js'></script>
+<script type='text/javascript' src='hammer.min.js'></script>
+<script type='text/javascript' src='parser.js'></script>
+<script type='text/javascript' src='createLevel.js'></script>
+<script type='text/javascript' src='create.js'></script>
+<script type='text/javascript' src='update.js'></script>
+<script type='text/javascript' src='moveball.js'></script>
+<script type='text/javascript' src='eventFunctions.js'></script>
+<script type='text/javascript' src='main.js'></script>
+<script type="text/javascript">
+app.initialize();
+</script>
+</body>
 </html>
