@@ -76,7 +76,7 @@ function preload() {
 	game.load.image('turnDR','ressources/turn_dr.png');
     game.load.image('energyUp','ressources/Energy_Up.png');
     game.load.image('energyDown','ressources/Energy_Down.png');
-    game.load.image('porous', 'resources/porous.png');
+    game.load.image('porous', 'ressources/porous.png');
     
 
     game.load.spritesheet('breakable','ressources/Breakable.png',60,60);
