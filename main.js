@@ -10,16 +10,36 @@ var endSprite;
 var endScreen;
 var mainMenu = true;
 
+
 //Boolean indicating if the player hasn't won yet.
 var playing=true;
 
 var currentLevel = 1;
+
+//Function called when the user uses his finger
+var element = document.body;
+
+var swipe = null;
+Hammer(element).on("swipeleft", function(event) {
+	swipe='left';
+});
+Hammer(element).on("swiperight", function(event) {
+        swipe='right';
+});
+Hammer(element).on("swipedown", function(event) {
+        swipe='down';
+});
+Hammer(element).on("swipeup", function(event) {
+        swipe='up';
+});
 
 // Blocks groups
 var hole;
 var simple;
 var unilateral;
 var breakable;
+var salt;
+var porous;
 var cUp;
 var cDown;
 var cLeft;
@@ -63,10 +83,14 @@ function preload() {
 	game.load.image('turnUR','ressources/turn_ur.png');
 	game.load.image('turnDL','ressources/turn_dl.png');
 	game.load.image('turnDR','ressources/turn_dr.png');
+    game.load.image('energyUp','ressources/Energy_Up.png');
+    game.load.image('energyDown','ressources/Energy_Down.png');
+    game.load.image('porous', 'ressources/porous.png');
+    
 
     game.load.spritesheet('breakable','ressources/Breakable.png',60,60);
-	game.load.spritesheet('ball','ressources/ball.png',60,60);
-
+    game.load.spritesheet('salt','ressources/Salt.png',60,60);
+    game.load.spritesheet('ball','ressources/balle.png',60,60);
 	game.load.spritesheet('buttonPlay', 'ressources/Button_Jouer.png',163,55);
 	game.load.spritesheet('buttonNextLevel','ressources/Button_next_level.png',249,36);
 	game.load.spritesheet('buttonReplay','ressources/Button_rejouer.png',140,35);

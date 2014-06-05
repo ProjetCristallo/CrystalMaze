@@ -1,4 +1,4 @@
-begin 5 3
+begin 5 3 ice
 turn 2 0 ur
 simple 1 3
 simple 3 5
@@ -7,7 +7,7 @@ simple 6 7
 simple 7 5
 turn 9 2 ul
 hole 5 7
-item 5 0 C
-item 9 7 H
-item 2 6 O
+item 5 0 energyUp
+item 9 7 energyDown
+item 2 6 energyUp
 end 6 2

@@ -1,0 +1,4 @@
+begin 0 0 ice
+porous 3 0
+simple 2 5
+end 6 2

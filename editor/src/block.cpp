@@ -1,6 +1,6 @@
 #include "block.h"
 
-std::string resourceDir = "../ressources/";
+extern std::string resourceDir;
 std::map<std::string, Block*> Block::TYPES;
 std::vector<std::string> uniqueBlocks;
 
@@ -26,15 +26,33 @@ QIcon *Block::getSprite()
 	return this->m_sprite;
 }
 
+void Block::setIdentifier(std::string id)
+{
+	this->m_identifier = id;
+}
+
+void Block::setArguments(std::string arg)
+{
+	this->m_arguments = arg;
+}
+
+std::string Block::getIdentifier()
+{
+	return this->m_identifier;
+}
+
+std::string Block::getArguments()
+{
+	return this->m_arguments;
+}
+
 void Block::initBlockTypes()
 {
 	QSettings settings("editor.ini", QSettings::IniFormat);
-	settings.beginGroup("Config");
-	resourceDir = settings.value("resourceDir").toString().toStdString();
-	settings.endGroup();
 
-	settings.beginGroup("Blocks");
-	const QStringList childKeys = settings.childKeys();
+	// Create the blocks
+	settings.beginGroup("Sprites");
+	QStringList childKeys = settings.childKeys();
 	foreach(const QString &childKey, childKeys)
 	{
 		std::string name = childKey.toStdString();
@@ -45,6 +63,33 @@ void Block::initBlockTypes()
 	}
 	settings.endGroup();
 
-	uniqueBlocks.push_back("Begin");
-	uniqueBlocks.push_back("End");
+	// Set the identifiers
+	settings.beginGroup("Identifiers");
+	childKeys = settings.childKeys();
+	foreach(const QString &childKey, childKeys)
+	{
+		std::string name = childKey.toStdString();
+		TYPES[name]->setIdentifier(settings.value(childKey).toString().toStdString());
+	}
+	settings.endGroup();
+
+	// Set the arguments
+	settings.beginGroup("Arguments");
+	childKeys = settings.childKeys();
+	foreach(const QString &childKey, childKeys)
+	{
+		std::string name = childKey.toStdString();
+		TYPES[name]->setArguments(settings.value(childKey).toString().toStdString());
+	}
+	settings.endGroup();
+
+	// Set the unique blocks
+	settings.beginGroup("Uniques");
+	childKeys = settings.childKeys();
+	foreach(const QString &childKey, childKeys)
+	{
+		std::string name = childKey.toStdString();
+		uniqueBlocks.push_back(name);
+	}
+	settings.endGroup();
 }

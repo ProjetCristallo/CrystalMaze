@@ -1,6 +1,7 @@
 #include "editor.h"
 
 extern std::string resourceDir;
+extern std::string levelDir;
 
 Editor::Editor(int dimX, int dimY):QMainWindow()
 {
@@ -13,7 +14,7 @@ Editor::Editor(int dimX, int dimY):QMainWindow()
 	this->m_posX = 0;
 	this->m_posY = 0;
 	
-	this->m_currentBlock = "Simple";
+	this->m_currentBlock = "simple";
 
 	this->m_level = new Level(this->m_dimX, this->m_dimY);
 
@@ -66,18 +67,30 @@ void Editor::createMenu()
 	// Menu bar creation
 	this->m_menuBar = this->menuBar();
 	this->m_fileMenu = this->m_menuBar->addMenu("Fichier");
-	// Exit app item
-	QAction *exitAction = new QAction("Quitter", this);
-	connect(exitAction, SIGNAL(triggered()), this, SLOT(quit()));
-	this->m_fileMenu->addAction(exitAction);
+
+	// Open action
+	QAction *openAction = new QAction("Ouvrir", this);
+	openAction->setShortcut(QKeySequence("Ctrl+O"));
+	connect(openAction, SIGNAL(triggered()), this, SLOT(openLevel()));
+	this->m_fileMenu->addAction(openAction);
+
 	// Save action
 	QAction *saveAction = new QAction("Enregistrer", this);
+	saveAction->setShortcut(QKeySequence("Ctrl+S"));
 	connect(saveAction, SIGNAL(triggered()), this, SLOT(saveLevel()));
 	this->m_fileMenu->addAction(saveAction);
+
 	// Save as action
 	QAction *saveAsAction = new QAction("Enregistrer sous", this);
+	saveAsAction->setShortcut(QKeySequence("Ctrl+Shift+S"));
 	connect(saveAsAction, SIGNAL(triggered()), this, SLOT(saveLevelAs()));
 	this->m_fileMenu->addAction(saveAsAction);
+
+	// Exit app item
+	QAction *exitAction = new QAction("Quitter", this);
+	exitAction->setShortcut(QKeySequence("Ctrl+Q"));
+	connect(exitAction, SIGNAL(triggered()), this, SLOT(quit()));
+	this->m_fileMenu->addAction(exitAction);
 }
 
 void Editor::createLevelView()
@@ -99,6 +112,7 @@ void Editor::createLevelView()
 			this->m_levelButtons[i][j] = new QPushButton("", this->m_levelFrame);
 			this->m_levelButtons[i][j]->setIcon(*(tmp->getSprite()));
 			this->m_levelButtons[i][j]->setIconSize(QSize(SPRITE_SIZE ,SPRITE_SIZE));
+			this->m_levelButtons[i][j]->setFlat(true);
 
 			QString args = "";
 			args.append(QString::number(i));
@@ -193,27 +207,69 @@ void Editor::setCurrentBlock(QString block)
 	this->m_currentBlock = block.toStdString();
 }
 
+void Editor::openLevel()
+{
+	QString fileOld = this->m_levelFile;
+	this->m_levelFile = QFileDialog::getOpenFileName(	this, 
+			tr("Choix du fichier"), 
+			QString::fromStdString(levelDir), 
+			tr("text files (*.txt)")
+			);
+	if(this->m_levelFile != "")
+	{
+		this->m_level->load(this->m_levelFile);
+		for(int x = 0 ; x < this->m_dimX ; x++)
+		{
+			for(int y = 0 ; y < this->m_dimY ; y++)
+			{
+				QIcon icon = *(this->m_level->getBlock(x,y)->getSprite());
+				this->m_levelButtons[x][y]->setIcon(icon);
+			}
+		}
+	}
+	else
+	{
+		this->m_levelFile = fileOld;
+	}
+}
+
 void Editor::saveLevel()
 {
+	QString fileOld = this->m_levelFile;
 	if(this->m_levelFile == "")
 	{
 		this->m_levelFile = QFileDialog::getSaveFileName(	this, 
 				tr("Choix du fichier"), 
-				QDir::currentPath(), 
+				QString::fromStdString(levelDir), 
 				tr("text files (*.txt)")
 				);
 	}
-	this->m_level->save(this->m_levelFile);
+	if(this->m_levelFile != "")
+	{
+		this->m_level->save(this->m_levelFile);
+	}
+	else
+	{
+		this->m_levelFile = fileOld;
+	}
 }
 
 void Editor::saveLevelAs()
 {
+	QString fileOld = this->m_levelFile;
 	this->m_levelFile = QFileDialog::getSaveFileName(	this, 
 			tr("Choix du fichier"), 
-			QDir::currentPath(), 
+			QString::fromStdString(levelDir), 
 			tr("text files (*.txt)")
 			);
-	this->m_level->save(this->m_levelFile);
+	if(this->m_levelFile != "")
+	{
+		this->m_level->save(this->m_levelFile);
+	}
+	else
+	{
+		this->m_levelFile = fileOld;
+	}
 }
 
 void Editor::deleteUniqueBlock(std::string block)
