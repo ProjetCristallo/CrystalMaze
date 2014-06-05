@@ -165,7 +165,7 @@ function breakBlockCollide(ball, breakBlock)
 	}
 }
 
-function saltBlackCollide(ball, saltBlock)
+function saltBlockCollide(ball, saltBlock)
 {
 	if (ball.name == "water") {
 		saltBlock.damage(1);
