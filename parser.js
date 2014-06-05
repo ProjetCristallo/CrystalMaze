@@ -106,7 +106,19 @@ function parser(filename) {
 						break;
 				}
 				break;
-			case "breakable":
+			case "salt" : 
+				block = salt.create(x,y,'salt');
+				block.animations.add('salt');
+				block.health = parseInt(res[3]);
+				game.physics.enable(block,Phaser.Physics.ARCADE);
+				block.body.immovable = true;
+				break;
+			case "porous" : 
+				block = porous.create(x,y,'porous');
+				game.physics.enable(block,Phaser.Physics.ARCADE);
+				block.body.immovable = true;
+				break;
+			case "breakable" : 
 				block = breakable.create(x,y,'breakable');
 				block.animations.add('breaking');
 				block.health = parseInt(res[3]);

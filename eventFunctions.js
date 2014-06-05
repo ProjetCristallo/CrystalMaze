@@ -151,16 +151,37 @@ function changeLeft()
 
 function holeOverlap(ball, holeSprite)
 {
-	alert("Perdu !");
-	create();
+	if (ball.name != "steam") {
+		alert("Perdu !");
+		create();
+	}
 }
 
 function breakBlockCollide(ball, breakBlock)
 {
-	breakBlock.damage(1);
-	breakBlock.animations.frame++;
+	if (ball.name == "ice") {
+		breakBlock.damage(1);
+		breakBlock.animations.frame++;
+	}
 }
 
+function saltBlackCollide(ball, saltBlock)
+{
+	if (ball.name == "water") {
+		saltBlock.damage(1);
+		//saltBlock.animations.frame++;
+	}
+}
+
+fuction porousBlockCollide(ball, porousBlock)
+{
+	if (ball.name != "ice") {
+		porousBlock.checkCollision.left = false;
+		porousBlock.checkCollision.right = false;
+		porousBlock.checkCollision.up = false;
+		porousBlock.checkCollision.down = false;
+	}
+}
 
 function itemCollide(ball, itemSprite)
 {

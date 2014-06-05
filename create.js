@@ -11,7 +11,9 @@ function create() {
 	cDown = game.add.group();
 	cLeft = game.add.group();
 	cRight = game.add.group();
+	salt = game.add.group();
 	breakable = game.add.group();
+	porous = game.add.group();
 	begin = game.add.group();
 	end = game.add.group();
 	item = game.add.group();
