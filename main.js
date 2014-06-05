@@ -1,6 +1,8 @@
-var game = new Phaser.Game(BACKGROUND_HEIGHT,BACKGROUND_WIDTH,Phaser.AUTO,'', {preload:preload,create:create,update:update});
+var game = new Phaser.Game(BACKGROUND_WIDTH,BACKGROUND_HEIGHT+ TASKBAR_HEIGHT,Phaser.AUTO,'', {preload:preload,create:create,update:update});
 
 var ball;
+
+var taskBarSprite;
 
 var endTile;
 var endSprite;
@@ -30,6 +32,7 @@ var score;
 var turn;
 
 function preload() {
+	game.load.image('taskBar','ressources/taskBar.png');
 	game.load.image('fond','ressources/Fond.png');
 	game.load.image('simple','ressources/Block_Noir.png');
 	game.load.image('cUp','ressources/Change_up.png');
@@ -49,6 +52,12 @@ function preload() {
 	game.load.image('pause', 'ressources/pause.png');
 	game.load.image('pauseMenu', 'ressources/pauseMenu.png');
 	game.load.image('title', 'ressources/title.png');
+
+	game.load.image('pauseButtonAide','ressources/ButtonAide.png');
+	game.load.image('pauseButtonMenu','ressources/ButtonMenu.png');
+	game.load.image('pauseButtonParametres','ressources/ButtonParametres.png');
+	game.load.image('pauseButtonRestart','ressources/ButtonRestart.png');
+
 	game.load.image('mainMenuSprite', 'ressources/MainMenu.png');
 	game.load.image('turnUL','ressources/turn_ul.png');
 	game.load.image('turnUR','ressources/turn_ur.png');

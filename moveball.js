@@ -1,5 +1,4 @@
 function moveBall() {
-
 	ball.body.x = Math.round(ball.body.x);
 	ball.body.y = Math.round(ball.body.y);
 
@@ -20,7 +19,8 @@ function moveBall() {
 		ball.isMoving = true;
 	}
 	if(!ball.isMoving)
-	{
+	{	
+		if(game.isPaused) {return;}
 		if(controller.left.isDown && checkMoveGroup('left'))
 		{
 			lastTurnBlocked = null;

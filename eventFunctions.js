@@ -45,6 +45,7 @@ function actionOnClickNextLevel()
 	button.kill();
 	button2.kill();
 	currentLevel = currentLevel + 1;
+        textLevel.setText("Niveau " + currentLevel);
 	playing = true;
 	game.world.removeAll();
 	create();
@@ -73,17 +74,19 @@ function playerFailed(ball, holeSprite)
 	create();
 }
 
-/*function pause() {
-  game.paused = true;
-  pauseMenu = game.add.sprite(300, 240, 'pauseMenu');
-  pauseMenu.anchor.setTo(0.5, 0.5);
-  }*/
-
-/*function unpause() {
-  if (game.paused) {
-  game.paused = false;
-  }
-  }*/
+function triggerPause() {
+	if(!game.isPaused){
+		var buttonsX = BACKGROUND_WIDTH-IN_GAME_MENU_MARGIN-IN_GAME_MENU_BUTTON_WIDTH;
+		var buttonsY = BACKGROUND_HEIGHT-IN_GAME_MENU_HEIGHT+IN_GAME_MENU_MARGIN;
+		pauseMenu = game.add.sprite(BACKGROUND_WIDTH-IN_GAME_MENU_WIDTH,BACKGROUND_HEIGHT-IN_GAME_MENU_HEIGHT,'pauseMenu');
+	        pauseButtons.forEach(function(button){button.revive()});
+	        pauseButtons.forEach(function(button){button.bringToTop()});
+	} else {
+		pauseMenu.destroy();
+                pauseButtons.forEach(function(button){button.kill()});
+	}
+	game.isPaused=!game.isPaused;
+}
 
 function normalBlockCollide()
 {

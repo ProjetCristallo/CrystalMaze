@@ -1,6 +1,6 @@
 function create() {
     if(!mainMenu){
-	game.add.tileSprite(0,0,BACKGROUND_HEIGHT,BACKGROUND_WIDTH,'fond');
+	game.add.tileSprite(0,0,BACKGROUND_WIDTH,BACKGROUND_HEIGHT,'fond');
 	game.physics.startSystem(Phaser.Physics.ARCADE);
 	
 	//Obstacle groups
@@ -18,21 +18,39 @@ function create() {
 	turn = game.add.group();
 	score = 0;	
 
+	//TaskBar
+	taskBarSprite = simple.create(0,BACKGROUND_HEIGHT,'taskBar');
+	game.physics.enable(taskBarSprite,Phaser.Physics.ARCADE);	
+	taskBarSprite.body.immovable=true;
 	createLevel();
-	
-	text = game.add.text(500, 30, "Score : 0", {
-        font: "40px Arial",
-        fill: "#ff0044",
-        align: "center"
-    });
+		//Info in taskbar
+		textScore = game.add.text(MARGIN_TASKBAR,BACKGROUND_HEIGHT+MARGIN_TASKBAR,"Score : 0",{});		
+		textLevel = game.add.text(MARGIN_TASKBAR,BACKGROUND_HEIGHT+TASKBAR_HEIGHT-MARGIN_TASKBAR,"Niveau "+currentLevel,{});
+		textLevel.anchor={'x':0,'y':1};
+		//Buttons in taskbar
+		buttonPause = game.add.button(TASKBAR_WIDTH/2,BACKGROUND_HEIGHT+MARGIN_TASKBAR,'pause',triggerPause);
+		game.isPaused = false;
 
-    text.anchor.setTo(0.5, 0.5);
-		
+ 		var buttonsX = BACKGROUND_WIDTH-IN_GAME_MENU_MARGIN-IN_GAME_MENU_BUTTON_WIDTH;
+                var buttonsY = BACKGROUND_HEIGHT-IN_GAME_MENU_HEIGHT+IN_GAME_MENU_MARGIN;
+		pauseButtons = [];
+		pauseButtons.push(game.add.button(buttonsX,buttonsY                                                   ,'pauseButtonRestart'      ,function() {
+        			game.world.removeAll();
+        			create();
+		}));
+		pauseButtons.push(game.add.button(buttonsX,buttonsY+1*(IN_GAME_MENU_BUTTON_HEIGHT+IN_GAME_MENU_MARGIN),'pauseButtonMenu'   ,function() {
+				game.world.removeAll();
+				mainMenu=true;
+				currentLevel=1;
+				create();}));
+		pauseButtons.push(game.add.button(buttonsX,buttonsY+2*(IN_GAME_MENU_BUTTON_HEIGHT+IN_GAME_MENU_MARGIN),'pauseButtonParametres',function() {}));
+		pauseButtons.push(game.add.button(buttonsX,buttonsY+3*(IN_GAME_MENU_BUTTON_HEIGHT+IN_GAME_MENU_MARGIN),'pauseButtonAide'      ,function() {}));
+		pauseButtons.forEach(function(button){button.kill()});
+
+	
 	//Controller
 	controller = game.input.keyboard.createCursorKeys();
 	
-	//Pause button
-	//var pauseButton = game.add.button(0,300,'pause', pause);
     } else {
 	mainMenuSprite = game.add.sprite(0, 0, 'mainMenuSprite');
 	title = game.add.sprite(11, 50, 'title');

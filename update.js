@@ -1,6 +1,6 @@
 function update() {
 	if(playing && !mainMenu){
 		moveBall();
-		text.setText("Score : " + score);
+		textScore.setText("Score : " + score);
 	}
 }
