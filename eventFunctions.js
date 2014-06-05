@@ -161,8 +161,22 @@ function breakBlockCollide(ball, breakBlock)
 	breakBlock.animations.frame++;
 }
 
+
 function itemCollide(ball, itemSprite)
+{
+    if (ball.name == "ice"){
+	ball.animations.play("water");
+	ball.name = "water";
+    } else if (ball.name == "water"){
+	ball.animations.play("steam");
+	ball.name = "steam";
+    }
+    itemSprite.kill();
+}
+
+/*function itemCollide(ball, itemSprite)
 {
 	listItem.push(itemSprite.type);
 	itemSprite.kill();
 }
+*/

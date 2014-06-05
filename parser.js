@@ -21,13 +21,40 @@ function parser(filename) {
 		y = TILE_SIZE*parseInt(res[2]);
 		switch(res[0]) {
 			case "begin":
-				ball = game.add.sprite(x,y,'ball',4);
-				ballAnimation = ball.animations.add('rolling',null,BALL_ANIMATION_SPEED,true);
+		    
+		            switch(res[3]) {
+		                case "ice":
+		   	            ball = game.add.sprite(x,y,'ball',4);
+				    ball.name = res[3];
+				    ballAnimation = ball.animations.add("ice",[0, 1, 2, 3],BALL_ANIMATION_SPEED,true);
+		    ballAnimation = ball.animations.add("water",[4, 5, 6, 7],BALL_ANIMATION_SPEED,true);
+		    ballAnimation = ball.animations.add("steam",[8, 9, 10, 11],BALL_ANIMATION_SPEED,true);
+				ball.animations.play("ice");
+			            break;
+		                case "water":
+		    	            ball = game.add.sprite(x,y,'ball',4);
+				    ball.name = res[3];
+				    ballAnimation = ball.animations.add("ice",[0, 1, 2, 3],BALL_ANIMATION_SPEED,true);
+		    ballAnimation = ball.animations.add("water",[4, 5, 6, 7],BALL_ANIMATION_SPEED,true);
+		    ballAnimation = ball.animations.add("steam",[8, 9, 10, 11],BALL_ANIMATION_SPEED,true);
+				ball.animations.play("water");
+			            break;
+		                case "steam":
+			            ball = game.add.sprite(x,y,'ball',4);
+			            ball.name = res[3];  
+				    ballAnimation = ball.animations.add("ice",[0, 1, 2, 3],BALL_ANIMATION_SPEED,true);
+		    ballAnimation = ball.animations.add("water",[4, 5, 6, 7],BALL_ANIMATION_SPEED,true);
+		    ballAnimation = ball.animations.add("steam",[8, 9, 10, 11],BALL_ANIMATION_SPEED,true);
+				ball.animations.play("steam");
+				break;
+			    }
+				//ballAnimation = ball.animations.add('rolling',null,BALL_ANIMATION_SPEED,true);
 				ball.anchor.setTo(0,0);
 				ball.checkWorldBounds = true;
 				game.physics.enable(ball,Phaser.Physics.ARCADE);
 				ball.body.collideWorldBounds = true;
 				ball.isMoving = false;
+		    
 				break;
 			case "end":
 				block = end.create(x,y,'end');
@@ -45,11 +72,11 @@ function parser(filename) {
 				block.body.immovable = true;
 				break;
 			case "item":	
-				var type=res[3];
-				block = item.create(x,y,type);
+				//var type=res[3];
+				block = item.create(x,y,'energy');
 				game.physics.enable(block,Phaser.Physics.ARCADE);
 				block.body.immovable = true;
-				block.type=type;
+				block.type="energy";
 				break;
 			case "unilateral":			
 				switch(res[3]) {
