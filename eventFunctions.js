@@ -84,6 +84,20 @@ function actionOnClickReturn()
     create();
 }
 
+function actionOnClickArrowRight()
+{
+    numPageCourant++;
+    game.world.removeAll();
+    create();
+}
+
+function actionOnClickArrowLeft()
+{
+    numPageCourant--;
+    game.world.removeAll();
+    create();
+}
+
 function playerFailed(ball, holeSprite)
 {
 	alert("Perdu !");

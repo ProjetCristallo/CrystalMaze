@@ -28,7 +28,7 @@ var playing=true;
 
 var nbrLevel = 1;
 var numPageCourant = 1;
-var nbrPageTotal = 1;
+var nbrPageTotal = 5;
 var currentLevel = 1;
 
 //Function called when the user uses his finger
@@ -103,6 +103,9 @@ function preload() {
 	game.load.image('porous', 'ressources/porous.png');
 	game.load.image('helpScreen1','ressources/helpScreen1.png');
 	game.load.image('helpScreen2','ressources/helpScreen2.png');
+    game.load.image('nextPage', 'ressources/ArrowRight.png');
+    game.load.image('prevPage', 'ressources/ArrowLeft.png');
+    
 
 	game.load.spritesheet('breakable','ressources/Breakable.png',60,60);
 	game.load.spritesheet('salt','ressources/Salt.png',60,60);
@@ -119,7 +122,7 @@ function preload() {
 	nbrLevel++;
     }
     nbrLevel--;
-    nbrPageTotal = parseInt(1 + (nbrLevel - 1) / 9);
+   // nbrPageTotal = parseInt(1 + (nbrLevel - 1) / 9);
     //alert(nbrPageTotal);
 
 	game.load.spritesheet('buttonNextImage','ressources/buttonNextImage.png',25,50);
