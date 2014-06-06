@@ -117,6 +117,10 @@ function parser(filename) {
 				block = porous.create(x,y,'porous');
 				game.physics.enable(block,Phaser.Physics.ARCADE);
 				block.body.immovable = true;
+				block.body.checkCollision.left = false;
+				block.body.checkCollision.right = false;
+				block.body.checkCollision.up = false;
+				block.body.checkCollision.down = false;
 				break;
 			case "breakable" : 
 				block = breakable.create(x,y,'breakable');

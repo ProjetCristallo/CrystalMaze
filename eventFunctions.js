@@ -176,13 +176,13 @@ function saltBlockCollide(ball, saltBlock)
 	}
 }
 
-function porousBlockCollide(ball, porousBlock)
+function porousBlockOverlap(ball, porousBlock)
 {
-	if (ball.name != "ice") {
-		porousBlock.checkCollision.left = false;
-		porousBlock.checkCollision.right = false;
-		porousBlock.checkCollision.up = false;
-		porousBlock.checkCollision.down = false;
+	if (ball.name == "ice") {
+		ball.body.velocity.x = 0;
+		ball.body.velocity.y = 0;
+		ball.isMoving = false;
+		ball.body.reset(0,0);
 	}
 }
 
