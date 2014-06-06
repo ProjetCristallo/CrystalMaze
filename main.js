@@ -9,11 +9,14 @@ var endSprite;
 
 var endScreen;
 var mainMenu = true;
-
+var selectLevelMenu = false;
 
 //Boolean indicating if the player hasn't won yet.
 var playing=true;
 
+var nbrLevel = 1;
+var numPageCourant = 1;
+var nbrPageTotal = 1;
 var currentLevel = 1;
 
 //Function called when the user uses his finger
@@ -92,7 +95,30 @@ function preload() {
     game.load.spritesheet('salt','ressources/Salt.png',60,60);
     game.load.spritesheet('ball','ressources/balle.png',60,60);
 	game.load.spritesheet('buttonPlay', 'ressources/Button_Jouer.png',163,55);
+    game.load.spritesheet('buttonSelectLevel', 'ressources/ButtonSelectLevel.png', 206, 32);
+    game.load.spritesheet('buttonReturn', 'ressources/ButtonReturn.png', 125, 32);
 	game.load.spritesheet('buttonNextLevel','ressources/Button_next_level.png',249,36);
 	game.load.spritesheet('buttonReplay','ressources/Button_rejouer.png',140,35);
 	game.load.spritesheet('buttonRestart','ressources/Button_restart.png',138,29);
+
+    while (doesFileExist("levels/"+nbrLevel+".txt")){
+	nbrLevel++;
+    }
+    nbrLevel--;
+    nbrPageTotal = parseInt(1 + (nbrLevel - 1) / 9);
+    alert(nbrPageTotal);
+}
+
+
+function doesFileExist(urlToFile)
+{
+    var xhr = new XMLHttpRequest();
+    xhr.open('HEAD', urlToFile, false);
+    xhr.send();
+     
+    if (xhr.status == "404") {
+        return false;
+    } else {
+        return true;
+    }
 }

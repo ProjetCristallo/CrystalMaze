@@ -53,8 +53,8 @@ function actionOnClickNextLevel()
 
 function actionOnClickReplay()
 {
-	button.kill();
-	button2.kill();
+	//button.kill();
+	//button2.kill();
 	playing = true;
 	game.world.removeAll();
 	create();
@@ -62,10 +62,26 @@ function actionOnClickReplay()
 
 function actionOnClickPlay()
 {
-	buttonJouer.kill();
+	//buttonJouer.kill();
 	mainMenu = false;
 	game.world.removeAll();
 	create();
+}
+
+function actionOnClickSelectLevel()
+{
+    selectLevelMenu = true;
+    mainMenu = false;
+    game.world.removeAll();
+    create();
+}
+
+function actionOnClickReturn()
+{
+    selectLevelMenu = false;
+    mainMenu = true;
+    game.world.removeAll();
+    create();
 }
 
 function playerFailed(ball, holeSprite)

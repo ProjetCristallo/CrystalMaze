@@ -1,5 +1,5 @@
 function create() {
-    if(!mainMenu){
+    if(!mainMenu && !selectLevelMenu){
 	game.add.tileSprite(0,0,BACKGROUND_WIDTH,BACKGROUND_HEIGHT,'fond');
 	game.physics.startSystem(Phaser.Physics.ARCADE);
 	
@@ -53,10 +53,17 @@ function create() {
 	//Controller
 	controller = game.input.keyboard.createCursorKeys();
 	
-    } else {
+    } else if(mainMenu){
 	mainMenuSprite = game.add.sprite(0, 0, 'mainMenuSprite');
 	title = game.add.sprite(11, 50, 'title');
 	buttonJouer = game.add.button(200,300, 'buttonPlay', actionOnClickPlay, this, 1,0,2);
+	buttonSelectLevel = game.add.button(197, 400, 'buttonSelectLevel', actionOnClickSelectLevel, this, 1, 0, 2);
 
-    }	
+    } else if (selectLevelMenu){
+	mainMenuSprite = game.add.sprite(0, 0, 'mainMenuSprite');
+	title = game.add.text(150 ,30 ,"Selection du niveau",{});
+	buttonReturn = game.add.button((TASKBAR_WIDTH - 125) / 2, BACKGROUND_HEIGHT + (TASKBAR_HEIGHT - 32) / 2, 'buttonReturn', actionOnClickReturn, this, 1, 0, 2);
+    } else {
+	alert("problem : menu selection ... (create.js)");
+    }
 }
