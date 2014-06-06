@@ -20,6 +20,8 @@ function create() {
 	turn = game.add.group();
 	score = 0;	
 
+	help();
+
 	//TaskBar
 	taskBarSprite = simple.create(0,BACKGROUND_HEIGHT,'taskBar');
 	game.physics.enable(taskBarSprite,Phaser.Physics.ARCADE);	
