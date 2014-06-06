@@ -1,5 +1,5 @@
 function create() {
-    if(!mainMenu){
+    if(!mainMenu && !selectLevelMenu){
 	game.add.tileSprite(0,0,BACKGROUND_WIDTH,BACKGROUND_HEIGHT,'fond');
 	game.physics.startSystem(Phaser.Physics.ARCADE);
 	
@@ -36,7 +36,7 @@ function create() {
  		var buttonsX = BACKGROUND_WIDTH-IN_GAME_MENU_MARGIN-IN_GAME_MENU_BUTTON_WIDTH;
                 var buttonsY = BACKGROUND_HEIGHT-IN_GAME_MENU_HEIGHT+IN_GAME_MENU_MARGIN;
 		pauseButtons = [];
-		pauseButtons.push(game.add.button(buttonsX,buttonsY                                                   ,'pauseButtonRestart'      ,function() {
+		pauseButtons.push(game.add.button(buttonsX,buttonsY,'pauseButtonRestart',function() {
         			game.world.removeAll(true);
         			create();
 		}));
@@ -46,17 +46,25 @@ function create() {
 				currentLevel=1;
 				create();}));
 		pauseButtons.push(game.add.button(buttonsX,buttonsY+2*(IN_GAME_MENU_BUTTON_HEIGHT+IN_GAME_MENU_MARGIN),'pauseButtonParametres',function() {}));
-		pauseButtons.push(game.add.button(buttonsX,buttonsY+3*(IN_GAME_MENU_BUTTON_HEIGHT+IN_GAME_MENU_MARGIN),'pauseButtonAide'      ,function() {}));
+		pauseButtons.push(game.add.button(buttonsX,buttonsY+3*(IN_GAME_MENU_BUTTON_HEIGHT+IN_GAME_MENU_MARGIN),'pauseButtonAide',help));
+
 		pauseButtons.forEach(function(button){button.kill()});
 
 	
 	//Controller
 	controller = game.input.keyboard.createCursorKeys();
 	
-    } else {
+    } else if(mainMenu){
 	mainMenuSprite = game.add.sprite(0, 0, 'mainMenuSprite');
 	title = game.add.sprite(11, 50, 'title');
 	buttonJouer = game.add.button(200,300, 'buttonPlay', actionOnClickPlay, this, 1,0,2);
+	buttonSelectLevel = game.add.button(197, 400, 'buttonSelectLevel', actionOnClickSelectLevel, this, 1, 0, 2);
 
-    }	
+    } else if (selectLevelMenu){
+	mainMenuSprite = game.add.sprite(0, 0, 'mainMenuSprite');
+	title = game.add.text(150 ,30 ,"Selection du niveau",{});
+	buttonReturn = game.add.button((TASKBAR_WIDTH - 125) / 2, BACKGROUND_HEIGHT + (TASKBAR_HEIGHT - 32) / 2, 'buttonReturn', actionOnClickReturn, this, 1, 0, 2);
+    } else {
+	alert("problem : menu selection ... (create.js)");
+    }
 }

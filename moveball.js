@@ -81,6 +81,7 @@ function moveBall() {
 	checkTurn();
 }
 
+
 var lastTurn;
 var lastTurnBlocked;
 
@@ -255,9 +256,16 @@ function checkMoveGroup(dir)
 		current = breakable.getAt(i);
 		if(current.alive) {
 			authorized = authorized && checkMove(current, dir);
-
 		}
 	}
+	
+	for(var i=0; i<salt.length;i++){
+		current = salt.getAt(i);
+		if(current.alive) {
+			authorized = authorized && checkMove(current, dir);
+		}
+	}
+	
 	for(var i=0; i<simple.length;i++){
 		current = simple.getAt(i);
 		if(current.alive) {

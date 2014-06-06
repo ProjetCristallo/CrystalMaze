@@ -10,10 +10,25 @@ var endSprite;
 var endScreen;
 var mainMenu = true;
 
+var selectLevelMenu = false;
+
+
+//Button and screen used for displaying help.
+var helpScreens = new Array();
+var buttonNext;
+var buttonPrev;
+var posInHelp;
+var posText;
+var helpText;
+var helpOnItem;
+
 
 //Boolean indicating if the player hasn't won yet.
 var playing=true;
 
+var nbrLevel = 1;
+var numPageCourant = 1;
+var nbrPageTotal = 1;
 var currentLevel = 1;
 
 //Function called when the user uses his finger
@@ -21,17 +36,17 @@ var element = document.body;
 
 var swipe = null;
 Hammer(element).on("swipeleft", function(event) {
-	swipe='left';
-});
+		swipe='left';
+		});
 Hammer(element).on("swiperight", function(event) {
-        swipe='right';
-});
+		swipe='right';
+		});
 Hammer(element).on("swipedown", function(event) {
-        swipe='down';
-});
+		swipe='down';
+		});
 Hammer(element).on("swipeup", function(event) {
-        swipe='up';
-});
+		swipe='up';
+		});
 
 // Blocks groups
 var hole;
@@ -83,16 +98,46 @@ function preload() {
 	game.load.image('turnUR','ressources/turn_ur.png');
 	game.load.image('turnDL','ressources/turn_dl.png');
 	game.load.image('turnDR','ressources/turn_dr.png');
-    game.load.image('energyUp','ressources/Energy_Up.png');
-    game.load.image('energyDown','ressources/Energy_Down.png');
-    game.load.image('porous', 'ressources/porous.png');
-    
+	game.load.image('energyUp','ressources/Energy_Up.png');
+	game.load.image('energyDown','ressources/Energy_Down.png');
+	game.load.image('porous', 'ressources/porous.png');
+	game.load.image('helpScreen1','ressources/helpScreen1.png');
+	game.load.image('helpScreen2','ressources/helpScreen2.png');
 
-    game.load.spritesheet('breakable','ressources/Breakable.png',60,60);
-    game.load.spritesheet('salt','ressources/Salt.png',60,60);
-    game.load.spritesheet('ball','ressources/balle.png',60,60);
+	game.load.spritesheet('breakable','ressources/Breakable.png',60,60);
+	game.load.spritesheet('salt','ressources/Salt.png',60,60);
+	game.load.spritesheet('ball','ressources/balle.png',60,60);
 	game.load.spritesheet('buttonPlay', 'ressources/Button_Jouer.png',163,55);
+    game.load.spritesheet('buttonSelectLevel', 'ressources/ButtonSelectLevel.png', 206, 32);
+    game.load.spritesheet('buttonReturn', 'ressources/ButtonReturn.png', 125, 32);
 	game.load.spritesheet('buttonNextLevel','ressources/Button_next_level.png',249,36);
 	game.load.spritesheet('buttonReplay','ressources/Button_rejouer.png',140,35);
 	game.load.spritesheet('buttonRestart','ressources/Button_restart.png',138,29);
+
+
+    while (doesFileExist("levels/"+nbrLevel+".txt")){
+	nbrLevel++;
+    }
+    nbrLevel--;
+    nbrPageTotal = parseInt(1 + (nbrLevel - 1) / 9);
+    //alert(nbrPageTotal);
+
+	game.load.spritesheet('buttonNextImage','ressources/buttonNextImage.png',25,50);
+	game.load.spritesheet('buttonPrevImage','ressources/buttonPrevImage.png',25,50);
+	game.load.spritesheet('buttonCloseImage','ressources/buttonCloseImage.png',35,35);
+
+}
+
+
+function doesFileExist(urlToFile)
+{
+    var xhr = new XMLHttpRequest();
+    xhr.open('HEAD', urlToFile, false);
+    xhr.send();
+     
+    if (xhr.status == "404") {
+        return false;
+    } else {
+        return true;
+    }
 }
