@@ -67,7 +67,7 @@ function moveBall() {
 		game.physics.arcade.collide(ball, simple, normalBlockCollide, null, this);
 		game.physics.arcade.collide(ball, breakable, breakBlockCollide, null, this);
 		game.physics.arcade.collide(ball, salt, saltBlockCollide, null, this);
-		game.physics.arcade.collide(ball, porous, porousBlockCollide, null, this);
+		game.physics.arcade.overlap(ball, porous, porousBlockOverlap, null, this);
 		game.physics.arcade.overlap(ball, end, endLevel, null, this);
 		game.physics.arcade.collide(ball, cUp, changeUp, null, this);
 		game.physics.arcade.collide(ball, cDown, changeDown, null, this);
@@ -80,6 +80,7 @@ function moveBall() {
 	}	
 	checkTurn();
 }
+
 
 var lastTurn;
 var lastTurnBlocked;
@@ -255,9 +256,16 @@ function checkMoveGroup(dir)
 		current = breakable.getAt(i);
 		if(current.alive) {
 			authorized = authorized && checkMove(current, dir);
-
 		}
 	}
+	
+	for(var i=0; i<salt.length;i++){
+		current = salt.getAt(i);
+		if(current.alive) {
+			authorized = authorized && checkMove(current, dir);
+		}
+	}
+	
 	for(var i=0; i<simple.length;i++){
 		current = simple.getAt(i);
 		if(current.alive) {
