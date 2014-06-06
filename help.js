@@ -5,7 +5,7 @@ function help()
 			clickHelpNext,this,0,1,2);
 	buttonPrev = game.add.button(0.15*BACKGROUND_WIDTH,
 			0.78*BACKGROUND_HEIGHT, 'buttonPrevImage', 
-			clickHelpPrev,this,0,1,2);
+			clickHelpPrev,this,2,1,0);
 	buttonClose = game.add.button(0.82*BACKGROUND_WIDTH,
 			0.15*BACKGROUND_HEIGHT, 'buttonCloseImage',
 			clickHelpClose,this,0,1,2);
@@ -17,7 +17,7 @@ function help()
 function initializeHelpScreen()
 {
 	for(var i=1;i<=NUMBER_OF_HELP_SCREEN; i++){
-		helpScreens.push(game.add.sprite(0.1*BACKGROUND_WIDTH,
+		helpScreens[i-1] = (game.add.sprite(0.1*BACKGROUND_WIDTH,
 					0.1*BACKGROUND_HEIGHT,'helpScreen'+i));
 	}
 }
@@ -74,9 +74,9 @@ function clickHelpPrev()
 
 function clickHelpClose()
 {
-	helpScreens.forEach(function(screen){screen.kill()});
-	buttonNext.kill();
-	buttonPrev.kill();
-	buttonClose.kill();
+	helpScreens.forEach(function(screen){screen.destroy()});
+	buttonNext.destroy();
+	buttonPrev.destroy();
+	buttonClose.destroy();
 	posText.destroy();
 }

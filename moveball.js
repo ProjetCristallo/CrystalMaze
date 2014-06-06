@@ -24,6 +24,7 @@ function moveBall() {
 		if((controller.left.isDown || swipe==='left')
 				&& checkMoveGroup('left'))
 		{
+			lastDir = 'left';
 			swipe = null;
 			lastTurnBlocked = null;
 			lastTurn = null;
@@ -34,6 +35,7 @@ function moveBall() {
 		else if((controller.right.isDown || swipe==='right')
 				&& checkMoveGroup('right'))
 		{
+			lastDir = 'right';
 			swipe = null;	
 			lastTurnBlocked = null;
 			lastTurn = null;
@@ -44,6 +46,7 @@ function moveBall() {
 		else if((controller.up.isDown || swipe==='up')
 				&& checkMoveGroup('up'))
 		{
+			lastDir = 'up';
 			swipe = null;	
 			lastTurnBlocked = null;
 			lastTurn = null;
@@ -54,6 +57,7 @@ function moveBall() {
 		else if((controller.down.isDown || swipe==='down')
 				&& checkMoveGroup('down'))
 		{
+			lastDir = 'down';
 			swipe = null;	
 			lastTurnBlocked = null;
 			lastTurn = null;
@@ -119,23 +123,27 @@ function turnBall(turnBlock)
 	ball.body.x = turnBlock.body.x;
 	ball.body.y = turnBlock.body.y;
 
-	if(ball.body.velocity.x != 0){
+	if(lastDir === 'left' || lastDir === 'right'){
 		ball.body.velocity.x = 0;
 		if(turnBlock.body.checkCollision.up === false){
 			ball.body.velocity.y = -BALL_SPEED;
 			ball.body.y -= TILE_SIZE/3;
+			lastDir = 'up';
 		}else{
 			ball.body.velocity.y = BALL_SPEED;
 			ball.body.y += TILE_SIZE/3;
+			lastDir = 'down';
 		}
-	}else if(ball.body.velocity.y != 0){
+	}else if(lastDir === 'up' || lastDir ==='down'){
 		ball.body.velocity.y = 0; 
 		if(turnBlock.body.checkCollision.left === false){
 			ball.body.velocity.x = -BALL_SPEED;
 			ball.body.x -= TILE_SIZE/3;
+			lastDir = 'left';
 		}else{
 			ball.body.velocity.x = BALL_SPEED;
 			ball.body.x += TILE_SIZE/3;
+			lastDir = 'right';
 		}
 	}
 

@@ -10,6 +10,9 @@ var endSprite;
 var endScreen;
 var mainMenu = true;
 
+//Last direction the ball has taken, useful for the turn blocks
+var lastDir=null;
+
 //Button and screen used for displaying help.
 var helpScreens = new Array();
 var buttonNext;
