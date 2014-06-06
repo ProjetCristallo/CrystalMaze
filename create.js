@@ -37,11 +37,11 @@ function create() {
                 var buttonsY = BACKGROUND_HEIGHT-IN_GAME_MENU_HEIGHT+IN_GAME_MENU_MARGIN;
 		pauseButtons = [];
 		pauseButtons.push(game.add.button(buttonsX,buttonsY                                                   ,'pauseButtonRestart'      ,function() {
-        			game.world.removeAll();
+        			game.world.removeAll(true);
         			create();
 		}));
 		pauseButtons.push(game.add.button(buttonsX,buttonsY+1*(IN_GAME_MENU_BUTTON_HEIGHT+IN_GAME_MENU_MARGIN),'pauseButtonMenu'   ,function() {
-				game.world.removeAll();
+				game.world.removeAll(true);
 				mainMenu=true;
 				currentLevel=1;
 				create();}));
