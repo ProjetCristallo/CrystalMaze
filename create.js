@@ -20,8 +20,6 @@ function create() {
 	turn = game.add.group();
 	score = 0;	
 
-	help();
-
 	//TaskBar
 	taskBarSprite = simple.create(0,BACKGROUND_HEIGHT,'taskBar');
 	game.physics.enable(taskBarSprite,Phaser.Physics.ARCADE);	
@@ -38,7 +36,7 @@ function create() {
  		var buttonsX = BACKGROUND_WIDTH-IN_GAME_MENU_MARGIN-IN_GAME_MENU_BUTTON_WIDTH;
                 var buttonsY = BACKGROUND_HEIGHT-IN_GAME_MENU_HEIGHT+IN_GAME_MENU_MARGIN;
 		pauseButtons = [];
-		pauseButtons.push(game.add.button(buttonsX,buttonsY                                                   ,'pauseButtonRestart'      ,function() {
+		pauseButtons.push(game.add.button(buttonsX,buttonsY,'pauseButtonRestart',function() {
         			game.world.removeAll();
         			create();
 		}));
@@ -48,7 +46,8 @@ function create() {
 				currentLevel=1;
 				create();}));
 		pauseButtons.push(game.add.button(buttonsX,buttonsY+2*(IN_GAME_MENU_BUTTON_HEIGHT+IN_GAME_MENU_MARGIN),'pauseButtonParametres',function() {}));
-		pauseButtons.push(game.add.button(buttonsX,buttonsY+3*(IN_GAME_MENU_BUTTON_HEIGHT+IN_GAME_MENU_MARGIN),'pauseButtonAide'      ,function() {}));
+		pauseButtons.push(game.add.button(buttonsX,buttonsY+3*(IN_GAME_MENU_BUTTON_HEIGHT+IN_GAME_MENU_MARGIN),'pauseButtonAide',help));
+
 		pauseButtons.forEach(function(button){button.kill()});
 
 	

@@ -18,3 +18,5 @@ const TILE_SIZE = 60; //in pixels
 const BALL_SPEED = 400;
 const BALL_ANIMATION_SPEED = 3;
 const TURN_SENSOR_PERCENTAGE = 0.4;
+
+const NUMBER_OF_HELP_SCREEN=2;

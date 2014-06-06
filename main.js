@@ -10,6 +10,14 @@ var endSprite;
 var endScreen;
 var mainMenu = true;
 
+//Button and screen used for displaying help.
+var helpScreens = new Array();
+var buttonNext;
+var buttonPrev;
+var posInHelp;
+var posText;
+var helpText;
+var helpOnItem;
 
 //Boolean indicating if the player hasn't won yet.
 var playing=true;
@@ -96,7 +104,7 @@ function preload() {
 	game.load.spritesheet('buttonNextLevel','ressources/Button_next_level.png',249,36);
 	game.load.spritesheet('buttonReplay','ressources/Button_rejouer.png',140,35);
 	game.load.spritesheet('buttonRestart','ressources/Button_restart.png',138,29);
-	game.load.spritesheet('buttonNextImage','ressources/buttonNextImage.png',75,25);
-	game.load.spritesheet('buttonPrevImage','ressources/buttonPrevImage.png',75,25);
-	game.load.spritesheet('buttonCloseImage','ressources/buttonCloseImage.png',75,25);
+	game.load.spritesheet('buttonNextImage','ressources/buttonNextImage.png',25,50);
+	game.load.spritesheet('buttonPrevImage','ressources/buttonPrevImage.png',25,50);
+	game.load.spritesheet('buttonCloseImage','ressources/buttonCloseImage.png',35,35);
 }
