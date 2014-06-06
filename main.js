@@ -10,8 +10,10 @@ var endSprite;
 var endScreen;
 var mainMenu = true;
 
-var selectLevelMenu = false;
+//Last direction the ball has taken, useful for the turn blocks
+var lastDir=null;
 
+var selectLevelMenu = false;
 
 //Button and screen used for displaying help.
 var helpScreens = new Array();
