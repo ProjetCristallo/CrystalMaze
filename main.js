@@ -10,8 +10,15 @@ var endSprite;
 var endScreen;
 var mainMenu = true;
 
+<<<<<<< HEAD
 var selectLevelMenu = false;
 
+=======
+//Last direction the ball has taken, useful for the turn blocks
+var lastDir=null;
+
+var selectLevelMenu = false;
+>>>>>>> 821af20d4c821a593499e712638dca05e148e473
 
 //Button and screen used for displaying help.
 var helpScreens = new Array();
@@ -27,9 +34,14 @@ var helpOnItem;
 var playing=true;
 
 var nbrLevel = 1;
+<<<<<<< HEAD
 var nbrLevelAccessible = 1;
 var numPageCourant = 1;
 var nbrPageTotal = 1;
+=======
+var numPageCourant = 1;
+var nbrPageTotal = 5;
+>>>>>>> 821af20d4c821a593499e712638dca05e148e473
 var currentLevel = 1;
 
 //Function called when the user uses his finger
@@ -104,25 +116,27 @@ function preload() {
 	game.load.image('porous', 'ressources/porous.png');
 	game.load.image('helpScreen1','ressources/helpScreen1.png');
 	game.load.image('helpScreen2','ressources/helpScreen2.png');
+	game.load.image('nextPage', 'ressources/ArrowRight.png');
+	game.load.image('prevPage', 'ressources/ArrowLeft.png');
+
 
 	game.load.spritesheet('breakable','ressources/Breakable.png',60,60);
 	game.load.spritesheet('salt','ressources/Salt.png',60,60);
 	game.load.spritesheet('ball','ressources/balle.png',60,60);
 	game.load.spritesheet('buttonPlay', 'ressources/Button_Jouer.png',163,55);
-    game.load.spritesheet('buttonSelectLevel', 'ressources/ButtonSelectLevel.png', 206, 32);
-    game.load.spritesheet('buttonReturn', 'ressources/ButtonReturn.png', 125, 32);
+	game.load.spritesheet('buttonSelectLevel', 'ressources/ButtonSelectLevel.png', 206, 32);
+	game.load.spritesheet('buttonReturn', 'ressources/ButtonReturn.png', 125, 32);
 	game.load.spritesheet('buttonNextLevel','ressources/Button_next_level.png',249,36);
 	game.load.spritesheet('buttonReplay','ressources/Button_rejouer.png',140,35);
-	game.load.spritesheet('buttonRsestart','ressources/Button_restart.png',138,29);
+	game.load.spritesheet('buttonRestart','ressources/Button_restart.png',138,29);
 
 
-    while (doesFileExist("levels/"+nbrLevel+".txt")){
+	while (doesFileExist("levels/"+nbrLevel+".txt")){
 		nbrLevel++;
-    }
-    nbrLevel--;
-    nbrPageTotal = parseInt(1 + (nbrLevel - 1) / 9);
-    //alert(nbrPageTotal);
-
+	}
+	nbrLevel--;
+	// nbrPageTotal = parseInt(1 + (nbrLevel - 1) / 9);
+	//alert(nbrPageTotal);
 	game.load.spritesheet('buttonNextImage','ressources/buttonNextImage.png',25,50);
 	game.load.spritesheet('buttonPrevImage','ressources/buttonPrevImage.png',25,50);
 	game.load.spritesheet('buttonCloseImage','ressources/buttonCloseImage.png',35,35);
@@ -132,6 +146,7 @@ function preload() {
 
 function doesFileExist(urlToFile)
 {
+<<<<<<< HEAD
     var xhr = new XMLHttpRequest();
     xhr.open('HEAD', urlToFile, false);
     xhr.send();
@@ -141,4 +156,14 @@ function doesFileExist(urlToFile)
     } else {
         return true;
     }
+=======
+	try{
+		var xhr = new XMLHttpRequest();
+		xhr.open('HEAD', urlToFile, false);
+		xhr.send();
+		return true;
+	}catch(e){
+		return false;
+	}
+>>>>>>> 821af20d4c821a593499e712638dca05e148e473
 }

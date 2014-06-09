@@ -64,6 +64,12 @@ function create() {
 	mainMenuSprite = game.add.sprite(0, 0, 'mainMenuSprite');
 	title = game.add.text(150 ,30 ,"Selection du niveau",{});
 	buttonReturn = game.add.button((TASKBAR_WIDTH - 125) / 2, BACKGROUND_HEIGHT + (TASKBAR_HEIGHT - 32) / 2, 'buttonReturn', actionOnClickReturn, this, 1, 0, 2);
+	if (numPageCourant != 1){
+	    	buttonArrowLeft = game.add.button((TASKBAR_WIDTH - 125) / 2 - 100, BACKGROUND_HEIGHT + (TASKBAR_HEIGHT - 32) / 2, 'prevPage', actionOnClickArrowLeft, this);
+	}
+	if (numPageCourant != nbrPageTotal){
+	    buttonArrowRight = game.add.button((TASKBAR_WIDTH - 125) / 2 + 200, BACKGROUND_HEIGHT + (TASKBAR_HEIGHT - 32) / 2, 'nextPage', actionOnClickArrowRight, this);
+	}
     } else {
 	alert("problem : menu selection ... (create.js)");
     }
