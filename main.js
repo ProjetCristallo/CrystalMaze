@@ -29,10 +29,18 @@ var helpOnItem;
 var playing=true;
 
 var nbrLevel = 1;
-var nbrLevelAccessible = 1;
+var nbrLevelAccessible;
 var numPageCourant = 1;
 var nbrPageTotal = 5;
 var currentLevel = 1;
+
+//Number of levels already unblocked
+cookie = document.cookie;
+nameEQ = "lvlmax=";
+nbrLevelAccessible = cookie.substring(nameEQ.length, cookie.length);
+if (nbrLevelAccessible == null) {
+	nbrLvelAccessible = 1;
+}
 
 //Function called when the user uses his finger
 var element = document.body;

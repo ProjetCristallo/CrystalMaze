@@ -22,8 +22,7 @@ function endLevel(ball, endSprite)
 		//cookie
 		if (currentLevel + 1 > nbrLevelAccessible) {
 			document.cookie = 'levelmax='+(currentLevel + 1)+'; expires=Fri, 13 Jun 2014 00:0:00 UTC; path=/';
-			nbrLevelAccessible = currentLevel;
-			alert(document.cookie);
+			nbrLevelAccessible = currentLevel + 1;
 		}
 	}
 	catch(err){
