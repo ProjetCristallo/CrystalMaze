@@ -19,6 +19,12 @@ function endLevel(ball, endSprite)
 		endScreen = game.add.sprite(25, 25, 'win');
 		button = game.add.button(200,250, 'buttonNextLevel', actionOnClickNextLevel, this, 2,1,0);
 		button2 = game.add.button(200,300, 'buttonReplay', actionOnClickReplay, this, 2,1,0);
+		//cookie
+		if (currentLevel + 1 > nbrLevelAccessible) {
+			document.cookie = 'levelmax='+(currentLevel + 1)+'; expires=Fri, 13 Jun 2014 00:0:00 UTC; path=/';
+			nbrLevelAccessible = currentLevel;
+			alert(document.cookie);
+		}
 	}
 	catch(err){
 	    playing = false;
@@ -53,8 +59,8 @@ function actionOnClickNextLevel()
 
 function actionOnClickReplay()
 {
-	button.kill();
-	button2.kill();
+	//button.kill();
+	//button2.kill();
 	playing = true;
 	game.world.removeAll();
 	create();
@@ -62,10 +68,26 @@ function actionOnClickReplay()
 
 function actionOnClickPlay()
 {
-	buttonJouer.kill();
+	//buttonJouer.kill();
 	mainMenu = false;
 	game.world.removeAll();
 	create();
+}
+
+function actionOnClickSelectLevel()
+{
+    selectLevelMenu = true;
+    mainMenu = false;
+    game.world.removeAll();
+    create();
+}
+
+function actionOnClickReturn()
+{
+    selectLevelMenu = false;
+    mainMenu = true;
+    game.world.removeAll();
+    create();
 }
 
 function playerFailed(ball, holeSprite)
