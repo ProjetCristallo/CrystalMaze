@@ -10,15 +10,10 @@ var endSprite;
 var endScreen;
 var mainMenu = true;
 
-<<<<<<< HEAD
-var selectLevelMenu = false;
-
-=======
 //Last direction the ball has taken, useful for the turn blocks
 var lastDir=null;
 
 var selectLevelMenu = false;
->>>>>>> 821af20d4c821a593499e712638dca05e148e473
 
 //Button and screen used for displaying help.
 var helpScreens = new Array();
@@ -34,14 +29,9 @@ var helpOnItem;
 var playing=true;
 
 var nbrLevel = 1;
-<<<<<<< HEAD
 var nbrLevelAccessible = 1;
 var numPageCourant = 1;
-var nbrPageTotal = 1;
-=======
-var numPageCourant = 1;
 var nbrPageTotal = 5;
->>>>>>> 821af20d4c821a593499e712638dca05e148e473
 var currentLevel = 1;
 
 //Function called when the user uses his finger
@@ -146,17 +136,6 @@ function preload() {
 
 function doesFileExist(urlToFile)
 {
-<<<<<<< HEAD
-    var xhr = new XMLHttpRequest();
-    xhr.open('HEAD', urlToFile, false);
-    xhr.send();
-     
-    if (xhr.status == "404") {
-        return false;
-    } else {
-        return true;
-    }
-=======
 	try{
 		var xhr = new XMLHttpRequest();
 		xhr.open('HEAD', urlToFile, false);
@@ -165,5 +144,4 @@ function doesFileExist(urlToFile)
 	}catch(e){
 		return false;
 	}
->>>>>>> 821af20d4c821a593499e712638dca05e148e473
 }
