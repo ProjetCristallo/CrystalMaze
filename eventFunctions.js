@@ -78,6 +78,7 @@ function actionOnClickSelectLevel()
 
 function actionOnClickReturn()
 {
+    numPageCourant = 1;
     selectLevelMenu = false;
     mainMenu = true;
     game.world.removeAll();
