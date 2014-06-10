@@ -37,8 +37,8 @@ function endLevel(ball, endSprite)
 }
 
 function actionOnClickRestart(){
-	button.kill();
-	button2.kill();
+	//button.kill();
+	//button2.kill();
 	currentLevel = 1;
 	playing = true;
 	game.world.removeAll();
@@ -47,8 +47,8 @@ function actionOnClickRestart(){
 
 function actionOnClickNextLevel()
 {
-	button.kill();
-	button2.kill();
+	//button.kill();
+	//button2.kill();
 	currentLevel = currentLevel + 1;
         textLevel.setText("Niveau " + currentLevel);
 	playing = true;
@@ -102,6 +102,20 @@ function actionOnClickArrowLeft()
     numPageCourant--;
     game.world.removeAll();
     create();
+}
+
+function actionOnClickLevelAccessible(button)
+{
+    numPageCourant = 1;
+    selectLevelMenu = false;
+    game.world.removeAll();
+    currentLevel = button.name;
+    create();
+}
+
+function actionOnCilckLevelInaccessible(button)
+{
+    alert("vous n'avez pas encore atteint le niveau " + button.name);
 }
 
 function playerFailed(ball, holeSprite)
