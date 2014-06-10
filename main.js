@@ -84,6 +84,7 @@ function preload() {
 	game.load.image('win','ressources/Win.png');
 	game.load.image('fail','ressources/Fail.png');
 	game.load.image('levelInaccessible', 'ressources/menuLevelInaccessible.png');
+	game.load.image('endScreen','ressources/endScreen.png');
 	game.load.image('uniRight','ressources/unilateral_right.png');
 	game.load.image('uniUp','ressources/unilateral_up.png');
 	game.load.image('uniDown','ressources/unilateral_down.png');
@@ -114,6 +115,7 @@ function preload() {
 	game.load.image('prevPage', 'ressources/ArrowLeft.png');
     game.load.image('levelA', 'ressources/levelAccessible.png');
     game.load.image('levelI', 'ressources/levelInaccessible.png');
+    game.load.image('cross', 'ressources/Cross.png');
 
 	game.load.spritesheet('breakable','ressources/Breakable.png',60,60);
 	game.load.spritesheet('salt','ressources/Salt.png',60,60);
