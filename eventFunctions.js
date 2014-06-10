@@ -19,6 +19,11 @@ function endLevel(ball, endSprite)
 		endScreen = game.add.sprite(25, 25, 'win');
 		button = game.add.button(200,250, 'buttonNextLevel', actionOnClickNextLevel, this, 2,1,0);
 		button2 = game.add.button(200,300, 'buttonReplay', actionOnClickReplay, this, 2,1,0);
+		//cookie
+		if (currentLevel + 1 > nbrLevelAccessible) {
+			document.cookie = 'levelmax='+(currentLevel + 1)+'; expires=Fri, 13 Jun 2014 00:0:00 UTC; path=/';
+			nbrLevelAccessible = currentLevel + 1;
+		}
 	}
 	catch(err){
 	    playing = false;
@@ -210,20 +215,21 @@ function saltBlockCollide(ball, saltBlock)
 function porousBlockOverlap(ball, porousBlock)
 {
 	if (ball.name == "ice") {
-		ball.body.velocity.x = 0;
-		ball.body.velocity.y = 0;
 		ball.body.reset(0,0);
 		
-		//Correction of the imprecision due to the overlap
-		if (ball.x/60 - parseInt(ball.x/60) > 0.5) {
-			ball.x = parseInt(ball.x/60 + 1)*60;
+		//Correction of the imprecision due to the reset function
+		var imprecisionX = ball.x/TILE_SIZE - parseInt(ball.x/TILE_SIZE);
+		var imprecisionY = ball.y/TILE_SIZE - parseInt(ball.y/TILE_SIZE);
+		
+		if (imprecisionX > 0.5) {
+			ball.x = parseInt(ball.x/TILE_SIZE + 1)*TILE_SIZE;
 		} else {
-			ball.x = parseInt(ball.x/60)*60;
+			ball.x = parseInt(ball.x/TILE_SIZE)*TILE_SIZE;
 		}
-		if (ball.y/60 - parseInt(ball.y/60) > 0.5) {
-			ball.y = parseInt(ball.y/60 + 1)*60;
+		if (imprecisionY > 0.5) {
+			ball.y = parseInt(ball.y/TILE_SIZE + 1)*TILE_SIZE;
 		} else {
-			ball.y = parseInt(ball.y/60)*60;
+			ball.y = parseInt(ball.y/TILE_SIZE)*TILE_SIZE;
 		}
 		
 	}

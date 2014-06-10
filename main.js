@@ -29,9 +29,18 @@ var helpOnItem;
 var playing=true;
 
 var nbrLevel = 1;
+var nbrLevelAccessible;
 var numPageCourant = 1;
 var nbrPageTotal = 5;
 var currentLevel = 1;
+
+//Number of levels already unblocked
+cookie = document.cookie;
+nameEQ = "lvlmax=";
+nbrLevelAccessible = cookie.substring(nameEQ.length, cookie.length);
+if (nbrLevelAccessible == null) {
+	nbrLvelAccessible = 1;
+}
 
 //Function called when the user uses his finger
 var element = document.body;
@@ -126,7 +135,6 @@ function preload() {
 	nbrLevel--;
 	// nbrPageTotal = parseInt(1 + (nbrLevel - 1) / 9);
 	//alert(nbrPageTotal);
-
 	game.load.spritesheet('buttonNextImage','ressources/buttonNextImage.png',25,50);
 	game.load.spritesheet('buttonPrevImage','ressources/buttonPrevImage.png',25,50);
 	game.load.spritesheet('buttonCloseImage','ressources/buttonCloseImage.png',35,35);
