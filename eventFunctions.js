@@ -130,10 +130,10 @@ function actionOnClickLevelAccessible(button)
 
 function actionOnClickLevelInaccessible(button)
 {
-    screen = game.add.sprite(0, 0, 'levelInaccessible');
-	screen.inputEnabled = true;
-	screen.events.onInputDown.add(function() {
-		screen.kill();
+    screenLevelError = game.add.sprite(0, 0, 'levelInaccessible');
+	screenLevelError.inputEnabled = true;
+	screenLevelError.events.onInputDown.add(function() {
+		screenLevelError.kill();
 	}
 	,this);
 }
