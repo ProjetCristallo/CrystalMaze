@@ -80,7 +80,7 @@ var turn;
 function preload() {
 	game.load.image('taskBar','ressources/taskBar.png');
 	game.load.image('fond','ressources/Fond.png');
-	game.load.image('simple','ressources/Block_Noir.png');
+	game.load.image('simple','ressources/Simple.png');
 	game.load.image('cUp','ressources/Change_up.png');
 	game.load.image('cDown','ressources/Change_down.png');
 	game.load.image('cRight','ressources/Change_right.png');
