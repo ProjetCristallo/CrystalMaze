@@ -24,7 +24,6 @@ var posText;
 var helpText;
 var helpOnItem;
 
-
 //Boolean indicating if the player hasn't won yet.
 var playing=true;
 
@@ -150,7 +149,6 @@ function doesFileExist(urlToFile)
     var xhr = new XMLHttpRequest();
     xhr.open('HEAD', urlToFile, false);
     xhr.send();
-    console.log(xhr.status);
     if (xhr.status == "200") {
         return true;
     } else {
