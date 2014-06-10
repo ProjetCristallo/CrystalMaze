@@ -144,7 +144,16 @@ function preload() {
 
 function doesFileExist(urlToFile)
 {
-	try{
+    var xhr = new XMLHttpRequest();
+    xhr.open('HEAD', urlToFile, false);
+    xhr.send();
+    
+    if (xhr.status == "404") {
+        return false;
+    } else {
+        return true;
+    }
+/*	try{
 		var xhr = new XMLHttpRequest();
 		xhr.open('HEAD', urlToFile, false);
 		xhr.send();
@@ -152,4 +161,5 @@ function doesFileExist(urlToFile)
 	}catch(e){
 		return false;
 	}
+*/
 }
