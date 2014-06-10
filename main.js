@@ -71,8 +71,20 @@ var listItem;
 var score;
 var turn;
 
-function preload() {
-	game.load.image('taskBar','ressources/taskBar.png');
+function updateProgressBar(){
+    mainMenuSprite = game.add.sprite(0, 0, 'mainMenuSprite');
+	title = game.add.sprite(11, 50, 'title');
+    progressInfo = game.add.text(250,300,"0 %",{ font: "65px Arial", align: "center" });
+    progressInfo.text = game.load.progress+" %";
+};
+
+function preload(){
+    
+    game.load.image('mainMenuSprite', 'ressources/MainMenu.png');
+	game.load.image('title', 'ressources/title.png');
+	
+	
+		game.load.image('taskBar','ressources/taskBar.png');
 	game.load.image('fond','ressources/Fond.png');
 	game.load.image('simple','ressources/Simple.png');
 	game.load.image('cUp','ressources/Change_up.png');
@@ -80,6 +92,7 @@ function preload() {
 	game.load.image('cRight','ressources/Change_right.png');
 	game.load.image('cLeft','ressources/Change_left.png');
 	game.load.image('end','ressources/diamond.png');
+	
 	game.load.image('hole','ressources/Hole.png');
 	game.load.image('win','ressources/Win.png');
 	game.load.image('fail','ressources/Fail.png');
@@ -93,14 +106,13 @@ function preload() {
 	game.load.image('O','ressources/O.png');
 	game.load.image('pause', 'ressources/pause.png');
 	game.load.image('pauseMenu', 'ressources/pauseMenu.png');
-	game.load.image('title', 'ressources/title.png');
 
 	game.load.image('pauseButtonAide','ressources/ButtonAide.png');
 	game.load.image('pauseButtonMenu','ressources/pauseButtonMenu.png');
 	game.load.image('pauseButtonParametres','ressources/ButtonParametres.png');
 	game.load.image('pauseButtonRestart','ressources/ButtonRestart.png');
 
-	game.load.image('mainMenuSprite', 'ressources/MainMenu.png');
+
 	game.load.image('turnUL','ressources/turn_ul.png');
 	game.load.image('turnUR','ressources/turn_ur.png');
 	game.load.image('turnDL','ressources/turn_dl.png');
@@ -112,8 +124,8 @@ function preload() {
 	game.load.image('helpScreen2','ressources/helpScreen2.png');
 	game.load.image('nextPage', 'ressources/ArrowRight.png');
 	game.load.image('prevPage', 'ressources/ArrowLeft.png');
-    game.load.image('levelA', 'ressources/levelAccessible.png');
-    game.load.image('levelI', 'ressources/levelInaccessible.png');
+    	game.load.image('levelA', 'ressources/levelAccessible.png');
+    	game.load.image('levelI', 'ressources/levelInaccessible.png');
 
 	game.load.spritesheet('breakable','ressources/Breakable.png',60,60);
 	game.load.spritesheet('salt','ressources/Salt.png',60,60);
@@ -127,6 +139,8 @@ function preload() {
 	game.load.spritesheet('buttonNextImage','ressources/buttonNextImage.png',25,50);
 	game.load.spritesheet('buttonPrevImage','ressources/buttonPrevImage.png',25,50);
 	game.load.spritesheet('buttonCloseImage','ressources/buttonCloseImage.png',35,35);
+	
+	game.load.onFileComplete.add(updateProgressBar, this);
 
     while (doesFileExist("levels/"+nbrLevel+".txt")){
 		nbrLevel++;
@@ -143,7 +157,6 @@ function preload() {
 	nbrLevelAccessible = 1;
     }
 }
-
 
 function doesFileExist(urlToFile)
 {
