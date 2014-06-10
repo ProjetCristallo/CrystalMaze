@@ -1,6 +1,9 @@
 
 function endLevel(ball, endSprite)
 {
+	if (currentLevel == nbrLevel) {
+		endGame(ball,endSprite);
+	} else {
 	buttonPause.inputEnabled = false;
 	if(document.all) {
 		var file = new ActiveXObject("Scripting.FileSystemObject");
@@ -40,7 +43,17 @@ function endLevel(ball, endSprite)
 		button2 = game.add.button(200,300, 'buttonRestart', actionOnClickRestart, this, 2, 1, 0);
 		button3 = game.add.button(200,350, 'pauseButtonMenu', actionOnClickMenu, this, 2, 1, 0);
 	}
+	}
 }
+
+function endGame(ball, endSprite) {
+	endSprite.kill();
+	playing = false;
+	endScreen = game.add.sprite(0, 0, 'endScreen');
+	button2 = game.add.button(250,300, 'buttonReplay', actionOnClickReplay, this, 2,1,0);
+	button3 = game.add.button(250,350, 'pauseButtonMenu', actionOnClickMenu, this, 2, 1, 0);
+}
+
 
 function actionOnClickMenu() {
 	game.world.removeAll(true);
@@ -131,8 +144,16 @@ function actionOnClickLevelAccessible(button)
 function actionOnClickLevelInaccessible(button)
 {
     screenLevelError = game.add.sprite(0, 0, 'levelInaccessible');
+    cross = game.add.sprite(540,0,'cross');
+    cross.inputEnabled = true;
 	screenLevelError.inputEnabled = true;
 	screenLevelError.events.onInputDown.add(function() {
+		cross.kill();
+		screenLevelError.kill();
+	}
+	,this);
+	cross.events.onInputDown.add(function() {
+		cross.kill();
 		screenLevelError.kill();
 	}
 	,this);

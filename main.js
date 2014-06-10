@@ -97,6 +97,7 @@ function preload(){
 	game.load.image('win','ressources/Win.png');
 	game.load.image('fail','ressources/Fail.png');
 	game.load.image('levelInaccessible', 'ressources/menuLevelInaccessible.png');
+	game.load.image('endScreen','ressources/endScreen.png');
 	game.load.image('uniRight','ressources/unilateral_right.png');
 	game.load.image('uniUp','ressources/unilateral_up.png');
 	game.load.image('uniDown','ressources/unilateral_down.png');
@@ -106,13 +107,14 @@ function preload(){
 	game.load.image('O','ressources/O.png');
 	game.load.image('pause', 'ressources/pause.png');
 	game.load.image('pauseMenu', 'ressources/pauseMenu.png');
+	game.load.image('title', 'ressources/title.png');
 
 	game.load.image('pauseButtonAide','ressources/ButtonAide.png');
 	game.load.image('pauseButtonMenu','ressources/pauseButtonMenu.png');
 	game.load.image('pauseButtonParametres','ressources/ButtonParametres.png');
 	game.load.image('pauseButtonRestart','ressources/ButtonRestart.png');
 
-
+	game.load.image('mainMenuSprite', 'ressources/MainMenu.png');
 	game.load.image('turnUL','ressources/turn_ul.png');
 	game.load.image('turnUR','ressources/turn_ur.png');
 	game.load.image('turnDL','ressources/turn_dl.png');
@@ -124,8 +126,9 @@ function preload(){
 	game.load.image('helpScreen2','ressources/helpScreen2.png');
 	game.load.image('nextPage', 'ressources/ArrowRight.png');
 	game.load.image('prevPage', 'ressources/ArrowLeft.png');
-    	game.load.image('levelA', 'ressources/levelAccessible.png');
-    	game.load.image('levelI', 'ressources/levelInaccessible.png');
+    game.load.image('levelA', 'ressources/levelAccessible.png');
+    game.load.image('levelI', 'ressources/levelInaccessible.png');
+    game.load.image('cross', 'ressources/Cross.png');
 
 	game.load.spritesheet('breakable','ressources/Breakable.png',60,60);
 	game.load.spritesheet('salt','ressources/Salt.png',60,60);
@@ -158,16 +161,16 @@ function preload(){
     }
 }
 
+
 function doesFileExist(urlToFile)
 {
     var xhr = new XMLHttpRequest();
     xhr.open('HEAD', urlToFile, false);
     xhr.send();
-    
-    if (xhr.status == "404") {
-        return false;
-    } else {
+    if (xhr.status == "200") {
         return true;
+    } else {
+        return false;
     }
 /*	try{
 		var xhr = new XMLHttpRequest();
