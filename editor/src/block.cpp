@@ -58,6 +58,7 @@ void Block::initBlockTypes()
 		std::string name = childKey.toStdString();
 		std::string imageFile = settings.value(childKey).toString().toStdString();
 
+
 		Block *b = new Block(name,imageFile);
 		TYPES.insert(std::pair<std::string,Block*>(name,b));
 	}
@@ -88,8 +89,7 @@ void Block::initBlockTypes()
 	childKeys = settings.childKeys();
 	foreach(const QString &childKey, childKeys)
 	{
-		std::string name = childKey.toStdString();
-		uniqueBlocks.push_back(name);
+		uniqueBlocks.push_back(settings.value(childKey).toString().toStdString());
 	}
 	settings.endGroup();
 }

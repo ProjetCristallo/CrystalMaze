@@ -36,10 +36,10 @@ var currentLevel = 1;
 
 //Number of levels already unblocked
 cookie = document.cookie;
-nameEQ = "lvlmax=";
+nameEQ = 'levelmax=';
 nbrLevelAccessible = cookie.substring(nameEQ.length, cookie.length);
 if (nbrLevelAccessible == null) {
-	nbrLvelAccessible = 1;
+	nbrLevelAccessible = 1;
 }
 
 //Function called when the user uses his finger
@@ -80,7 +80,7 @@ var turn;
 function preload() {
 	game.load.image('taskBar','ressources/taskBar.png');
 	game.load.image('fond','ressources/Fond.png');
-	game.load.image('simple','ressources/Block_Noir.png');
+	game.load.image('simple','ressources/Simple.png');
 	game.load.image('cUp','ressources/Change_up.png');
 	game.load.image('cDown','ressources/Change_down.png');
 	game.load.image('cRight','ressources/Change_right.png');
@@ -88,6 +88,7 @@ function preload() {
 	game.load.image('end','ressources/diamond.png');
 	game.load.image('hole','ressources/Hole.png');
 	game.load.image('win','ressources/Win.png');
+	game.load.image('fail','ressources/Fail.png');
 	game.load.image('uniRight','ressources/unilateral_right.png');
 	game.load.image('uniUp','ressources/unilateral_up.png');
 	game.load.image('uniDown','ressources/unilateral_down.png');
@@ -116,8 +117,8 @@ function preload() {
 	game.load.image('helpScreen2','ressources/helpScreen2.png');
 	game.load.image('nextPage', 'ressources/ArrowRight.png');
 	game.load.image('prevPage', 'ressources/ArrowLeft.png');
-    game.load.image('level', 'ressources/levelAccessible.png');
-    game.load.image('level', 'ressources/levelInaccessible.png');
+    game.load.image('levelA', 'ressources/levelAccessible.png');
+    game.load.image('levelI', 'ressources/levelInaccessible.png');
 
 	game.load.spritesheet('breakable','ressources/Breakable.png',60,60);
 	game.load.spritesheet('salt','ressources/Salt.png',60,60);
