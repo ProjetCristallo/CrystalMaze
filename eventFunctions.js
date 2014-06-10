@@ -130,14 +130,14 @@ function actionOnClickLevelAccessible(button)
 
 function actionOnClickLevelInaccessible(button)
 {
-    alert("vous n'avez pas encore atteint le niveau " + button.name);
+    screen = game.add.sprite(0, 0, 'levelInaccessible');
+	screen.inputEnabled = true;
+	screen.events.onInputDown.add(function() {
+		screen.kill();
+	}
+	,this);
 }
 
-function playerFailed(ball, holeSprite)
-{
-	alert("Perdu !");
-	create();
-}
 
 function triggerPause() {
 	if(!game.isPaused){

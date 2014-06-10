@@ -83,6 +83,7 @@ function preload() {
 	game.load.image('hole','ressources/Hole.png');
 	game.load.image('win','ressources/Win.png');
 	game.load.image('fail','ressources/Fail.png');
+	game.load.image('levelInaccessible', 'ressources/menuLevelInaccessible.png');
 	game.load.image('uniRight','ressources/unilateral_right.png');
 	game.load.image('uniUp','ressources/unilateral_up.png');
 	game.load.image('uniDown','ressources/unilateral_down.png');
