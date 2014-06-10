@@ -36,10 +36,10 @@ var currentLevel = 1;
 
 //Number of levels already unblocked
 cookie = document.cookie;
-nameEQ = "lvlmax=";
+nameEQ = 'levelmax=';
 nbrLevelAccessible = cookie.substring(nameEQ.length, cookie.length);
 if (nbrLevelAccessible == null) {
-	nbrLvelAccessible = 1;
+	nbrLevelAccessible = 1;
 }
 
 //Function called when the user uses his finger
@@ -88,6 +88,7 @@ function preload() {
 	game.load.image('end','ressources/diamond.png');
 	game.load.image('hole','ressources/Hole.png');
 	game.load.image('win','ressources/Win.png');
+	game.load.image('fail','ressources/Fail.png');
 	game.load.image('uniRight','ressources/unilateral_right.png');
 	game.load.image('uniUp','ressources/unilateral_up.png');
 	game.load.image('uniDown','ressources/unilateral_down.png');

@@ -20,8 +20,11 @@ function endLevel(ball, endSprite)
 		button = game.add.button(200,250, 'buttonNextLevel', actionOnClickNextLevel, this, 2,1,0);
 		button2 = game.add.button(200,300, 'buttonReplay', actionOnClickReplay, this, 2,1,0);
 		//cookie
-		if (currentLevel + 1 > nbrLevelAccessible) {
-			document.cookie = 'levelmax='+(currentLevel + 1)+'; expires=Fri, 13 Jun 2014 00:0:00 UTC; path=/';
+		if (currentLevel + 1 > nbrLevelAccessible && currentLevel + 1 <= nbrLevel) {
+			var date = new Date();
+			date.setTime(date.getTime()+(30*24*60*60*1000));
+			var expires = "; expires=" + date.toGMTString();
+			document.cookie = 'levelmax='+(currentLevel + 1)+expires+'; path=/';
 			nbrLevelAccessible = currentLevel + 1;
 		}
 	}
@@ -41,7 +44,7 @@ function actionOnClickRestart(){
 	button2.kill();
 	currentLevel = 1;
 	playing = true;
-	game.world.removeAll();
+	game.world.removeAll(true);
 	create();
 }
 
@@ -52,7 +55,7 @@ function actionOnClickNextLevel()
 	currentLevel = currentLevel + 1;
         textLevel.setText("Niveau " + currentLevel);
 	playing = true;
-	game.world.removeAll();
+	game.world.removeAll(true);
 	create();
 }
 
@@ -61,7 +64,7 @@ function actionOnClickReplay()
 	//button.kill();
 	//button2.kill();
 	playing = true;
-	game.world.removeAll();
+	game.world.removeAll(true);
 	create();
 }
 
@@ -102,12 +105,6 @@ function actionOnClickArrowLeft()
     numPageCourant--;
     game.world.removeAll();
     create();
-}
-
-function playerFailed(ball, holeSprite)
-{
-	alert("Perdu !");
-	create();
 }
 
 function triggerPause() {
@@ -191,8 +188,30 @@ function changeLeft()
 function holeOverlap(ball, holeSprite)
 {
 	if (ball.name != "steam") {
-		alert("Perdu !");
-		create();
+		if(document.all) {
+		var file = new ActiveXObject("Scripting.FileSystemObject");
+	}
+	else
+	{
+		var file = new XMLHttpRequest();
+	}
+	file.open('HEAD',"levels/"+currentLevel+".txt",false);
+	try{
+		file.send();
+		file.abort();	
+		playing = false;
+		ball.body.velocity.x=0;
+		ball.body.velocity.y=0;
+		endScreen = game.add.sprite(25, 25, 'fail');
+		button = game.add.button(200,300, 'buttonReplay', actionOnClickReplay, this, 2,1,0);
+	}
+	catch(err){
+	    playing = false;
+		ball.body.velocity.x=0;
+		ball.body.velocity.y=0;
+		endScreen = game.add.sprite(25, 25, 'fail');
+		button = game.add.button(200,250, 'buttonReplay', actionOnClickReplay, this, 2,1,0);
+	}
 	}
 }
 
