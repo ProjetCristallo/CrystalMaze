@@ -1,7 +1,7 @@
 
 function endLevel(ball, endSprite)
 {
-	buttonPause.inputEnable = false;
+	buttonPause.inputEnabled = false;
 	if(document.all) {
 		var file = new ActiveXObject("Scripting.FileSystemObject");
 	}
@@ -20,6 +20,7 @@ function endLevel(ball, endSprite)
 		endScreen = game.add.sprite(25, 25, 'win');
 		button = game.add.button(200,250, 'buttonNextLevel', actionOnClickNextLevel, this, 2,1,0);
 		button2 = game.add.button(200,300, 'buttonReplay', actionOnClickReplay, this, 2,1,0);
+		button3 = game.add.button(200,350, 'pauseButtonMenu', actionOnClickMenu, this, 2, 1, 0);
 		//cookie
 		if (currentLevel + 1 > nbrLevelAccessible && currentLevel + 1 <= nbrLevel) {
 			var date = new Date();
@@ -37,12 +38,22 @@ function endLevel(ball, endSprite)
 		endScreen = game.add.sprite(25, 25, 'win');
 		button = game.add.button(200,250, 'buttonReplay', actionOnClickReplay, this, 2,1,0);
 		button2 = game.add.button(200,300, 'buttonRestart', actionOnClickRestart, this, 2, 1, 0);
+		button3 = game.add.button(200,350, 'pauseButtonMenu', actionOnClickMenu, this, 2, 1, 0);
 	}
 }
 
+function actionOnClickMenu() {
+	game.world.removeAll(true);
+	mainMenu=true;
+	currentLevel=1;
+	playing = true;
+	create();
+}
+
 function actionOnClickRestart(){
-	button.kill();
-	button2.kill();
+	//button.kill();
+	//button2.kill();
+	playing = true;
 	currentLevel = 1;
 	playing = true;
 	game.world.removeAll(true);
@@ -51,8 +62,8 @@ function actionOnClickRestart(){
 
 function actionOnClickNextLevel()
 {
-	button.kill();
-	button2.kill();
+	//button.kill();
+	//button2.kill();
 	currentLevel = currentLevel + 1;
         textLevel.setText("Niveau " + currentLevel);
 	playing = true;
@@ -106,6 +117,26 @@ function actionOnClickArrowLeft()
     numPageCourant--;
     game.world.removeAll();
     create();
+}
+
+function actionOnClickLevelAccessible(button)
+{
+    numPageCourant = 1;
+    selectLevelMenu = false;
+    game.world.removeAll();
+    currentLevel = button.name;
+    create();
+}
+
+function actionOnClickLevelInaccessible(button)
+{
+    alert("vous n'avez pas encore atteint le niveau " + button.name);
+}
+
+function playerFailed(ball, holeSprite)
+{
+	alert("Perdu !");
+	create();
 }
 
 function triggerPause() {
@@ -189,6 +220,7 @@ function changeLeft()
 function holeOverlap(ball, holeSprite)
 {
 	if (ball.name != "steam") {
+		buttonPause.inputEnabled = false;
 		if(document.all) {
 		var file = new ActiveXObject("Scripting.FileSystemObject");
 	}
@@ -205,6 +237,7 @@ function holeOverlap(ball, holeSprite)
 		ball.body.velocity.y=0;
 		endScreen = game.add.sprite(25, 25, 'fail');
 		button = game.add.button(200,300, 'buttonReplay', actionOnClickReplay, this, 2,1,0);
+		button2 = game.add.button(200,250, 'pauseButtonMenu', actionOnClickMenu, this, 2, 1, 0);
 	}
 	catch(err){
 	    playing = false;
@@ -212,6 +245,7 @@ function holeOverlap(ball, holeSprite)
 		ball.body.velocity.y=0;
 		endScreen = game.add.sprite(25, 25, 'fail');
 		button = game.add.button(200,250, 'buttonReplay', actionOnClickReplay, this, 2,1,0);
+		button2 = game.add.button(200,250, 'pauseButtonMenu', actionOnClickMenu, this, 2, 1, 0);
 	}
 	}
 }

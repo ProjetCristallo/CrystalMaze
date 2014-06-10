@@ -40,11 +40,7 @@ function create() {
         			game.world.removeAll(true);
         			create();
 		}));
-		pauseButtons.push(game.add.button(buttonsX,buttonsY+1*(IN_GAME_MENU_BUTTON_HEIGHT+IN_GAME_MENU_MARGIN),'pauseButtonMenu'   ,function() {
-				game.world.removeAll(true);
-				mainMenu=true;
-				currentLevel=1;
-				create();}));
+		pauseButtons.push(game.add.button(buttonsX,buttonsY+1*(IN_GAME_MENU_BUTTON_HEIGHT+IN_GAME_MENU_MARGIN),'pauseButtonMenu',actionOnClickMenu));
 		pauseButtons.push(game.add.button(buttonsX,buttonsY+2*(IN_GAME_MENU_BUTTON_HEIGHT+IN_GAME_MENU_MARGIN),'pauseButtonParametres',function() {}));
 		pauseButtons.push(game.add.button(buttonsX,buttonsY+3*(IN_GAME_MENU_BUTTON_HEIGHT+IN_GAME_MENU_MARGIN),'pauseButtonAide',help));
 
@@ -61,14 +57,31 @@ function create() {
 	buttonSelectLevel = game.add.button(197, 400, 'buttonSelectLevel', actionOnClickSelectLevel, this, 1, 0, 2);
 
     } else if (selectLevelMenu){
+
+	// Title
 	mainMenuSprite = game.add.sprite(0, 0, 'mainMenuSprite');
 	title = game.add.text(150 ,30 ,"Selection du niveau",{});
 	buttonReturn = game.add.button((TASKBAR_WIDTH - 125) / 2, BACKGROUND_HEIGHT + (TASKBAR_HEIGHT - 32) / 2, 'buttonReturn', actionOnClickReturn, this, 1, 0, 2);
+	// Previous page button
 	if (numPageCourant != 1){
 	    	buttonArrowLeft = game.add.button((TASKBAR_WIDTH - 125) / 2 - 100, BACKGROUND_HEIGHT + (TASKBAR_HEIGHT - 32) / 2, 'prevPage', actionOnClickArrowLeft, this);
 	}
+	// Next page button
 	if (numPageCourant != nbrPageTotal){
 	    buttonArrowRight = game.add.button((TASKBAR_WIDTH - 125) / 2 + 200, BACKGROUND_HEIGHT + (TASKBAR_HEIGHT - 32) / 2, 'nextPage', actionOnClickArrowRight, this);
+	}
+
+	// levels buttons
+	numSprite = 0;
+	for (var i = (numPageCourant - 1) * 9 + 1; i <= Math.min(numPageCourant * 9, nbrLevel); i++){
+	    if (i <= nbrLevelAccessible){
+		buttonLevel = game.add.button(75 + (numSprite % 3) * 175, 60 + parseInt(numSprite/3) * 140, 'levelA', actionOnClickLevelAccessible, this);
+	    } else {
+		buttonLevel = game.add.button(75 + (numSprite % 3) * 175, 60 + parseInt(numSprite/3) * 140, 'levelI', actionOnClickLevelInaccessible, this);
+	    }
+	    buttonLevel.name = i;
+	    game.add.text(120 + (numSprite % 3) * 175, 100 + parseInt(numSprite/3) * 140, buttonLevel.name, {});
+	    numSprite++;
 	}
     } else {
 	alert("problem : menu selection ... (create.js)");

@@ -31,7 +31,7 @@ var playing=true;
 var nbrLevel = 1;
 var nbrLevelAccessible;
 var numPageCourant = 1;
-var nbrPageTotal = 5;
+var nbrPageTotal = 1;
 var currentLevel = 1;
 
 
@@ -111,7 +111,8 @@ function preload() {
 	game.load.image('helpScreen2','ressources/helpScreen2.png');
 	game.load.image('nextPage', 'ressources/ArrowRight.png');
 	game.load.image('prevPage', 'ressources/ArrowLeft.png');
-
+    game.load.image('levelA', 'ressources/levelAccessible.png');
+    game.load.image('levelI', 'ressources/levelInaccessible.png');
 
 	game.load.spritesheet('breakable','ressources/Breakable.png',60,60);
 	game.load.spritesheet('salt','ressources/Salt.png',60,60);
@@ -121,19 +122,25 @@ function preload() {
 	game.load.spritesheet('buttonReturn', 'ressources/ButtonReturn.png', 125, 32);
 	game.load.spritesheet('buttonNextLevel','ressources/Button_next_level.png',249,36);
 	game.load.spritesheet('buttonReplay','ressources/Button_rejouer.png',140,35);
-	game.load.spritesheet('buttonRestart','ressources/Button_restart.png',138,29);
-
-
-	while (doesFileExist("levels/"+nbrLevel+".txt")){
-		nbrLevel++;
-	}
-	nbrLevel--;
-	// nbrPageTotal = parseInt(1 + (nbrLevel - 1) / 9);
-	//alert(nbrPageTotal);
+	game.load.spritesheet('buttonRestart','ressources/Button_restart.png',138,29);	
 	game.load.spritesheet('buttonNextImage','ressources/buttonNextImage.png',25,50);
 	game.load.spritesheet('buttonPrevImage','ressources/buttonPrevImage.png',25,50);
 	game.load.spritesheet('buttonCloseImage','ressources/buttonCloseImage.png',35,35);
 
+    while (doesFileExist("levels/"+nbrLevel+".txt")){
+		nbrLevel++;
+	}
+	nbrLevel--;
+	nbrPageTotal = parseInt(1 + (nbrLevel - 1) / 9);
+        //alert(nbrPageTotal);
+
+    //Number of levels already unblocked
+    cookie = document.cookie;
+    nameEQ = 'levelmax=';
+    nbrLevelAccessible = cookie.substring(nameEQ.length, cookie.length);
+    if (nbrLevelAccessible == "") {
+	nbrLevelAccessible = 1;
+    }
 }
 
 
