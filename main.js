@@ -34,13 +34,7 @@ var numPageCourant = 1;
 var nbrPageTotal = 1;
 var currentLevel = 1;
 
-//Number of levels already unblocked
-cookie = document.cookie;
-nameEQ = 'levelmax=';
-nbrLevelAccessible = cookie.substring(nameEQ.length, cookie.length);
-if (nbrLevelAccessible == null) {
-	nbrLevelAccessible = 1;
-}
+
 
 //Function called when the user uses his finger
 var element = document.body;
@@ -138,8 +132,17 @@ function preload() {
 	}
 	nbrLevel--;
 	nbrPageTotal = parseInt(1 + (nbrLevel - 1) / 9);
-	alert(nbrPageTotal);
+        alert(nbrPageTotal);
 
+    //Number of levels already unblocked
+    cookie = document.cookie;
+    nameEQ = 'levelmax=';
+    nbrLevelAccessible = cookie.substring(nameEQ.length, cookie.length);
+    alert(nbrLevelAccessible);
+    if (nbrLevelAccessible == "") {
+	nbrLevelAccessible = 1;
+    }
+    alert(nbrLevelAccessible);
 }
 
 
