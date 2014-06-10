@@ -34,13 +34,7 @@ var numPageCourant = 1;
 var nbrPageTotal = 5;
 var currentLevel = 1;
 
-//Number of levels already unblocked
-cookie = document.cookie;
-nameEQ = 'levelmax=';
-nbrLevelAccessible = cookie.substring(nameEQ.length, cookie.length);
-if (nbrLevelAccessible == null) {
-	nbrLevelAccessible = 1;
-}
+
 
 //Function called when the user uses his finger
 var element = document.body;

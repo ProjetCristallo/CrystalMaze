@@ -1,6 +1,7 @@
 
 function endLevel(ball, endSprite)
 {
+	buttonPause.inputEnable = false;
 	if(document.all) {
 		var file = new ActiveXObject("Scripting.FileSystemObject");
 	}
