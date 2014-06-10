@@ -131,8 +131,16 @@ function actionOnClickLevelAccessible(button)
 function actionOnClickLevelInaccessible(button)
 {
     screenLevelError = game.add.sprite(0, 0, 'levelInaccessible');
+    cross = game.add.sprite(540,0,'cross');
+    cross.inputEnabled = true;
 	screenLevelError.inputEnabled = true;
 	screenLevelError.events.onInputDown.add(function() {
+		cross.kill();
+		screenLevelError.kill();
+	}
+	,this);
+	cross.events.onInputDown.add(function() {
+		cross.kill();
 		screenLevelError.kill();
 	}
 	,this);

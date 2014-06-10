@@ -114,6 +114,7 @@ function preload() {
 	game.load.image('prevPage', 'ressources/ArrowLeft.png');
     game.load.image('levelA', 'ressources/levelAccessible.png');
     game.load.image('levelI', 'ressources/levelInaccessible.png');
+    game.load.image('cross', 'ressources/Cross.png');
 
 	game.load.spritesheet('breakable','ressources/Breakable.png',60,60);
 	game.load.spritesheet('salt','ressources/Salt.png',60,60);
