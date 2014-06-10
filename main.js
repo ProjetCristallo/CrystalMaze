@@ -1,19 +1,16 @@
 var game = new Phaser.Game(BACKGROUND_WIDTH,BACKGROUND_HEIGHT+ TASKBAR_HEIGHT,Phaser.AUTO,'', {preload:preload,create:create,update:update});
 
 var ball;
-
 var taskBarSprite;
-
-var endTile;
 var endSprite;
-
 var endScreen;
+
+//Booleans indicating game's state
 var mainMenu = true;
+var selectLevelMenu = false;
 
 //Last direction the ball has taken, useful for the turn blocks
 var lastDir=null;
-
-var selectLevelMenu = false;
 
 //Button and screen used for displaying help.
 var helpScreens = new Array();
@@ -24,21 +21,18 @@ var posText;
 var helpText;
 var helpOnItem;
 
-
-//Boolean indicating if the player hasn't won yet.
+//Boolean indicating if the player is allowed to play.
 var playing=true;
 
+//Levels
 var nbrLevel = 1;
 var nbrLevelAccessible;
 var numPageCourant = 1;
 var nbrPageTotal = 1;
 var currentLevel = 1;
 
-
-
-//Function called when the user uses his finger
+//Swipe handling
 var element = document.body;
-
 var swipe = null;
 Hammer(element).on("swipeleft", function(event) {
 		swipe='left';
