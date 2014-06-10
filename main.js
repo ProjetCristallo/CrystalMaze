@@ -96,7 +96,7 @@ function preload() {
 	game.load.image('title', 'ressources/title.png');
 
 	game.load.image('pauseButtonAide','ressources/ButtonAide.png');
-	game.load.image('pauseButtonMenu','ressources/ButtonMenu.png');
+	game.load.image('pauseButtonMenu','ressources/pauseButtonMenu.png');
 	game.load.image('pauseButtonParametres','ressources/ButtonParametres.png');
 	game.load.image('pauseButtonRestart','ressources/ButtonRestart.png');
 
