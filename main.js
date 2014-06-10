@@ -127,14 +127,12 @@ function preload() {
 	game.load.spritesheet('buttonNextImage','ressources/buttonNextImage.png',25,50);
 	game.load.spritesheet('buttonPrevImage','ressources/buttonPrevImage.png',25,50);
 	game.load.spritesheet('buttonCloseImage','ressources/buttonCloseImage.png',35,35);
-
     while (doesFileExist("levels/"+nbrLevel+".txt")){
 		nbrLevel++;
 	}
 	nbrLevel--;
 	nbrPageTotal = parseInt(1 + (nbrLevel - 1) / 9);
         //alert(nbrPageTotal);
-
     //Number of levels already unblocked
     cookie = document.cookie;
     nameEQ = 'levelmax=';
@@ -150,11 +148,11 @@ function doesFileExist(urlToFile)
     var xhr = new XMLHttpRequest();
     xhr.open('HEAD', urlToFile, false);
     xhr.send();
-    
-    if (xhr.status == "404") {
-        return false;
-    } else {
+    console.log(xhr.status);
+    if (xhr.status == "200") {
         return true;
+    } else {
+        return false;
     }
 /*	try{
 		var xhr = new XMLHttpRequest();
