@@ -30,7 +30,7 @@ function endLevel(ball, endSprite)
 			button2 = game.add.button(200,300, 'buttonReplay', actionOnClickReplay, this, 2,1,0);
 			button3 = game.add.button(200,350, 'pauseButtonMenu', actionOnClickMenu, this, 2, 1, 0);
 			
-			/*stars = game.add.sprite(300,170,'stars');
+			stars = game.add.sprite(300,170,'stars');
 			//We check the number of stars to light on
 			var nbrStars;
 			stars.animations.frame++;
@@ -49,7 +49,7 @@ function endLevel(ball, endSprite)
 			if (currentLevel + 1 > nbrLevelAccessible && currentLevel + 1 <= nbrLevel) {
 				nbrLevelAccessible = currentLevel + 1;
 				updateCookieNbrLevel(nbrLevelAccessible);	
-			}*/
+			}
 		}
 		catch(err){
 			playing = false;
