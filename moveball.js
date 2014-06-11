@@ -1,7 +1,10 @@
 function moveBall() {
+
+	//Imprecisions handling
 	ball.body.x = Math.round(ball.body.x);
 	ball.body.y = Math.round(ball.body.y);
 
+	//Ball animation
 	if(ball.isMoving && ball.animations.paused){
 		ball.animations.paused=false;
 	}
@@ -9,6 +12,7 @@ function moveBall() {
 		ball.animations.paused=true;
 	}
 
+	//Checks if the ball is moving
 	if(ball.body.position.x === ball.body.prev.x 
 			&& ball.body.position.y === ball.body.prev.y)
 	{
@@ -18,9 +22,12 @@ function moveBall() {
 	{
 		ball.isMoving = true;
 	}
+	
 	if(!ball.isMoving)
-	{
+	{	
 		if(game.isPaused) {return;}
+		//the ball isn't moving and the game isn't paused : 
+		//we check inputs from the user
 		if((controller.left.isDown || swipe==='left')
 				&& checkMoveGroup('left'))
 		{
@@ -68,6 +75,7 @@ function moveBall() {
 	}
 	else
 	{
+		//The ball is moving : we check the collisions/overlaps
 		game.physics.arcade.collide(ball, simple, normalBlockCollide, null, this);
 		game.physics.arcade.collide(ball, breakable, breakBlockCollide, null, this);
 		game.physics.arcade.collide(ball, salt, saltBlockCollide, null, this);
