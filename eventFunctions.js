@@ -6,14 +6,13 @@ function endLevel(ball, endSprite)
                         !(Math.abs(ball.body.y-endSprite.body.y)<TILE_SIZE/2)){
 		return;
 	}
-	
 	if (currentLevel == nbrLevel) {
 		endGame(ball,endSprite);
 	} else {
 		buttonPause.inputEnabled = false;
 		if(document.all) {
 			var file = new ActiveXObject("Scripting.FileSystemObject");
-		}	
+		}
 		else
 		{
 			var file = new XMLHttpRequest();
@@ -27,13 +26,9 @@ function endLevel(ball, endSprite)
 			ball.body.velocity.y=0;
 			endSprite.kill();
 			endScreen = game.add.sprite(25, 25, 'win');
-			star1 = game.add.sprite(250,170,'star');
-			star2 = game.add.sprite(300,170,'star');
-			star3 = game.add.sprite(350,170,'star');
 			button = game.add.button(200,250, 'buttonNextLevel', actionOnClickNextLevel, this, 2,1,0);
 			button2 = game.add.button(200,300, 'buttonReplay', actionOnClickReplay, this, 2,1,0);
 			button3 = game.add.button(200,350, 'pauseButtonMenu', actionOnClickMenu, this, 2, 1, 0);
-		
 			//We check the number of stars to light on
 			var nbrStars;
 			star1.animations.frame++;
@@ -52,29 +47,27 @@ function endLevel(ball, endSprite)
 			if (currentLevel + 1 > nbrLevelAccessible && currentLevel + 1 <= nbrLevel) {
 				nbrLevelAccessible = currentLevel + 1;
 				updateCookieNbrLevel(nbrLevelAccessible);	
-			}	
-
+			}
+		}
 		catch(err){
 			playing = false;
 			ball.body.velocity.x=0;
 			ball.body.velocity.y=0;
 			endSprite.kill();
 			endScreen = game.add.sprite(25, 25, 'win');
-			star1 = game.add.sprite(250,170,'star');
-			star2 = game.add.sprite(300,170,'star');
-			star3 = game.add.sprite(350,170,'star');
 			button = game.add.button(200,250, 'buttonReplay', actionOnClickReplay, this, 2,1,0);
 			button2 = game.add.button(200,300, 'buttonRestart', actionOnClickRestart, this, 2, 1, 0);
 			button3 = game.add.button(200,350, 'pauseButtonMenu', actionOnClickMenu, this, 2, 1, 0);
+			stars = game.add.sprite(300,170,'stars');
 			//We check the number of stars to light on
 			var nbrStars;
-			star1.animations.frame++;
+			stars.animations.frame++;
 			nbrStars = 1;
 			if (score <= twoStars) {
-				star2.animations.frame++;
+				stars.animations.frame++;
 				nbrStars = 2;
 				if (score <= threeStars) {
-				star3.animations.frame++;
+				stars.animations.frame++;
 					nbrStars = 3;
 				}
 			}
@@ -84,10 +77,9 @@ function endLevel(ball, endSprite)
 			if (currentLevel + 1 > nbrLevelAccessible && currentLevel + 1 <= nbrLevel) {
 				nbrLevelAccessible = currentLevel + 1;
 				updateCookieNbrLevel(nbrLevelAccessible);	
-			}	
+			}
 		}
 	}
-}
 }
 
 function endGame(ball, endSprite) {
