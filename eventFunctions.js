@@ -57,6 +57,7 @@ function endLevel(ball, endSprite)
 				nbrLevelAccessible = currentLevel + 1;
 				updateCookieNbrLevel(nbrLevelAccessible);	
 			}
+			alert(document.cookie);
 		}
 		catch(err){
 			playing = false;

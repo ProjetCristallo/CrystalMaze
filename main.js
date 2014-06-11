@@ -162,16 +162,18 @@ function preload(){
 	nbrPageTotal = parseInt(1 + (nbrLevel - 1) / 9);
         //alert(nbrPageTotal);
 
+	alert(document.cookie);
     //Number of levels already unblocked
     nbrLevelAccessible = readCookie("levelmax");
-    if (nbrLevelAccessible == "") {
+    if (nbrLevelAccessible == null) {
     	nbrLevelAccessible = 1;
     }
     //Cookie containing the scores for each level 
     stars = readCookie("stars");
-    if (stars == "") {
+    if (stars == null) {
     	createCookie("stars", "", 30);
     }
+    alert(document.cookie);
 }
 
 
