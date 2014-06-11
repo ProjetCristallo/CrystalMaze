@@ -49,9 +49,10 @@ function endLevel(ball, endSprite)
 function endGame(ball, endSprite) {
 	endSprite.kill();
 	playing = false;
+	buttonPause.inputEnabled = false;
 	endScreen = game.add.sprite(0, 0, 'endScreen');
-	button2 = game.add.button(250,300, 'buttonReplay', actionOnClickReplay, this, 2,1,0);
-	button3 = game.add.button(250,350, 'pauseButtonMenu', actionOnClickMenu, this, 2, 1, 0);
+	button2 = game.add.button(200,300, 'buttonReplay', actionOnClickReplay, this, 2,1,0);
+	button3 = game.add.button(200,350, 'pauseButtonMenu', actionOnClickMenu, this, 2, 1, 0);
 }
 
 
