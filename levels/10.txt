@@ -1,0 +1,80 @@
+turn 0 0 dr
+porous 0 1 
+porous 0 2 
+porous 0 3 
+porous 0 4 
+porous 0 5 
+porous 0 6 
+turn 0 7 ur
+porous 1 0 
+turn 1 1 dr
+porous 1 2 
+porous 1 3 
+porous 1 4 
+porous 1 5 
+turn 1 6 ur
+porous 1 7 
+porous 2 0 
+porous 2 1 
+porous 2 2 
+porous 2 3 
+simple 2 4 
+porous 2 5 
+porous 2 6 
+porous 2 7 
+porous 3 0 
+porous 3 1 
+end 3 2 
+porous 3 3 
+item 3 4 energyDown
+porous 3 5 
+porous 3 6 
+porous 3 7 
+porous 4 0 
+porous 4 1 
+porous 4 2 
+porous 4 3 
+begin 4 4 water
+porous 4 5 
+porous 4 6 
+porous 4 7 
+porous 5 0 
+porous 5 1 
+porous 5 2 
+porous 5 3 
+porous 5 4 
+porous 5 5 
+porous 5 6 
+porous 5 7 
+porous 6 0 
+turn 6 1 dl
+porous 6 2 
+porous 6 3 
+porous 6 4 
+porous 6 5 
+porous 6 6 
+turn 6 7 ul
+porous 7 0 
+porous 7 1 
+porous 7 2 
+porous 7 3 
+porous 7 4 
+porous 7 5 
+porous 7 6 
+porous 7 7 
+porous 8 0 
+porous 8 1 
+turn 8 2 dl
+porous 8 3 
+porous 8 4 
+porous 8 5 
+turn 8 6 ul
+porous 8 7 
+turn 9 0 dl
+porous 9 1 
+porous 9 2 
+porous 9 3 
+turn 9 4 ul
+porous 9 5 
+porous 9 6 
+porous 9 7 
