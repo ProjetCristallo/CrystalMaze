@@ -49,6 +49,8 @@ function endLevel(ball, endSprite)
 function endGame(ball, endSprite) {
 	endSprite.kill();
 	playing = false;
+	ball.body.velocity.x=0;
+	ball.body.velocity.y=0;
 	buttonPause.inputEnabled = false;
 	endScreen = game.add.sprite(0, 0, 'endScreen');
 	button2 = game.add.button(200,300, 'buttonReplay', actionOnClickReplay, this, 2,1,0);
@@ -330,7 +332,6 @@ function itemCollide(ball, itemSprite)
 	    ball.name = "ice";
 	}
     }
-
     itemSprite.kill();
 }
 
