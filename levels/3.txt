@@ -12,7 +12,7 @@ simple 3 5
 simple 4 3 
 simple 4 5 
 simple 5 3 
-breakable 5 4 2
+breakable 5 4 3
 simple 5 5 
 simple 6 3 
 simple 6 5 

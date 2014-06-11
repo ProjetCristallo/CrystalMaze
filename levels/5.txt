@@ -15,9 +15,9 @@ simple 4 5
 simple 5 3 
 simple 5 5 
 simple 6 3 
-salt 6 4 2
 simple 6 5 
 simple 7 3 
+salt 7 4 3
 simple 7 5 
 simple 8 3 
 end 8 4 
