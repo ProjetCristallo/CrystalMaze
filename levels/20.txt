@@ -23,9 +23,8 @@ simple 3 0
 simple 3 5 
 simple 3 6 
 simple 3 7 
-porous 4 0 
-item 4 2 energyDown
-hole 4 3 
+hole 4 0 
+unilateral 4 3 up
 hole 4 5 
 hole 4 6 
 turn 4 7 ur
@@ -40,6 +39,7 @@ simple 6 4
 hole 6 5 
 hole 6 6 
 hole 6 7 
+item 7 0 energyDown
 turn 7 1 dl
 item 7 4 energyUp
 hole 7 5 
@@ -53,7 +53,7 @@ hole 8 4
 hole 8 5 
 hole 8 6 
 hole 8 7 
-porous 9 0 
+simple 9 0 
 hole 9 1 
 hole 9 2 
 hole 9 3 
