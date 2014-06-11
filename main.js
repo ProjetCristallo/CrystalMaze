@@ -148,6 +148,8 @@ function preload(){
 	game.load.spritesheet('buttonNextImage','ressources/buttonNextImage.png',25,50);
 	game.load.spritesheet('buttonPrevImage','ressources/buttonPrevImage.png',25,50);
 	game.load.spritesheet('buttonCloseImage','ressources/buttonCloseImage.png',35,35);
+	game.load.spritesheet('stars', 'ressources/stars.png',100,25);
+	game.load.spritesheet('star', 'ressources/star.png',24,24);
 	
 	game.load.onFileComplete.add(updateProgressBar, this);
 

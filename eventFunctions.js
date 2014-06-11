@@ -21,23 +21,24 @@ function endLevel(ball, endSprite)
 		ball.body.velocity.y=0;
 		endSprite.kill();
 		endScreen = game.add.sprite(25, 25, 'win');
+		star1 = game.add.sprite(250,170,'star');
+		star2 = game.add.sprite(300,170,'star');
+		star3 = game.add.sprite(350,170,'star');
 		button = game.add.button(200,250, 'buttonNextLevel', actionOnClickNextLevel, this, 2,1,0);
 		button2 = game.add.button(200,300, 'buttonReplay', actionOnClickReplay, this, 2,1,0);
 		button3 = game.add.button(200,350, 'pauseButtonMenu', actionOnClickMenu, this, 2, 1, 0);
 		
-		//We check the number of stars to fetch
+		//We check the number of stars to light on
 		var nbrStars;
-		if (score > threeStars) {
-			if (score > twoStars) {
-				//TODO : afficher une étoile
-				nbrStars = 1;
-			} else {
-				//TODO : afficher deux étoiles
-				nbrStars = 2;
+		star1.animations.frame++;
+		nbrStars = 1;
+		if (score <= twoStars) {
+			star2.animations.frame++;
+			nbrStars = 2;
+			if (score <= threeStars) {
+			star3.animations.frame++;
+				nbrStars = 3;
 			}
-		} else {	
-			//TODO : afficher trois étoiles		
-			nbrStars = 3;
 		}
 		updateCookieStars(nbrStars);
 		

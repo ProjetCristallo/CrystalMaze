@@ -39,3 +39,12 @@ function updateCookieStars(nbr) {
 	}	
 	createCookie("stars", stars, 30);
 }
+
+function readScore(level) {
+	var stars = readCookie("stars");
+	if (level > stars.length) {
+		return null;
+	} else {
+		return stars.substring(level-1, level);
+	}
+}
