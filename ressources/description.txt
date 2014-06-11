@@ -1,0 +1,9 @@
+Simple
+
+
+Turn
+These blocks cannot be destroyed. They will change your direction depending on their orientation.
+
+Hole
+If you are in gaseous state, you will pass over the hole. Otherwise, you will fall and lose.
+
