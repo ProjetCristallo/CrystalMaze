@@ -261,7 +261,7 @@ function checkMoveGroup(dir)
 
 	//We check with the game boundaries
 	if((dir=='up' && ball.y==0) || 
-			(dir=='down' && ball.y==game.height-ball.height) || 
+			(dir=='down' && ball.y==BACKGROUND_HEIGHT-ball.width) || 
 			(dir=='right' && ball.x==game.width-ball.width) || 
 			(dir=='left' && ball.x==0)) {
 		return false;
