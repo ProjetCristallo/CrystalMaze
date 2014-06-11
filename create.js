@@ -85,13 +85,13 @@ function create() {
 			game.add.text(120 + (numSprite % 3) * 175, 100 + parseInt(numSprite/3) * 140, buttonLevel.name, {});
 			
 			//Stars
-			var stars = game.add.sprite(120 + (numSprite % 3)*175, 120 + parseInt(numSprite/3) * 140, 'stars');
-			var score = readScore(buttonLevel.name);
-			/*if (score != null) {
-				for (var i=0; i<score; i++) {
+			var stars = game.add.sprite(75 + (numSprite % 3)*175, 125 + parseInt(numSprite/3) * 140, 'stars');
+			var scoreLevel = readScore(buttonLevel.name);
+			if (scoreLevel != null) {
+				for (var j=0; j<scoreLevel; j++) {
 					stars.animations.frame++;
 				}
-			}*/
+			}
 			numSprite++;
 		}
 	} else {
