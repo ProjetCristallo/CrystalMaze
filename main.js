@@ -167,6 +167,8 @@ function preload(){
     if (nbrLevelAccessible == null) {
     	nbrLevelAccessible = 1;
     }
+    //Cookie containing the scores for each level 
+    createCookie("stars", "", 30);
 }
 
 
