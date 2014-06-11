@@ -6,57 +6,14 @@ function endLevel(ball, endSprite)
                         !(Math.abs(ball.body.y-endSprite.body.y)<TILE_SIZE/2)){
 		return;
 	}
+	
 	if (currentLevel == nbrLevel) {
 		endGame(ball,endSprite);
 	} else {
-<<<<<<< HEAD
-	buttonPause.inputEnabled = false;
-	if(document.all) {
-		var file = new ActiveXObject("Scripting.FileSystemObject");
-	}
-	else
-	{
-		var file = new XMLHttpRequest();
-	}
-	file.open('HEAD',"levels/"+(currentLevel+1)+".txt",false);
-	try{
-		file.send();
-		file.abort();	
-		playing = false;
-		ball.body.velocity.x=0;
-		ball.body.velocity.y=0;
-		endSprite.kill();
-		endScreen = game.add.sprite(25, 25, 'win');
-		star1 = game.add.sprite(250,170,'star');
-		star2 = game.add.sprite(300,170,'star');
-		star3 = game.add.sprite(350,170,'star');
-		button = game.add.button(200,250, 'buttonNextLevel', actionOnClickNextLevel, this, 2,1,0);
-		button2 = game.add.button(200,300, 'buttonReplay', actionOnClickReplay, this, 2,1,0);
-		button3 = game.add.button(200,350, 'pauseButtonMenu', actionOnClickMenu, this, 2, 1, 0);
-		
-		//We check the number of stars to light on
-		var nbrStars;
-		star1.animations.frame++;
-		nbrStars = 1;
-		if (score <= twoStars) {
-			star2.animations.frame++;
-			nbrStars = 2;
-			if (score <= threeStars) {
-			star3.animations.frame++;
-				nbrStars = 3;
-			}
-		}
-		updateCookieStars(nbrStars);
-		
-		//We update the number of unblocked levels	
-		if (currentLevel + 1 > nbrLevelAccessible && currentLevel + 1 <= nbrLevel) {
-			nbrLevelAccessible = currentLevel + 1;
-			updateCookieNbrLevel(nbrLevelAccessible);		
-=======
 		buttonPause.inputEnabled = false;
 		if(document.all) {
 			var file = new ActiveXObject("Scripting.FileSystemObject");
-		}
+		}	
 		else
 		{
 			var file = new XMLHttpRequest();
@@ -70,30 +27,67 @@ function endLevel(ball, endSprite)
 			ball.body.velocity.y=0;
 			endSprite.kill();
 			endScreen = game.add.sprite(25, 25, 'win');
+			star1 = game.add.sprite(250,170,'star');
+			star2 = game.add.sprite(300,170,'star');
+			star3 = game.add.sprite(350,170,'star');
 			button = game.add.button(200,250, 'buttonNextLevel', actionOnClickNextLevel, this, 2,1,0);
 			button2 = game.add.button(200,300, 'buttonReplay', actionOnClickReplay, this, 2,1,0);
 			button3 = game.add.button(200,350, 'pauseButtonMenu', actionOnClickMenu, this, 2, 1, 0);
-			//cookie
-			if (currentLevel + 1 > nbrLevelAccessible && currentLevel + 1 <= nbrLevel) {
-				var date = new Date();
-				date.setTime(date.getTime()+(30*24*60*60*1000));
-				var expires = "; expires=" + date.toGMTString();
-				document.cookie = 'levelmax='+(currentLevel + 1)+expires+'; path=/';
-				nbrLevelAccessible = currentLevel + 1;
+		
+			//We check the number of stars to light on
+			var nbrStars;
+			star1.animations.frame++;
+			nbrStars = 1;
+			if (score <= twoStars) {
+				star2.animations.frame++;
+				nbrStars = 2;
+				if (score <= threeStars) {
+				star3.animations.frame++;
+					nbrStars = 3;
+				}
 			}
-		}
+			updateCookieStars(nbrStars);
+		
+			//We update the number of unblocked levels	
+			if (currentLevel + 1 > nbrLevelAccessible && currentLevel + 1 <= nbrLevel) {
+				nbrLevelAccessible = currentLevel + 1;
+				updateCookieNbrLevel(nbrLevelAccessible);	
+			}	
+
 		catch(err){
 			playing = false;
 			ball.body.velocity.x=0;
 			ball.body.velocity.y=0;
 			endSprite.kill();
 			endScreen = game.add.sprite(25, 25, 'win');
+			star1 = game.add.sprite(250,170,'star');
+			star2 = game.add.sprite(300,170,'star');
+			star3 = game.add.sprite(350,170,'star');
 			button = game.add.button(200,250, 'buttonReplay', actionOnClickReplay, this, 2,1,0);
 			button2 = game.add.button(200,300, 'buttonRestart', actionOnClickRestart, this, 2, 1, 0);
 			button3 = game.add.button(200,350, 'pauseButtonMenu', actionOnClickMenu, this, 2, 1, 0);
->>>>>>> 5542711993f40b9d987b09932cd6f212385cd79a
+			//We check the number of stars to light on
+			var nbrStars;
+			star1.animations.frame++;
+			nbrStars = 1;
+			if (score <= twoStars) {
+				star2.animations.frame++;
+				nbrStars = 2;
+				if (score <= threeStars) {
+				star3.animations.frame++;
+					nbrStars = 3;
+				}
+			}
+			updateCookieStars(nbrStars);
+		
+			//We update the number of unblocked levels	
+			if (currentLevel + 1 > nbrLevelAccessible && currentLevel + 1 <= nbrLevel) {
+				nbrLevelAccessible = currentLevel + 1;
+				updateCookieNbrLevel(nbrLevelAccessible);	
+			}	
 		}
 	}
+}
 }
 
 function endGame(ball, endSprite) {
