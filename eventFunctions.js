@@ -1,9 +1,16 @@
+/* Return a boolean to signal if the ball and block are close enough to use 
+ * the following functions */
+function hardOverlap(ball,block)
+{
+	return ((Math.abs(ball.body.x-block.body.x) < constants.TILE_SIZE/2) &&
+			(Math.abs(ball.body.y-block.body.y) < 
+			 constants.TILE_SIZE/2));
+}
 
 function endLevel(ball, endSprite)
 {
 	// Force ball and endSprite to be closer than a classic overlap
-	if(!(Math.abs(ball.body.x-endSprite.body.x)<TILE_SIZE/2) || 
-                        !(Math.abs(ball.body.y-endSprite.body.y)<TILE_SIZE/2)){
+	if(!hardOverlap(ball,endSprite)){
 		return;
 	}
 	if (currentLevel == nbrLevel) {
@@ -302,9 +309,7 @@ function changeLeft()
 
 function holeOverlap(ball, holeSprite)
 {
-	if (ball.name != "steam" && 
-			Math.abs(ball.body.x-holeSprite.body.x) < TILE_SIZE/2 && 
-			Math.abs(ball.body.y-holeSprite.body.y) < TILE_SIZE/2) {
+	if (ball.name != "steam" && hardOverlap(ball,holeSprite)){
 		buttonPause.inputEnabled = false;
 		if(document.all) {
 			var file = new ActiveXObject("Scripting.FileSystemObject");
@@ -353,7 +358,11 @@ function saltBlockCollide(ball, saltBlock)
 
 function porousBlockOverlap(ball, porousBlock)
 {
-	if(ball.name === "ice"){
+	if(ball.name === "ice" && 
+			((lastDir === "up" && (ball.body.y-porousBlock.body.y)>0) ||
+			 (lastDir === "down" && (ball.body.y-porousBlock.body.y)<0) ||
+			 (lastDir === "right" && (ball.body.x-porousBlock.body.x)<0) ||
+			 (lastDir === "left" && (ball.body.x-porousBlock.body.x)>0))){  
 		var xPos = ball.body.x;
 		var yPos = ball.body.y;	
 		switch(lastDir){
@@ -393,16 +402,20 @@ function porousBlockOverlap(ball, porousBlock)
 
 function itemCollide(ball, itemSprite)
 {
-	if(lastDir === "left"){
-		ball.body.x -= TILE_SIZE/2;
-	}else if(lastDir === "right"){
-		ball.body.x += TILE_SIZE/2;
-	}else if(lastDir === "up"){
-		ball.body.y -= TILE_SIZE/2;
-	}else if(lastDir === "down"){
-		ball.body.y += TILE_SIZE/2;
+	if(!hardOverlap(ball,itemSprite)){
+		return;
 	}
 
+	/*	if(lastDir === "left"){
+		ball.body.x -= TILE_SIZE/2;
+		}else if(lastDir === "right"){
+		ball.body.x += TILE_SIZE/2;
+		}else if(lastDir === "up"){
+		ball.body.y -= TILE_SIZE/2;
+		}else if(lastDir === "down"){
+		ball.body.y += TILE_SIZE/2;
+		}
+	 */
 	if(itemSprite.type == "energyUp"){
 		if (ball.name == "ice"){
 			ball.animations.play("water");

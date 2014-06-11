@@ -164,7 +164,7 @@ function preload(){
 
     //Number of levels already unblocked
     nbrLevelAccessible = readCookie("levelmax");
-    if (nbrLevelAccessible == null) {
+    if (nbrLevelAccessible == "") {
     	nbrLevelAccessible = 1;
     }
     //Cookie containing the scores for each level 
