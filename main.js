@@ -71,20 +71,28 @@ var listItem;
 var score;
 var turn;
 
+
+var progressPageLoaded = false;
+var progressInfo =null;
 function updateProgressBar(){
-    mainMenuSprite = game.add.sprite(0, 0, 'mainMenuSprite');
-	title = game.add.sprite(11, 50, 'title');
-    progressInfo = game.add.text(250,300,"0 %",{ font: "65px Arial", align: "center" });
+    if(progressInfo==null){
+        progressInfo = game.add.text(250,300,"0 %",{ font: "65px Arial", align: "center" });
+    }
+    if(!progressPageLoaded && game.cache.checkImageKey('mainMenuSprite') && game.cache.checkImageKey('title')) {
+         mainMenuSprite = game.add.sprite(0, 0, 'mainMenuSprite');
+         title = game.add.sprite(11, 50, 'title');
+         progressInfo = game.add.text(250,300,"0 %",{ font: "65px Arial", align: "center" });
+         progressPageLoaded = true;
+    }
     progressInfo.text = game.load.progress+" %";
 };
 
 function preload(){
-    
     game.load.image('mainMenuSprite', 'ressources/MainMenu.png');
-	game.load.image('title', 'ressources/title.png');
+    game.load.image('title', 'ressources/title.png');
+
 	
-	
-		game.load.image('taskBar','ressources/taskBar.png');
+    game.load.image('taskBar','ressources/taskBar.png');
 	game.load.image('fond','ressources/Fond.png');
 	game.load.image('simple','ressources/Simple.png');
 	game.load.image('cUp','ressources/Change_up.png');
