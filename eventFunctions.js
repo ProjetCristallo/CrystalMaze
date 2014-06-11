@@ -1,6 +1,11 @@
 
 function endLevel(ball, endSprite)
 {
+	// Force ball and endSprite to be closer than a classic overlap
+	if(!(Math.abs(ball.body.x-endSprite.body.x)<TILE_SIZE/2) || 
+                        !(Math.abs(ball.body.y-endSprite.body.y)<TILE_SIZE/2)){
+		return;
+	}
 	if (currentLevel == nbrLevel) {
 		endGame(ball,endSprite);
 	} else {
