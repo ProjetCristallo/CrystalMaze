@@ -15,6 +15,9 @@ var selectLevelMenu = false;
 //Last direction the ball has taken, useful for the turn blocks
 var lastDir=null;
 
+//Scores to get two or three stars
+var twoStars;
+var threeStars;
 
 //Button and screen used for displaying help.
 var helpScreens = new Array();
@@ -147,6 +150,8 @@ function preload(){
 	game.load.spritesheet('buttonNextImage','ressources/buttonNextImage.png',25,50);
 	game.load.spritesheet('buttonPrevImage','ressources/buttonPrevImage.png',25,50);
 	game.load.spritesheet('buttonCloseImage','ressources/buttonCloseImage.png',35,35);
+	game.load.spritesheet('stars', 'ressources/Star.png',100,25);
+
 	
 	game.load.onFileComplete.add(updateProgressBar, this);
 
@@ -158,11 +163,9 @@ function preload(){
         //alert(nbrPageTotal);
 
     //Number of levels already unblocked
-    cookie = document.cookie;
-    nameEQ = 'levelmax=';
-    nbrLevelAccessible = cookie.substring(nameEQ.length, cookie.length);
-    if (nbrLevelAccessible == "") {
-	nbrLevelAccessible = 1;
+    nbrLevelAccessible = readCookie("levelmax");
+    if (nbrLevelAccessible == null) {
+    	nbrLevelAccessible = 1;
     }
 }
 

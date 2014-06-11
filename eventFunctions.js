@@ -36,13 +36,24 @@ function endLevel(ball, endSprite)
 			button = game.add.button(200,250, 'buttonNextLevel', actionOnClickNextLevel, this, 2,1,0);
 			button2 = game.add.button(200,300, 'buttonReplay', actionOnClickReplay, this, 2,1,0);
 			button3 = game.add.button(200,350, 'pauseButtonMenu', actionOnClickMenu, this, 2, 1, 0);
-			//cookie
+			//We check the number of stars to light on
+			var nbrStars;
+			star1.animations.frame++;
+			nbrStars = 1;
+			if (score <= twoStars) {
+				star2.animations.frame++;
+				nbrStars = 2;
+				if (score <= threeStars) {
+				star3.animations.frame++;
+					nbrStars = 3;
+				}
+			}
+			updateCookieStars(nbrStars);
+		
+			//We update the number of unblocked levels	
 			if (currentLevel + 1 > nbrLevelAccessible && currentLevel + 1 <= nbrLevel) {
-				var date = new Date();
-				date.setTime(date.getTime()+(30*24*60*60*1000));
-				var expires = "; expires=" + date.toGMTString();
-				document.cookie = 'levelmax='+(currentLevel + 1)+expires+'; path=/';
 				nbrLevelAccessible = currentLevel + 1;
+				updateCookieNbrLevel(nbrLevelAccessible);	
 			}
 		}
 		catch(err){
@@ -54,6 +65,26 @@ function endLevel(ball, endSprite)
 			button = game.add.button(200,250, 'buttonReplay', actionOnClickReplay, this, 2,1,0);
 			button2 = game.add.button(200,300, 'buttonRestart', actionOnClickRestart, this, 2, 1, 0);
 			button3 = game.add.button(200,350, 'pauseButtonMenu', actionOnClickMenu, this, 2, 1, 0);
+			stars = game.add.sprite(300,170,'stars');
+			//We check the number of stars to light on
+			var nbrStars;
+			stars.animations.frame++;
+			nbrStars = 1;
+			if (score <= twoStars) {
+				stars.animations.frame++;
+				nbrStars = 2;
+				if (score <= threeStars) {
+				stars.animations.frame++;
+					nbrStars = 3;
+				}
+			}
+			updateCookieStars(nbrStars);
+		
+			//We update the number of unblocked levels	
+			if (currentLevel + 1 > nbrLevelAccessible && currentLevel + 1 <= nbrLevel) {
+				nbrLevelAccessible = currentLevel + 1;
+				updateCookieNbrLevel(nbrLevelAccessible);	
+			}
 		}
 	}
 }

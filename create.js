@@ -83,6 +83,15 @@ function create() {
 			}
 			buttonLevel.name = i;
 			game.add.text(120 + (numSprite % 3) * 175, 100 + parseInt(numSprite/3) * 140, buttonLevel.name, {});
+			
+			//Stars
+			var stars = game.add.sprite(120 + (numSprite % 3)*175, 120 + parseInt(numSprite/3) * 140, 'stars');
+			var score = readScore(buttonLevel.name);
+			/*if (score != null) {
+				for (var i=0; i<score; i++) {
+					stars.animations.frame++;
+				}
+			}*/
 			numSprite++;
 		}
 	} else {
