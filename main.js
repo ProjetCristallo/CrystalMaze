@@ -1,3 +1,5 @@
+readConstants("conf.yaml");
+
 var game = new Phaser.Game(BACKGROUND_WIDTH,BACKGROUND_HEIGHT+ TASKBAR_HEIGHT,Phaser.AUTO,'', {preload:preload,create:create,update:update});
 
 var ball;
