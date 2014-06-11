@@ -9,7 +9,12 @@ function parser(filename) {
 	file.open("GET", filename, false);
 	file.send();
 	var arrLines = file.responseText.split("\n");
-	for(var i = 0 ; i < arrLines.length ; i++) {
+	//We check the score for each floor
+	var res = arrLines[0].split(" ");
+	twoStars = res[0];
+	threeStars = res[1];
+	//We build the level	
+	for(var i = 1 ; i < arrLines.length ; i++) {
 		//	var f_in = file.OpenTextFile(filename,1);
 		//	while (!f_in.AtEndOfStream) {
 		var block;

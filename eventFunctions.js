@@ -24,13 +24,27 @@ function endLevel(ball, endSprite)
 		button = game.add.button(200,250, 'buttonNextLevel', actionOnClickNextLevel, this, 2,1,0);
 		button2 = game.add.button(200,300, 'buttonReplay', actionOnClickReplay, this, 2,1,0);
 		button3 = game.add.button(200,350, 'pauseButtonMenu', actionOnClickMenu, this, 2, 1, 0);
-		//cookie
+		
+		//We check the number of stars to fetch
+		var nbrStars;
+		if (score > threeStars) {
+			if (score > twoStars) {
+				//TODO : afficher une étoile
+				nbrStars = 1;
+			} else {
+				//TODO : afficher deux étoiles
+				nbrStars = 2;
+			}
+		} else {	
+			//TODO : afficher trois étoiles		
+			nbrStars = 3;
+		}
+		updateCookieStars(nbrStars);
+		
+		//We update the number of unblocked levels	
 		if (currentLevel + 1 > nbrLevelAccessible && currentLevel + 1 <= nbrLevel) {
-			var date = new Date();
-			date.setTime(date.getTime()+(30*24*60*60*1000));
-			var expires = "; expires=" + date.toGMTString();
-			document.cookie = 'levelmax='+(currentLevel + 1)+expires+'; path=/';
 			nbrLevelAccessible = currentLevel + 1;
+			updateCookieNbrLevel(nbrLevelAccessible);		
 		}
 	}
 	catch(err){
