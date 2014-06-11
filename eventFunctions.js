@@ -4,45 +4,45 @@ function endLevel(ball, endSprite)
 	if (currentLevel == nbrLevel) {
 		endGame(ball,endSprite);
 	} else {
-	buttonPause.inputEnabled = false;
-	if(document.all) {
-		var file = new ActiveXObject("Scripting.FileSystemObject");
-	}
-	else
-	{
-		var file = new XMLHttpRequest();
-	}
-	file.open('HEAD',"levels/"+(currentLevel+1)+".txt",false);
-	try{
-		file.send();
-		file.abort();	
-		playing = false;
-		ball.body.velocity.x=0;
-		ball.body.velocity.y=0;
-		endSprite.kill();
-		endScreen = game.add.sprite(25, 25, 'win');
-		button = game.add.button(200,250, 'buttonNextLevel', actionOnClickNextLevel, this, 2,1,0);
-		button2 = game.add.button(200,300, 'buttonReplay', actionOnClickReplay, this, 2,1,0);
-		button3 = game.add.button(200,350, 'pauseButtonMenu', actionOnClickMenu, this, 2, 1, 0);
-		//cookie
-		if (currentLevel + 1 > nbrLevelAccessible && currentLevel + 1 <= nbrLevel) {
-			var date = new Date();
-			date.setTime(date.getTime()+(30*24*60*60*1000));
-			var expires = "; expires=" + date.toGMTString();
-			document.cookie = 'levelmax='+(currentLevel + 1)+expires+'; path=/';
-			nbrLevelAccessible = currentLevel + 1;
+		buttonPause.inputEnabled = false;
+		if(document.all) {
+			var file = new ActiveXObject("Scripting.FileSystemObject");
 		}
-	}
-	catch(err){
-	    playing = false;
-		ball.body.velocity.x=0;
-		ball.body.velocity.y=0;
-		endSprite.kill();
-		endScreen = game.add.sprite(25, 25, 'win');
-		button = game.add.button(200,250, 'buttonReplay', actionOnClickReplay, this, 2,1,0);
-		button2 = game.add.button(200,300, 'buttonRestart', actionOnClickRestart, this, 2, 1, 0);
-		button3 = game.add.button(200,350, 'pauseButtonMenu', actionOnClickMenu, this, 2, 1, 0);
-	}
+		else
+		{
+			var file = new XMLHttpRequest();
+		}
+		file.open('HEAD',"levels/"+(currentLevel+1)+".txt",false);
+		try{
+			file.send();
+			file.abort();	
+			playing = false;
+			ball.body.velocity.x=0;
+			ball.body.velocity.y=0;
+			endSprite.kill();
+			endScreen = game.add.sprite(25, 25, 'win');
+			button = game.add.button(200,250, 'buttonNextLevel', actionOnClickNextLevel, this, 2,1,0);
+			button2 = game.add.button(200,300, 'buttonReplay', actionOnClickReplay, this, 2,1,0);
+			button3 = game.add.button(200,350, 'pauseButtonMenu', actionOnClickMenu, this, 2, 1, 0);
+			//cookie
+			if (currentLevel + 1 > nbrLevelAccessible && currentLevel + 1 <= nbrLevel) {
+				var date = new Date();
+				date.setTime(date.getTime()+(30*24*60*60*1000));
+				var expires = "; expires=" + date.toGMTString();
+				document.cookie = 'levelmax='+(currentLevel + 1)+expires+'; path=/';
+				nbrLevelAccessible = currentLevel + 1;
+			}
+		}
+		catch(err){
+			playing = false;
+			ball.body.velocity.x=0;
+			ball.body.velocity.y=0;
+			endSprite.kill();
+			endScreen = game.add.sprite(25, 25, 'win');
+			button = game.add.button(200,250, 'buttonReplay', actionOnClickReplay, this, 2,1,0);
+			button2 = game.add.button(200,300, 'buttonRestart', actionOnClickRestart, this, 2, 1, 0);
+			button3 = game.add.button(200,350, 'pauseButtonMenu', actionOnClickMenu, this, 2, 1, 0);
+		}
 	}
 }
 
@@ -81,7 +81,7 @@ function actionOnClickNextLevel()
 	//button.kill();
 	//button2.kill();
 	currentLevel = currentLevel + 1;
-        textLevel.setText("Niveau " + currentLevel);
+	textLevel.setText("Niveau " + currentLevel);
 	playing = true;
 	game.world.removeAll(true);
 	create();
@@ -106,60 +106,60 @@ function actionOnClickPlay()
 
 function actionOnClickSelectLevel()
 {
-    selectLevelMenu = true;
-    mainMenu = false;
-    game.world.removeAll();
-    create();
+	selectLevelMenu = true;
+	mainMenu = false;
+	game.world.removeAll();
+	create();
 }
 
 function actionOnClickReturn()
 {
-    numPageCourant = 1;
-    selectLevelMenu = false;
-    mainMenu = true;
-    game.world.removeAll();
-    create();
+	numPageCourant = 1;
+	selectLevelMenu = false;
+	mainMenu = true;
+	game.world.removeAll();
+	create();
 }
 
 function actionOnClickArrowRight()
 {
-    numPageCourant++;
-    game.world.removeAll();
-    create();
+	numPageCourant++;
+	game.world.removeAll();
+	create();
 }
 
 function actionOnClickArrowLeft()
 {
-    numPageCourant--;
-    game.world.removeAll();
-    create();
+	numPageCourant--;
+	game.world.removeAll();
+	create();
 }
 
 function actionOnClickLevelAccessible(button)
 {
-    numPageCourant = 1;
-    selectLevelMenu = false;
-    game.world.removeAll();
-    currentLevel = button.name;
-    create();
+	numPageCourant = 1;
+	selectLevelMenu = false;
+	game.world.removeAll();
+	currentLevel = button.name;
+	create();
 }
 
 function actionOnClickLevelInaccessible(button)
 {
-    screenLevelError = game.add.sprite(0, 0, 'levelInaccessible');
-    cross = game.add.sprite(540,0,'cross');
-    cross.inputEnabled = true;
+	screenLevelError = game.add.sprite(0, 0, 'levelInaccessible');
+	cross = game.add.sprite(540,0,'cross');
+	cross.inputEnabled = true;
 	screenLevelError.inputEnabled = true;
 	screenLevelError.events.onInputDown.add(function() {
-		cross.kill();
-		screenLevelError.kill();
-	}
-	,this);
+			cross.kill();
+			screenLevelError.kill();
+			}
+			,this);
 	cross.events.onInputDown.add(function() {
-		cross.kill();
-		screenLevelError.kill();
-	}
-	,this);
+			cross.kill();
+			screenLevelError.kill();
+			}
+			,this);
 }
 
 
@@ -168,11 +168,11 @@ function triggerPause() {
 		var buttonsX = BACKGROUND_WIDTH-IN_GAME_MENU_MARGIN-IN_GAME_MENU_BUTTON_WIDTH;
 		var buttonsY = BACKGROUND_HEIGHT-IN_GAME_MENU_HEIGHT+IN_GAME_MENU_MARGIN;
 		pauseMenu = game.add.sprite(BACKGROUND_WIDTH-IN_GAME_MENU_WIDTH,BACKGROUND_HEIGHT-IN_GAME_MENU_HEIGHT,'pauseMenu');
-	        pauseButtons.forEach(function(button){button.revive()});
-	        pauseButtons.forEach(function(button){button.bringToTop()});
+		pauseButtons.forEach(function(button){button.revive()});
+		pauseButtons.forEach(function(button){button.bringToTop()});
 	} else {
 		pauseMenu.destroy();
-                pauseButtons.forEach(function(button){button.kill()});
+		pauseButtons.forEach(function(button){button.kill()});
 	}
 	game.isPaused=!game.isPaused;
 }
@@ -243,34 +243,36 @@ function changeLeft()
 
 function holeOverlap(ball, holeSprite)
 {
-	if (ball.name != "steam") {
+	if (ball.name != "steam" && 
+			Math.abs(ball.body.x-holeSprite.body.x) < TILE_SIZE/2 && 
+			Math.abs(ball.body.y-holeSprite.body.y) < TILE_SIZE/2) {
 		buttonPause.inputEnabled = false;
 		if(document.all) {
-		var file = new ActiveXObject("Scripting.FileSystemObject");
-	}
-	else
-	{
-		var file = new XMLHttpRequest();
-	}
-	file.open('HEAD',"levels/"+currentLevel+".txt",false);
-	try{
-		file.send();
-		file.abort();	
-		playing = false;
-		ball.body.velocity.x=0;
-		ball.body.velocity.y=0;
-		endScreen = game.add.sprite(25, 25, 'fail');
-		button = game.add.button(200,300, 'buttonReplay', actionOnClickReplay, this, 2,1,0);
-		button2 = game.add.button(200,250, 'pauseButtonMenu', actionOnClickMenu, this, 2, 1, 0);
-	}
-	catch(err){
-	    playing = false;
-		ball.body.velocity.x=0;
-		ball.body.velocity.y=0;
-		endScreen = game.add.sprite(25, 25, 'fail');
-		button = game.add.button(200,250, 'buttonReplay', actionOnClickReplay, this, 2,1,0);
-		button2 = game.add.button(200,250, 'pauseButtonMenu', actionOnClickMenu, this, 2, 1, 0);
-	}
+			var file = new ActiveXObject("Scripting.FileSystemObject");
+		}
+		else
+		{
+			var file = new XMLHttpRequest();
+		}
+		file.open('HEAD',"levels/"+currentLevel+".txt",false);
+		try{
+			file.send();
+			file.abort();	
+			playing = false;
+			ball.body.velocity.x=0;
+			ball.body.velocity.y=0;
+			endScreen = game.add.sprite(25, 25, 'fail');
+			button = game.add.button(200,300, 'buttonReplay', actionOnClickReplay, this, 2,1,0);
+			button2 = game.add.button(200,250, 'pauseButtonMenu', actionOnClickMenu, this, 2, 1, 0);
+		}
+		catch(err){
+			playing = false;
+			ball.body.velocity.x=0;
+			ball.body.velocity.y=0;
+			endScreen = game.add.sprite(25, 25, 'fail');
+			button = game.add.button(200,250, 'buttonReplay', actionOnClickReplay, this, 2,1,0);
+			button2 = game.add.button(200,250, 'pauseButtonMenu', actionOnClickMenu, this, 2, 1, 0);
+		}
 	}
 }
 
@@ -292,13 +294,29 @@ function saltBlockCollide(ball, saltBlock)
 
 function porousBlockOverlap(ball, porousBlock)
 {
-	if (ball.name == "ice") {
-		ball.body.reset(0,0);
-		
+	if(ball.name === "ice"){
+		var xPos = ball.body.x;
+		var yPos = ball.body.y;	
+		switch(lastDir){
+			case "left":
+				xPos += (xPos % TILE_SIZE);
+				break;
+			case "right":
+				xPos -= (xPos % TILE_SIZE);
+				break;
+			case "up":
+				yPos += (yPos % TILE_SIZE);
+				break;
+			case "down":
+				yPos -= (yPos % TILE_SIZE);
+				break;
+		}
+		ball.body.reset(xPos,yPos);
+
 		//Correction of the imprecision due to the reset function
 		var imprecisionX = ball.x/TILE_SIZE - parseInt(ball.x/TILE_SIZE);
 		var imprecisionY = ball.y/TILE_SIZE - parseInt(ball.y/TILE_SIZE);
-		
+
 		if (imprecisionX > 0.5) {
 			ball.x = parseInt(ball.x/TILE_SIZE + 1)*TILE_SIZE;
 		} else {
@@ -309,35 +327,46 @@ function porousBlockOverlap(ball, porousBlock)
 		} else {
 			ball.y = parseInt(ball.y/TILE_SIZE)*TILE_SIZE;
 		}
-		
+
+
 	}
 }
 
 function itemCollide(ball, itemSprite)
 {
-    if(itemSprite.type == "energyUp"){
-	if (ball.name == "ice"){
-	    ball.animations.play("water");
-	    ball.name = "water";
-	} else if (ball.name == "water"){
-	    ball.animations.play("steam");
-	    ball.name = "steam";
+	if(lastDir === "left"){
+		ball.body.x -= TILE_SIZE/2;
+	}else if(lastDir === "right"){
+		ball.body.x += TILE_SIZE/2;
+	}else if(lastDir === "up"){
+		ball.body.y -= TILE_SIZE/2;
+	}else if(lastDir === "down"){
+		ball.body.y += TILE_SIZE/2;
 	}
-    } else if (itemSprite.type == "energyDown"){
-	if (ball.name == "steam"){
-	    ball.animations.play("water");
-	    ball.name = "water";
-	} else if (ball.name == "water"){
-	    ball.animations.play("ice");
-	    ball.name = "ice";
+
+	if(itemSprite.type == "energyUp"){
+		if (ball.name == "ice"){
+			ball.animations.play("water");
+			ball.name = "water";
+		} else if (ball.name == "water"){
+			ball.animations.play("steam");
+			ball.name = "steam";
+		}
+	} else if (itemSprite.type == "energyDown"){
+		if (ball.name == "steam"){
+			ball.animations.play("water");
+			ball.name = "water";
+		} else if (ball.name == "water"){
+			ball.animations.play("ice");
+			ball.name = "ice";
+		}
 	}
-    }
-    itemSprite.kill();
+	itemSprite.kill();
 }
 
 /*function itemCollide(ball, itemSprite)
-{
-	listItem.push(itemSprite.type);
-	itemSprite.kill();
-}
-*/
+  {
+  listItem.push(itemSprite.type);
+  itemSprite.kill();
+  }
+ */

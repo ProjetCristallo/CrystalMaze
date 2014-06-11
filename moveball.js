@@ -228,7 +228,7 @@ function checkMoveTurn(block,dir)
 }
 
 
-function checkMove(block, dir)
+function checkMove(block, dir, booleanPorous)
 {
 	var authorized = true;
 
@@ -237,16 +237,16 @@ function checkMove(block, dir)
 	}
 
 	if(dir=='up' && (block.y-ball.y==-TILE_SIZE) && (block.x==ball.x) 
-			&& block.body.checkCollision.down){
+			&& (block.body.checkCollision.down || booleanPorous)){
 		authorized = false;
-	} else if(dir=='down' && (block.y-ball.y==TILE_SIZE) && (block.x==ball.x 
-				&& block.body.checkCollision.up)){
+	} else if(dir=='down' && (block.y-ball.y==TILE_SIZE) && (block.x==ball.x) 
+				&& (block.body.checkCollision.up || booleanPorous)){
 		authorized = false;
-	} else if(dir=='left' && (block.x-ball.x==-TILE_SIZE) && (block.y==ball.y 
-				&& block.body.checkCollision.right)){
+	} else if(dir=='left' && (block.x-ball.x==-TILE_SIZE) && (block.y==ball.y) 
+				&& (block.body.checkCollision.right || booleanPorous)){
 		authorized = false;
-	} else if(dir=='right' && ((block.x-ball.x)==TILE_SIZE) && (block.y==ball.y 
-				&& block.body.checkCollision.left)){
+	} else if(dir=='right' && ((block.x-ball.x)==TILE_SIZE) && (block.y==ball.y)
+				&& (block.body.checkCollision.left || booleanPorous)){
 		authorized = false;
 	}
 	return authorized;
@@ -267,7 +267,13 @@ function checkMoveGroup(dir)
 		return false;
 	}
 
-
+	for(var i=0; i<porous.length; i++){
+		current = porous.getAt(i);
+		if(current.alive && ball.name === "ice") {
+			authorized = authorized && checkMove(current, dir, true);
+		}
+	}
+	
 	for(var i=0; i<breakable.length;i++){
 		current = breakable.getAt(i);
 		if(current.alive) {
