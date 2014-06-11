@@ -162,7 +162,6 @@ function preload(){
 	nbrPageTotal = parseInt(1 + (nbrLevel - 1) / 9);
         //alert(nbrPageTotal);
 
-	alert(document.cookie);
     //Number of levels already unblocked
     nbrLevelAccessible = readCookie("levelmax");
     if (nbrLevelAccessible == null) {
@@ -173,7 +172,6 @@ function preload(){
     if (stars == null) {
     	createCookie("stars", "", 30);
     }
-    alert(document.cookie);
 }
 
 
