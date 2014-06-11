@@ -14,6 +14,7 @@ turn 1 4 dr
 turn 1 6 ur
 simple 1 7 
 simple 2 0 
+unilateral 2 2 down
 simple 2 7 
 simple 3 0 
 simple 3 1 
