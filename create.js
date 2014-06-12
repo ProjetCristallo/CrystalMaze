@@ -29,13 +29,13 @@ function create() {
 			textScore = game.add.text(constants.BACKGROUND_WIDTH +
 					constants.MARGIN_TASKBAR,
 					constants.MARGIN_TASKBAR,
-					"Score : 0",
+					"Moves : 0",
 					{font: constants.FONT_TASKBAR.STYLE});
 			textLevel = game.add.text(constants.BACKGROUND_WIDTH +
 					constants.MARGIN_TASKBAR,
 					2*constants.MARGIN_TASKBAR + 
 					constants.FONT_TASKBAR.SIZE,
-					"Niveau "+currentLevel,
+					"Level "+currentLevel,
 					{font: constants.FONT_TASKBAR.STYLE});
 			//Buttons in taskbar
 			buttonPause = game.add.button(
@@ -51,13 +51,13 @@ function create() {
 			textScore = game.add.text(constants.MARGIN_TASKBAR,
 					constants.BACKGROUND_HEIGHT+
 					constants.MARGIN_TASKBAR,
-					"Score : 0",
+					"Moves : 0",
 					{font: constants.FONT_TASKBAR.STYLE});
 			textLevel = game.add.text(constants.MARGIN_TASKBAR,
 					constants.BACKGROUND_HEIGHT+
 					constants.TASKBAR_HEIGHT-
 					constants.MARGIN_TASKBAR,
-					"Niveau "+currentLevel,
+					"Level "+currentLevel,
 					{font: constants.FONT_TASKBAR.STYLE});
 			textLevel.anchor={'x':0,'y':1};
 			//Buttons in taskbar
