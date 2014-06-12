@@ -102,6 +102,10 @@ function preload(){
 	game.load.image('mainMenuSprite',constants.mainMenuSpriteUrl);
 	game.load.image('title',constants.titleUrl);
 
+game.load.image('pauseButtonAide',constants.pauseButtonAideUrl);
+game.load.image('pauseButtonMenu',constants.pauseButtonMenuUrl);
+game.load.image('pauseButtonParametres',constants.pauseButtonParametresUrl);
+game.load.image('pauseButtonRestart',constants.pauseButtonRestartUrl);
 
 	if(constants.USE_CORDOVA){
 		game.load.image('taskBar',constants.taskBarSmartphoneUrl);
@@ -165,7 +169,6 @@ function preload(){
 	game.load.spritesheet('buttonPrevImage',constants.buttonPrevImageUrl,25,50);
 	game.load.spritesheet('buttonCloseImage',constants.buttonCloseImageUrl,35,35);
 	game.load.spritesheet('stars',constants.starsUrl,100,25);
-
 	//Sounds
 	game.load.audio('salt',constants.saltSoundUrl); 
 	game.load.audio('block',constants.blockSoundUrl); 
