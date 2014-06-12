@@ -88,7 +88,7 @@ function create() {
 
 		//Controller
 		controller = game.input.keyboard.createCursorKeys();
-		
+
 		//Enter key
 		enterKey = game.input.keyboard.addKey(13);
 
@@ -103,14 +103,64 @@ function create() {
 		// Title
 		mainMenuSprite = game.add.sprite(0, 0, 'mainMenuSprite');
 		title = game.add.text(150 ,30 ,"Select Level",{});
-		buttonReturn = game.add.button((constants.TASKBAR_WIDTH - 125) / 2, constants.BACKGROUND_HEIGHT + (constants.TASKBAR_HEIGHT - 32) / 2, 'buttonReturn', actionOnClickReturn, this, 1, 0, 2);
-		// Previous page button
-		if (numPageCourant != 1){
-			buttonArrowLeft = game.add.button((constants.TASKBAR_WIDTH - 125) / 2 - 100, constants.BACKGROUND_HEIGHT + (constants.TASKBAR_HEIGHT - 32) / 2, 'prevPage', actionOnClickArrowLeft, this);
-		}
-		// Next page button
-		if (numPageCourant != nbrPageTotal){
-			buttonArrowRight = game.add.button((constants.TASKBAR_WIDTH - 125) / 2 + 200, constants.BACKGROUND_HEIGHT + (constants.TASKBAR_HEIGHT - 32) / 2, 'nextPage', actionOnClickArrowRight, this);
+		if(constants.USE_CORDOVA){
+			buttonReturn = game.add.button(
+					constants.BACKGROUND_WIDTH +
+					(constants.TASKBAR_WIDTH) / 2,
+					(constants.TASKBAR_HEIGHT) / 2,
+					'buttonReturn', actionOnClickReturn,
+					this, 1, 0, 2);
+			buttonReturn.anchor = {'x':0.5,'y':0.5};
+			// Previous page button
+			if (numPageCourant != 1){
+				buttonArrowLeft = game.add.button(
+						constants.BACKGROUND_WIDTH + 
+						0.5*constants.TASKBAR_WIDTH,
+						0.25*constants.TASKBAR_HEIGHT,
+						'prevPage',
+						actionOnClickArrowLeft, this);
+				buttonArrowLeft.anchor = {'x':0.5,'y':0.5};
+			}
+			// Next page button
+			if (numPageCourant != nbrPageTotal){
+				buttonArrowRight = game.add.button(
+						constants.BACKGROUND_WIDTH +
+						0.5*constants.TASKBAR_WIDTH,
+						0.75*constants.TASKBAR_HEIGHT,
+						'nextPage',
+						actionOnClickArrowRight, this);
+				buttonArrowRight.anchor = {'x':0.5,'y':0.5};
+			}
+
+
+		}else{
+			buttonReturn = game.add.button(
+					(constants.TASKBAR_WIDTH) / 2, 
+					constants.BACKGROUND_HEIGHT + 
+					(constants.TASKBAR_HEIGHT) / 2, 
+					'buttonReturn', actionOnClickReturn,
+					this, 1, 0, 2);
+			buttonReturn.anchor = {'x':0.5,'y':0.5};
+			// Previous page button
+			if (numPageCourant != 1){
+				buttonArrowLeft = game.add.button(
+						0.25*constants.TASKBAR_WIDTH, 
+						constants.BACKGROUND_HEIGHT + 
+						(constants.TASKBAR_HEIGHT) / 2,
+						'prevPage', 
+						actionOnClickArrowLeft, this);
+				buttonArrowLeft.anchor = {'x':0.5,'y':0.5};
+			}
+			// Next page button
+			if (numPageCourant != nbrPageTotal){
+				buttonArrowRight = game.add.button(
+						0.75*constants.TASKBAR_WIDTH, 
+						constants.BACKGROUND_HEIGHT + 
+						(constants.TASKBAR_HEIGHT) / 2,
+						'nextPage', 
+						actionOnClickArrowRight, this);
+				buttonArrowRight.anchor = {'x':0.5,'y':0.5}
+			}
 		}
 
 		// levels buttons
