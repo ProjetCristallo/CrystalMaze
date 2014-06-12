@@ -21,27 +21,64 @@ function create() {
 		item = game.add.group();
 		turn = game.add.group();
 		score = 0;	
-
-		//TaskBar
-		taskBarSprite = simple.create(0,constants.BACKGROUND_HEIGHT,'taskBar');
-		game.physics.enable(taskBarSprite,Phaser.Physics.ARCADE);	
+		if(constants.USE_CORDOVA){
+			//TaskBar
+			taskBarSprite=simple.create(constants.BACKGROUND_WIDTH,
+					0,'taskBar');
+			//Info in taskbar
+			textScore = game.add.text(constants.BACKGROUND_WIDTH +
+					constants.MARGIN_TASKBAR,
+					constants.MARGIN_TASKBAR,
+					"Score : 0",
+					{font: constants.FONT_TASKBAR.STYLE});
+			textLevel = game.add.text(constants.BACKGROUND_WIDTH +
+					constants.MARGIN_TASKBAR,
+					2*constants.MARGIN_TASKBAR + 
+					constants.FONT_TASKBAR.SIZE,
+					"Niveau "+currentLevel,
+					{font: constants.FONT_TASKBAR.STYLE});
+			//Buttons in taskbar
+			buttonPause = game.add.button(
+					constants.BACKGROUND_WIDTH + 
+					0.35*constants.TASKBAR_WIDTH,
+					0.8*constants.TASKBAR_HEIGHT,
+					'pause',triggerPause);
+		}else{
+			//TaskBar
+			taskBarSprite = simple.create(0,
+					constants.BACKGROUND_HEIGHT,'taskBar');
+			//Info in taskbar
+			textScore = game.add.text(constants.MARGIN_TASKBAR,
+					constants.BACKGROUND_HEIGHT+
+					constants.MARGIN_TASKBAR,
+					"Score : 0",
+					{font: constants.FONT_TASKBAR.STYLE});
+			textLevel = game.add.text(constants.MARGIN_TASKBAR,
+					constants.BACKGROUND_HEIGHT+
+					constants.TASKBAR_HEIGHT-
+					constants.MARGIN_TASKBAR,
+					"Niveau "+currentLevel,
+					{font: constants.FONT_TASKBAR.STYLE});
+			textLevel.anchor={'x':0,'y':1};
+			//Buttons in taskbar
+			buttonPause = game.add.button(0.85*
+					constants.TASKBAR_WIDTH,
+					constants.BACKGROUND_HEIGHT+
+					constants.MARGIN_TASKBAR,
+					'pause',triggerPause);
+			game.isPaused = false;
+		}
+		game.physics.enable(taskBarSprite,Phaser.Physics.ARCADE);
 		taskBarSprite.body.immovable=true;
 		createLevel();
-		//Info in taskbar
-		textScore = game.add.text(constants.MARGIN_TASKBAR,constants.BACKGROUND_HEIGHT+constants.MARGIN_TASKBAR,"Score : 0",{});		
-		textLevel = game.add.text(constants.MARGIN_TASKBAR,constants.BACKGROUND_HEIGHT+constants.TASKBAR_HEIGHT-constants.MARGIN_TASKBAR,"Niveau "+currentLevel,{});
-		textLevel.anchor={'x':0,'y':1};
-		//Buttons in taskbar
-		buttonPause = game.add.button(0.85*constants.TASKBAR_WIDTH,constants.BACKGROUND_HEIGHT+constants.MARGIN_TASKBAR,'pause',triggerPause);
-		game.isPaused = false;
 
 		var buttonsX = constants.BACKGROUND_WIDTH-constants.IN_GAME_MENU_MARGIN-constants.IN_GAME_MENU_BUTTON_WIDTH;
 		var buttonsY = constants.BACKGROUND_HEIGHT-constants.IN_GAME_MENU_HEIGHT+constants.IN_GAME_MENU_MARGIN;
 		pauseButtons = [];
 		pauseButtons.push(game.add.button(buttonsX,buttonsY,'pauseButtonRestart',function() {
-					game.world.removeAll(true);
-					create();
-					}));
+			game.world.removeAll(true);
+			create();
+		}));
 		pauseButtons.push(game.add.button(buttonsX,buttonsY+1*(constants.IN_GAME_MENU_BUTTON_HEIGHT+constants.IN_GAME_MENU_MARGIN),'pauseButtonMenu',actionOnClickMenu));
 		pauseButtons.push(game.add.button(buttonsX,buttonsY+2*(constants.IN_GAME_MENU_BUTTON_HEIGHT+constants.IN_GAME_MENU_MARGIN),'pauseButtonParametres',function() {}));
 		pauseButtons.push(game.add.button(buttonsX,buttonsY+3*(constants.IN_GAME_MENU_BUTTON_HEIGHT+constants.IN_GAME_MENU_MARGIN),'pauseButtonAide',help));
@@ -83,7 +120,7 @@ function create() {
 			}
 			buttonLevel.name = i;
 			game.add.text(120 + (numSprite % 3) * 175, 100 + parseInt(numSprite/3) * 140, buttonLevel.name, {});
-			
+
 			//Stars
 			var stars = game.add.sprite(75 + (numSprite % 3)*175, 125 + parseInt(numSprite/3) * 140, 'stars');
 			var scoreLevel = readScore(buttonLevel.name);
