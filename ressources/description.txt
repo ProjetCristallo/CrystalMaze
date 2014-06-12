@@ -1,9 +1,25 @@
-Simple
+General tips
+Reach the diamond to win ! The less move you make, the more stars you get !
+Try and catch energy items to change your current state and properties !
 
+Emerald block
+This is the first and simplest block of the game. Unbreakable, it will simply block you  whatever state you are in.
 
-Turn
-These blocks cannot be destroyed. They will change your direction depending on their orientation.
+Porous block
+These blocks are porous. As a consequence, you can pass through them when in liquid or gaseous state.
+
+Glass
+As you may have guessed, you can break these blocks when in solid state.
 
 Hole
 If you are in gaseous state, you will pass over the hole. Otherwise, you will fall and lose.
+
+Ruby block
+You can go through these blocks in only one direction (indicated by the arrow). Otherwise, it will block you like a simple emerald block.
+
+Salt
+You can dissolve this block when in liquid state.
+
+Sapphire block
+These blocks cannot be destroyed. They will change your direction depending on their orientation.
 
