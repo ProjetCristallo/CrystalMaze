@@ -1,5 +1,4 @@
 readConstants("conf.yaml");
-
 var game = new Phaser.Game(constants.BACKGROUND_WIDTH,constants.BACKGROUND_HEIGHT+ constants.TASKBAR_HEIGHT,Phaser.AUTO,'', {preload:preload,create:create,update:update});
 
 var ball;
@@ -138,9 +137,9 @@ game.load.image('levelA',constants.levelAUrl);
 game.load.image('levelI',constants.levelIUrl);
 game.load.image('cross',constants.crossUrl);
 
-game.load.spritesheet('breakable',constants.breakableUrl,60,60);
-game.load.spritesheet('salt',constants.saltUrl,60,60);
-game.load.spritesheet('ball',constants.ballUrl,60,60);
+game.load.spritesheet('breakable',constants.breakableUrl,constants.TILE_SIZE,constants.TILE_SIZE);
+game.load.spritesheet('salt',constants.saltUrl,constants.TILE_SIZE,constants.TILE_SIZE);
+game.load.spritesheet('ball',constants.ballUrl,constants.TILE_SIZE,constants.TILE_SIZE);
 game.load.spritesheet('buttonPlay',constants.buttonPlayUrl,163,55);
 game.load.spritesheet('buttonSelectLevel',constants.buttonSelectLevelUrl, 206, 32);
 game.load.spritesheet('buttonReturn',constants.buttonReturnUrl, 125, 32);
