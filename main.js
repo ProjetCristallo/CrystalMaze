@@ -196,10 +196,19 @@ function preload(){
 	//alert(nbrPageTotal);
 
 	//Number of levels already unblocked
-	nbrLevelAccessible = readCookie("levelmax");
-	if (nbrLevelAccessible == null) {
-		nbrLevelAccessible = 1;
-	}
+	if(constants.USE_CORDOVA){
+		stars = window.localStorage.getItem("cookieSmartphone");
+		if(stars == null){
+			nbrLevelAccessible=1;
+		}else{
+			nbrLevelAccessible = stars.length+1;
+		}
+	}else{
+		nbrLevelAccessible = readCookie("levelmax");
+		if (nbrLevelAccessible == null) {
+			nbrLevelAccessible = 1;
+		}
+	}	
 	//Cookie containing the scores for each level 
 	if(constants.USE_CORDOVA){
 		stars = window.localStorage.getItem("cookieSmartphone");

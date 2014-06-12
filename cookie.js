@@ -44,13 +44,18 @@ function updateCookieStars(nbr) {
 	}	
 	if(constants.USE_CORDOVA){
 		window.localStorage.setItem("cookieSmartphone",stars);
+	console.log("stars : "+stars+" cookie : "+window.localStorage.getItem("cookieSmartphone"));
 	}else{
 		createCookie("stars", stars, 30);
 	}
 }
 
 function readScore(level) {
-	var stars = readCookie("stars");
+	if(constants.USE_CORDOVA){
+		var stars = window.localStorage.getItem("cookieSmartphone");
+	}else{
+		var stars = readCookie("stars");
+	}
 	if (level > stars.length) {
 		return null;
 	} else {
