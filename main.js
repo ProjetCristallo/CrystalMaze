@@ -204,7 +204,14 @@ game.load.image('pauseButtonRestart',constants.pauseButtonRestartUrl);
 
 function doesFileExist(urlToFile)
 {
-	var xhr = new XMLHttpRequest();
+	if(document.all) {
+		var xhr = new ActiveXObject("Scripting.FileSystemObject");
+	}
+	else
+	{
+		var xhr = new XMLHttpRequest();
+	}
+	//var xhr = new XMLHttpRequest();
 	xhr.open('HEAD', urlToFile, false);
 	xhr.send();
 	if (xhr.status == "200") {

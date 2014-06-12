@@ -165,7 +165,7 @@ function create() {
 
 		// levels buttons
 		numSprite = 0;
-		for (var i = (numPageCourant - 1) * 9 + 1; i <= Math.min(numPageCourant * 9, nbrLevel); i++){
+			for (var i = (numPageCourant - 1) * 9 + 1; i <= Math.min(numPageCourant * 9, nbrLevel); i++){
 			if (i <= nbrLevelAccessible){
 				buttonLevel = game.add.button(75 + (numSprite % 3) * 175, 60 + parseInt(numSprite/3) * 140, 'levelA', actionOnClickLevelAccessible, this);
 			} else {
