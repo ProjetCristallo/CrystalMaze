@@ -315,9 +315,9 @@ function breakBlockCollide(ball, breakBlock)
 function saltBlockCollide(ball, saltBlock)
 {
 	if (ball.name == "water") {
-		playSaltSound();
 		saltBlock.damage(1);
 		saltBlock.animations.frame++;
+		//playSaltSound();
 	} else {
 		playBlockedSound();
 	}
