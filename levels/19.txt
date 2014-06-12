@@ -1,6 +1,6 @@
-8 2
+10 8
 begin 0 0 ice
-breakable 0 5 3
+breakable 0 5 2
 porous 0 7 
 porous 1 7 
 item 2 4 energyUp
