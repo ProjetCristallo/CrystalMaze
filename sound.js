@@ -24,6 +24,6 @@ function playGlassSound() {
 }
 
 function playSaltSound() {
-	var noise = game.add.audio('salt',1,true);
+	var noise = game.add.audio('salted',1,true);
 	noise.play('',0,1,false);
 }

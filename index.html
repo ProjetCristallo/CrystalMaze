@@ -75,6 +75,12 @@ under the License.
 		<title>Crystal Maze</title>
 		</head>
 	<body>
+	<!-- pour débogage ios -->
+		<script type="text/javascript">
+    	window.onerror = function(message, url, lineNumber) {
+        console.log("Error: "+message+" in "+url+" at line "+lineNumber);
+    	}
+		</script>
 		<script type="text/javascript" src="phonegap.js"></script>
 		<script type="text/javascript" src="js/index.js"></script>
 		<script type='text/javascript' src='phaser.min.js'></script>

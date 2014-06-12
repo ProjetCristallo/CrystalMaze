@@ -170,7 +170,7 @@ game.load.image('pauseButtonRestart',constants.pauseButtonRestartUrl);
 	game.load.spritesheet('buttonCloseImage',constants.buttonCloseImageUrl,35,35);
 	game.load.spritesheet('stars',constants.starsUrl,100,25);
 	//Sounds
-	game.load.audio('salt',constants.saltSoundUrl); 
+	game.load.audio('salted',constants.saltSoundUrl); 
 	game.load.audio('block',constants.blockSoundUrl); 
 	game.load.audio('glass', constants.glassSoundUrl );
 	game.load.audio('drop', constants.dropSoundUrl );
