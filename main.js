@@ -201,11 +201,14 @@ function preload(){
 		nbrLevelAccessible = 1;
 	}
 	//Cookie containing the scores for each level 
-	stars = readCookie("stars");
-	if (stars == null) {
-		if(constants.USE_CORDOVA){
+	if(constants.USE_CORDOVA){
+		stars = window.localStorage.getItem("cookieSmartphone");
+		if(stars == null){
 			window.localStorage.setItem("cookieSmartphone","");
-		}else{
+		}
+	}else{
+		stars = readCookie("stars");
+		if (stars == null) {
 			createCookie("stars", "", 30);
 		}
 	}
