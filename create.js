@@ -35,7 +35,7 @@ function create() {
 					constants.MARGIN_TASKBAR,
 					2*constants.MARGIN_TASKBAR + 
 					constants.FONT_TASKBAR.SIZE,
-					"Level "+currentLevel,
+					"Level : "+currentLevel,
 					{font: constants.FONT_TASKBAR.STYLE});
 			//Buttons in taskbar
 			buttonPause = game.add.button(
@@ -57,7 +57,7 @@ function create() {
 					constants.BACKGROUND_HEIGHT+
 					constants.TASKBAR_HEIGHT-
 					constants.MARGIN_TASKBAR,
-					"Level "+currentLevel,
+					"Level : "+currentLevel,
 					{font: constants.FONT_TASKBAR.STYLE});
 			textLevel.anchor={'x':0,'y':1};
 			//Buttons in taskbar
@@ -102,7 +102,7 @@ function create() {
 
 		// Title
 		mainMenuSprite = game.add.sprite(0, 0, 'mainMenuSprite');
-		title = game.add.text(150 ,30 ,"Selection du niveau",{});
+		title = game.add.text(150 ,30 ,"Select Level",{});
 		buttonReturn = game.add.button((constants.TASKBAR_WIDTH - 125) / 2, constants.BACKGROUND_HEIGHT + (constants.TASKBAR_HEIGHT - 32) / 2, 'buttonReturn', actionOnClickReturn, this, 1, 0, 2);
 		// Previous page button
 		if (numPageCourant != 1){

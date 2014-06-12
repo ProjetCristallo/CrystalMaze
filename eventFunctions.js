@@ -133,7 +133,7 @@ function actionOnClickNextLevel()
 	//button.kill();
 	//button2.kill();
 	currentLevel = currentLevel + 1;
-	textLevel.setText("Niveau " + currentLevel);
+	textLevel.setText("Level " + currentLevel);
 	playing = true;
 	game.world.removeAll(true);
 	create();
