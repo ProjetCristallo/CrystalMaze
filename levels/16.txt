@@ -1,4 +1,4 @@
-8 2
+9 6
 item 0 0 energyUp
 unilateral 0 1 right
 unilateral 0 2 right

@@ -1,4 +1,4 @@
-8 2
+8 4
 begin 0 0 ice
 simple 0 2 
 hole 0 3 

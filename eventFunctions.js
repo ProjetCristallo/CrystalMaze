@@ -231,9 +231,9 @@ function actionOnClickLevelInaccessible(button)
 
 function triggerPause() {
 	if(!game.isPaused){
-		var buttonsX = BACKGROUND_WIDTH-IN_GAME_MENU_MARGIN-IN_GAME_MENU_BUTTON_WIDTH;
-		var buttonsY = BACKGROUND_HEIGHT-IN_GAME_MENU_HEIGHT+IN_GAME_MENU_MARGIN;
-		pauseMenu = game.add.sprite(BACKGROUND_WIDTH-IN_GAME_MENU_WIDTH,BACKGROUND_HEIGHT-IN_GAME_MENU_HEIGHT,'pauseMenu');
+		var buttonsX = constants.BACKGROUND_WIDTH-constants.IN_GAME_MENU_MARGIN-constants.IN_GAME_MENU_BUTTON_WIDTH;
+		var buttonsY = constants.BACKGROUND_HEIGHT-constants.IN_GAME_MENU_HEIGHT+constants.IN_GAME_MENU_MARGIN;
+		pauseMenu = game.add.sprite(constants.BACKGROUND_WIDTH-constants.IN_GAME_MENU_WIDTH,constants.BACKGROUND_HEIGHT-constants.IN_GAME_MENU_HEIGHT,'pauseMenu');
 		pauseButtons.forEach(function(button){button.revive()});
 		pauseButtons.forEach(function(button){button.bringToTop()});
 	} else {
@@ -258,7 +258,7 @@ function changeUp()
 		ball.isMoving = true;
 	}
 	if(!ball.isMoving){
-		ball.body.velocity.y = -BALL_SPEED; 
+		ball.body.velocity.y = -constants.BALL.SPEED; 
 	}
 }
 
@@ -273,7 +273,7 @@ function changeDown()
 		ball.isMoving = true;
 	}
 	if(!ball.isMoving){
-		ball.body.velocity.y = +BALL_SPEED;  
+		ball.body.velocity.y = +constants.BALL.SPEED;  
 	}
 }
 
@@ -288,7 +288,7 @@ function changeRight()
 		ball.isMoving = true;
 	}
 	if(!ball.isMoving){
-		ball.body.velocity.x = +BALL_SPEED;
+		ball.body.velocity.x = +constants.BALL.SPEED;
 	}
 }
 
@@ -303,7 +303,7 @@ function changeLeft()
 		ball.isMoving = true;
 	}
 	if(!ball.isMoving){
-		ball.body.velocity.x = -BALL_SPEED;
+		ball.body.velocity.x = -constants.BALL.SPEED;
 	}
 }
 
@@ -367,33 +367,33 @@ function porousBlockOverlap(ball, porousBlock)
 		var yPos = ball.body.y;	
 		switch(lastDir){
 			case "left":
-				xPos += (xPos % TILE_SIZE);
+				xPos += (xPos % constants.TILE_SIZE);
 				break;
 			case "right":
-				xPos -= (xPos % TILE_SIZE);
+				xPos -= (xPos % constants.TILE_SIZE);
 				break;
 			case "up":
-				yPos += (yPos % TILE_SIZE);
+				yPos += (yPos % constants.TILE_SIZE);
 				break;
 			case "down":
-				yPos -= (yPos % TILE_SIZE);
+				yPos -= (yPos % constants.TILE_SIZE);
 				break;
 		}
 		ball.body.reset(xPos,yPos);
 
 		//Correction of the imprecision due to the reset function
-		var imprecisionX = ball.x/TILE_SIZE - parseInt(ball.x/TILE_SIZE);
-		var imprecisionY = ball.y/TILE_SIZE - parseInt(ball.y/TILE_SIZE);
+		var imprecisionX = ball.x/constants.TILE_SIZE - parseInt(ball.x/constants.TILE_SIZE);
+		var imprecisionY = ball.y/constants.TILE_SIZE - parseInt(ball.y/constants.TILE_SIZE);
 
 		if (imprecisionX > 0.5) {
-			ball.x = parseInt(ball.x/TILE_SIZE + 1)*TILE_SIZE;
+			ball.x = parseInt(ball.x/constants.TILE_SIZE + 1)*constants.TILE_SIZE;
 		} else {
-			ball.x = parseInt(ball.x/TILE_SIZE)*TILE_SIZE;
+			ball.x = parseInt(ball.x/constants.TILE_SIZE)*constants.TILE_SIZE;
 		}
 		if (imprecisionY > 0.5) {
-			ball.y = parseInt(ball.y/TILE_SIZE + 1)*TILE_SIZE;
+			ball.y = parseInt(ball.y/constants.TILE_SIZE + 1)*constants.TILE_SIZE;
 		} else {
-			ball.y = parseInt(ball.y/TILE_SIZE)*TILE_SIZE;
+			ball.y = parseInt(ball.y/constants.TILE_SIZE)*constants.TILE_SIZE;
 		}
 
 

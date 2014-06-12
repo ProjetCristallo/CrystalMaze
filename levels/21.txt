@@ -1,6 +1,6 @@
-8 2
+33 29
 item 0 1 energyUp
-breakable 0 2 3
+breakable 0 2 2
 unilateral 0 6 down
 simple 1 0 
 simple 1 1 
