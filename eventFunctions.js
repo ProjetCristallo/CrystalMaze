@@ -214,6 +214,23 @@ function actionOnClickLevelInaccessible(button)
 			,this);
 }
 
+function actionOnClickMute() {
+	mute = !mute;
+	/*playing = false;	
+	if (mute == false) {
+		var soundOn = game.add.sprite(300, 240, 'soundOn');
+		game.time.events.add(Phaser.Timer.SECOND * 3, fadePicture(soundOn), this);
+	} else {
+		var soundOff = game.add.sprite(300, 240, 'soundOff');
+		game.time.events.add(Phaser.Timer.SECOND * 3, fadePicture(soundOff), this);
+	}*/
+}
+
+/*function fadePicture(picture) {
+	game.add.tween(picture).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
+	playing = true;
+}*/
+
 
 function triggerPause() {
 	if(!game.isPaused){

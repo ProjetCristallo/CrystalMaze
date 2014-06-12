@@ -80,7 +80,7 @@ function create() {
 			create();
 		}));
 		pauseButtons.push(game.add.button(buttonsX,buttonsY+1*(constants.IN_GAME_MENU_BUTTON_HEIGHT+constants.IN_GAME_MENU_MARGIN),'pauseButtonMenu',actionOnClickMenu));
-		pauseButtons.push(game.add.button(buttonsX,buttonsY+2*(constants.IN_GAME_MENU_BUTTON_HEIGHT+constants.IN_GAME_MENU_MARGIN),'pauseButtonParametres',function() {}));
+		pauseButtons.push(game.add.button(buttonsX,buttonsY+2*(constants.IN_GAME_MENU_BUTTON_HEIGHT+constants.IN_GAME_MENU_MARGIN),'pauseButtonMute',actionOnClickMute));
 		pauseButtons.push(game.add.button(buttonsX,buttonsY+3*(constants.IN_GAME_MENU_BUTTON_HEIGHT+constants.IN_GAME_MENU_MARGIN),'pauseButtonAide',help));
 
 		pauseButtons.forEach(function(button){button.kill()});

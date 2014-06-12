@@ -67,6 +67,7 @@ pauseButtonAideUrl : ressources/ButtonAide.png
 pauseButtonMenuUrl : ressources/pauseButtonMenu.png
 pauseButtonParametresUrl : ressources/ButtonParametres.png
 pauseButtonRestartUrl : ressources/ButtonRestart.png
+pauseButtonMuteUrl : ressources/ButtonMute.png
 turnULUrl : ressources/turn_ul.png
 turnURUrl : ressources/turn_ur.png
 turnDLUrl : ressources/turn_dl.png
@@ -94,6 +95,8 @@ buttonNextImageUrl : ressources/buttonNextImage.png
 buttonPrevImageUrl : ressources/buttonPrevImage.png
 buttonCloseImageUrl : ressources/buttonCloseImage.png
 starsUrl : ressources/Star.png
+soundOnUrl : ressources/soundOn.png
+soundOffUrl : ressources/soundOff.png
 
 saltSoundUrl : ressources/sounds/salt.MP3
 blockSoundUrl : ressources/sounds/block.MP3

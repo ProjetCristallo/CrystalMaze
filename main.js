@@ -81,7 +81,8 @@ var listItem;
 var score;
 var turn;
 
-
+//Music volume
+var mute = 0;
 
 var progressPageLoaded = false;
 var progressInfo =null;
@@ -104,7 +105,7 @@ function preload(){
 
 game.load.image('pauseButtonAide',constants.pauseButtonAideUrl);
 game.load.image('pauseButtonMenu',constants.pauseButtonMenuUrl);
-game.load.image('pauseButtonParametres',constants.pauseButtonParametresUrl);
+game.load.image('pauseButtonMute',constants.pauseButtonMuteUrl);
 game.load.image('pauseButtonRestart',constants.pauseButtonRestartUrl);
 
 	if(constants.USE_CORDOVA){
@@ -140,6 +141,9 @@ game.load.image('pauseButtonRestart',constants.pauseButtonRestartUrl);
 	game.load.image('pauseButtonMenu',constants.pauseButtonMenuUrl);
 	game.load.image('pauseButtonParametres',constants.pauseButtonParametresUrl);
 	game.load.image('pauseButtonRestart',constants.pauseButtonRestartUrl);
+	game.load.image('pauseButtonMute', constants.pauseButtonMuteUrl);
+	game.load.image('soundOn', constants.soundOnUrl);
+	game.load.image('soundOff', constants.soundOffUrl);
 
 	game.load.image('turnUL',constants.turnULUrl);
 	game.load.image('turnUR',constants.turnURUrl);
