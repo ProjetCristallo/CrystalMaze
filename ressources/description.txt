@@ -9,7 +9,7 @@ Porous block
 These blocks are porous. As a consequence, you can pass through them when in liquid or gaseous state.
 
 Glass
-As you may have guessed, you can break these blocks when in solid state.
+As you may have guessed, you can break these blocks but only when in solid state.
 
 Hole
 If you are in gaseous state, you will pass over the hole. Otherwise, you will fall and lose.
@@ -18,7 +18,7 @@ Ruby block
 You can go through these blocks in only one direction (indicated by the arrow). Otherwise, it will block you like a simple emerald block.
 
 Salt
-You can dissolve this block when in liquid state.
+You can dissolve this block when in liquid state. Otherwise it will block you.
 
 Sapphire block
 These blocks cannot be destroyed. They will change your direction depending on their orientation.
