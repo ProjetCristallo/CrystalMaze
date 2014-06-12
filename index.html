@@ -19,6 +19,8 @@ Unless required by applicable law or agreed to in writing,
        -->
        <html>
        <head>
+<script type='text/javascript' src='constants.js'></script>
+<script type="text/javascript" src="js-yaml.js"></script>
        <meta charset="utf-8" />
        <meta name="format-detection" content="telephone=no" />
        <meta name="viewport"/>
@@ -30,8 +32,8 @@ Unless required by applicable law or agreed to in writing,
 	       var width = (window.innerWidth);
 	       var height = (window.innerHeight);
        }
-var scaleWidth = width/600;
-var scaleHeight = height/580;
+var scaleWidth = width/constants.BACKGROUND_WIDTH;
+var scaleHeight = height/(constants.BACKGROUND_HEIGHT+constants.BACKGROUND_WIDH);
 var scale = Math.min(scaleWidth,scaleHeight);
 viewport = document.querySelector("meta[name=viewport]");
 viewport.setAttribute('content', 'user-scalable=1, initial-scale='+scale+',maximum-scale=10, minimum-scale=0.2');
@@ -44,7 +46,6 @@ viewport.setAttribute('content', 'user-scalable=1, initial-scale='+scale+',maxim
 <script type="text/javascript" src="js-yaml.js"></script>
 <script type="text/javascript" src="phonegap.js"></script>
 <script type="text/javascript" src="js/index.js"></script>
-<script type='text/javascript' src='constants.js'></script>
 <script type='text/javascript' src='phaser.min.js'></script>
 <script type='text/javascript' src='hammer.min.js'></script>
 <script type='text/javascript' src='parser.js'></script>
