@@ -35,6 +35,7 @@ function endLevel(ball, endSprite)
 		stars = game.add.sprite(constants.END_SCREEN.OFFSET.X+constants.END_SCREEN.BUTTONS_OFFSET.X,
 				constants.END_SCREEN.OFFSET.Y+constants.END_SCREEN.STARS_MARGIN,
 				'stars');
+				
 		//We check the number of stars to light on
 		var nbrStars;
 		stars.animations.frame++;
@@ -54,7 +55,7 @@ function endLevel(ball, endSprite)
 			nbrLevelAccessible = currentLevel + 1;
 			updateCookieNbrLevel(nbrLevelAccessible);	
 		}
-	}
+	}	
 }
 
 function endGame(ball, endSprite) {
@@ -249,6 +250,7 @@ function changeUp()
 
 function changeDown()
 {
+	
 	if(ball.body.velocity.x == 0 && ball.body.velocity.y == 0)
 	{
 		ball.isMoving = false;
@@ -302,16 +304,22 @@ function holeOverlap(ball, holeSprite)
 function breakBlockCollide(ball, breakBlock)
 {
 	if (ball.name == "ice") {
+		playGlassSound();
 		breakBlock.damage(1);
 		breakBlock.animations.frame++;
+	} else {
+		playBlockedSound();
 	}
 }
 
 function saltBlockCollide(ball, saltBlock)
 {
 	if (ball.name == "water") {
+		playSaltSound();
 		saltBlock.damage(1);
 		saltBlock.animations.frame++;
+	} else {
+		playBlockedSound();
 	}
 }
 
@@ -322,6 +330,7 @@ function porousBlockOverlap(ball, porousBlock)
 			 (lastDir === "down" && (ball.body.y-porousBlock.body.y)<0) ||
 			 (lastDir === "right" && (ball.body.x-porousBlock.body.x)<0) ||
 			 (lastDir === "left" && (ball.body.x-porousBlock.body.x)>0))){  
+		playBlockedSound();
 		var xPos = ball.body.x;
 		var yPos = ball.body.y;	
 		switch(lastDir){
@@ -377,17 +386,21 @@ function itemCollide(ball, itemSprite)
 	 */
 	if(itemSprite.type == "energyUp"){
 		if (ball.name == "ice"){
+			playDropSound();
 			ball.animations.play("water");
 			ball.name = "water";
 		} else if (ball.name == "water"){
+			playSteamSound();
 			ball.animations.play("steam");
 			ball.name = "steam";
 		}
 	} else if (itemSprite.type == "energyDown"){
 		if (ball.name == "steam"){
+			playDropSound();
 			ball.animations.play("water");
 			ball.name = "water";
 		} else if (ball.name == "water"){
+			//playIceSound();
 			ball.animations.play("ice");
 			ball.name = "ice";
 		}

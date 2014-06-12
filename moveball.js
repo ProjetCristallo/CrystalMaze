@@ -30,7 +30,7 @@ function moveBall() {
 		//we check inputs from the user
 		if((controller.left.isDown || swipe==='left')
 				&& checkMoveGroup('left'))
-		{
+		{	
 			lastDir = 'left';
 			swipe = null;
 			lastTurnBlocked = null;
@@ -41,7 +41,7 @@ function moveBall() {
 		}
 		else if((controller.right.isDown || swipe==='right')
 				&& checkMoveGroup('right'))
-		{
+		{	
 			lastDir = 'right';
 			swipe = null;	
 			lastTurnBlocked = null;
@@ -52,7 +52,7 @@ function moveBall() {
 		}
 		else if((controller.up.isDown || swipe==='up')
 				&& checkMoveGroup('up'))
-		{
+		{	
 			lastDir = 'up';
 			swipe = null;	
 			lastTurnBlocked = null;
@@ -131,6 +131,7 @@ function turnBall(turnBlock)
 	ball.body.x = turnBlock.body.x;
 	ball.body.y = turnBlock.body.y;
 
+	
 	if(lastDir === 'left' || lastDir === 'right'){
 		ball.body.velocity.x = 0;
 		if(turnBlock.body.checkCollision.up === false){
@@ -262,7 +263,7 @@ function checkMoveGroup(dir)
 	//We check with the game boundaries
 	if((dir=='up' && ball.y==0) || 
 			(dir=='down' && ball.y==constants.BACKGROUND_HEIGHT-ball.width) || 
-			(dir=='right' && ball.x==game.width-ball.width) || 
+			(dir=='right' && ball.x==constants.BACKGROUND_WIDTH-ball.width) || 
 			(dir=='left' && ball.x==0)) {
 		return false;
 	}
