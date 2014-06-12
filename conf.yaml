@@ -1,3 +1,16 @@
+#End Screens
+END_SCREEN :
+    OFFSET :
+        X : 25
+        Y : 25
+    BUTTONS_OFFSET :
+        X : 200
+        Y : 250
+    BUTTONS_MARGIN : 50
+    STARS_MARGIN : 200
+    
+
+
 BACKGROUND_HEIGHT : 480
 BACKGROUND_WIDTH : 600
 
