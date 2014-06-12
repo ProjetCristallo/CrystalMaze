@@ -51,6 +51,9 @@ function create() {
 
 		//Controller
 		controller = game.input.keyboard.createCursorKeys();
+		
+		//Enter key
+		enterKey = game.input.keyboard.addKey(13);
 
 	} else if(mainMenu){
 		mainMenuSprite = game.add.sprite(0, 0, 'mainMenuSprite');

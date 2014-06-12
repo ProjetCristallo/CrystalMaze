@@ -17,79 +17,45 @@ function endLevel(ball, endSprite)
 		endGame(ball,endSprite);
 	} else {
 		buttonPause.inputEnabled = false;
-		if(document.all) {
-			var file = new ActiveXObject("Scripting.FileSystemObject");
-		}
-		else
-		{
-			var file = new XMLHttpRequest();
-		}
-		file.open('HEAD',"levels/"+(currentLevel+1)+".txt",false);
-		try{
-			file.send();
-			file.abort();	
-			playing = false;
-			ball.body.velocity.x=0;
-			ball.body.velocity.y=0;
-			endSprite.kill();
-			endScreen = game.add.sprite(25, 25, 'win');
-			button = game.add.button(200,250, 'buttonNextLevel', actionOnClickNextLevel, this, 2,1,0);
-			button2 = game.add.button(200,300, 'buttonReplay', actionOnClickReplay, this, 2,1,0);
-			button3 = game.add.button(200,350, 'pauseButtonMenu', actionOnClickMenu, this, 2, 1, 0);
-			
-			stars = game.add.sprite(300,170,'stars');
-			//We check the number of stars to light on
-			var nbrStars;
+		playing = false;
+		ball.body.velocity.x=0;
+		ball.body.velocity.y=0;
+		endSprite.kill();
+		endScreen = game.add.sprite(constants.END_SCREEN.OFFSET.X,constants.END_SCREEN.OFFSET.Y, 'win');
+		button = game.add.button(constants.END_SCREEN.OFFSET.X+constants.END_SCREEN.BUTTONS_OFFSET.X,
+				constants.END_SCREEN.OFFSET.Y+constants.END_SCREEN.BUTTONS_OFFSET.Y,
+				'buttonNextLevel', actionOnClickNextLevel, this, 2,1,0);
+		button2 = game.add.button(constants.END_SCREEN.OFFSET.X+constants.END_SCREEN.BUTTONS_OFFSET.X,
+				constants.END_SCREEN.OFFSET.Y+constants.END_SCREEN.BUTTONS_OFFSET.Y+constants.END_SCREEN.BUTTONS_MARGIN,
+				'buttonReplay', actionOnClickReplay, this, 2,1,0);
+		button3 = game.add.button(constants.END_SCREEN.OFFSET.X+constants.END_SCREEN.BUTTONS_OFFSET.X,
+				constants.END_SCREEN.OFFSET.Y+constants.END_SCREEN.BUTTONS_OFFSET.Y+2*constants.END_SCREEN.BUTTONS_MARGIN,
+				'pauseButtonMenu', actionOnClickMenu, this, 2, 1, 0);
+
+		stars = game.add.sprite(constants.END_SCREEN.OFFSET.X+constants.END_SCREEN.BUTTONS_OFFSET.X,
+				constants.END_SCREEN.OFFSET.Y+constants.END_SCREEN.STARS_MARGIN,
+				'stars');
+				
+		//We check the number of stars to light on
+		var nbrStars;
+		stars.animations.frame++;
+		nbrStars = 1;
+		if (score <= twoStars) {
 			stars.animations.frame++;
-			nbrStars = 1;
-			if (score <= twoStars) {
+			nbrStars = 2;
+			if (score <= threeStars) {
 				stars.animations.frame++;
-				nbrStars = 2;
-				if (score <= threeStars) {
-				stars.animations.frame++;
-					nbrStars = 3;
-				}
-			}
-			updateCookieStars(nbrStars);
-		
-			//We update the number of unblocked levels	
-			if (currentLevel + 1 > nbrLevelAccessible && currentLevel + 1 <= nbrLevel) {
-				nbrLevelAccessible = currentLevel + 1;
-				updateCookieNbrLevel(nbrLevelAccessible);	
+				nbrStars = 3;
 			}
 		}
-		catch(err){
-			playing = false;
-			ball.body.velocity.x=0;
-			ball.body.velocity.y=0;
-			endSprite.kill();
-			endScreen = game.add.sprite(25, 25, 'win');
-			button = game.add.button(200,250, 'buttonReplay', actionOnClickReplay, this, 2,1,0);
-			button2 = game.add.button(200,300, 'buttonRestart', actionOnClickRestart, this, 2, 1, 0);
-			button3 = game.add.button(200,350, 'pauseButtonMenu', actionOnClickMenu, this, 2, 1, 0);
-			
-			stars = game.add.sprite(300,170,'stars');
-			//We check the number of stars to light on
-			var nbrStars;
-			stars.animations.frame++;
-			nbrStars = 1;
-			if (score <= twoStars) {
-				stars.animations.frame++;
-				nbrStars = 2;
-				if (score <= threeStars) {
-				stars.animations.frame++;
-					nbrStars = 3;
-				}
-			}
-			updateCookieStars(nbrStars);
-		
-			//We update the number of unblocked levels	
-			if (currentLevel + 1 > nbrLevelAccessible && currentLevel + 1 <= nbrLevel) {
-				nbrLevelAccessible = currentLevel + 1;
-				updateCookieNbrLevel(nbrLevelAccessible);	
-			}
+		updateCookieStars(nbrStars);
+
+		//We update the number of unblocked levels	
+		if (currentLevel + 1 > nbrLevelAccessible && currentLevel + 1 <= nbrLevel) {
+			nbrLevelAccessible = currentLevel + 1;
+			updateCookieNbrLevel(nbrLevelAccessible);	
 		}
-	}
+	}	
 }
 
 function endGame(ball, endSprite) {
@@ -98,10 +64,16 @@ function endGame(ball, endSprite) {
 	ball.body.velocity.x=0;
 	ball.body.velocity.y=0;
 	buttonPause.inputEnabled = false;
-	endScreen = game.add.sprite(0, 0, 'endScreen');
-	button2 = game.add.button(200,300, 'buttonReplay', actionOnClickReplay, this, 2,1,0);
-	button3 = game.add.button(200,350, 'pauseButtonMenu', actionOnClickMenu, this, 2, 1, 0);
-	stars = game.add.sprite(300,170,'stars');
+	endScreen = game.add.sprite(constants.END_SCREEN.OFFSET.X,constants.END_SCREEN.OFFSET.Y, 'endScreen');
+	button2 = game.add.button(constants.END_SCREEN.OFFSET.X+constants.END_SCREEN.BUTTONS_OFFSET.X,
+	            constants.END_SCREEN.OFFSET.Y+constants.END_SCREEN.BUTTONS_OFFSET.Y,
+				'buttonReplay', actionOnClickReplay, this, 2,1,0);
+	button3 = game.add.button(constants.END_SCREEN.OFFSET.X+constants.END_SCREEN.BUTTONS_OFFSET.X,
+				constants.END_SCREEN.OFFSET.Y+constants.END_SCREEN.BUTTONS_OFFSET.Y+constants.END_SCREEN.BUTTONS_MARGIN,
+				'pauseButtonMenu', actionOnClickMenu, this, 2, 1, 0);
+	stars = game.add.sprite(constants.END_SCREEN.OFFSET.X+constants.END_SCREEN.BUTTONS_OFFSET.X,
+				constants.END_SCREEN.OFFSET.Y+constants.END_SCREEN.STARS_MARGIN,
+				'stars');
 			//We check the number of stars to light on
 			var nbrStars;
 			stars.animations.frame++;
@@ -121,6 +93,20 @@ function endGame(ball, endSprite) {
 				nbrLevelAccessible = currentLevel + 1;
 				updateCookieNbrLevel(nbrLevelAccessible);	
 			}
+}
+
+function loseGame() {
+		buttonPause.inputEnabled = false;
+		playing = false;
+		ball.body.velocity.x=0;
+		ball.body.velocity.y=0;
+		endScreen = game.add.sprite(constants.END_SCREEN.OFFSET.X,constants.END_SCREEN.OFFSET.Y,'fail');
+		button = game.add.button(constants.END_SCREEN.OFFSET.X+constants.END_SCREEN.BUTTONS_OFFSET.X,
+	            constants.END_SCREEN.OFFSET.Y+constants.END_SCREEN.BUTTONS_OFFSET.Y,
+	            'buttonReplay', actionOnClickReplay, this, 2,1,0);
+		button2 = game.add.button(constants.END_SCREEN.OFFSET.X+constants.END_SCREEN.BUTTONS_OFFSET.X,
+				constants.END_SCREEN.OFFSET.Y+constants.END_SCREEN.BUTTONS_OFFSET.Y+constants.END_SCREEN.BUTTONS_MARGIN,
+				'pauseButtonMenu', actionOnClickMenu, this, 2, 1, 0);
 }
 
 
@@ -311,39 +297,14 @@ function changeLeft()
 function holeOverlap(ball, holeSprite)
 {
 	if (ball.name != "steam" && hardOverlap(ball,holeSprite)){
-		buttonPause.inputEnabled = false;
-		if(document.all) {
-			var file = new ActiveXObject("Scripting.FileSystemObject");
-		}
-		else
-		{
-			var file = new XMLHttpRequest();
-		}
-		file.open('HEAD',"levels/"+currentLevel+".txt",false);
-		try{
-			file.send();
-			file.abort();	
-			playing = false;
-			ball.body.velocity.x=0;
-			ball.body.velocity.y=0;
-			endScreen = game.add.sprite(25, 25, 'fail');
-			button = game.add.button(200,300, 'buttonReplay', actionOnClickReplay, this, 2,1,0);
-			button2 = game.add.button(200,250, 'pauseButtonMenu', actionOnClickMenu, this, 2, 1, 0);
-		}
-		catch(err){
-			playing = false;
-			ball.body.velocity.x=0;
-			ball.body.velocity.y=0;
-			endScreen = game.add.sprite(25, 25, 'fail');
-			button = game.add.button(200,250, 'buttonReplay', actionOnClickReplay, this, 2,1,0);
-			button2 = game.add.button(200,250, 'pauseButtonMenu', actionOnClickMenu, this, 2, 1, 0);
-		}
+        loseGame();
 	}
 }
 
 function breakBlockCollide(ball, breakBlock)
 {
 	if (ball.name == "ice") {
+		playGlassSound();
 		breakBlock.damage(1);
 		breakBlock.animations.frame++;
 	} else {
@@ -354,6 +315,7 @@ function breakBlockCollide(ball, breakBlock)
 function saltBlockCollide(ball, saltBlock)
 {
 	if (ball.name == "water") {
+		playSaltSound();
 		saltBlock.damage(1);
 		saltBlock.animations.frame++;
 	} else {
@@ -424,7 +386,7 @@ function itemCollide(ball, itemSprite)
 	 */
 	if(itemSprite.type == "energyUp"){
 		if (ball.name == "ice"){
-			playWaterSound();
+			playDropSound();
 			ball.animations.play("water");
 			ball.name = "water";
 		} else if (ball.name == "water"){
@@ -434,11 +396,11 @@ function itemCollide(ball, itemSprite)
 		}
 	} else if (itemSprite.type == "energyDown"){
 		if (ball.name == "steam"){
-			playWaterSound();
+			playDropSound();
 			ball.animations.play("water");
 			ball.name = "water";
 		} else if (ball.name == "water"){
-			playIceSound();
+			//playIceSound();
 			ball.animations.play("ice");
 			ball.name = "ice";
 		}
