@@ -264,6 +264,7 @@ function changeUp()
 
 function changeDown()
 {
+	
 	if(ball.body.velocity.x == 0 && ball.body.velocity.y == 0)
 	{
 		ball.isMoving = false;
@@ -345,6 +346,8 @@ function breakBlockCollide(ball, breakBlock)
 	if (ball.name == "ice") {
 		breakBlock.damage(1);
 		breakBlock.animations.frame++;
+	} else {
+		playBlockedSound();
 	}
 }
 
@@ -353,6 +356,8 @@ function saltBlockCollide(ball, saltBlock)
 	if (ball.name == "water") {
 		saltBlock.damage(1);
 		saltBlock.animations.frame++;
+	} else {
+		playBlockedSound();
 	}
 }
 
@@ -363,6 +368,7 @@ function porousBlockOverlap(ball, porousBlock)
 			 (lastDir === "down" && (ball.body.y-porousBlock.body.y)<0) ||
 			 (lastDir === "right" && (ball.body.x-porousBlock.body.x)<0) ||
 			 (lastDir === "left" && (ball.body.x-porousBlock.body.x)>0))){  
+		playBlockedSound();
 		var xPos = ball.body.x;
 		var yPos = ball.body.y;	
 		switch(lastDir){
@@ -418,17 +424,21 @@ function itemCollide(ball, itemSprite)
 	 */
 	if(itemSprite.type == "energyUp"){
 		if (ball.name == "ice"){
+			playWaterSound();
 			ball.animations.play("water");
 			ball.name = "water";
 		} else if (ball.name == "water"){
+			playSteamSound();
 			ball.animations.play("steam");
 			ball.name = "steam";
 		}
 	} else if (itemSprite.type == "energyDown"){
 		if (ball.name == "steam"){
+			playWaterSound();
 			ball.animations.play("water");
 			ball.name = "water";
 		} else if (ball.name == "water"){
+			playIceSound();
 			ball.animations.play("ice");
 			ball.name = "ice";
 		}

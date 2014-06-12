@@ -73,6 +73,7 @@ var score;
 var turn;
 
 
+
 var progressPageLoaded = false;
 var progressInfo =null;
 function updateProgressBar(){
@@ -151,8 +152,15 @@ function preload(){
 	game.load.spritesheet('buttonPrevImage','ressources/buttonPrevImage.png',25,50);
 	game.load.spritesheet('buttonCloseImage','ressources/buttonCloseImage.png',35,35);
 	game.load.spritesheet('stars', 'ressources/Star.png',100,25);
-
 	
+	//Sounds
+	game.load.audio('blop', 'ressources/sounds/blop.MP3');
+	game.load.audio('block', 'ressources/sounds/block.MP3');
+	game.load.audio('bouton', 'ressources/sounds/bouton.MP3');
+	game.load.audio('craquement', 'ressources/sounds/craquement.MP3');
+	game.load.audio('glace', 'ressources/sounds/glace.MP3');
+	game.load.audio('goutte', 'ressources/sounds/goutte.MP3');
+
 	game.load.onFileComplete.add(updateProgressBar, this);
 
     while (doesFileExist("levels/"+nbrLevel+".txt")){
