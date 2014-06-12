@@ -14,6 +14,9 @@ END_SCREEN :
 BACKGROUND_HEIGHT : 480
 BACKGROUND_WIDTH : 600
 
+FONT_TASKBAR :
+        STYLE : 35px Arial
+        SIZE : 35
 #TASKBAR
 TASKBAR_HEIGHT : 100
 TASKBAR_WIDTH : 600
@@ -37,6 +40,7 @@ NUMBER_OF_HELP_SCREEN : 2
 mainMenuSpriteUrl : ressources/MainMenu.png
 titleUrl : ressources/title.png
 taskBarUrl : ressources/taskBar.png
+taskBarSmartphoneUrl : ressources/taskBarSmartphone.png
 fondUrl : ressources/Fond.png
 simpleUrl : ressources/Simple.png
 cUpUrl : ressources/Change_up.png
