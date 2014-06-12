@@ -103,10 +103,10 @@ function preload(){
 	game.load.image('mainMenuSprite',constants.mainMenuSpriteUrl);
 	game.load.image('title',constants.titleUrl);
 
-game.load.image('pauseButtonAide',constants.pauseButtonAideUrl);
-game.load.image('pauseButtonMenu',constants.pauseButtonMenuUrl);
-game.load.image('pauseButtonMute',constants.pauseButtonMuteUrl);
-game.load.image('pauseButtonRestart',constants.pauseButtonRestartUrl);
+	game.load.image('pauseButtonAide',constants.pauseButtonAideUrl);
+	game.load.image('pauseButtonMenu',constants.pauseButtonMenuUrl);
+	game.load.image('pauseButtonMute',constants.pauseButtonMuteUrl);
+	game.load.image('pauseButtonRestart',constants.pauseButtonRestartUrl);
 
 	if(constants.USE_CORDOVA){
 		game.load.image('taskBar',constants.taskBarSmartphoneUrl);
@@ -182,10 +182,16 @@ game.load.image('pauseButtonRestart',constants.pauseButtonRestartUrl);
 
 	game.load.onFileComplete.add(updateProgress, this);
 
-	while (doesFileExist("levels/"+nbrLevel+".txt")){
+	var valueOk = loadValueOk("levels/"+1+".txt");
+
+	while (doesFileExist("levels/"+nbrLevel+".txt",valueOk) && nbrLevel < 500){
 		nbrLevel++;
 	}
-	nbrLevel--;
+	if(nbrLevel == 500){
+		nbrLevel = 0;
+	}else{
+		nbrLevel--;
+	}
 	nbrPageTotal = parseInt(1 + (nbrLevel - 1) / 9);
 	//alert(nbrPageTotal);
 
@@ -197,12 +203,31 @@ game.load.image('pauseButtonRestart',constants.pauseButtonRestartUrl);
 	//Cookie containing the scores for each level 
 	stars = readCookie("stars");
 	if (stars == null) {
-		createCookie("stars", "", 30);
+		if(constants.USE_CORDOVA){
+			window.localStorage.setItem("cookieSmartphone","");
+		}else{
+			createCookie("stars", "", 30);
+		}
 	}
 }
 
 
-function doesFileExist(urlToFile)
+function loadValueOk(filename)
+{
+	if(document.all) {
+		var xhr = new ActiveXObject("Scripting.FileSystemObject");
+	}
+	else
+	{
+		var xhr = new XMLHttpRequest();
+	}
+	//var xhr = new XMLHttpRequest();
+	xhr.open('HEAD', filename, false);
+	xhr.send();
+	return xhr.status;
+}
+
+function doesFileExist(urlToFile, valueOk)
 {
 	if(document.all) {
 		var xhr = new ActiveXObject("Scripting.FileSystemObject");
@@ -214,7 +239,8 @@ function doesFileExist(urlToFile)
 	//var xhr = new XMLHttpRequest();
 	xhr.open('HEAD', urlToFile, false);
 	xhr.send();
-	if (xhr.status == "200") {
+	console.log(xhr.status);
+	if (xhr.status == valueOk) {
 		return true;
 	} else {
 		return false;

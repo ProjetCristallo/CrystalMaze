@@ -25,7 +25,11 @@ function updateCookieNbrLevel(nbr) {
 }
 
 function updateCookieStars(nbr) {
-	var stars = readCookie("stars");
+	if(constants.USE_CORDOVA){
+		var stars = window.localStorage.getItem("cookieSmartphone");
+	}else{
+		var stars = readCookie("stars");
+	}
 	if (currentLevel < nbrLevelAccessible) {
 		//we already played the level
 		previousScore = stars.substring(currentLevel-1, currentLevel);
@@ -38,7 +42,11 @@ function updateCookieStars(nbr) {
 		//it it the first time we played the level
 		stars = stars + nbr;
 	}	
-	createCookie("stars", stars, 30);
+	if(constants.USE_CORDOVA){
+		window.localStorage.setItem("cookieSmartphone",stars);
+	}else{
+		createCookie("stars", stars, 30);
+	}
 }
 
 function readScore(level) {
