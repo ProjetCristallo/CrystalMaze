@@ -36,7 +36,7 @@ function updateCookieStars(nbr) {
 		previousScore = stars.substring(currentLevel-1, currentLevel);
 		if (nbr > previousScore) {
 			var before = stars.substring(0, currentLevel-1);
-			var after = stars.substring((currentLevel+1),
+			var after = stars.substring((currentLevel),
 					stars.length);
 			stars = before + nbr + after;
 		}
