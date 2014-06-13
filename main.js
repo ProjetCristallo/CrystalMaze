@@ -100,6 +100,7 @@ function updateProgress(){
 };
 
 function preload(){
+
 	game.load.image('mainMenuSprite',constants.mainMenuSpriteUrl);
 	game.load.image('title',constants.titleUrl);
 
@@ -115,10 +116,6 @@ function preload(){
 	}
 	game.load.image('fond',constants.fondUrl);
 	game.load.image('simple',constants.simpleUrl);
-	game.load.image('cUp',constants.cUpUrl);
-	game.load.image('cDown',constants.cDownUrl);
-	game.load.image('cRight',constants.cRightUrl);
-	game.load.image('cLeft',constants.cLeftUrl);
 	game.load.image('end',constants.endUrl);
 
 	game.load.image('hole',constants.holeUrl);
@@ -130,9 +127,6 @@ function preload(){
 	game.load.image('uniUp',constants.uniUpUrl);
 	game.load.image('uniDown',constants.uniDownUrl);
 	game.load.image('uniLeft',constants.uniLeftUrl);
-	game.load.image('C',constants.CUrl);
-	game.load.image('H',constants.HUrl);
-	game.load.image('O',constants.OUrl);
 	game.load.image('pause',constants.pauseUrl);
 	game.load.image('pauseMenu',constants.pauseMenuUrl);
 	game.load.image('title',constants.titleUrl);
@@ -151,9 +145,10 @@ function preload(){
 	game.load.image('turnDR',constants.turnDRUrl);
 	game.load.image('energyUp',constants.energyUpUrl);
 	game.load.image('energyDown',constants.energyDownUrl);
-	game.load.image('porous',constants.porousUrl);
-	game.load.image('helpScreen1',constants.helpScreen1Url);
-	game.load.image('helpScreen2',constants.helpScreen2Url);
+	game.load.image('porous',constants.porousUrl);	
+	for (var i = 1; i <= constants.NUMBER_OF_HELP_SCREEN; i ++){
+	    game.load.image('helpScreen' + i,constants.helpScreenUrl[i - 1]);
+	}
 	game.load.image('nextPage',constants.nextPageUrl);
 	game.load.image('prevPage',constants.prevPageUrl);
 	game.load.image('levelA',constants.levelAUrl);

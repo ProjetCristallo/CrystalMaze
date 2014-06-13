@@ -47,7 +47,7 @@ function displayHelp()
 	buttonPrev.bringToTop();
 	buttonClose.bringToTop();
 	posText = game.add.text(0.48*constants.BACKGROUND_WIDTH,0.83*constants.BACKGROUND_HEIGHT,
-			posInHelp + '/6',{font: "15px Arial",fill: "#000000",
+			posInHelp + '/' + constants.NUMBER_OF_HELP_SCREEN,{font: "15px Arial",fill: "#000000",
 			align: "center"});
 
 }
