@@ -3,13 +3,11 @@ if(constants.USE_CORDOVA){
 			constants.TASKBAR_WIDTH, constants.BACKGROUND_HEIGHT,
 			Phaser.AUTO, '', {preload:preload,create:create,
 				update:update});
-	console.log("use.phonegap = true");
 }else{
 	var game = new Phaser.Game(constants.BACKGROUND_WIDTH,
 			constants.BACKGROUND_HEIGHT + constants.TASKBAR_HEIGHT,
 			Phaser.AUTO,'', {preload:preload,create:create,
 				update:update});
-	console.log("use phonegap = false");
 }
 var ball;
 var taskBarSprite;
@@ -70,14 +68,9 @@ var unilateral;
 var breakable;
 var salt;
 var porous;
-var cUp;
-var cDown;
-var cLeft;
-var cRight;
 var begin;
 var end;
 var item;
-var listItem;
 var score;
 var turn;
 
@@ -88,12 +81,19 @@ var progressPageLoaded = false;
 var progressInfo =null;
 function updateProgress(){
 	if(progressInfo==null){
-		progressInfo = game.add.text(250,300,"0 %",{ font: "65px Arial", align: "center" });
+		progressInfo = game.add.text(0.5*constants.BACKGROUND_WIDTH,
+				0.7*constants.BACKGROUND_HEIGHT,"0 %",
+				{ font: "65px Arial", align: "center" });
+		progressInfo.anchor={'x':0.5,'y':0.5};
 	}
-	if(!progressPageLoaded && game.cache.checkImageKey('mainMenuSprite') && game.cache.checkImageKey('title')) {
+	if(!progressPageLoaded && game.cache.checkImageKey('mainMenuSprite') &&
+		       	game.cache.checkImageKey('title')) {
 		mainMenuSprite = game.add.sprite(0, 0, 'mainMenuSprite');
 		title = game.add.sprite(11, 50, 'title');
-		progressInfo = game.add.text(250,300,"0 %",{ font: "65px Arial", align: "center" });
+		progressInfo = game.add.text(0.5*constants.BACKGROUND_WIDTH,
+				0.7*constants.BACKGROUND_HEIGHT,"0 %",
+				{ font: "65px Arial", align: "center" });
+		progressInfo.anchor={'x':0.5,'y':0.5};
 		progressPageLoaded = true;
 	}
 	progressInfo.text = game.load.progress+" %";
@@ -188,7 +188,6 @@ function preload(){
 		nbrLevel--;
 	}
 	nbrPageTotal = parseInt(1 + (nbrLevel - 1) / 9);
-	//alert(nbrPageTotal);
 
 	//Number of levels already unblocked
 	if(constants.USE_CORDOVA){
@@ -204,6 +203,7 @@ function preload(){
 			nbrLevelAccessible = 1;
 		}
 	}	
+
 	//Cookie containing the scores for each level 
 	if(constants.USE_CORDOVA){
 		stars = window.localStorage.getItem("cookieSmartphone");
@@ -228,7 +228,6 @@ function loadValueOk(filename)
 	{
 		var xhr = new XMLHttpRequest();
 	}
-	//var xhr = new XMLHttpRequest();
 	xhr.open('HEAD', filename, false);
 	xhr.send();
 	return xhr.status;
