@@ -14,6 +14,9 @@ END_SCREEN :
 BACKGROUND_HEIGHT : 480
 BACKGROUND_WIDTH : 600
 
+FONT_TASKBAR :
+        STYLE : 35px Arial
+        SIZE : 35
 #TASKBAR
 TASKBAR_HEIGHT : 100
 TASKBAR_WIDTH : 600
@@ -37,12 +40,9 @@ NUMBER_OF_HELP_SCREEN : 6
 mainMenuSpriteUrl : ressources/MainMenu.png
 titleUrl : ressources/title.png
 taskBarUrl : ressources/taskBar.png
+taskBarSmartphoneUrl : ressources/taskBarSmartphone.png
 fondUrl : ressources/Fond.png
 simpleUrl : ressources/Simple.png
-cUpUrl : ressources/Change_up.png
-cDownUrl : ressources/Change_down.png
-cRightUrl : ressources/Change_right.png
-cLeftUrl : ressources/Change_left.png
 endUrl : ressources/diamond.png
 holeUrl : ressources/Hole.png
 winUrl : ressources/Win.png
@@ -53,9 +53,6 @@ uniRightUrl : ressources/unilateral_right.png
 uniUpUrl : ressources/unilateral_up.png
 uniDownUrl : ressources/unilateral_down.png
 uniLeftUrl : ressources/unilateral_left.png
-CUrl : ressources/C.png
-HUrl : ressources/H.png
-OUrl : ressources/O.png
 pauseUrl : ressources/pause.png
 pauseMenuUrl : ressources/pauseMenu.png
 titleUrl : ressources/title.png
@@ -63,6 +60,7 @@ pauseButtonAideUrl : ressources/ButtonAide.png
 pauseButtonMenuUrl : ressources/pauseButtonMenu.png
 pauseButtonParametresUrl : ressources/ButtonParametres.png
 pauseButtonRestartUrl : ressources/ButtonRestart.png
+pauseButtonMuteUrl : ressources/ButtonMute.png
 turnULUrl : ressources/turn_ul.png
 turnURUrl : ressources/turn_ur.png
 turnDLUrl : ressources/turn_dl.png
@@ -95,3 +93,11 @@ buttonNextImageUrl : ressources/buttonNextImage.png
 buttonPrevImageUrl : ressources/buttonPrevImage.png
 buttonCloseImageUrl : ressources/buttonCloseImage.png
 starsUrl : ressources/Star.png
+soundOnUrl : ressources/soundOn.png
+soundOffUrl : ressources/soundOff.png
+
+saltSoundUrl : ressources/sounds/salt.MP3
+blockSoundUrl : ressources/sounds/block.MP3
+glassSoundUrl : ressources/sounds/glass.MP3
+dropSoundUrl : ressources/sounds/drop.MP3
+gazSoundUrl : ressources/sounds/gaz.MP3
