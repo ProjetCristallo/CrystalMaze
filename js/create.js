@@ -134,51 +134,11 @@ function create() {
 					constants.MARGIN_TASKBAR, 
 					'mainMenuButton', actionOnClickMenu,
 					this, 0, 0, 1);
-			
-			//obsolete
-			//Button pause 
-			/*buttonPause = game.add.button(0.85*
-					constants.TASKBAR_WIDTH,
-					constants.BACKGROUND_HEIGHT+
-					constants.MARGIN_TASKBAR,
-					'pause',triggerPause);
-			game.isPaused = false;*/
 		}
 		
 		game.physics.enable(taskBarSprite,Phaser.Physics.ARCADE);
 		taskBarSprite.body.immovable=true;
 		createLevel();
-
-		//obsolete
-		//task bar 
-		/*var buttonsX = constants.BACKGROUND_WIDTH-
-			constants.IN_GAME_MENU_MARGIN-
-			constants.IN_GAME_MENU_BUTTON_WIDTH;
-		var buttonsY = constants.BACKGROUND_HEIGHT-
-			constants.IN_GAME_MENU_HEIGHT+
-			constants.IN_GAME_MENU_MARGIN;
-		pauseButtons = [];
-		pauseButtons.push(game.add.button(buttonsX,buttonsY,
-					'pauseButtonRestart',
-					function() {
-						game.world.removeAll(true);
-						create();
-					}));
-		pauseButtons.push(game.add.button(buttonsX,buttonsY+
-					(constants.IN_GAME_MENU_BUTTON_HEIGHT+
-					 constants.IN_GAME_MENU_MARGIN),
-					'pauseButtonMenu',actionOnClickMenu));
-		pauseButtons.push(game.add.button(buttonsX,buttonsY+
-					2*(constants.IN_GAME_MENU_BUTTON_HEIGHT+
-						constants.IN_GAME_MENU_MARGIN),
-					'pauseButtonMute',actionOnClickMute));
-		pauseButtons.push(game.add.button(buttonsX,buttonsY+
-					3*(constants.IN_GAME_MENU_BUTTON_HEIGHT+
-						constants.IN_GAME_MENU_MARGIN),
-					'pauseButtonAide',help));
-
-		pauseButtons.forEach(function(button){button.kill()});*/
-
 
 		//Controller
 		controller = game.input.keyboard.createCursorKeys();
