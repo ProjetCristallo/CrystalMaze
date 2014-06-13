@@ -113,12 +113,8 @@ function endGame(ball, endSprite) {
 	updateCookieStars(nbrStars);
 
 	//We update the number of unblocked levels	
-	if (currentLevel + 1 > nbrLevelAccessible 
-			&& currentLevel + 1 <= nbrLevel)
-	{
-		nbrLevelAccessible = currentLevel + 1;
-		updateCookieNbrLevel(nbrLevelAccessible);	
-	}
+	nbrLevelAccessible = currentLevel + 1;
+	updateCookieNbrLevel(nbrLevelAccessible);	
 }
 
 function loseGame() {
