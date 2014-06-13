@@ -97,7 +97,7 @@ crossUrl : ressources/Cross.png
 breakableUrl : ressources/Breakable.png
 saltUrl : ressources/Salt.png
 ballUrl : ressources/balle.png
-buttonPlayUrl : ressources/Button_Jouer.png
+buttonPlayUrl : ressources/buttonPlay.png
 buttonSelectLevelUrl : ressources/ButtonSelectLevel.png
 buttonReturnUrl : ressources/ButtonReturn.png
 buttonNextLevelUrl : ressources/Button_next_level.png

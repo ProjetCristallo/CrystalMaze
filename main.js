@@ -161,11 +161,11 @@ function preload(){
 	game.load.spritesheet('breakable',constants.breakableUrl,60,60);
 	game.load.spritesheet('salt',constants.saltUrl,60,60);
 	game.load.spritesheet('ball',constants.ballUrl,60,60);
-	game.load.spritesheet('buttonPlay',constants.buttonPlayUrl,163,55);
+	game.load.spritesheet('buttonPlay',constants.buttonPlayUrl,133,35);
 	game.load.spritesheet('buttonSelectLevel',
 			constants.buttonSelectLevelUrl, 133, 35);
 	game.load.spritesheet('buttonReturn',
-			constants.buttonReturnUrl, 125, 32);
+			constants.buttonReturnUrl, 133, 35);
 	game.load.spritesheet('buttonNextLevel',
 			constants.buttonNextLevelUrl,249,36);
 	game.load.spritesheet('buttonReplay',
