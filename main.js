@@ -18,6 +18,7 @@ var endScreen;
 //Booleans indicating game's state
 var mainMenu = true;
 var selectLevelMenu = false;
+var tutoriel = false;
 
 //Last direction the ball has taken, useful for the turn blocks
 var lastDir=null;
@@ -44,6 +45,10 @@ var nbrLevelAccessible;
 var numPageCourant = 1;
 var nbrPageTotal = 1;
 var currentLevel = 1;
+
+//Tutorial
+var nbrLevelTuto = 1;
+var currentLevelTuto = 1;
 
 //Swipe handling
 var element = document.body;
@@ -164,6 +169,8 @@ function preload(){
 	game.load.spritesheet('buttonPlay',constants.buttonPlayUrl,163,55);
 	game.load.spritesheet('buttonSelectLevel',
 			constants.buttonSelectLevelUrl, 133, 35);
+	game.load.spritesheet('buttonTutorial',
+			constants.buttonTutorialUrl, 140, 35);
 	game.load.spritesheet('buttonReturn',
 			constants.buttonReturnUrl, 125, 32);
 	game.load.spritesheet('buttonNextLevel',
@@ -208,7 +215,17 @@ function preload(){
 	}
 	nbrPageTotal = parseInt(1 + (nbrLevel - 1) / 9);
 
-	//Number of levels already unblocked
+        while (doesFileExist("tutorial/"+nbrLevelTuto+".txt",valueOk) && 
+			nbrLevel < 500){
+		nbrLevelTuto++;
+	}
+	if(nbrLevel == 500){
+		nbrLevelTuto = 0;
+	}else{
+		nbrLevelTuto--;
+	}
+
+	//Number of levels already unlocked
 	if(constants.USE_CORDOVA){
 		stars = window.localStorage.getItem("cookieSmartphone");
 		if(stars == null){

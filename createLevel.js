@@ -1,6 +1,10 @@
 function createLevel()
 {
-        levelName = "levels/"+currentLevel+".txt";
+    if (tutorial){
+        levelName = "tutorial/"+currentLevelTuto+".txt";
+    } else {
+	levelName = "levels/"+currentLevel+".txt";
+    }
 	listItem = [];
 	listItem.length = 0;
 	parser(levelName);

@@ -106,6 +106,7 @@ buttonRestartUrl : ressources/Button_restart.png
 buttonNextImageUrl : ressources/buttonNextImage.png
 buttonPrevImageUrl : ressources/buttonPrevImage.png
 buttonCloseImageUrl : ressources/buttonCloseImage.png
+buttonTutorialUrl : ressources/buttonTutorial.png
 starsUrl : ressources/Star.png
 soundOnUrl : ressources/soundOn.png
 soundOffUrl : ressources/soundOff.png

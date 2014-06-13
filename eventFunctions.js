@@ -13,8 +13,10 @@ function endLevel(ball, endSprite)
 	if(!hardOverlap(ball,endSprite)){
 		return;
 	}
-	if (currentLevel == nbrLevel) {
-		endGame(ball,endSprite);
+	if (!tutorial && currentLevel == nbrLevel) {
+		endGame(ball, endSprite);
+	} else if (tutorial && currentLevelTuto == nbrLevelTuto){
+	        endTuto(ball, endSprite);
 	} else {
 		//buttonPause.inputEnabled = false;
 		playing = false;
@@ -36,6 +38,7 @@ function endLevel(ball, endSprite)
 				constants.END_SCREEN.BUTTONS_MARGIN,
 				'buttonReplay', actionOnClickRestart, 
 				this, 2,1,0);
+	    if (!tutorial){
 		stars = game.add.sprite(constants.END_SCREEN.OFFSET.X+
 				constants.END_SCREEN.BUTTONS_OFFSET.X,
 				constants.END_SCREEN.OFFSET.Y+
@@ -63,6 +66,7 @@ function endLevel(ball, endSprite)
 			nbrLevelAccessible = currentLevel + 1;
 			updateCookieNbrLevel(nbrLevelAccessible);	
 		}
+	    }
 	}	
 }
 
@@ -101,6 +105,23 @@ function endGame(ball, endSprite) {
 	updateCookieNbrLevel(nbrLevelAccessible);	
 }
 
+function endTuto(ball, endSprite)
+{
+        endSprite.kill();
+	playing = false;
+	ball.body.velocity.x=0;
+	ball.body.velocity.y=0;
+
+    //TODO ...
+	endScreen = game.add.sprite(0, 0, 'endScreen');
+
+	button2 = game.add.button(constants.END_SCREEN.OFFSET.X+
+			constants.END_SCREEN.BUTTONS_OFFSET.X,
+			constants.END_SCREEN.OFFSET.Y+
+			constants.END_SCREEN.BUTTONS_OFFSET.Y,
+			'buttonReplay', actionOnClickRestart, this, 2,1,0);
+}
+
 function loseGame() {
 	playing = false;
 	ball.body.velocity.x=0;
@@ -118,8 +139,9 @@ function loseGame() {
 
 function actionOnClickMenu() {
 	game.world.removeAll(true);
-	mainMenu=true;
-	currentLevel=1;
+	mainMenu = true;
+	currentLevel = 1;
+        currentLevelTuto = 1;
 	playing = true;
 	create();
 }
@@ -132,8 +154,13 @@ function actionOnClickRestart(){
 
 function actionOnClickNextLevel()
 {
+    if(!tutorial){
 	currentLevel = currentLevel + 1;
 	textLevel.setText("Level " + currentLevel);
+    } else {
+	currentLevelTuto++;
+	textLevel.setText("Tutorial " + currentLevelTuto);
+    }
 	playing = true;
 	game.world.removeAll(true);
 	create();
@@ -141,6 +168,7 @@ function actionOnClickNextLevel()
 
 function actionOnClickPlay()
 {
+        tutorial = false;
 	mainMenu = false;
 	game.world.removeAll();
 	create();
@@ -148,8 +176,17 @@ function actionOnClickPlay()
 
 function actionOnClickSelectLevel()
 {
+        tutorial = false;
 	selectLevelMenu = true;
 	mainMenu = false;
+	game.world.removeAll();
+	create();
+}
+
+function actionOnClickTutorial()
+{
+        mainMenu = false;
+        tutorial = true;
 	game.world.removeAll();
 	create();
 }

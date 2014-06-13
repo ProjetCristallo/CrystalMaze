@@ -32,12 +32,21 @@ function create() {
 					constants.MARGIN_TASKBAR,
 					"Moves : 0",
 					{font: constants.FONT_TASKBAR.STYLE});
+		    if(!tutorial){
 			textLevel = game.add.text(constants.BACKGROUND_WIDTH +
 					constants.MARGIN_TASKBAR,
 					2*constants.MARGIN_TASKBAR + 
 					constants.FONT_TASKBAR.SIZE,
 					"Level : "+currentLevel,
 					{font: constants.FONT_TASKBAR.STYLE});
+		    } else {
+			textLevel = game.add.text(constants.BACKGROUND_WIDTH +
+					constants.MARGIN_TASKBAR,
+					2*constants.MARGIN_TASKBAR + 
+					constants.FONT_TASKBAR.SIZE,
+					"Tutorial : "+currentLevelTuto,
+					{font: constants.FONT_TASKBAR.STYLE});
+		    }
 			//Buttons in taskbar
 			buttonPause = game.add.button(
 					constants.BACKGROUND_WIDTH + 
@@ -54,6 +63,7 @@ function create() {
 					constants.MARGIN_TASKBAR,
 					"Moves : 0",
 					{font: constants.FONT_TASKBAR.STYLE});
+		    if(!tutorial){
 			textLevel = game.add.text(constants.MARGIN_TASKBAR,
 					constants.BACKGROUND_HEIGHT+
 					constants.TASKBAR_HEIGHT-
@@ -61,7 +71,15 @@ function create() {
 					"Level : "+currentLevel,
 					{font: constants.FONT_TASKBAR.STYLE});
 			textLevel.anchor={'x':0,'y':1};
-			
+		    } else {
+			textLevel = game.add.text(constants.MARGIN_TASKBAR,
+					constants.BACKGROUND_HEIGHT+
+					constants.TASKBAR_HEIGHT-
+					constants.MARGIN_TASKBAR,
+					"Tutorial : "+currentLevelTuto,
+					{font: constants.FONT_TASKBAR.STYLE});
+			textLevel.anchor={'x':0,'y':1};
+		    }
 			//Taskbar buttons
 			taskBarButtons = [];
 			//Sound button
@@ -164,6 +182,12 @@ function create() {
 				'buttonSelectLevel', 
 				actionOnClickSelectLevel,this, 1, 0, 2);
 		buttonSelectLevel.anchor={'x':0.5,'y':0.5};
+	        buttonTutorial = game.add.button(
+				0.5*constants.BACKGROUND_WIDTH,
+				0.75*constants.BACKGROUND_HEIGHT,
+				'buttonTutorial', 
+				actionOnClickTutorial,this, 1, 0, 2);
+		buttonTutorial.anchor={'x':0.5,'y':0.5};
 	} else if (selectLevelMenu){
 		// Title
 		mainMenuSprite = game.add.sprite(0, 0, 'mainMenuSprite');
