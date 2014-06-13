@@ -27,11 +27,7 @@ function endLevel(ball, endSprite)
 				'buttonNextLevel', actionOnClickNextLevel, this, 2,1,0);
 		button2 = game.add.button(constants.END_SCREEN.OFFSET.X+constants.END_SCREEN.BUTTONS_OFFSET.X,
 				constants.END_SCREEN.OFFSET.Y+constants.END_SCREEN.BUTTONS_OFFSET.Y+constants.END_SCREEN.BUTTONS_MARGIN,
-				'buttonReplay', actionOnClickReplay, this, 2,1,0);
-		button3 = game.add.button(constants.END_SCREEN.OFFSET.X+constants.END_SCREEN.BUTTONS_OFFSET.X,
-				constants.END_SCREEN.OFFSET.Y+constants.END_SCREEN.BUTTONS_OFFSET.Y+2*constants.END_SCREEN.BUTTONS_MARGIN,
-				'pauseButtonMenu', actionOnClickMenu, this, 2, 1, 0);
-
+				'buttonReplay', actionOnClickRestart, this, 2,1,0);
 		stars = game.add.sprite(constants.END_SCREEN.OFFSET.X+constants.END_SCREEN.BUTTONS_OFFSET.X,
 				constants.END_SCREEN.OFFSET.Y+constants.END_SCREEN.STARS_MARGIN,
 				'stars');
@@ -67,10 +63,7 @@ function endGame(ball, endSprite) {
 	endScreen = game.add.sprite(constants.END_SCREEN.OFFSET.X,constants.END_SCREEN.OFFSET.Y, 'endScreen');
 	button2 = game.add.button(constants.END_SCREEN.OFFSET.X+constants.END_SCREEN.BUTTONS_OFFSET.X,
 	            constants.END_SCREEN.OFFSET.Y+constants.END_SCREEN.BUTTONS_OFFSET.Y,
-				'buttonReplay', actionOnClickReplay, this, 2,1,0);
-	button3 = game.add.button(constants.END_SCREEN.OFFSET.X+constants.END_SCREEN.BUTTONS_OFFSET.X,
-				constants.END_SCREEN.OFFSET.Y+constants.END_SCREEN.BUTTONS_OFFSET.Y+constants.END_SCREEN.BUTTONS_MARGIN,
-				'pauseButtonMenu', actionOnClickMenu, this, 2, 1, 0);
+				'buttonReplay', actionOnClickRestart, this, 2,1,0);
 	stars = game.add.sprite(constants.END_SCREEN.OFFSET.X+constants.END_SCREEN.BUTTONS_OFFSET.X,
 				constants.END_SCREEN.OFFSET.Y+constants.END_SCREEN.STARS_MARGIN,
 				'stars');
@@ -103,10 +96,7 @@ function loseGame() {
 		endScreen = game.add.sprite(constants.END_SCREEN.OFFSET.X,constants.END_SCREEN.OFFSET.Y,'fail');
 		button = game.add.button(constants.END_SCREEN.OFFSET.X+constants.END_SCREEN.BUTTONS_OFFSET.X,
 	            constants.END_SCREEN.OFFSET.Y+constants.END_SCREEN.BUTTONS_OFFSET.Y,
-	            'buttonReplay', actionOnClickReplay, this, 2,1,0);
-		button2 = game.add.button(constants.END_SCREEN.OFFSET.X+constants.END_SCREEN.BUTTONS_OFFSET.X,
-				constants.END_SCREEN.OFFSET.Y+constants.END_SCREEN.BUTTONS_OFFSET.Y+constants.END_SCREEN.BUTTONS_MARGIN,
-				'pauseButtonMenu', actionOnClickMenu, this, 2, 1, 0);
+	            'buttonReplay', actionOnClickRestart, this, 2,1,0);
 }
 
 
@@ -119,10 +109,6 @@ function actionOnClickMenu() {
 }
 
 function actionOnClickRestart(){
-	//button.kill();
-	//button2.kill();
-	playing = true;
-	currentLevel = 1;
 	playing = true;
 	game.world.removeAll(true);
 	create();
@@ -134,15 +120,6 @@ function actionOnClickNextLevel()
 	//button2.kill();
 	currentLevel = currentLevel + 1;
 	textLevel.setText("Level " + currentLevel);
-	playing = true;
-	game.world.removeAll(true);
-	create();
-}
-
-function actionOnClickReplay()
-{
-	//button.kill();
-	//button2.kill();
 	playing = true;
 	game.world.removeAll(true);
 	create();
@@ -214,8 +191,8 @@ function actionOnClickLevelInaccessible(button)
 			,this);
 }
 
-
-function triggerPause() {
+//obsolete
+/*function triggerPause() {
 	if(!game.isPaused){
 		var buttonsX = constants.BACKGROUND_WIDTH-constants.IN_GAME_MENU_MARGIN-constants.IN_GAME_MENU_BUTTON_WIDTH;
 		var buttonsY = constants.BACKGROUND_HEIGHT-constants.IN_GAME_MENU_HEIGHT+constants.IN_GAME_MENU_MARGIN;
@@ -227,7 +204,7 @@ function triggerPause() {
 		pauseButtons.forEach(function(button){button.kill()});
 	}
 	game.isPaused=!game.isPaused;
-}
+}*/
 
 function normalBlockCollide()
 {

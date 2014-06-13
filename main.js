@@ -164,7 +164,7 @@ function preload(){
 	game.load.spritesheet('salt',constants.saltUrl,60,60);
 	game.load.spritesheet('ball',constants.ballUrl,60,60);
 	game.load.spritesheet('buttonPlay',constants.buttonPlayUrl,163,55);
-	game.load.spritesheet('buttonSelectLevel',constants.buttonSelectLevelUrl, 206, 32);
+	game.load.spritesheet('buttonSelectLevel',constants.buttonSelectLevelUrl, 133, 35);
 	game.load.spritesheet('buttonReturn',constants.buttonReturnUrl, 125, 32);
 	game.load.spritesheet('buttonNextLevel',constants.buttonNextLevelUrl,249,36);
 	game.load.spritesheet('buttonReplay',constants.buttonReplayUrl,140,35);
@@ -181,9 +181,10 @@ function preload(){
 	game.load.audio('gaz', constants.gazSoundUrl );
 	
 	//TaskBar buttons
-	game.load.spritesheet('soundButton', 'ressources/soundButton.png', 80, 80);
-	game.load.image('questionMark', 'ressources/questionMark.png',80,80);
-	game.load.image('simpleRestart', 'ressources/simpleRestart.png',80,80);
+	game.load.spritesheet('soundButton', constants.soundButtonUrl, 80, 80);
+	game.load.image('questionMark', constants.questionMarkUrl,80,80);
+	game.load.image('simpleRestart', constants.simpleRestartUrl,80,80);
+	game.load.spritesheet('mainMenuButton', constants.mainMenuButtonUrl,100,80);
 	
 	game.load.onFileComplete.add(updateProgress, this);
 

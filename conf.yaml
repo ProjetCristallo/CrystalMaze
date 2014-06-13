@@ -97,6 +97,11 @@ buttonCloseImageUrl : ressources/buttonCloseImage.png
 starsUrl : ressources/Star.png
 soundOnUrl : ressources/soundOn.png
 soundOffUrl : ressources/soundOff.png
+soundButtonUrl : ressources/soundButton.png
+questionMarkUrl : ressources/questionMark.png
+simpleRestartUrl : ressources/simpleRestart.png
+mainMenuButtonUrl : ressources/mainMenuButton.png
+
 
 saltSoundUrl : ressources/sounds/salt.MP3
 blockSoundUrl : ressources/sounds/block.MP3
