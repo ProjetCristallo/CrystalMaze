@@ -104,7 +104,9 @@ function checkTurn()
 		current = turn.getAt(i);
 		if(current.alive && current != lastTurn &&
 				game.physics.arcade.distanceBetween
-				(current, ball) < constants.TURN_SENSOR_PERCENTAGE*constants.TILE_SIZE) {
+				(current, ball) < constants.
+				TURN_SENSOR_PERCENTAGE*constants.TILE_SIZE)
+	       	{
 			lastTurn = current;
 			turnBall(current);				
 		}
@@ -179,7 +181,9 @@ function turnBall(turnBlock)
 		for(var i=0; i<turn.length; i++){
 			current = turn.getAt(i);
 			if(current.alive && current != turnBlock && 
-					game.physics.arcade.overlap(ball,current)){
+					game.physics.arcade.overlap(
+						ball,current))
+			{
 				checkUniTurn(ball,current); 
 				resetLastTurn =false				
 			}
@@ -201,8 +205,10 @@ function checkUniTurn(ball, uniBlock)
 			 (ball.body.velocity.x < 0)))
 	{
 		//we put ball back on the turn case
-		ball.body.x -= ball.body.velocity / constants.BALL.SPEED * constants.TILE_SIZE / 3;
-		ball.body.y -= ball.body.velocity / constants.BALL.SPEED * constants.TILE_SIZE / 3;
+		ball.body.x -= ball.body.velocity / constants.BALL.SPEED *
+		       	constants.TILE_SIZE / 3;
+		ball.body.y -= ball.body.velocity / constants.BALL.SPEED *
+		       	constants.TILE_SIZE / 3;
 		ball.body.velocity.x = 0;
 		ball.body.velocity.y = 0;
 	}else{
@@ -215,9 +221,13 @@ function checkMoveTurn(block,dir)
 	var authorized = checkMove(block, dir);
 	if(block.y === ball.y && block.x == ball.x) {
 		if((dir==='up' && block.body.checkCollision.up) ||
-				(dir==='down' && block.body.checkCollision.down) ||
-				(dir==='left' && block.body.checkCollision.left) ||
-				(dir==='right' && block.body.checkCollision.right)){
+				(dir==='down' && 
+				 block.body.checkCollision.down) ||
+				(dir==='left' && 
+				 block.body.checkCollision.left) ||
+				(dir==='right' && 
+				 block.body.checkCollision.right))
+		{
 			authorized = false;	
 		}
 	}
@@ -233,17 +243,25 @@ function checkMove(block, dir, booleanPorous)
 		authorized = false;
 	}
 
-	if(dir=='up' && (block.y-ball.y==-constants.TILE_SIZE) && (block.x==ball.x) 
-			&& (block.body.checkCollision.down || booleanPorous)){
+	if(dir=='up' && (block.y-ball.y==-constants.TILE_SIZE) && 
+			(block.x==ball.x) && 
+			(block.body.checkCollision.down || booleanPorous))
+	{
 		authorized = false;
-	} else if(dir=='down' && (block.y-ball.y==constants.TILE_SIZE) && (block.x==ball.x) 
-				&& (block.body.checkCollision.up || booleanPorous)){
+	} else if(dir=='down' && (block.y-ball.y==constants.TILE_SIZE) && 
+			(block.x==ball.x) && 
+			(block.body.checkCollision.up || booleanPorous))
+	{
 		authorized = false;
-	} else if(dir=='left' && (block.x-ball.x==-constants.TILE_SIZE) && (block.y==ball.y) 
-				&& (block.body.checkCollision.right || booleanPorous)){
+	} else if(dir=='left' && (block.x-ball.x==-constants.TILE_SIZE) && 
+			(block.y==ball.y) && 
+			(block.body.checkCollision.right || booleanPorous))
+	{
 		authorized = false;
-	} else if(dir=='right' && ((block.x-ball.x)==constants.TILE_SIZE) && (block.y==ball.y)
-				&& (block.body.checkCollision.left || booleanPorous)){
+	} else if(dir=='right' && ((block.x-ball.x)==constants.TILE_SIZE) && 
+			(block.y==ball.y) && 
+			(block.body.checkCollision.left || booleanPorous))
+	{
 		authorized = false;
 	}
 	return authorized;
@@ -258,8 +276,10 @@ function checkMoveGroup(dir)
 
 	//We check with the game boundaries
 	if((dir=='up' && ball.y==0) || 
-			(dir=='down' && ball.y==constants.BACKGROUND_HEIGHT-ball.width) || 
-			(dir=='right' && ball.x==constants.BACKGROUND_WIDTH-ball.width) || 
+			(dir=='down' && 
+			 ball.y==constants.BACKGROUND_HEIGHT-ball.width) || 
+			(dir=='right' && 
+			 ball.x==constants.BACKGROUND_WIDTH-ball.width) || 
 			(dir=='left' && ball.x==0)) {
 		return false;
 	}
@@ -267,7 +287,8 @@ function checkMoveGroup(dir)
 	for(var i=0; i<porous.length; i++){
 		current = porous.getAt(i);
 		if(current.alive && ball.name === "ice") {
-			authorized = authorized && checkMove(current, dir, true);
+			authorized = authorized && 
+				checkMove(current, dir, true);
 		}
 	}
 	
