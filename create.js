@@ -62,7 +62,7 @@ function create() {
 					constants.BACKGROUND_WIDTH +
 					0.5 * constants.TASKBAR_WIDTH,
 					0.45*constants.TASKBAR_HEIGHT,
-					'questionMark', help);
+					'questionMark', displayhelp);
 			helpButton.anchor={'x':0.5,'y':0};
 			taskBarButtons.push(helpButton);
 			//Restart button
@@ -138,6 +138,12 @@ function create() {
 		
 		game.physics.enable(taskBarSprite,Phaser.Physics.ARCADE);
 		taskBarSprite.body.immovable=true;
+		
+		//Init help
+		initializeHelpScreen();
+		helpClose();
+		
+		
 		createLevel();
 
 		//Controller
