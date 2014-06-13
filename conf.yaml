@@ -9,14 +9,26 @@ END_SCREEN :
     BUTTONS_MARGIN : 50
     STARS_MARGIN : 200
     
-
-
+#Select Level screen margin stands for the space between the first block 
+#and the game bounds, delta stands for the difference between the first pixel of
+#2 successive blocks, text stands for the relative position of the first letter
+#of the string in the level button. 
+SELECT_LEVEL :
+    MARGIN :
+        X : 75
+        Y : 60
+    DELTA :
+        X : 175
+        Y : 140
+    TEXT :
+        X : 45
+        Y : 40    
 BACKGROUND_HEIGHT : 480
 BACKGROUND_WIDTH : 600
 
 FONT_TASKBAR :
-        STYLE : 35px Arial
-        SIZE : 35
+    STYLE : 35px Arial
+    SIZE : 35
 #TASKBAR
 TASKBAR_HEIGHT : 100
 TASKBAR_WIDTH : 600
