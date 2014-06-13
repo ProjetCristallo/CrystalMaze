@@ -130,6 +130,10 @@ game.load.image('turnDR',constants.turnDRUrl);
 game.load.image('energyUp',constants.energyUpUrl);
 game.load.image('energyDown',constants.energyDownUrl);
 game.load.image('porous',constants.porousUrl);
+
+    for (var i = 1; i <= constants.NUMBER_OF_HELP_SCREEN; i ++){
+	game.load.image('helpScreen' + i,constants.helpScreenUrl[i - 1]);
+    }
 game.load.image('helpScreen1',constants.helpScreen1Url);
 game.load.image('helpScreen2',constants.helpScreen2Url);
 game.load.image('nextPage',constants.nextPageUrl);

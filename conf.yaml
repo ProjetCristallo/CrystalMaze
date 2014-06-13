@@ -31,7 +31,7 @@ BALL:
         ANIMATION_SPEED : 3
 TURN_SENSOR_PERCENTAGE : 0.4
 
-NUMBER_OF_HELP_SCREEN : 2
+NUMBER_OF_HELP_SCREEN : 6
 
 
 mainMenuSpriteUrl : ressources/MainMenu.png
@@ -70,8 +70,13 @@ turnDRUrl : ressources/turn_dr.png
 energyUpUrl : ressources/Energy_Up.png
 energyDownUrl : ressources/Energy_Down.png
 porousUrl : ressources/porous.png
-helpScreen1Url : ressources/helpScreen1.png
-helpScreen2Url : ressources/helpScreen2.png
+helpScreenUrl : 
+    - ressources/helpScreen1.png
+    - ressources/helpScreen2.png
+    - ressources/helpScreen3.png
+    - ressources/helpScreen4.png
+    - ressources/helpScreen5.png
+    - ressources/helpScreen6.png
 nextPageUrl : ressources/ArrowRight.png
 prevPageUrl : ressources/ArrowLeft.png
 levelAUrl : ressources/levelAccessible.png
