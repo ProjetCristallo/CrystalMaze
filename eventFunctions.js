@@ -71,8 +71,7 @@ function endGame(ball, endSprite) {
 	playing = false;
 	ball.body.velocity.x=0;
 	ball.body.velocity.y=0;
-	endScreen = game.add.sprite(constants.END_SCREEN.OFFSET.X,
-			constants.END_SCREEN.OFFSET.Y, 'endScreen');
+	endScreen = game.add.sprite(0, 0, 'endScreen');
 	button2 = game.add.button(constants.END_SCREEN.OFFSET.X+
 			constants.END_SCREEN.BUTTONS_OFFSET.X,
 			constants.END_SCREEN.OFFSET.Y+
