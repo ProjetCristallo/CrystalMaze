@@ -81,10 +81,6 @@ function moveBall() {
 		game.physics.arcade.collide(ball, salt, saltBlockCollide, null, this);
 		game.physics.arcade.overlap(ball, porous, porousBlockOverlap, null, this);
 		game.physics.arcade.overlap(ball, end, endLevel, null, this);
-		game.physics.arcade.collide(ball, cUp, changeUp, null, this);
-		game.physics.arcade.collide(ball, cDown, changeDown, null, this);
-		game.physics.arcade.collide(ball, cRight, changeRight, null, this);
-		game.physics.arcade.collide(ball, cLeft, changeLeft, null, this);
 		game.physics.arcade.collide(ball, unilateral, normalBlockCollide, null, this);
 		game.physics.arcade.overlap(ball, hole, holeOverlap, null, this);
 		game.physics.arcade.overlap(ball, item, itemCollide, null, this);

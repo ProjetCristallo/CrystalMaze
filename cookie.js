@@ -14,7 +14,8 @@ function readCookie(name) {
 	for(var i=0;i < ca.length;i++) {
 		var c = ca[i];
 		while (c.charAt(0)==' ') c = c.substring(1,c.length);
-		if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+		if (c.indexOf(nameEQ) == 0) 
+			return c.substring(nameEQ.length,c.length);
 	}
    
 	return null;
@@ -35,7 +36,8 @@ function updateCookieStars(nbr) {
 		previousScore = stars.substring(currentLevel-1, currentLevel);
 		if (nbr > previousScore) {
 			var before = stars.substring(0, currentLevel-1);
-			var after = stars.substring((currentLevel+1),stars.length);
+			var after = stars.substring((currentLevel+1),
+					stars.length);
 			stars = before + nbr + after;
 		}
 	} else {
@@ -44,7 +46,6 @@ function updateCookieStars(nbr) {
 	}	
 	if(constants.USE_CORDOVA){
 		window.localStorage.setItem("cookieSmartphone",stars);
-	console.log("stars : "+stars+" cookie : "+window.localStorage.getItem("cookieSmartphone"));
 	}else{
 		createCookie("stars", stars, 30);
 	}

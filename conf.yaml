@@ -9,14 +9,26 @@ END_SCREEN :
     BUTTONS_MARGIN : 50
     STARS_MARGIN : 200
     
-
-
+#Select Level screen margin stands for the space between the first block 
+#and the game bounds, delta stands for the difference between the first pixel of
+#2 successive blocks, text stands for the relative position of the first letter
+#of the string in the level button. 
+SELECT_LEVEL :
+    MARGIN :
+        X : 75
+        Y : 60
+    DELTA :
+        X : 175
+        Y : 140
+    TEXT :
+        X : 45
+        Y : 40    
 BACKGROUND_HEIGHT : 480
 BACKGROUND_WIDTH : 600
 
 FONT_TASKBAR :
-        STYLE : 35px Arial
-        SIZE : 35
+    STYLE : 35px Arial
+    SIZE : 35
 #TASKBAR
 TASKBAR_HEIGHT : 100
 TASKBAR_WIDTH : 600
@@ -34,7 +46,7 @@ BALL:
         ANIMATION_SPEED : 3
 TURN_SENSOR_PERCENTAGE : 0.4
 
-NUMBER_OF_HELP_SCREEN : 2
+NUMBER_OF_HELP_SCREEN : 6
 
 
 mainMenuSpriteUrl : ressources/MainMenu.png
@@ -43,10 +55,6 @@ taskBarUrl : ressources/taskBar.png
 taskBarSmartphoneUrl : ressources/taskBarSmartphone.png
 fondUrl : ressources/Fond.png
 simpleUrl : ressources/Simple.png
-cUpUrl : ressources/Change_up.png
-cDownUrl : ressources/Change_down.png
-cRightUrl : ressources/Change_right.png
-cLeftUrl : ressources/Change_left.png
 endUrl : ressources/diamond.png
 holeUrl : ressources/Hole.png
 winUrl : ressources/Win.png
@@ -57,9 +65,6 @@ uniRightUrl : ressources/unilateral_right.png
 uniUpUrl : ressources/unilateral_up.png
 uniDownUrl : ressources/unilateral_down.png
 uniLeftUrl : ressources/unilateral_left.png
-CUrl : ressources/C.png
-HUrl : ressources/H.png
-OUrl : ressources/O.png
 pauseUrl : ressources/pause.png
 pauseMenuUrl : ressources/pauseMenu.png
 titleUrl : ressources/title.png
@@ -75,8 +80,13 @@ turnDRUrl : ressources/turn_dr.png
 energyUpUrl : ressources/Energy_Up.png
 energyDownUrl : ressources/Energy_Down.png
 porousUrl : ressources/porous.png
-helpScreen1Url : ressources/helpScreen1.png
-helpScreen2Url : ressources/helpScreen2.png
+helpScreenUrl : 
+    - ressources/helpScreen1.png
+    - ressources/helpScreen2.png
+    - ressources/helpScreen3.png
+    - ressources/helpScreen4.png
+    - ressources/helpScreen5.png
+    - ressources/helpScreen6.png
 nextPageUrl : ressources/ArrowRight.png
 prevPageUrl : ressources/ArrowLeft.png
 levelAUrl : ressources/levelAccessible.png

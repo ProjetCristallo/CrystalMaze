@@ -2,7 +2,8 @@ loadNeeded = true;
 
 function create() {
 	if(!mainMenu && !selectLevelMenu){
-		game.add.tileSprite(0,0,constants.BACKGROUND_WIDTH,constants.BACKGROUND_HEIGHT,'fond');
+		game.add.tileSprite(0,0,constants.BACKGROUND_WIDTH,
+				constants.BACKGROUND_HEIGHT,'fond');
 		game.physics.startSystem(Phaser.Physics.ARCADE);
 
 		//Obstacle groups
@@ -106,18 +107,33 @@ function create() {
 		createLevel();
 
 		//obsolete
-		//task bar
-		/*var buttonsX = constants.BACKGROUND_WIDTH-constants.IN_GAME_MENU_MARGIN-constants.IN_GAME_MENU_BUTTON_WIDTH;
-		var buttonsY = constants.BACKGROUND_HEIGHT-constants.IN_GAME_MENU_HEIGHT+constants.IN_GAME_MENU_MARGIN;
+		//task bar 
+		/*var buttonsX = constants.BACKGROUND_WIDTH-
+			constants.IN_GAME_MENU_MARGIN-
+			constants.IN_GAME_MENU_BUTTON_WIDTH;
+		var buttonsY = constants.BACKGROUND_HEIGHT-
+			constants.IN_GAME_MENU_HEIGHT+
+			constants.IN_GAME_MENU_MARGIN;
 		pauseButtons = [];
-		pauseButtons.push(game.add.button(buttonsX,buttonsY,'pauseButtonRestart',function() {
-			game.world.removeAll(true);
-			create();
-		}));
-		pauseButtons.push(game.add.button(buttonsX,buttonsY+1*(constants.IN_GAME_MENU_BUTTON_HEIGHT+constants.IN_GAME_MENU_MARGIN),'pauseButtonMenu',actionOnClickMenu));
-		pauseButtons.push(game.add.button(buttonsX,buttonsY+2*(constants.IN_GAME_MENU_BUTTON_HEIGHT+constants.IN_GAME_MENU_MARGIN),'pauseButtonMute',actionOnClickMute));
-		pauseButtons.push(game.add.button(buttonsX,buttonsY+3*(constants.IN_GAME_MENU_BUTTON_HEIGHT+constants.IN_GAME_MENU_MARGIN),'pauseButtonAide',help));
-	
+		pauseButtons.push(game.add.button(buttonsX,buttonsY,
+					'pauseButtonRestart',
+					function() {
+						game.world.removeAll(true);
+						create();
+					}));
+		pauseButtons.push(game.add.button(buttonsX,buttonsY+
+					(constants.IN_GAME_MENU_BUTTON_HEIGHT+
+					 constants.IN_GAME_MENU_MARGIN),
+					'pauseButtonMenu',actionOnClickMenu));
+		pauseButtons.push(game.add.button(buttonsX,buttonsY+
+					2*(constants.IN_GAME_MENU_BUTTON_HEIGHT+
+						constants.IN_GAME_MENU_MARGIN),
+					'pauseButtonMute',actionOnClickMute));
+		pauseButtons.push(game.add.button(buttonsX,buttonsY+
+					3*(constants.IN_GAME_MENU_BUTTON_HEIGHT+
+						constants.IN_GAME_MENU_MARGIN),
+					'pauseButtonAide',help));
+
 		pauseButtons.forEach(function(button){button.kill()});*/
 
 
@@ -129,15 +145,26 @@ function create() {
 
 	} else if(mainMenu){
 		mainMenuSprite = game.add.sprite(0, 0, 'mainMenuSprite');
-		title = game.add.sprite(11, 50, 'title');
-		buttonJouer = game.add.button(200,300, 'buttonPlay', actionOnClickPlay, this, 1,0,2);
-		buttonSelectLevel = game.add.button(197, 400, 'buttonSelectLevel', actionOnClickSelectLevel, this, 1, 0, 2);
-
+		title = game.add.sprite(0.5*constants.BACKGROUND_WIDTH, 
+				0.3*constants.BACKGROUND_HEIGHT, 'title');
+		title.anchor={'x':0.5,'y':0.5};
+		buttonJouer = game.add.button(0.5*constants.BACKGROUND_WIDTH,
+				0.65*constants.BACKGROUND_HEIGHT, 'buttonPlay', 
+				actionOnClickPlay, this, 1,0,2);
+		buttonJouer.anchor={'x':0.5,'y':0.5};
+		buttonSelectLevel = game.add.button(
+				0.5*constants.BACKGROUND_WIDTH,
+				0.85*constants.BACKGROUND_HEIGHT,
+				'buttonSelectLevel', 
+				actionOnClickSelectLevel,this, 1, 0, 2);
+		buttonSelectLevel.anchor={'x':0.5,'y':0.5};
 	} else if (selectLevelMenu){
-
 		// Title
 		mainMenuSprite = game.add.sprite(0, 0, 'mainMenuSprite');
-		title = game.add.text(150 ,30 ,"Select Level",{});
+		title = game.add.text(0.5*constants.BACKGROUND_WIDTH,
+				0.05*constants.BACKGROUND_HEIGHT,
+				"Select Level",{});
+		title.anchor={'x':0.5,'y':0.5};
 		if(constants.USE_CORDOVA){
 			buttonReturn = game.add.button(
 					constants.BACKGROUND_WIDTH +
@@ -200,17 +227,52 @@ function create() {
 
 		// levels buttons
 		numSprite = 0;
-			for (var i = (numPageCourant - 1) * 9 + 1; i <= Math.min(numPageCourant * 9, nbrLevel); i++){
+		for (var i = (numPageCourant - 1) * 9 + 1; 
+				i <= Math.min(numPageCourant * 9,nbrLevel); 
+				i++)
+		{
 			if (i <= nbrLevelAccessible){
-				buttonLevel = game.add.button(75 + (numSprite % 3) * 175, 60 + parseInt(numSprite/3) * 140, 'levelA', actionOnClickLevelAccessible, this);
+				buttonLevel = game.add.button(constants.
+						SELECT_LEVEL.MARGIN.X+
+						(numSprite % 3)*
+						constants.SELECT_LEVEL.DELTA.X,
+						constants.SELECT_LEVEL.MARGIN.Y
+						+parseInt(numSprite/3) *
+						constants.SELECT_LEVEL.DELTA.Y, 
+						'levelA', 
+						actionOnClickLevelAccessible, 
+						this);
 			} else {
-				buttonLevel = game.add.button(75 + (numSprite % 3) * 175, 60 + parseInt(numSprite/3) * 140, 'levelI', actionOnClickLevelInaccessible, this);
+				buttonLevel = game.add.button(constants.
+						SELECT_LEVEL.MARGIN.X + 
+						(numSprite % 3) * 
+						constants.SELECT_LEVEL.DELTA.X,
+						constants.SELECT_LEVEL.MARGIN.Y
+						+ parseInt(numSprite/3) * 
+						constants.SELECT_LEVEL.DELTA.Y,
+						'levelI',
+						actionOnClickLevelInaccessible,
+						this);
 			}
 			buttonLevel.name = i;
-			game.add.text(120 + (numSprite % 3) * 175, 100 + parseInt(numSprite/3) * 140, buttonLevel.name, {});
+			game.add.text(constants.SELECT_LEVEL.MARGIN.X +
+					constants.SELECT_LEVEL.TEXT.X +
+					(numSprite % 3) * 
+					constants.SELECT_LEVEL.DELTA.X,
+					constants.SELECT_LEVEL.MARGIN.Y +
+					constants.SELECT_LEVEL.TEXT.Y + 
+					parseInt(numSprite/3) * 
+					constants.SELECT_LEVEL.DELTA.Y, 
+					buttonLevel.name, {});
 
 			//Stars
-			var stars = game.add.sprite(75 + (numSprite % 3)*175, 125 + parseInt(numSprite/3) * 140, 'stars');
+			var stars = game.add.sprite(
+					constants.SELECT_LEVEL.MARGIN.X + 
+					(numSprite % 3)*
+					constants.SELECT_LEVEL.DELTA.X, 
+					constants.SELECT_LEVEL.MARGIN.Y + 
+					parseInt(numSprite/3) * 
+					constants.SELECT_LEVEL.DELTA.Y,'stars');
 			var scoreLevel = readScore(buttonLevel.name);
 			if (scoreLevel != null) {
 				for (var j=0; j<scoreLevel; j++) {
