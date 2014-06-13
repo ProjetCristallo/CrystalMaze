@@ -38,12 +38,49 @@ function create() {
 					constants.FONT_TASKBAR.SIZE,
 					"Level : "+currentLevel,
 					{font: constants.FONT_TASKBAR.STYLE});
-			//Buttons in taskbar
-			buttonPause = game.add.button(
+			
+			//Taskbar buttons
+			taskBarButtons = [];
+			//Sound button
+			var frameUp = 0;
+			var frameDown = 1;
+			if (mute) {
+				frameUp = 1;
+				frameDown = 0;
+			}
+			soundButton = game.add.button(
 					constants.BACKGROUND_WIDTH + 
-					0.35*constants.TASKBAR_WIDTH,
-					0.8*constants.TASKBAR_HEIGHT,
-					'pause',triggerPause);
+					0.5*constants.TASKBAR_WIDTH,
+					0.25*constants.TASKBAR_HEIGHT, 
+					'soundButton',
+				       	actionOnClickMute, this, frameUp, 
+					frameUp, frameDown);
+			soundButton.anchor={'x':0.5,'y':0};
+			taskBarButtons.push(soundButton);
+			//Help button
+			var helpButton = game.add.button(
+					constants.BACKGROUND_WIDTH +
+					0.5 * constants.TASKBAR_WIDTH,
+					0.45*constants.TASKBAR_HEIGHT,
+					'questionMark', help);
+			helpButton.anchor={'x':0.5,'y':0};
+			taskBarButtons.push(helpButton);
+			//Restart button
+			var restartButton = game.add.button(
+						constants.BACKGROUND_WIDTH +
+						0.5 * constants.TASKBAR_WIDTH,
+						0.65 * constants.TASKBAR_HEIGHT,
+						'simpleRestart', 
+						actionOnClickRestart);
+			restartButton.anchor={'x':0.5,'y':0};
+			//Main Menu button
+			mainMenuButton = game.add.button(
+					constants.BACKGROUND_WIDTH +
+					0.5 * constants.TASKBAR_WIDTH,
+					0.8*constants.TASKBAR_HEIGHT, 
+					'mainMenuButton', actionOnClickMenu,
+					this, 0, 0, 1);
+			mainMenuButton.anchor = {'x':0.5,'y':0};
 		}else{
 			//TaskBar
 			taskBarSprite = simple.create(0,
