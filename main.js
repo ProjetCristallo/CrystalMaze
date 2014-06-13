@@ -159,7 +159,7 @@ function preload(){
 	game.load.spritesheet('salt',constants.saltUrl,60,60);
 	game.load.spritesheet('ball',constants.ballUrl,60,60);
 	game.load.spritesheet('buttonPlay',constants.buttonPlayUrl,163,55);
-	game.load.spritesheet('buttonSelectLevel',constants.buttonSelectLevelUrl, 400/3, 35);
+	game.load.spritesheet('buttonSelectLevel',constants.buttonSelectLevelUrl, 133, 35);
 	game.load.spritesheet('buttonReturn',constants.buttonReturnUrl, 125, 32);
 	game.load.spritesheet('buttonNextLevel',constants.buttonNextLevelUrl,249,36);
 	game.load.spritesheet('buttonReplay',constants.buttonReplayUrl,140,35);
@@ -174,7 +174,13 @@ function preload(){
 	game.load.audio('glass', constants.glassSoundUrl );
 	game.load.audio('drop', constants.dropSoundUrl );
 	game.load.audio('gaz', constants.gazSoundUrl );
-
+	
+	//TaskBar buttons
+	game.load.spritesheet('soundButton', constants.soundButtonUrl, 80, 80);
+	game.load.image('questionMark', constants.questionMarkUrl,80,80);
+	game.load.image('simpleRestart', constants.simpleRestartUrl,80,80);
+	game.load.spritesheet('mainMenuButton', constants.mainMenuButtonUrl,100,80);
+	
 	game.load.onFileComplete.add(updateProgress, this);
 
 	var valueOk = loadValueOk("levels/"+1+".txt");
@@ -245,7 +251,6 @@ function doesFileExist(urlToFile, valueOk)
 	//var xhr = new XMLHttpRequest();
 	xhr.open('HEAD', urlToFile, false);
 	xhr.send();
-	console.log(xhr.status);
 	if (xhr.status == valueOk) {
 		return true;
 	} else {

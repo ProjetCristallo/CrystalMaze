@@ -61,19 +61,54 @@ function create() {
 					"Level : "+currentLevel,
 					{font: constants.FONT_TASKBAR.STYLE});
 			textLevel.anchor={'x':0,'y':1};
-			//Buttons in taskbar
-			buttonPause = game.add.button(0.85*
+			
+			//Taskbar buttons
+			taskBarButtons = [];
+			//Sound button
+			var frameUp = 0;
+			var frameDown = 1;
+			if (mute) {
+				frameUp = 1;
+				frameDown = 0;
+			}
+			soundButton = game.add.button(0.3*
+					constants.TASKBAR_WIDTH,
+					constants.BACKGROUND_HEIGHT+
+					constants.MARGIN_TASKBAR, 'soundButton', actionOnClickMute, this, frameUp, frameUp, frameDown)
+			taskBarButtons.push(soundButton);
+			//Help button
+			taskBarButtons.push(game.add.button(0.45*
+					constants.TASKBAR_WIDTH,
+					constants.BACKGROUND_HEIGHT+
+					constants.MARGIN_TASKBAR, 'questionMark', help));
+			//Restart button
+			taskBarButtons.push(game.add.button(0.6*
+					constants.TASKBAR_WIDTH,
+					constants.BACKGROUND_HEIGHT+
+					constants.MARGIN_TASKBAR, 'simpleRestart', actionOnClickRestart));
+			//Main Menu button
+			mainMenuButton = game.add.button(0.8*
+					constants.TASKBAR_WIDTH,
+					constants.BACKGROUND_HEIGHT+
+					constants.MARGIN_TASKBAR, 'mainMenuButton', actionOnClickMenu,this, 0, 0, 1);
+			
+			//obsolete
+			//Button pause 
+			/*buttonPause = game.add.button(0.85*
 					constants.TASKBAR_WIDTH,
 					constants.BACKGROUND_HEIGHT+
 					constants.MARGIN_TASKBAR,
 					'pause',triggerPause);
-			game.isPaused = false;
+			game.isPaused = false;*/
 		}
+		
 		game.physics.enable(taskBarSprite,Phaser.Physics.ARCADE);
 		taskBarSprite.body.immovable=true;
 		createLevel();
 
-		var buttonsX = constants.BACKGROUND_WIDTH-
+		//obsolete
+		//task bar 
+		/*var buttonsX = constants.BACKGROUND_WIDTH-
 			constants.IN_GAME_MENU_MARGIN-
 			constants.IN_GAME_MENU_BUTTON_WIDTH;
 		var buttonsY = constants.BACKGROUND_HEIGHT-
@@ -99,7 +134,7 @@ function create() {
 						constants.IN_GAME_MENU_MARGIN),
 					'pauseButtonAide',help));
 
-		pauseButtons.forEach(function(button){button.kill()});
+		pauseButtons.forEach(function(button){button.kill()});*/
 
 
 		//Controller
