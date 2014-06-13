@@ -1,17 +1,28 @@
 function help()
 {
-	buttonNext = game.add.button(0.75*constants.BACKGROUND_WIDTH, 
-			0.78*constants.BACKGROUND_HEIGHT, 'buttonNextImage', 
-			clickHelpNext,this,0,1,2);
-	buttonPrev = game.add.button(0.15*constants.BACKGROUND_WIDTH,
-			0.78*constants.BACKGROUND_HEIGHT, 'buttonPrevImage', 
-			clickHelpPrev,this,2,1,0);
-	buttonClose = game.add.button(0.82*constants.BACKGROUND_WIDTH,
-			0.15*constants.BACKGROUND_HEIGHT, 'buttonCloseImage',
-			clickHelpClose,this,0,1,2);
-	posInHelp = 1;
-	initializeHelpScreen();
-	displayHelp();
+	if (!buttonNext) {
+		//the help screen hasn't been opened yet
+		buttonNext = game.add.button(0.75*constants.BACKGROUND_WIDTH, 
+				0.78*constants.BACKGROUND_HEIGHT, 'buttonNextImage', 
+				clickHelpNext,this,0,1,2);
+		buttonPrev = game.add.button(0.15*constants.BACKGROUND_WIDTH,
+				0.78*constants.BACKGROUND_HEIGHT, 'buttonPrevImage', 
+				clickHelpPrev,this,2,1,0);
+		buttonClose = game.add.button(0.82*constants.BACKGROUND_WIDTH,
+				0.15*constants.BACKGROUND_HEIGHT, 'buttonCloseImage',
+				clickHelpClose,this,0,1,2);
+		posInHelp = 1;
+		initializeHelpScreen();
+		displayHelp();
+	} else {
+		if (buttonNext.alive) {
+			//the help screen is currently displayed
+			clickHelpClose();
+		} else {
+			posInHelp = 1;
+			displayHelp();
+		}
+	}
 }
 
 function initializeHelpScreen()
@@ -26,9 +37,13 @@ function initializeHelpScreen()
 
 function displayHelp()
 {
+	helpScreens[posInHelp-1].revive();
 	helpScreens[posInHelp-1].bringToTop();
+	buttonNext.revive();
 	buttonNext.bringToTop();
+	buttonPrev.revive();
 	buttonPrev.bringToTop();
+	buttonClose.revive();
 	buttonClose.bringToTop();
 	posText = game.add.text(0.48*constants.BACKGROUND_WIDTH,0.83*
 			constants.BACKGROUND_HEIGHT,
@@ -58,9 +73,9 @@ function clickHelpPrev()
 
 function clickHelpClose()
 {
-	helpScreens.forEach(function(screen){screen.destroy()});
-	buttonNext.destroy();
-	buttonPrev.destroy();
-	buttonClose.destroy();
+	helpScreens.forEach(function(screen){screen.kill()});
+	buttonNext.kill();
+	buttonPrev.kill();
+	buttonClose.kill();
 	posText.destroy();
 }
