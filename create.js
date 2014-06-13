@@ -74,23 +74,29 @@ function create() {
 			soundButton = game.add.button(0.3*
 					constants.TASKBAR_WIDTH,
 					constants.BACKGROUND_HEIGHT+
-					constants.MARGIN_TASKBAR, 'soundButton', actionOnClickMute, this, frameUp, frameUp, frameDown)
+					constants.MARGIN_TASKBAR, 'soundButton',
+				       	actionOnClickMute, this, frameUp, 
+					frameUp, frameDown)
 			taskBarButtons.push(soundButton);
 			//Help button
 			taskBarButtons.push(game.add.button(0.45*
 					constants.TASKBAR_WIDTH,
 					constants.BACKGROUND_HEIGHT+
-					constants.MARGIN_TASKBAR, 'questionMark', help));
+					constants.MARGIN_TASKBAR, 
+					'questionMark', help));
 			//Restart button
 			taskBarButtons.push(game.add.button(0.6*
 					constants.TASKBAR_WIDTH,
 					constants.BACKGROUND_HEIGHT+
-					constants.MARGIN_TASKBAR, 'simpleRestart', actionOnClickRestart));
+					constants.MARGIN_TASKBAR, 
+					'simpleRestart', actionOnClickRestart));
 			//Main Menu button
 			mainMenuButton = game.add.button(0.8*
 					constants.TASKBAR_WIDTH,
 					constants.BACKGROUND_HEIGHT+
-					constants.MARGIN_TASKBAR, 'mainMenuButton', actionOnClickMenu,this, 0, 0, 1);
+					constants.MARGIN_TASKBAR, 
+					'mainMenuButton', actionOnClickMenu,
+					this, 0, 0, 1);
 			
 			//obsolete
 			//Button pause 

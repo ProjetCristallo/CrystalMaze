@@ -87,7 +87,8 @@ function updateProgress(){
 		progressInfo.anchor={'x':0.5,'y':0.5};
 	}
 	if(!progressPageLoaded && game.cache.checkImageKey('mainMenuSprite') &&
-		       	game.cache.checkImageKey('title')) {
+			game.cache.checkImageKey('title')) 
+	{
 		mainMenuSprite = game.add.sprite(0, 0, 'mainMenuSprite');
 		title = game.add.sprite(11, 50, 'title');
 		progressInfo = game.add.text(0.5*constants.BACKGROUND_WIDTH,
@@ -133,7 +134,8 @@ function preload(){
 
 	game.load.image('pauseButtonAide',constants.pauseButtonAideUrl);
 	game.load.image('pauseButtonMenu',constants.pauseButtonMenuUrl);
-	game.load.image('pauseButtonParametres',constants.pauseButtonParametresUrl);
+	game.load.image('pauseButtonParametres',
+			constants.pauseButtonParametresUrl);
 	game.load.image('pauseButtonRestart',constants.pauseButtonRestartUrl);
 	game.load.image('pauseButtonMute', constants.pauseButtonMuteUrl);
 	game.load.image('soundOn', constants.soundOnUrl);
@@ -147,7 +149,8 @@ function preload(){
 	game.load.image('energyDown',constants.energyDownUrl);
 	game.load.image('porous',constants.porousUrl);	
 	for (var i = 1; i <= constants.NUMBER_OF_HELP_SCREEN; i ++){
-	    game.load.image('helpScreen' + i,constants.helpScreenUrl[i - 1]);
+		game.load.image('helpScreen' + i,
+				constants.helpScreenUrl[i - 1]);
 	}
 	game.load.image('nextPage',constants.nextPageUrl);
 	game.load.image('prevPage',constants.prevPageUrl);
@@ -159,14 +162,22 @@ function preload(){
 	game.load.spritesheet('salt',constants.saltUrl,60,60);
 	game.load.spritesheet('ball',constants.ballUrl,60,60);
 	game.load.spritesheet('buttonPlay',constants.buttonPlayUrl,163,55);
-	game.load.spritesheet('buttonSelectLevel',constants.buttonSelectLevelUrl, 133, 35);
-	game.load.spritesheet('buttonReturn',constants.buttonReturnUrl, 125, 32);
-	game.load.spritesheet('buttonNextLevel',constants.buttonNextLevelUrl,249,36);
-	game.load.spritesheet('buttonReplay',constants.buttonReplayUrl,140,35);
-	game.load.spritesheet('buttonRestart',constants.buttonRestartUrl,138,29);	
-	game.load.spritesheet('buttonNextImage',constants.buttonNextImageUrl,25,50);
-	game.load.spritesheet('buttonPrevImage',constants.buttonPrevImageUrl,25,50);
-	game.load.spritesheet('buttonCloseImage',constants.buttonCloseImageUrl,35,35);
+	game.load.spritesheet('buttonSelectLevel',
+			constants.buttonSelectLevelUrl, 133, 35);
+	game.load.spritesheet('buttonReturn',
+			constants.buttonReturnUrl, 125, 32);
+	game.load.spritesheet('buttonNextLevel',
+			constants.buttonNextLevelUrl,249,36);
+	game.load.spritesheet('buttonReplay',
+			constants.buttonReplayUrl,140,35);
+	game.load.spritesheet('buttonRestart',
+			constants.buttonRestartUrl,138,29);	
+	game.load.spritesheet('buttonNextImage',
+			constants.buttonNextImageUrl,25,50);
+	game.load.spritesheet('buttonPrevImage',
+			constants.buttonPrevImageUrl,25,50);
+	game.load.spritesheet('buttonCloseImage',
+			constants.buttonCloseImageUrl,35,35);
 	game.load.spritesheet('stars',constants.starsUrl,100,25);
 	//Sounds
 	game.load.audio('salted',constants.saltSoundUrl); 
@@ -174,18 +185,20 @@ function preload(){
 	game.load.audio('glass', constants.glassSoundUrl );
 	game.load.audio('drop', constants.dropSoundUrl );
 	game.load.audio('gaz', constants.gazSoundUrl );
-	
+
 	//TaskBar buttons
 	game.load.spritesheet('soundButton', constants.soundButtonUrl, 80, 80);
 	game.load.image('questionMark', constants.questionMarkUrl,80,80);
 	game.load.image('simpleRestart', constants.simpleRestartUrl,80,80);
-	game.load.spritesheet('mainMenuButton', constants.mainMenuButtonUrl,100,80);
-	
+	game.load.spritesheet('mainMenuButton', 
+			constants.mainMenuButtonUrl,100,80);
+
 	game.load.onFileComplete.add(updateProgress, this);
 
 	var valueOk = loadValueOk("levels/"+1+".txt");
 
-	while (doesFileExist("levels/"+nbrLevel+".txt",valueOk) && nbrLevel < 500){
+	while (doesFileExist("levels/"+nbrLevel+".txt",valueOk) && 
+			nbrLevel < 500){
 		nbrLevel++;
 	}
 	if(nbrLevel == 500){
@@ -248,7 +261,6 @@ function doesFileExist(urlToFile, valueOk)
 	{
 		var xhr = new XMLHttpRequest();
 	}
-	//var xhr = new XMLHttpRequest();
 	xhr.open('HEAD', urlToFile, false);
 	xhr.send();
 	if (xhr.status == valueOk) {
@@ -256,13 +268,4 @@ function doesFileExist(urlToFile, valueOk)
 	} else {
 		return false;
 	}
-	/*	try{
-		var xhr = new XMLHttpRequest();
-		xhr.open('HEAD', urlToFile, false);
-		xhr.send();
-		return true;
-		}catch(e){
-		return false;
-		}
-	 */
 }
