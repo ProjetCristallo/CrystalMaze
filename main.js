@@ -179,7 +179,12 @@ function preload(){
 	game.load.audio('glass', constants.glassSoundUrl );
 	game.load.audio('drop', constants.dropSoundUrl );
 	game.load.audio('gaz', constants.gazSoundUrl );
-
+	
+	//TaskBar buttons
+	game.load.spritesheet('soundButton', 'ressources/soundButton.png', 80, 80);
+	game.load.image('questionMark', 'ressources/questionMark.png',80,80);
+	game.load.image('simpleRestart', 'ressources/simpleRestart.png',80,80);
+	
 	game.load.onFileComplete.add(updateProgress, this);
 
 	var valueOk = loadValueOk("levels/"+1+".txt");
@@ -251,7 +256,6 @@ function doesFileExist(urlToFile, valueOk)
 	//var xhr = new XMLHttpRequest();
 	xhr.open('HEAD', urlToFile, false);
 	xhr.send();
-	console.log(xhr.status);
 	if (xhr.status == valueOk) {
 		return true;
 	} else {

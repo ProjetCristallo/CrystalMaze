@@ -39,3 +39,12 @@ function playSaltSound() {
 	noise.play('',0,1,false);
 	}
 }
+
+function actionOnClickMute() {
+	if (mute) {
+		soundButton.setFrames(0,0,1);
+	} else {
+		soundButton.setFrames(1,1,0);
+	}
+	mute = !mute;
+}

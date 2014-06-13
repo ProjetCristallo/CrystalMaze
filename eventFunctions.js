@@ -16,7 +16,7 @@ function endLevel(ball, endSprite)
 	if (currentLevel == nbrLevel) {
 		endGame(ball,endSprite);
 	} else {
-		buttonPause.inputEnabled = false;
+		//buttonPause.inputEnabled = false;
 		playing = false;
 		ball.body.velocity.x=0;
 		ball.body.velocity.y=0;
@@ -63,7 +63,7 @@ function endGame(ball, endSprite) {
 	playing = false;
 	ball.body.velocity.x=0;
 	ball.body.velocity.y=0;
-	buttonPause.inputEnabled = false;
+	//buttonPause.inputEnabled = false;
 	endScreen = game.add.sprite(constants.END_SCREEN.OFFSET.X,constants.END_SCREEN.OFFSET.Y, 'endScreen');
 	button2 = game.add.button(constants.END_SCREEN.OFFSET.X+constants.END_SCREEN.BUTTONS_OFFSET.X,
 	            constants.END_SCREEN.OFFSET.Y+constants.END_SCREEN.BUTTONS_OFFSET.Y,
@@ -96,7 +96,7 @@ function endGame(ball, endSprite) {
 }
 
 function loseGame() {
-		buttonPause.inputEnabled = false;
+		//buttonPause.inputEnabled = false;
 		playing = false;
 		ball.body.velocity.x=0;
 		ball.body.velocity.y=0;
@@ -213,23 +213,6 @@ function actionOnClickLevelInaccessible(button)
 			}
 			,this);
 }
-
-function actionOnClickMute() {
-	mute = !mute;
-	/*playing = false;	
-	if (mute == false) {
-		var soundOn = game.add.sprite(300, 240, 'soundOn');
-		game.time.events.add(Phaser.Timer.SECOND * 3, fadePicture(soundOn), this);
-	} else {
-		var soundOff = game.add.sprite(300, 240, 'soundOff');
-		game.time.events.add(Phaser.Timer.SECOND * 3, fadePicture(soundOff), this);
-	}*/
-}
-
-/*function fadePicture(picture) {
-	game.add.tween(picture).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
-	playing = true;
-}*/
 
 
 function triggerPause() {

@@ -60,19 +60,44 @@ function create() {
 					"Level : "+currentLevel,
 					{font: constants.FONT_TASKBAR.STYLE});
 			textLevel.anchor={'x':0,'y':1};
-			//Buttons in taskbar
-			buttonPause = game.add.button(0.85*
+			
+			//Taskbar buttons
+			taskBarButtons = [];
+			//Sound button
+			soundButton = game.add.button(0.35*
+					constants.TASKBAR_WIDTH,
+					constants.BACKGROUND_HEIGHT+
+					constants.MARGIN_TASKBAR, 'soundButton', actionOnClickMute, this, 0, 0, 1)
+			taskBarButtons.push(soundButton);
+			//Help button
+			taskBarButtons.push(game.add.button(0.5*
+					constants.TASKBAR_WIDTH,
+					constants.BACKGROUND_HEIGHT+
+					constants.MARGIN_TASKBAR, 'questionMark', help));
+			//Restart button
+			taskBarButtons.push(simpleRestart = game.add.button(0.65*
+					constants.TASKBAR_WIDTH,
+					constants.BACKGROUND_HEIGHT+
+					constants.MARGIN_TASKBAR, 'simpleRestart', function() {
+			game.world.removeAll(true);
+			create();
+			}));
+			
+			
+			//Button pause and drop down menu
+			/*buttonPause = game.add.button(0.85*
 					constants.TASKBAR_WIDTH,
 					constants.BACKGROUND_HEIGHT+
 					constants.MARGIN_TASKBAR,
 					'pause',triggerPause);
-			game.isPaused = false;
+			game.isPaused = false;*/
 		}
+		
 		game.physics.enable(taskBarSprite,Phaser.Physics.ARCADE);
 		taskBarSprite.body.immovable=true;
 		createLevel();
 
-		var buttonsX = constants.BACKGROUND_WIDTH-constants.IN_GAME_MENU_MARGIN-constants.IN_GAME_MENU_BUTTON_WIDTH;
+		/*var buttonsX = constants.BACKGROUND_WIDTH-constants.IN_GAME_MENU_MARGIN-constants.IN_GAME_MENU_BUTTON_WIDTH;
 		var buttonsY = constants.BACKGROUND_HEIGHT-constants.IN_GAME_MENU_HEIGHT+constants.IN_GAME_MENU_MARGIN;
 		pauseButtons = [];
 		pauseButtons.push(game.add.button(buttonsX,buttonsY,'pauseButtonRestart',function() {
@@ -82,8 +107,8 @@ function create() {
 		pauseButtons.push(game.add.button(buttonsX,buttonsY+1*(constants.IN_GAME_MENU_BUTTON_HEIGHT+constants.IN_GAME_MENU_MARGIN),'pauseButtonMenu',actionOnClickMenu));
 		pauseButtons.push(game.add.button(buttonsX,buttonsY+2*(constants.IN_GAME_MENU_BUTTON_HEIGHT+constants.IN_GAME_MENU_MARGIN),'pauseButtonMute',actionOnClickMute));
 		pauseButtons.push(game.add.button(buttonsX,buttonsY+3*(constants.IN_GAME_MENU_BUTTON_HEIGHT+constants.IN_GAME_MENU_MARGIN),'pauseButtonAide',help));
-
-		pauseButtons.forEach(function(button){button.kill()});
+	
+		pauseButtons.forEach(function(button){button.kill()});*/
 
 
 		//Controller
