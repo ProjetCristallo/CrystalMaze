@@ -12,7 +12,8 @@ END_SCREEN :
 #Select Level screen margin stands for the space between the first block 
 #and the game bounds, delta stands for the difference between the first pixel of
 #2 successive blocks, text stands for the relative position of the first letter
-#of the string in the level button. 
+#of the string in the level button, star Y is used to position the stars on the
+#level block. 
 SELECT_LEVEL :
     MARGIN :
         X : 75
@@ -23,6 +24,7 @@ SELECT_LEVEL :
     TEXT :
         X : 45
         Y : 40    
+    STAR_Y : 70
 BACKGROUND_HEIGHT : 480
 BACKGROUND_WIDTH : 600
 

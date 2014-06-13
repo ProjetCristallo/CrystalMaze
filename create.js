@@ -232,10 +232,11 @@ function create() {
 
 			//Stars
 			var stars = game.add.sprite(
-					constants.SELECT_LEVEL.MARGIN.X + 
+					constants.SELECT_LEVEL.MARGIN.X+ 
 					(numSprite % 3)*
 					constants.SELECT_LEVEL.DELTA.X, 
 					constants.SELECT_LEVEL.MARGIN.Y + 
+					constants.SELECT_LEVEL.STAR_Y +
 					parseInt(numSprite/3) * 
 					constants.SELECT_LEVEL.DELTA.Y,'stars');
 			var scoreLevel = readScore(buttonLevel.name);
