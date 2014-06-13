@@ -1,13 +1,13 @@
 function help()
 {
-	buttonNext = game.add.button(0.75*BACKGROUND_WIDTH, 
-			0.78*BACKGROUND_HEIGHT, 'buttonNextImage', 
+	buttonNext = game.add.button(0.75*constants.BACKGROUND_WIDTH, 
+			0.78*constants.BACKGROUND_HEIGHT, 'buttonNextImage', 
 			clickHelpNext,this,0,1,2);
-	buttonPrev = game.add.button(0.15*BACKGROUND_WIDTH,
-			0.78*BACKGROUND_HEIGHT, 'buttonPrevImage', 
+	buttonPrev = game.add.button(0.15*constants.BACKGROUND_WIDTH,
+			0.78*constants.BACKGROUND_HEIGHT, 'buttonPrevImage', 
 			clickHelpPrev,this,2,1,0);
-	buttonClose = game.add.button(0.82*BACKGROUND_WIDTH,
-			0.15*BACKGROUND_HEIGHT, 'buttonCloseImage',
+	buttonClose = game.add.button(0.82*constants.BACKGROUND_WIDTH,
+			0.15*constants.BACKGROUND_HEIGHT, 'buttonCloseImage',
 			clickHelpClose,this,0,1,2);
 	posInHelp = 1;
 	initializeHelpScreen();
@@ -16,9 +16,9 @@ function help()
 
 function initializeHelpScreen()
 {
-	for(var i=1;i<=NUMBER_OF_HELP_SCREEN; i++){
-		helpScreens[i-1] = (game.add.sprite(0.1*BACKGROUND_WIDTH,
-					0.1*BACKGROUND_HEIGHT,'helpScreen'+i));
+	for(var i=1;i<=constants.NUMBER_OF_HELP_SCREEN; i++){
+		helpScreens[i-1] = (game.add.sprite(0.1*constants.BACKGROUND_WIDTH,
+					0.1*constants.BACKGROUND_HEIGHT,'helpScreen'+i));
 	}
 }
 
@@ -26,16 +26,16 @@ function displayHelp()
 {
 	/*switch(posInHelp){
 	  case 1:
-	  helpScreen=game.add.sprite(0.1*BACKGROUND_WIDTH,
-	  0.1*BACKGROUND_HEIGHT, 'helpScreen1');
+	  helpScreen=game.add.sprite(0.1*constants.BACKGROUND_WIDTH,
+	  0.1*constants.BACKGROUND_HEIGHT, 'helpScreen1');
 
 	  buttonNext.bringToTop();
 	  buttonPrev.bringToTop();
 	  buttonClose.bringToTop();
 	  break;
 	  case 2:
-	  helpScreen=game.add.sprite(0.1*BACKGROUND_WIDTH,
-	  0.1*BACKGROUND_HEIGHT, 'helpScreen2');
+	  helpScreen=game.add.sprite(0.1*constants.BACKGROUND_WIDTH,
+	  0.1*constants.BACKGROUND_HEIGHT, 'helpScreen2');
 	  buttonNext.bringToTop();
 	  buttonPrev.bringToTop();
 	  buttonClose.bringToTop();
@@ -46,7 +46,7 @@ function displayHelp()
 	buttonNext.bringToTop();
 	buttonPrev.bringToTop();
 	buttonClose.bringToTop();
-	posText = game.add.text(0.48*BACKGROUND_WIDTH,0.83*BACKGROUND_HEIGHT,
+	posText = game.add.text(0.48*constants.BACKGROUND_WIDTH,0.83*constants.BACKGROUND_HEIGHT,
 			posInHelp + '/6',{font: "15px Arial",fill: "#000000",
 			align: "center"});
 
@@ -56,7 +56,7 @@ function clickHelpNext()
 {
 	posText.destroy();
 	posInHelp++;
-	if(posInHelp>NUMBER_OF_HELP_SCREEN){
+	if(posInHelp>constants.NUMBER_OF_HELP_SCREEN){
 		posInHelp=1;
 	}
 	displayHelp();
@@ -67,7 +67,7 @@ function clickHelpPrev()
 	posText.destroy();
 	posInHelp--;
 	if(posInHelp<1){
-		posInHelp=NUMBER_OF_HELP_SCREEN;
+		posInHelp=constants.NUMBER_OF_HELP_SCREEN;
 	}
 	displayHelp();
 }

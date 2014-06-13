@@ -1,7 +1,10 @@
 function moveBall() {
+
+	//Imprecisions handling
 	ball.body.x = Math.round(ball.body.x);
 	ball.body.y = Math.round(ball.body.y);
 
+	//Ball animation
 	if(ball.isMoving && ball.animations.paused){
 		ball.animations.paused=false;
 	}
@@ -9,6 +12,7 @@ function moveBall() {
 		ball.animations.paused=true;
 	}
 
+	//Checks if the ball is moving
 	if(ball.body.position.x === ball.body.prev.x 
 			&& ball.body.position.y === ball.body.prev.y)
 	{
@@ -18,41 +22,44 @@ function moveBall() {
 	{
 		ball.isMoving = true;
 	}
+	
 	if(!ball.isMoving)
-	{
+	{	
 		if(game.isPaused) {return;}
+		//the ball isn't moving and the game isn't paused : 
+		//we check inputs from the user
 		if((controller.left.isDown || swipe==='left')
 				&& checkMoveGroup('left'))
-		{
+		{	
 			lastDir = 'left';
 			swipe = null;
 			lastTurnBlocked = null;
 			lastTurn = null;
 			game.physics.arcade.overlap(ball,turn,setLastTurn);
 			score++;
-			ball.body.velocity.x = -BALL_SPEED;
+			ball.body.velocity.x = -constants.BALL.SPEED;
 		}
 		else if((controller.right.isDown || swipe==='right')
 				&& checkMoveGroup('right'))
-		{
+		{	
 			lastDir = 'right';
 			swipe = null;	
 			lastTurnBlocked = null;
 			lastTurn = null;
 			game.physics.arcade.overlap(ball,turn,setLastTurn);
 			score++;
-			ball.body.velocity.x = +BALL_SPEED;
+			ball.body.velocity.x = +constants.BALL.SPEED;
 		}
 		else if((controller.up.isDown || swipe==='up')
 				&& checkMoveGroup('up'))
-		{
+		{	
 			lastDir = 'up';
 			swipe = null;	
 			lastTurnBlocked = null;
 			lastTurn = null;
 			game.physics.arcade.overlap(ball,turn,setLastTurn);
 			score++;
-			ball.body.velocity.y = -BALL_SPEED;
+			ball.body.velocity.y = -constants.BALL.SPEED;
 		}
 		else if((controller.down.isDown || swipe==='down')
 				&& checkMoveGroup('down'))
@@ -63,11 +70,12 @@ function moveBall() {
 			lastTurn = null;
 			game.physics.arcade.overlap(ball,turn,setLastTurn);
 			score++;
-			ball.body.velocity.y = +BALL_SPEED;
+			ball.body.velocity.y = +constants.BALL.SPEED;
 		}
 	}
 	else
 	{
+		//The ball is moving : we check the collisions/overlaps
 		game.physics.arcade.collide(ball, simple, normalBlockCollide, null, this);
 		game.physics.arcade.collide(ball, breakable, breakBlockCollide, null, this);
 		game.physics.arcade.collide(ball, salt, saltBlockCollide, null, this);
@@ -100,7 +108,7 @@ function checkTurn()
 		current = turn.getAt(i);
 		if(current.alive && current != lastTurn &&
 				game.physics.arcade.distanceBetween
-				(current, ball) < TURN_SENSOR_PERCENTAGE*TILE_SIZE) {
+				(current, ball) < constants.TURN_SENSOR_PERCENTAGE*constants.TILE_SIZE) {
 			lastTurn = current;
 			turnBall(current);				
 		}
@@ -123,26 +131,27 @@ function turnBall(turnBlock)
 	ball.body.x = turnBlock.body.x;
 	ball.body.y = turnBlock.body.y;
 
+	
 	if(lastDir === 'left' || lastDir === 'right'){
 		ball.body.velocity.x = 0;
 		if(turnBlock.body.checkCollision.up === false){
-			ball.body.velocity.y = -BALL_SPEED;
-			ball.body.y -= TILE_SIZE/3;
+			ball.body.velocity.y = -constants.BALL.SPEED;
+			ball.body.y -= constants.TILE_SIZE/3;
 			lastDir = 'up';
 		}else{
-			ball.body.velocity.y = BALL_SPEED;
-			ball.body.y += TILE_SIZE/3;
+			ball.body.velocity.y = constants.BALL.SPEED;
+			ball.body.y += constants.TILE_SIZE/3;
 			lastDir = 'down';
 		}
 	}else if(lastDir === 'up' || lastDir ==='down'){
 		ball.body.velocity.y = 0; 
 		if(turnBlock.body.checkCollision.left === false){
-			ball.body.velocity.x = -BALL_SPEED;
-			ball.body.x -= TILE_SIZE/3;
+			ball.body.velocity.x = -constants.BALL.SPEED;
+			ball.body.x -= constants.TILE_SIZE/3;
 			lastDir = 'left';
 		}else{
-			ball.body.velocity.x = BALL_SPEED;
-			ball.body.x += TILE_SIZE/3;
+			ball.body.velocity.x = constants.BALL.SPEED;
+			ball.body.x += constants.TILE_SIZE/3;
 			lastDir = 'right';
 		}
 	}
@@ -196,8 +205,8 @@ function checkUniTurn(ball, uniBlock)
 			 (ball.body.velocity.x < 0)))
 	{
 		//we put ball back on the turn case
-		ball.body.x -= ball.body.velocity / BALL_SPEED * TILE_SIZE / 3;
-		ball.body.y -= ball.body.velocity / BALL_SPEED * TILE_SIZE / 3;
+		ball.body.x -= ball.body.velocity / constants.BALL.SPEED * constants.TILE_SIZE / 3;
+		ball.body.y -= ball.body.velocity / constants.BALL.SPEED * constants.TILE_SIZE / 3;
 		ball.body.velocity.x = 0;
 		ball.body.velocity.y = 0;
 	}else{
@@ -220,7 +229,7 @@ function checkMoveTurn(block,dir)
 }
 
 
-function checkMove(block, dir)
+function checkMove(block, dir, booleanPorous)
 {
 	var authorized = true;
 
@@ -228,17 +237,17 @@ function checkMove(block, dir)
 		authorized = false;
 	}
 
-	if(dir=='up' && (block.y-ball.y==-TILE_SIZE) && (block.x==ball.x) 
-			&& block.body.checkCollision.down){
+	if(dir=='up' && (block.y-ball.y==-constants.TILE_SIZE) && (block.x==ball.x) 
+			&& (block.body.checkCollision.down || booleanPorous)){
 		authorized = false;
-	} else if(dir=='down' && (block.y-ball.y==TILE_SIZE) && (block.x==ball.x 
-				&& block.body.checkCollision.up)){
+	} else if(dir=='down' && (block.y-ball.y==constants.TILE_SIZE) && (block.x==ball.x) 
+				&& (block.body.checkCollision.up || booleanPorous)){
 		authorized = false;
-	} else if(dir=='left' && (block.x-ball.x==-TILE_SIZE) && (block.y==ball.y 
-				&& block.body.checkCollision.right)){
+	} else if(dir=='left' && (block.x-ball.x==-constants.TILE_SIZE) && (block.y==ball.y) 
+				&& (block.body.checkCollision.right || booleanPorous)){
 		authorized = false;
-	} else if(dir=='right' && ((block.x-ball.x)==TILE_SIZE) && (block.y==ball.y 
-				&& block.body.checkCollision.left)){
+	} else if(dir=='right' && ((block.x-ball.x)==constants.TILE_SIZE) && (block.y==ball.y)
+				&& (block.body.checkCollision.left || booleanPorous)){
 		authorized = false;
 	}
 	return authorized;
@@ -253,13 +262,19 @@ function checkMoveGroup(dir)
 
 	//We check with the game boundaries
 	if((dir=='up' && ball.y==0) || 
-			(dir=='down' && ball.y==game.height-ball.height) || 
-			(dir=='right' && ball.x==game.width-ball.width) || 
+			(dir=='down' && ball.y==constants.BACKGROUND_HEIGHT-ball.width) || 
+			(dir=='right' && ball.x==constants.BACKGROUND_WIDTH-ball.width) || 
 			(dir=='left' && ball.x==0)) {
 		return false;
 	}
 
-
+	for(var i=0; i<porous.length; i++){
+		current = porous.getAt(i);
+		if(current.alive && ball.name === "ice") {
+			authorized = authorized && checkMove(current, dir, true);
+		}
+	}
+	
 	for(var i=0; i<breakable.length;i++){
 		current = breakable.getAt(i);
 		if(current.alive) {

@@ -1,19 +1,32 @@
-var game = new Phaser.Game(BACKGROUND_WIDTH,BACKGROUND_HEIGHT+ TASKBAR_HEIGHT,Phaser.AUTO,'', {preload:preload,create:create,update:update});
-
+if(constants.USE_CORDOVA){
+	var game = new Phaser.Game(constants.BACKGROUND_WIDTH + 
+			constants.TASKBAR_WIDTH, constants.BACKGROUND_HEIGHT,
+			Phaser.AUTO, '', {preload:preload,create:create,
+				update:update});
+	console.log("use.phonegap = true");
+}else{
+	var game = new Phaser.Game(constants.BACKGROUND_WIDTH,
+			constants.BACKGROUND_HEIGHT + constants.TASKBAR_HEIGHT,
+			Phaser.AUTO,'', {preload:preload,create:create,
+				update:update});
+	console.log("use phonegap = false");
+}
 var ball;
-
 var taskBarSprite;
-
 var endTile;
 var endSprite;
-
 var endScreen;
+
+//Booleans indicating game's state
 var mainMenu = true;
+var selectLevelMenu = false;
 
 //Last direction the ball has taken, useful for the turn blocks
 var lastDir=null;
 
-var selectLevelMenu = false;
+//Scores to get two or three stars
+var twoStars;
+var threeStars;
 
 //Button and screen used for displaying help.
 var helpScreens = new Array();
@@ -24,34 +37,31 @@ var posText;
 var helpText;
 var helpOnItem;
 
-
-//Boolean indicating if the player hasn't won yet.
+//Boolean indicating if the player is allowed to play.
 var playing=true;
 
+//Levels
 var nbrLevel = 1;
 var nbrLevelAccessible;
 var numPageCourant = 1;
 var nbrPageTotal = 1;
 var currentLevel = 1;
 
-
-
-//Function called when the user uses his finger
+//Swipe handling
 var element = document.body;
-
 var swipe = null;
 Hammer(element).on("swipeleft", function(event) {
-		swipe='left';
-		});
+	swipe='left';
+});
 Hammer(element).on("swiperight", function(event) {
-		swipe='right';
-		});
+	swipe='right';
+});
 Hammer(element).on("swipedown", function(event) {
-		swipe='down';
-		});
+	swipe='down';
+});
 Hammer(element).on("swipeup", function(event) {
-		swipe='up';
-		});
+	swipe='up';
+});
 
 // Blocks groups
 var hole;
@@ -71,98 +81,189 @@ var listItem;
 var score;
 var turn;
 
-function preload() {
-	game.load.image('taskBar','ressources/taskBar.png');
-	game.load.image('fond','ressources/Fond.png');
-	game.load.image('simple','ressources/Simple.png');
-	game.load.image('cUp','ressources/Change_up.png');
-	game.load.image('cDown','ressources/Change_down.png');
-	game.load.image('cRight','ressources/Change_right.png');
-	game.load.image('cLeft','ressources/Change_left.png');
-	game.load.image('end','ressources/diamond.png');
-	game.load.image('hole','ressources/Hole.png');
-	game.load.image('win','ressources/Win.png');
-	game.load.image('fail','ressources/Fail.png');
-	game.load.image('levelInaccessible', 'ressources/menuLevelInaccessible.png');
-	game.load.image('endScreen','ressources/endScreen.png');
-	game.load.image('uniRight','ressources/unilateral_right.png');
-	game.load.image('uniUp','ressources/unilateral_up.png');
-	game.load.image('uniDown','ressources/unilateral_down.png');
-	game.load.image('uniLeft','ressources/unilateral_left.png');
-	game.load.image('C','ressources/C.png');
-	game.load.image('H','ressources/H.png');
-	game.load.image('O','ressources/O.png');
-	game.load.image('pause', 'ressources/pause.png');
-	game.load.image('pauseMenu', 'ressources/pauseMenu.png');
-	game.load.image('title', 'ressources/title.png');
+//Music volume
+var mute = 0;
 
-	game.load.image('pauseButtonAide','ressources/ButtonAide.png');
-	game.load.image('pauseButtonMenu','ressources/pauseButtonMenu.png');
-	game.load.image('pauseButtonParametres','ressources/ButtonParametres.png');
-	game.load.image('pauseButtonRestart','ressources/ButtonRestart.png');
+var progressPageLoaded = false;
+var progressInfo =null;
+function updateProgress(){
+	if(progressInfo==null){
+		progressInfo = game.add.text(250,300,"0 %",{ font: "65px Arial", align: "center" });
+	}
+	if(!progressPageLoaded && game.cache.checkImageKey('mainMenuSprite') && game.cache.checkImageKey('title')) {
+		mainMenuSprite = game.add.sprite(0, 0, 'mainMenuSprite');
+		title = game.add.sprite(11, 50, 'title');
+		progressInfo = game.add.text(250,300,"0 %",{ font: "65px Arial", align: "center" });
+		progressPageLoaded = true;
+	}
+	progressInfo.text = game.load.progress+" %";
+};
 
-	game.load.image('mainMenuSprite', 'ressources/MainMenu.png');
-	game.load.image('turnUL','ressources/turn_ul.png');
-	game.load.image('turnUR','ressources/turn_ur.png');
-	game.load.image('turnDL','ressources/turn_dl.png');
-	game.load.image('turnDR','ressources/turn_dr.png');
-	game.load.image('energyUp','ressources/Energy_Up.png');
-	game.load.image('energyDown','ressources/Energy_Down.png');
-	game.load.image('porous', 'ressources/porous.png');
-	game.load.image('helpScreen1','ressources/helpScreen1.png');
-	game.load.image('helpScreen2','ressources/helpScreen2.png');
-	game.load.image('nextPage', 'ressources/ArrowRight.png');
-	game.load.image('prevPage', 'ressources/ArrowLeft.png');
-    game.load.image('levelA', 'ressources/levelAccessible.png');
-    game.load.image('levelI', 'ressources/levelInaccessible.png');
-    game.load.image('cross', 'ressources/Cross.png');
+function preload(){
+	game.load.image('mainMenuSprite',constants.mainMenuSpriteUrl);
+	game.load.image('title',constants.titleUrl);
 
-	game.load.spritesheet('breakable','ressources/Breakable.png',60,60);
-	game.load.spritesheet('salt','ressources/Salt.png',60,60);
-	game.load.spritesheet('ball','ressources/balle.png',60,60);
-	game.load.spritesheet('buttonPlay', 'ressources/Button_Jouer.png',163,55);
-	game.load.spritesheet('buttonSelectLevel', 'ressources/ButtonSelectLevel.png', 206, 32);
-	game.load.spritesheet('buttonReturn', 'ressources/ButtonReturn.png', 125, 32);
-	game.load.spritesheet('buttonNextLevel','ressources/Button_next_level.png',249,36);
-	game.load.spritesheet('buttonReplay','ressources/Button_rejouer.png',140,35);
-	game.load.spritesheet('buttonRestart','ressources/Button_restart.png',138,29);	
-	game.load.spritesheet('buttonNextImage','ressources/buttonNextImage.png',25,50);
-	game.load.spritesheet('buttonPrevImage','ressources/buttonPrevImage.png',25,50);
-	game.load.spritesheet('buttonCloseImage','ressources/buttonCloseImage.png',35,35);
-    while (doesFileExist("levels/"+nbrLevel+".txt")){
+	game.load.image('pauseButtonAide',constants.pauseButtonAideUrl);
+	game.load.image('pauseButtonMenu',constants.pauseButtonMenuUrl);
+	game.load.image('pauseButtonMute',constants.pauseButtonMuteUrl);
+	game.load.image('pauseButtonRestart',constants.pauseButtonRestartUrl);
+
+	if(constants.USE_CORDOVA){
+		game.load.image('taskBar',constants.taskBarSmartphoneUrl);
+	}else{
+		game.load.image('taskBar',constants.taskBarUrl);
+	}
+	game.load.image('fond',constants.fondUrl);
+	game.load.image('simple',constants.simpleUrl);
+	game.load.image('cUp',constants.cUpUrl);
+	game.load.image('cDown',constants.cDownUrl);
+	game.load.image('cRight',constants.cRightUrl);
+	game.load.image('cLeft',constants.cLeftUrl);
+	game.load.image('end',constants.endUrl);
+
+	game.load.image('hole',constants.holeUrl);
+	game.load.image('win',constants.winUrl);
+	game.load.image('fail',constants.failUrl);
+	game.load.image('levelInaccessible',constants.levelInaccessibleUrl);
+	game.load.image('endScreen',constants.endScreenUrl);
+	game.load.image('uniRight',constants.uniRightUrl);
+	game.load.image('uniUp',constants.uniUpUrl);
+	game.load.image('uniDown',constants.uniDownUrl);
+	game.load.image('uniLeft',constants.uniLeftUrl);
+	game.load.image('C',constants.CUrl);
+	game.load.image('H',constants.HUrl);
+	game.load.image('O',constants.OUrl);
+	game.load.image('pause',constants.pauseUrl);
+	game.load.image('pauseMenu',constants.pauseMenuUrl);
+	game.load.image('title',constants.titleUrl);
+
+	game.load.image('pauseButtonAide',constants.pauseButtonAideUrl);
+	game.load.image('pauseButtonMenu',constants.pauseButtonMenuUrl);
+	game.load.image('pauseButtonParametres',constants.pauseButtonParametresUrl);
+	game.load.image('pauseButtonRestart',constants.pauseButtonRestartUrl);
+	game.load.image('pauseButtonMute', constants.pauseButtonMuteUrl);
+	game.load.image('soundOn', constants.soundOnUrl);
+	game.load.image('soundOff', constants.soundOffUrl);
+
+	game.load.image('turnUL',constants.turnULUrl);
+	game.load.image('turnUR',constants.turnURUrl);
+	game.load.image('turnDL',constants.turnDLUrl);
+	game.load.image('turnDR',constants.turnDRUrl);
+	game.load.image('energyUp',constants.energyUpUrl);
+	game.load.image('energyDown',constants.energyDownUrl);
+	game.load.image('porous',constants.porousUrl);
+	game.load.image('helpScreen1',constants.helpScreen1Url);
+	game.load.image('helpScreen2',constants.helpScreen2Url);
+	game.load.image('nextPage',constants.nextPageUrl);
+	game.load.image('prevPage',constants.prevPageUrl);
+	game.load.image('levelA',constants.levelAUrl);
+	game.load.image('levelI',constants.levelIUrl);
+	game.load.image('cross',constants.crossUrl);
+
+	game.load.spritesheet('breakable',constants.breakableUrl,60,60);
+	game.load.spritesheet('salt',constants.saltUrl,60,60);
+	game.load.spritesheet('ball',constants.ballUrl,60,60);
+	game.load.spritesheet('buttonPlay',constants.buttonPlayUrl,163,55);
+	game.load.spritesheet('buttonSelectLevel',constants.buttonSelectLevelUrl, 206, 32);
+	game.load.spritesheet('buttonReturn',constants.buttonReturnUrl, 125, 32);
+	game.load.spritesheet('buttonNextLevel',constants.buttonNextLevelUrl,249,36);
+	game.load.spritesheet('buttonReplay',constants.buttonReplayUrl,140,35);
+	game.load.spritesheet('buttonRestart',constants.buttonRestartUrl,138,29);	
+	game.load.spritesheet('buttonNextImage',constants.buttonNextImageUrl,25,50);
+	game.load.spritesheet('buttonPrevImage',constants.buttonPrevImageUrl,25,50);
+	game.load.spritesheet('buttonCloseImage',constants.buttonCloseImageUrl,35,35);
+	game.load.spritesheet('stars',constants.starsUrl,100,25);
+	//Sounds
+	game.load.audio('salted',constants.saltSoundUrl); 
+	game.load.audio('block',constants.blockSoundUrl); 
+	game.load.audio('glass', constants.glassSoundUrl );
+	game.load.audio('drop', constants.dropSoundUrl );
+	game.load.audio('gaz', constants.gazSoundUrl );
+
+	game.load.onFileComplete.add(updateProgress, this);
+
+	var valueOk = loadValueOk("levels/"+1+".txt");
+
+	while (doesFileExist("levels/"+nbrLevel+".txt",valueOk) && nbrLevel < 500){
 		nbrLevel++;
 	}
-	nbrLevel--;
+	if(nbrLevel == 500){
+		nbrLevel = 0;
+	}else{
+		nbrLevel--;
+	}
 	nbrPageTotal = parseInt(1 + (nbrLevel - 1) / 9);
-        //alert(nbrPageTotal);
-    //Number of levels already unblocked
-    cookie = document.cookie;
-    nameEQ = 'levelmax=';
-    nbrLevelAccessible = cookie.substring(nameEQ.length, cookie.length);
-    if (nbrLevelAccessible == "") {
-	nbrLevelAccessible = 1;
-    }
+	//alert(nbrPageTotal);
+
+	//Number of levels already unblocked
+	if(constants.USE_CORDOVA){
+		stars = window.localStorage.getItem("cookieSmartphone");
+		if(stars == null){
+			nbrLevelAccessible=1;
+		}else{
+			nbrLevelAccessible = stars.length+1;
+		}
+	}else{
+		nbrLevelAccessible = readCookie("levelmax");
+		if (nbrLevelAccessible == null) {
+			nbrLevelAccessible = 1;
+		}
+	}	
+	//Cookie containing the scores for each level 
+	if(constants.USE_CORDOVA){
+		stars = window.localStorage.getItem("cookieSmartphone");
+		if(stars == null){
+			window.localStorage.setItem("cookieSmartphone","");
+		}
+	}else{
+		stars = readCookie("stars");
+		if (stars == null) {
+			createCookie("stars", "", 30);
+		}
+	}
 }
 
 
-function doesFileExist(urlToFile)
+function loadValueOk(filename)
 {
-    var xhr = new XMLHttpRequest();
-    xhr.open('HEAD', urlToFile, false);
-    xhr.send();
-    console.log(xhr.status);
-    if (xhr.status == "200") {
-        return true;
-    } else {
-        return false;
-    }
-/*	try{
+	if(document.all) {
+		var xhr = new ActiveXObject("Scripting.FileSystemObject");
+	}
+	else
+	{
+		var xhr = new XMLHttpRequest();
+	}
+	//var xhr = new XMLHttpRequest();
+	xhr.open('HEAD', filename, false);
+	xhr.send();
+	return xhr.status;
+}
+
+function doesFileExist(urlToFile, valueOk)
+{
+	if(document.all) {
+		var xhr = new ActiveXObject("Scripting.FileSystemObject");
+	}
+	else
+	{
+		var xhr = new XMLHttpRequest();
+	}
+	//var xhr = new XMLHttpRequest();
+	xhr.open('HEAD', urlToFile, false);
+	xhr.send();
+	console.log(xhr.status);
+	if (xhr.status == valueOk) {
+		return true;
+	} else {
+		return false;
+	}
+	/*	try{
 		var xhr = new XMLHttpRequest();
 		xhr.open('HEAD', urlToFile, false);
 		xhr.send();
 		return true;
-	}catch(e){
+		}catch(e){
 		return false;
-	}
-*/
+		}
+	 */
 }

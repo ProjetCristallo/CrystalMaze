@@ -9,7 +9,12 @@ function parser(filename) {
 	file.open("GET", filename, false);
 	file.send();
 	var arrLines = file.responseText.split("\n");
-	for(var i = 0 ; i < arrLines.length ; i++) {
+	//We check the score for each floor
+	var res = arrLines[0].split(" ");
+	twoStars = res[0];
+	threeStars = res[1];
+	//We build the level	
+	for(var i = 1 ; i < arrLines.length ; i++) {
 		//	var f_in = file.OpenTextFile(filename,1);
 		//	while (!f_in.AtEndOfStream) {
 		var block;
@@ -17,8 +22,8 @@ function parser(filename) {
 		var line = arrLines[i];
 		//console.info(line);
 		var res = line.split(" ");
-		x = TILE_SIZE*parseInt(res[1]);
-		y = TILE_SIZE*parseInt(res[2]);
+		x = constants.TILE_SIZE*parseInt(res[1]);
+		y = constants.TILE_SIZE*parseInt(res[2]);
 		switch(res[0]) {
 			case "begin":
 		    
@@ -26,25 +31,25 @@ function parser(filename) {
 		                case "ice":
 		   	            ball = game.add.sprite(x,y,'ball',4);
 				    ball.name = res[3];
-				    ballAnimation = ball.animations.add("ice",[0, 1, 2, 3],BALL_ANIMATION_SPEED,true);
-		    ballAnimation = ball.animations.add("water",[4, 5, 6, 7],BALL_ANIMATION_SPEED,true);
-		    ballAnimation = ball.animations.add("steam",[8, 9, 10, 11],BALL_ANIMATION_SPEED,true);
+				    ballAnimation = ball.animations.add("ice",[0, 1, 2, 3],constants.BALL.ANIMATION_SPEED,true);
+		    ballAnimation = ball.animations.add("water",[4, 5, 6, 7],constants.BALL.ANIMATION_SPEED,true);
+		    ballAnimation = ball.animations.add("steam",[8, 9, 10, 11],constants.BALL.ANIMATION_SPEED,true);
 				ball.animations.play("ice");
 			            break;
 		                case "water":
 		    	            ball = game.add.sprite(x,y,'ball',4);
 				    ball.name = res[3];
-				    ballAnimation = ball.animations.add("ice",[0, 1, 2, 3],BALL_ANIMATION_SPEED,true);
-		    ballAnimation = ball.animations.add("water",[4, 5, 6, 7],BALL_ANIMATION_SPEED,true);
-		    ballAnimation = ball.animations.add("steam",[8, 9, 10, 11],BALL_ANIMATION_SPEED,true);
+				    ballAnimation = ball.animations.add("ice",[0, 1, 2, 3],constants.BALL.ANIMATION_SPEED,true);
+		    ballAnimation = ball.animations.add("water",[4, 5, 6, 7],constants.BALL.ANIMATION_SPEED,true);
+		    ballAnimation = ball.animations.add("steam",[8, 9, 10, 11],constants.BALL.ANIMATION_SPEED,true);
 				ball.animations.play("water");
 			            break;
 		                case "steam":
 			            ball = game.add.sprite(x,y,'ball',4);
 			            ball.name = res[3];  
-				    ballAnimation = ball.animations.add("ice",[0, 1, 2, 3],BALL_ANIMATION_SPEED,true);
-		    ballAnimation = ball.animations.add("water",[4, 5, 6, 7],BALL_ANIMATION_SPEED,true);
-		    ballAnimation = ball.animations.add("steam",[8, 9, 10, 11],BALL_ANIMATION_SPEED,true);
+				    ballAnimation = ball.animations.add("ice",[0, 1, 2, 3],constants.BALL.ANIMATION_SPEED,true);
+		    ballAnimation = ball.animations.add("water",[4, 5, 6, 7],constants.BALL.ANIMATION_SPEED,true);
+		    ballAnimation = ball.animations.add("steam",[8, 9, 10, 11],constants.BALL.ANIMATION_SPEED,true);
 				ball.animations.play("steam");
 				break;
 			    }

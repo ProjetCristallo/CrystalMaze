@@ -1,0 +1,33 @@
+10 8
+begin 0 0 ice
+breakable 0 5 2
+porous 0 7 
+porous 1 7 
+item 2 4 energyUp
+porous 2 7 
+porous 3 7 
+simple 4 1 
+simple 4 2 
+simple 4 3 
+hole 4 4 
+simple 4 5 
+unilateral 4 6 right
+porous 4 7 
+simple 5 1 
+item 5 2 energyDown
+simple 5 3 
+end 5 4 
+simple 5 5 
+item 5 6 energyUp
+porous 5 7 
+simple 6 1 
+simple 6 2 
+simple 6 3 
+simple 6 4 
+simple 6 5 
+unilateral 6 6 left
+porous 6 7 
+porous 7 7 
+simple 8 7 
+turn 9 0 dl
+simple 9 7 
