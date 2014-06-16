@@ -5,16 +5,16 @@ function initializeTutorial()
 	for(var i=1;i<=nbrScreenTuto[currentLevelTuto - 1]; i++){
 	    
 	    tutoScreens[i-1] = (game.add.sprite(
-		0.1*constants.BACKGROUND_WIDTH,
+		0.03*constants.BACKGROUND_WIDTH,
 		0.03*constants.BACKGROUND_HEIGHT,
 		'tutorial'+currentLevelTuto+"-"+i));
 	}
 	posInTuto = 1;
-	buttonCloseTuto = game.add.button(0.30*constants.BACKGROUND_WIDTH,
-					  0.30*constants.BACKGROUND_HEIGHT, 'buttonCloseTuto',
+	buttonCloseTuto = game.add.button(0.23*constants.BACKGROUND_WIDTH,
+					  0.35*constants.BACKGROUND_HEIGHT, 'buttonCloseTuto',
 					  tutoClose,this,0,1,2);
-	buttonNextTuto = game.add.button(0.30*constants.BACKGROUND_WIDTH, 
-				     0.30*constants.BACKGROUND_HEIGHT, 'buttonNextTuto', 
+	buttonNextTuto = game.add.button(0.23*constants.BACKGROUND_WIDTH, 
+				     0.35*constants.BACKGROUND_HEIGHT, 'buttonNextTuto', 
 					 clickTutoNext,this,0,1,2);
     } else {
 	posInTuto = 0;
