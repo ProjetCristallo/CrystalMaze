@@ -7,6 +7,13 @@ function hardOverlap(ball,block)
 			 constants.TILE_SIZE/2));
 }
 
+/** Handles the end of a level (ie when the ball overlaps the diamond) :
+  * Displays the screen "you have won", the buttons "play again" 
+  * and "next level", and the number of stars won.
+  * Also updates cookies.
+  * @param {sprite} ball The moving ball from the world.
+  * @param {sprite} endSprite The diamond.
+  */
 function endLevel(ball, endSprite)
 {
 	// Force ball and endSprite to be closer than a classic overlap
@@ -18,7 +25,6 @@ function endLevel(ball, endSprite)
 	} else if (tutorial && currentLevelTuto == nbrLevelTuto){
 	        endTuto(ball, endSprite);
 	} else {
-		//buttonPause.inputEnabled = false;
 		playing = false;
 		ball.body.velocity.x=0;
 		ball.body.velocity.y=0;
@@ -70,6 +76,12 @@ function endLevel(ball, endSprite)
 	}	
 }
 
+/** Handles the end of the game (end of the last level) :
+  * Displays the screen "you have won" and the button "play again" 
+  * Also updates cookies.
+  * @param {sprite} ball The moving ball from the world.
+  * @param {sprite} endSprite The diamond.
+  */
 function endGame(ball, endSprite) {
 	endSprite.kill();
 	playing = false;
@@ -105,6 +117,11 @@ function endGame(ball, endSprite) {
 	updateCookieNbrLevel(nbrLevelAccessible);	
 }
 
+/** Handles the end of the tutorial (last level of the tutorial) :
+  * Displays the screen "tutorial finished" and the button "play again" 
+  * @param {sprite} ball The moving ball from the world.
+  * @param {sprite} endSprite The diamond.
+  */
 function endTuto(ball, endSprite)
 {
         endSprite.kill();
@@ -122,6 +139,11 @@ function endTuto(ball, endSprite)
 			'buttonReplay', actionOnClickRestart, this, 2,1,0);
 }
 
+/** Handles the end of the level, when lost :
+  * Displays the screen "you lost" and the button "play again" 
+  * @param {sprite} ball The moving ball from the world.
+  * @param {sprite} endSprite The diamond.
+  */
 function loseGame() {
 	playing = false;
 	ball.body.velocity.x=0;
@@ -136,6 +158,12 @@ function loseGame() {
 			this, 2,1,0);
 }
 
+/** Handles a click on the main menu button :
+  * Displays the screen "are you sure you want to go back
+  * to the main menu ?" and the buttons "yes" and "no".
+  * if yes : return to the main menu.
+  * if no : resume game.
+  */
 function actionOnClickMainMenu() {
 	playing = false;
 	ball.body.velocity.x = 0;
@@ -158,22 +186,25 @@ function actionOnClickMainMenu() {
 	});
 }
 
-
+/** Returns to the main menu.
+  */
 function actionOnClickMenu() {
+	playing=false;
 	game.world.removeAll(true);
-	mainMenu = true;
 	currentLevel = 1;
-        currentLevelTuto = 1;
-	playing = true;
-	create();
+    currentLevelTuto = 1;
+	createMenu();
 }
 
+/** Restarts the current level.
+  */
 function actionOnClickRestart(){
-	playing = true;
 	game.world.removeAll(true);
-	create();
+	generateLevel();
 }
 
+/** Moves on to the next level
+  */
 function actionOnClickNextLevel()
 {
     if(!tutorial){
@@ -183,68 +214,80 @@ function actionOnClickNextLevel()
 	currentLevelTuto++;
 	textLevel.setText("Tutorial " + currentLevelTuto);
     }
-	playing = true;
 	game.world.removeAll(true);
-	create();
+	generateLevel();
 }
 
+/** Starts the first level
+  */
 function actionOnClickPlay()
 {
         tutorial = false;
-	mainMenu = false;
 	game.world.removeAll(true);
-	create();
+	generateLevel();
 }
 
+/** Displays the select level menu
+  */
 function actionOnClickSelectLevel()
 {
         tutorial = false;
-	selectLevelMenu = true;
-	mainMenu = false;
 	game.world.removeAll(true);
-	create();
+	createSelectLevel();
 }
 
+/** Starts the first tutorial level
+  */
 function actionOnClickTutorial()
 {
-        mainMenu = false;
         tutorial = true;
 	game.world.removeAll(true);
-	create();
+	generateLevel();
 }
 
+/** Returns to the main menu (when in select level menu)
+  */
 function actionOnClickReturn()
 {
 	numPageCourant = 1;
-	selectLevelMenu = false;
-	mainMenu = true;
 	game.world.removeAll(true);
-	create();
+	createMenu();
 }
 
+/** Moves on to the next select level page
+  */
 function actionOnClickArrowRight()
 {
 	numPageCourant++;
 	game.world.removeAll(true);
-	create();
+	createSelectLevel();
 }
 
+/** Moves on to the previous select level page
+  */
 function actionOnClickArrowLeft()
 {
 	numPageCourant--;
 	game.world.removeAll(true);
-	create();
+	createSelectLevel();
 }
 
+/** Starts the level corresponding to the button clicked on.
+  * @ param button A button representing an accessible level.
+  */
 function actionOnClickLevelAccessible(button)
 {
 	numPageCourant = 1;
-	selectLevelMenu = false;
 	game.world.removeAll(true);
 	currentLevel = button.name;
-	create();
+	generateLevel();
 }
 
+/** Handles a click on a blocked level :
+  * Displays the screen "you haven't unblocked this level yet"
+  * and a cross to close this screen.
+  * @ param button A button representing a blocked level.
+  */
 function actionOnClickLevelInaccessible(button)
 {
 	screenLevelError = game.add.sprite(0, 0, 'levelInaccessible');
@@ -262,34 +305,21 @@ function actionOnClickLevelInaccessible(button)
 		},this);
 }
 
-//obsolete
-/*
-function triggerPause() {
-	if(!game.isPaused){
-		var buttonsX = constants.BACKGROUND_WIDTH-
-			constants.IN_GAME_MENU_MARGIN-
-			constants.IN_GAME_MENU_BUTTON_WIDTH;
-		var buttonsY = constants.BACKGROUND_HEIGHT-
-			constants.IN_GAME_MENU_HEIGHT+
-			constants.IN_GAME_MENU_MARGIN;
-		pauseMenu = game.add.sprite(constants.BACKGROUND_WIDTH-
-				constants.IN_GAME_MENU_WIDTH,
-				constants.BACKGROUND_HEIGHT-
-				constants.IN_GAME_MENU_HEIGHT,
-				'pauseMenu');
-		pauseButtons.forEach(function(button){button.revive()});
-		pauseButtons.forEach(function(button){button.bringToTop()});
-	} else {
-		pauseMenu.destroy();
-		pauseButtons.forEach(function(button){button.kill()});
-	}
-	game.isPaused=!game.isPaused;
-}*/
 
+/** Called in case of collision between the ball 
+  * and a simple block. 
+  * (nothing needs to be done)
+  */
 function normalBlockCollide()
 {
 }
 
+/** Called in case of overlap between the ball 
+  * and a hole : if the ball isn't in gaseous state, 
+  * the level is lost.
+  * @ param ball The ball.
+  * @ param holeSprite The hole.
+  */
 function holeOverlap(ball, holeSprite)
 {
 	if (ball.name != "steam" && hardOverlap(ball,holeSprite)){
@@ -297,6 +327,12 @@ function holeOverlap(ball, holeSprite)
 	}
 }
 
+/** Called in case of collision between the ball 
+  * and a breakable block : if the ball is in solid state, 
+  * the block is damaged.
+  * @ param ball The ball.
+  * @ param breakBlock The breakable block.
+  */
 function breakBlockCollide(ball, breakBlock)
 {
 	if (ball.name == "ice") {
@@ -308,6 +344,12 @@ function breakBlockCollide(ball, breakBlock)
 	}
 }
 
+/** Called in case of collision between the ball 
+  * and a salt block : if the ball is in liquid state, 
+  * the block is damaged.
+  * @ param ball The ball.
+  * @ param saltBlock The salt block.
+  */
 function saltBlockCollide(ball, saltBlock)
 {
 	if (ball.name == "water") {
@@ -319,6 +361,12 @@ function saltBlockCollide(ball, saltBlock)
 	}
 }
 
+/** Called in case of overlap between the ball 
+  * and a porous block : if the ball is in solid state, 
+  * it is blocked.
+  * @ param ball The ball.
+  * @ param porousBlock The porous block.
+  */
 function porousBlockOverlap(ball, porousBlock)
 {
 	if(ball.name === "ice" && 
@@ -370,11 +418,15 @@ function porousBlockOverlap(ball, porousBlock)
 			ball.y = parseInt(ball.y/constants.TILE_SIZE)*
 				constants.TILE_SIZE;
 		}
-
-
 	}
 }
 
+/** Called in case of overlap between the ball 
+  * and an energy item : changes the state of the ball
+  * according to its current state and the type of item.
+  * @ param ball The ball.
+  * @ param itemSprite The item.
+  */
 function itemCollide(ball, itemSprite)
 {
 	if(!hardOverlap(ball,itemSprite)){

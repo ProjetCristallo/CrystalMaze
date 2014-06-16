@@ -1,14 +1,27 @@
+/**
+ * the number of the help page currently displayed.
+*/
+var posInHelp;
+
+/** Handles a click on the "help" button:
+  * If help screen is already being displayed, closes it.
+  * Else, displays the first page.
+  */
 function help()
 {
 	if (buttonNext.alive) {
 	//help screen is currently being displayed
 		helpClose();
 	} else {
-		posInHelp=1;
-		displayHelp();
+		posInHelp = 1;
+		displayHelp(posInHelp);
 	}
 }
 
+/** Initializes the help screen : adds the help screens sprites
+  * to the game along with the buttons "next", "previous", "close" 
+  * and the text indicating which page is displayed.
+  */
 function initializeHelpScreen()
 {
 	//Buttons
@@ -34,8 +47,12 @@ function initializeHelpScreen()
 	}
 }
 
+/** Displays a specific help page : 
+  * Revives and brings on top the given page and all the buttons.
+  */
 function displayHelp()
 {
+	playing = false;
 	helpScreens[posInHelp-1].revive();
 	helpScreens[posInHelp-1].bringToTop();
 	buttonNext.revive();
@@ -50,6 +67,11 @@ function displayHelp()
 			{font: "15px Arial",fill: "#000000",align: "center"});
 }
 
+/** Displays the next help page : 
+  * Destroys the current page and calls 
+  * displayHelp on the next page
+  * (the next page is page one if current page is last page).
+  */
 function clickHelpNext()
 {
 	posText.destroy();
@@ -57,9 +79,14 @@ function clickHelpNext()
 	if(posInHelp>constants.NUMBER_OF_HELP_SCREEN){
 		posInHelp=1;
 	}
-	displayHelp();
+	displayHelp(posInHelp);
 }
 
+/** Displays the previous help page : 
+  * Destroys the current page and calls 
+  * displayHelp on the previous page
+  * (the previous page is last page if current page is first page).
+  */
 function clickHelpPrev()
 {
 	posText.destroy();
@@ -70,8 +97,12 @@ function clickHelpPrev()
 	displayHelp();
 }
 
+/** Closes help menu : 
+  * kills all buttons and pages.
+  */
 function helpClose()
 {
+	playing = true;
 	helpScreens.forEach(function(screen){screen.kill()});
 	buttonNext.kill();
 	buttonPrev.kill();
