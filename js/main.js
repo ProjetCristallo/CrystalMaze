@@ -55,24 +55,36 @@ var helpStruct={helpScreens:[],buttonNext:null,buttonPrev:null,posInHelp:null,
 var playing=false;
 
 /** variable to manage the levels and select level screen.
-  * - nbrLevel : number of level
-  * - nbLevelAccessible : number of level unlocked
-  * - numPageCourant : number of current page in select level screen
-  * - nbrPageTotal : total number of pages in select level screen
-  * - currentLevel : current level used
+  * - nbrLevel : number of level.
+  * - nbLevelAccessible : number of level unlocked.
+  * - numPageCourant : number of current page in select level screen.
+  * - nbrPageTotal : total number of pages in select level screen.
+  * - currentLevel : current level used.
   */
 var levelStruct={nbrLevel:1,nbrLevelAccessible:0,numPageCourant:1,
 	nbrPageTotal:1,currentLevel:1};
 
+/** variable to manage the tutorial levels.
+  * - nbrLevelTuto : number of level in the tutorial.
+  * - currentLevelTuto : current level used in the tutorial.
+  * - nbrScreenTuto : number of help screens displayed in the tutorial.
+  * - tutoScreens : help screens from the tutorial.
+  * - posInTuto : position in the help screens from the tutorial.
+  */
+var tutoStruct={nbrLevelTuto:1,currentLevelTuto:1,nbrScreenTuto:[],
+	tutoScreens:[],posInTuto:0};
+/*
 //Tutorial
 var nbrLevelTuto = 1;
 var currentLevelTuto = 1;
 var nbrScreenTuto = new Array();
 var tutoScreens = new Array();
 var posInTuto;
-
+*/
 //Swipe handling
 var element = document.body;
+/** Last direction chosen by the user (mobile use unly)
+  */
 var swipe = null;
 Hammer(element).on("swipeleft", function(event) {
 	swipe='left';
@@ -263,28 +275,33 @@ function preload(){
         //Number of tutorial levels
 	// In case the previous assumption was false, we have to define a upper
 	// bound to the number of level to avoid an infinite loop.
-        while (doesFileExist("tutorial/"+nbrLevelTuto+".txt",valueOk) && 
-			nbrLevelTuto < 500){
-		nbrLevelTuto++;
+        while (doesFileExist("tutorial/"+tutoStruct.nbrLevelTuto+".txt",
+				valueOk) && 
+			tutoStruct.nbrLevelTuto < 500){
+		tutoStruct.nbrLevelTuto++;
 	}
-	if(nbrLevelTuto == 500){
-		nbrLevelTuto = 0;
+	if(tutoStruct.nbrLevelTuto == 500){
+		tutoStruct.nbrLevelTuto = 0;
 	}else{
-		nbrLevelTuto--;
+		tutoStruct.nbrLevelTuto--;
 	}
 
         //Number of tutorial screens for each tutorial levels
-    for (var i=1; i < nbrLevelTuto; i++){
-	nbrScreenTuto[i - 1] = 1;
-	while (doesFileExist("ressources/tutorial/tutorial"+i+"-"+nbrScreenTuto[i - 1]+".png",valueOk) && 
-	       nbrScreenTuto[i - 1] < 500){
-	    game.load.image('tutorial'+i+"-"+nbrScreenTuto[i - 1], "ressources/tutorial/tutorial"+i+"-"+nbrScreenTuto[i - 1]+".png");
-	    nbrScreenTuto[i - 1]++;
+    for (var i=1; i < tutoStruct.nbrLevelTuto; i++){
+	tutoStruct.nbrScreenTuto[i - 1] = 1;
+	while (doesFileExist("ressources/tutorial/tutorial"+i+"-"+
+				tutoStruct.nbrScreenTuto[i - 1]+".png",
+				valueOk) && 
+	       tutoStruct.nbrScreenTuto[i - 1] < 500){
+	    game.load.image('tutorial'+i+"-"+tutoStruct.nbrScreenTuto[i - 1],
+			    "ressources/tutorial/tutorial"+i+"-"+
+			    tutoStruct.nbrScreenTuto[i - 1]+".png");
+	    tutoStruct.nbrScreenTuto[i - 1]++;
 	}
-	if(nbrScreenTuto[i - 1] == 500){
-	    nbrScreenTuto[i - 1] = 0;
+	if(tutoStruct.nbrScreenTuto[i - 1] == 500){
+	    tutoStruct.nbrScreenTuto[i - 1] = 0;
 	}else{
-	    nbrScreenTuto[i - 1]--;
+	    tutoStruct.nbrScreenTuto[i - 1]--;
 	}
     }
 	//Number of levels already unlocked
