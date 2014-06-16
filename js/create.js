@@ -160,7 +160,8 @@ function create() {
 		initializeHelpScreen();
 		helpClose();
 		
-		
+	    //
+
 		createLevel();
 
 		//Controller
