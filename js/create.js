@@ -7,24 +7,19 @@ function generateLevel()
 	game.physics.startSystem(Phaser.Physics.ARCADE);
 
 	//Obstacle groups
-	hole = game.add.group();
-	simple = game.add.group();
-	unilateral = game.add.group();
-	cUp = game.add.group();
-	cDown = game.add.group();
-	cLeft = game.add.group();
-	cRight = game.add.group();
-	salt = game.add.group();
-	breakable = game.add.group();
-	porous = game.add.group();
-	begin = game.add.group();
-	end = game.add.group();
-	item = game.add.group();
-	turn = game.add.group();
+	blockGroups.hole = game.add.group();
+	blockGroups.simple = game.add.group();
+	blockGroups.unilateral = game.add.group();
+	blockGroups.salt = game.add.group();
+	blockGroups.breakable = game.add.group();
+	blockGroups.porous = game.add.group();
+	blockGroups.end = game.add.group();
+	blockGroups.item = game.add.group();
+	blockGroups.turn = game.add.group();
 	score = 0;	
 	if(constants.USE_CORDOVA){
 		//TaskBar
-		taskBarSprite=simple.create(constants.BACKGROUND_WIDTH,
+		taskBarSprite=blockGroups.simple.create(constants.BACKGROUND_WIDTH,
 				0,'taskBar');
 		//Info in taskbar
 		textScore = game.add.text(constants.BACKGROUND_WIDTH +
@@ -91,7 +86,7 @@ function generateLevel()
 		mainMenuButton.anchor = {'x':0.5,'y':0};
 	}else{
 		//TaskBar
-		taskBarSprite = simple.create(0,
+		taskBarSprite = blockGroups.simple.create(0,
 				constants.BACKGROUND_HEIGHT,'taskBar');
 		//Info in taskbar
 		textScore = game.add.text(constants.MARGIN_TASKBAR,

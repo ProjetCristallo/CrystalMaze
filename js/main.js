@@ -73,16 +73,12 @@ var levelStruct={nbrLevel:1,nbrLevelAccessible:0,numPageCourant:1,
   */
 var tutoStruct={nbrLevelTuto:1,currentLevelTuto:1,nbrScreenTuto:[],
 	tutoScreens:[],posInTuto:0};
-/*
-//Tutorial
-var nbrLevelTuto = 1;
-var currentLevelTuto = 1;
-var nbrScreenTuto = new Array();
-var tutoScreens = new Array();
-var posInTuto;
-*/
+
+
 //Swipe handling
+
 var element = document.body;
+
 /** Last direction chosen by the user (mobile use unly)
   */
 var swipe = null;
@@ -99,26 +95,30 @@ Hammer(element).on("swipeup", function(event) {
 	swipe='up';
 });
 
-// Blocks groups
-var hole;
-var simple;
-var unilateral;
-var breakable;
-var salt;
-var porous;
-var begin;
-var end;
-var item;
+/** variable managing all the blocks groups of the world.
+  * - hole : group of 'hole' sprites.
+  * - simple : groupe of 'simple' sprites.
+  * - unilateral : groupe of 'unilateral' sprites.
+  * - breakable : group of 'breakable' sprites.
+  * - salt : group of 'salt' sprites.
+  * - porous : group of 'porous' sprites.
+  * - end : group of 'end' sprites.
+  * - item : group of 'items' sprites.
+  * - turn : group of 'turn sprites
+  */
+var blockGroups={hole:null,simple:null,unilateral:null,breakable:null,
+	salt:null,porous:null,end:null,item:null,turn:null};
+
+/** score of the current level. */
 var score;
-var turn;
 
-//Music volume
-var mute = 0;
+/** Boolean indicating if the music is on or off. */
+var mute = false;
 
-// boolean indicating if the title and the startup background have already been
-// loaded
+/** boolean indicating if the title and the startup background have already been
+  * loaded. */
 var progressPageLoaded = false;
-// text displayed during the loading
+/** text displayed during the loading. */
 var progressInfo =null;
 
 
@@ -158,6 +158,12 @@ function updateProgress(){
   */
 function preload(){
 
+	//=======================================
+	// Main menu
+	//=======================================
+	game.load.image('mainMenuSprite',constants.mainMenuSpriteUrl);
+	game.load.image('title',constants.titleUrl);
+	
 	//=======================================
 	// Buttons
 	//=======================================
@@ -241,12 +247,6 @@ function preload(){
 	game.load.image('levelI',constants.levelIUrl);	
 	
 	//=======================================
-	// Main menu
-	//=======================================
-	game.load.image('mainMenuSprite',constants.mainMenuSpriteUrl);
-	game.load.image('title',constants.titleUrl);
-	
-	//=======================================
 	// Help screen
 	//=======================================
 	for (var i = 1; i <= constants.NUMBER_OF_HELP_SCREEN; i ++){
@@ -297,7 +297,7 @@ function preload(){
 	}
 
         //Number of tutorial screens for each tutorial levels
-    for (var i=1; i < tutoStruct.nbrLevelTuto; i++){
+    for (var i=1; i <= tutoStruct.nbrLevelTuto; i++){
 	tutoStruct.nbrScreenTuto[i - 1] = 1;
 	while (doesFileExist("ressources/tutorial/tutorial"+i+"-"+
 				tutoStruct.nbrScreenTuto[i - 1]+".png",
