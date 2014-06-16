@@ -70,7 +70,7 @@ function create() {
 					constants.BACKGROUND_WIDTH +
 					0.5 * constants.TASKBAR_WIDTH,
 					0.45*constants.TASKBAR_HEIGHT,
-					'buttonHelp', displayhelp);
+					'buttonHelp', displayHelp);
 			helpButton.anchor={'x':0.5,'y':0};
 			taskBarButtons.push(helpButton);
 			//Restart button
