@@ -143,8 +143,8 @@ function preload(){
 	game.load.image('buttonRestart', constants.buttonRestartUrl,80,80);
 	game.load.spritesheet('mainMenuButton', 
 			constants.mainMenuButtonUrl,100,80);
-	game.load.image('yes', constants.buttonYesUrl,100,35);
-	game.load.image('no', constants.buttonNoUrl,100,35);
+	game.load.spritesheet('yes', constants.buttonYesUrl,400/3,35);
+	game.load.spritesheet('no', constants.buttonNoUrl,400/3,35);
 	game.load.spritesheet('buttonNextTuto',
 			constants.buttonNextTutoUrl,133,35);
         game.load.spritesheet('buttonCloseTuto',
