@@ -1,3 +1,6 @@
+/* Generate the world in function of the platform (different world size and 
+ * layout depending of the use of cordova -> usage of the larger screen of
+ * the mobile */ 
 if(constants.USE_CORDOVA){
 	var game = new Phaser.Game(constants.BACKGROUND_WIDTH + 
 			constants.TASKBAR_WIDTH, constants.BACKGROUND_HEIGHT,
@@ -9,10 +12,15 @@ if(constants.USE_CORDOVA){
 			Phaser.AUTO,'', {preload:preload,create:createMenu,
 				update:update});
 }
+
+// Sprite representing :
+// - the ball the user play with
 var ball;
+// - the taskBar background
 var taskBarSprite;
-var endTile;
+// - the goal of each level
 var endSprite;
+// - the endscreen background
 var endScreen;
 
 //Booleans indicating game's state
@@ -83,8 +91,14 @@ var turn;
 //Music volume
 var mute = 0;
 
+// boolean indicating if the title and the startup background have already been
+// loaded
 var progressPageLoaded = false;
+// text displayed during the loading
 var progressInfo =null;
+
+/** Create and update the display of the loading screen.
+  */
 function updateProgress(){
 	if(progressInfo==null){
 		progressInfo = game.add.text(0.5*constants.BACKGROUND_WIDTH,
@@ -106,6 +120,8 @@ function updateProgress(){
 	progressInfo.text = game.load.progress+" %";
 };
 
+/** Load every ressources (images, cookie, levels).
+  */
 function preload(){
 
 	//=======================================
@@ -214,9 +230,13 @@ function preload(){
 	game.load.audio('gaz', constants.gazSoundUrl );
 	
 	game.load.onFileComplete.add(updateProgress, this);
+	
+	// The first level is supposed to be always accessible, so it's usable
+	// to determine the valueOk.
+	var valueOk = loadValueOk("levels/1.txt");
 
-	var valueOk = loadValueOk("levels/"+1+".txt");
-
+	// In case the previous assumption was false, we have to define a upper
+	// bound to the number of level to avoid an infinite loop.
 	while (doesFileExist("levels/"+nbrLevel+".txt",valueOk) && 
 			nbrLevel < 500){
 		nbrLevel++;
@@ -229,6 +249,8 @@ function preload(){
 	nbrPageTotal = parseInt(1 + (nbrLevel - 1) / 9);
 
         //Number of tutorial levels
+	// In case the previous assumption was false, we have to define a upper
+	// bound to the number of level to avoid an infinite loop.
         while (doesFileExist("tutorial/"+nbrLevelTuto+".txt",valueOk) && 
 			nbrLevelTuto < 500){
 		nbrLevelTuto++;
@@ -282,7 +304,13 @@ function preload(){
 	}
 }
 
-
+/** Return the value obtain when trying to open the file, this function is 
+  * useful for different system returning different value when the request is
+  * successful (0 on iOs, 200 on Android and Desktop for example).
+  * @param {string} filename Name of a file (if you want this function to be 
+  * useful make sure this file exists).
+  * @return {int} The value returned by an XML request on filename.
+  */
 function loadValueOk(filename)
 {
 	if(document.all) {
@@ -297,6 +325,11 @@ function loadValueOk(filename)
 	return xhr.status;
 }
 
+/** Check if a file exist.
+  * @param {string} urlToFile The file to test.
+  * @param {int} valueOk The expected return of a successful XML request.
+  * @return {boolean} The result of the test (true = the file exists).
+  */
 function doesFileExist(urlToFile, valueOk)
 {
 	if(document.all) {

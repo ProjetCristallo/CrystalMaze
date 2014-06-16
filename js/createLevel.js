@@ -1,3 +1,6 @@
+/** create the level corresponding to currentLevel, call parser to populate the
+  * world.
+  */
 function createLevel()
 {
     if (tutorial){
