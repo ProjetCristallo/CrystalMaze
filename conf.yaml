@@ -50,38 +50,70 @@ TURN_SENSOR_PERCENTAGE : 0.4
 
 NUMBER_OF_HELP_SCREEN : 6
 
+#===========================================
+# Buttons
+#===========================================
+# Main menu
+buttonPlayUrl : ressources/buttonPlay.png
+buttonSelectLevelUrl : ressources/ButtonSelectLevel.png
+buttonTutorialUrl : ressources/buttonTutorial.png
 
-mainMenuSpriteUrl : ressources/MainMenu.png
-titleUrl : ressources/title.png
+# Task bar
+soundButtonUrl : ressources/soundButton.png
 taskBarUrl : ressources/taskBar.png
 taskBarSmartphoneUrl : ressources/taskBarSmartphone.png
-fondUrl : ressources/Fond.png
+buttonHelpUrl : ressources/questionMark.png
+buttonRestartUrl : ressources/simpleRestart.png
+mainMenuButtonUrl : ressources/mainMenuButton.png
+
+# Select level
+buttonReturnUrl : ressources/ButtonReturn.png
+buttonNextImageUrl : ressources/buttonNextImage.png
+buttonPrevImageUrl : ressources/buttonPrevImage.png
+buttonCloseImageUrl : ressources/buttonCloseImage.png
+
+# Win screen
+buttonNextLevelUrl : ressources/buttonNextLevel.png
+buttonReplayUrl : ressources/buttonPlayAgain.png	
+
+# Help
+nextPageUrl : ressources/ArrowRight.png
+prevPageUrl : ressources/ArrowLeft.png
+
+# Main menu sure ?
+buttonYesUrl : ressources/yes.png
+buttonNoUrl : ressources/no.png
+
+#===========================================
+# Blocks
+#===========================================
 simpleUrl : ressources/Simple.png
 endUrl : ressources/diamond.png
 holeUrl : ressources/Hole.png
 winUrl : ressources/Win.png
-failUrl : ressources/Fail.png
-levelInaccessibleUrl : ressources/menuLevelInaccessible.png
-endScreenUrl : ressources/endScreen.png
 uniRightUrl : ressources/unilateral_right.png
 uniUpUrl : ressources/unilateral_up.png
 uniDownUrl : ressources/unilateral_down.png
 uniLeftUrl : ressources/unilateral_left.png
-pauseUrl : ressources/pause.png
-pauseMenuUrl : ressources/pauseMenu.png
-titleUrl : ressources/title.png
-pauseButtonAideUrl : ressources/ButtonAide.png
-pauseButtonMenuUrl : ressources/pauseButtonMenu.png
-pauseButtonParametresUrl : ressources/ButtonParametres.png
-pauseButtonRestartUrl : ressources/ButtonRestart.png
-pauseButtonMuteUrl : ressources/ButtonMute.png
 turnULUrl : ressources/turn_ul.png
 turnURUrl : ressources/turn_ur.png
 turnDLUrl : ressources/turn_dl.png
 turnDRUrl : ressources/turn_dr.png
+porousUrl : ressources/porous.png
+breakableUrl : ressources/Breakable.png
+saltUrl : ressources/Salt.png
+
+
+#===========================================
+# Ball and energy items
+#===========================================
 energyUpUrl : ressources/Energy_Up.png
 energyDownUrl : ressources/Energy_Down.png
-porousUrl : ressources/porous.png
+ballUrl : ressources/balle.png
+
+#===========================================
+# Help screen
+#===========================================
 helpScreenUrl : 
     - ressources/helpScreen1.png
     - ressources/helpScreen2.png
@@ -89,35 +121,35 @@ helpScreenUrl :
     - ressources/helpScreen4.png
     - ressources/helpScreen5.png
     - ressources/helpScreen6.png
-nextPageUrl : ressources/ArrowRight.png
-prevPageUrl : ressources/ArrowLeft.png
+
+#===========================================
+# Select level
+#===========================================
 levelAUrl : ressources/levelAccessible.png
 levelIUrl : ressources/levelInaccessible.png
-crossUrl : ressources/Cross.png
-breakableUrl : ressources/Breakable.png
-saltUrl : ressources/Salt.png
-ballUrl : ressources/balle.png
-buttonPlayUrl : ressources/buttonPlay.png
-buttonSelectLevelUrl : ressources/ButtonSelectLevel.png
-buttonReturnUrl : ressources/ButtonReturn.png
-buttonNextLevelUrl : ressources/Button_next_level.png
-buttonReplayUrl : ressources/Button_rejouer.png
-buttonRestartUrl : ressources/Button_restart.png	
-buttonNextImageUrl : ressources/buttonNextImage.png
-buttonPrevImageUrl : ressources/buttonPrevImage.png
-buttonCloseImageUrl : ressources/buttonCloseImage.png
-buttonTutorialUrl : ressources/buttonTutorial.png
+
+#===========================================
+# Main menu
+#===========================================
+titleUrl : ressources/title.png
+
+#===========================================
+# Backgrounds
+#===========================================
+fondUrl : ressources/Fond.png
+failUrl : ressources/Fail.png
+endScreenUrl : ressources/endScreen.png
+mainMenuSpriteUrl : ressources/MainMenu.png
 starsUrl : ressources/Star.png
-soundOnUrl : ressources/soundOn.png
-soundOffUrl : ressources/soundOff.png
-soundButtonUrl : ressources/soundButton.png
-questionMarkUrl : ressources/questionMark.png
-simpleRestartUrl : ressources/simpleRestart.png
-mainMenuButtonUrl : ressources/mainMenuButton.png
+levelInaccessibleUrl : ressources/menuLevelInaccessible.png
+areYouSureUrl : ressources/areYouSure.png
 
-
+#===========================================
+# Sounds
+#===========================================
 saltSoundUrl : ressources/sounds/salt.MP3
 blockSoundUrl : ressources/sounds/block.MP3
 glassSoundUrl : ressources/sounds/glass.MP3
 dropSoundUrl : ressources/sounds/drop.MP3
 gazSoundUrl : ressources/sounds/gaz.MP3
+

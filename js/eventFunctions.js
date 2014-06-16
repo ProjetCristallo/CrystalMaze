@@ -136,6 +136,20 @@ function loseGame() {
 			this, 2,1,0);
 }
 
+function actionOnClickMainMenu() {
+	playing = false;
+	ball.body.velocity.x = 0;
+	ball.body.velocity.y = 0;
+	var areYouSure = game.add.sprite(0,0,'areYouSure');
+	var yes = game.add.button(200,200,'yes', actionOnClickMenu);
+	var no = game.add.button(300,300,'no', function() {
+		areYouSure.destroy();
+		yes.destroy();
+		no.destroy();
+		playing = true;
+	});
+}
+
 
 function actionOnClickMenu() {
 	game.world.removeAll(true);
@@ -226,7 +240,7 @@ function actionOnClickLevelAccessible(button)
 function actionOnClickLevelInaccessible(button)
 {
 	screenLevelError = game.add.sprite(0, 0, 'levelInaccessible');
-	cross = game.add.sprite(constants.BACKGROUND_WIDTH,0,'cross');
+	cross = game.add.sprite(constants.BACKGROUND_WIDTH,0,'buttonCloseImage');
 	cross.anchor={'x':1,'y':0};
 	cross.inputEnabled = true;
 	screenLevelError.inputEnabled = true;

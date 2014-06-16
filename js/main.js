@@ -107,65 +107,17 @@ function updateProgress(){
 
 function preload(){
 
-	game.load.image('mainMenuSprite',constants.mainMenuSpriteUrl);
-	game.load.image('title',constants.titleUrl);
-
-	game.load.image('pauseButtonAide',constants.pauseButtonAideUrl);
-	game.load.image('pauseButtonMenu',constants.pauseButtonMenuUrl);
-	game.load.image('pauseButtonMute',constants.pauseButtonMuteUrl);
-	game.load.image('pauseButtonRestart',constants.pauseButtonRestartUrl);
-
+	//=======================================
+	// Buttons
+	//=======================================
 	if(constants.USE_CORDOVA){
 		game.load.image('taskBar',constants.taskBarSmartphoneUrl);
 	}else{
 		game.load.image('taskBar',constants.taskBarUrl);
 	}
-	game.load.image('fond',constants.fondUrl);
-	game.load.image('simple',constants.simpleUrl);
-	game.load.image('end',constants.endUrl);
-
-	game.load.image('hole',constants.holeUrl);
-	game.load.image('win',constants.winUrl);
-	game.load.image('fail',constants.failUrl);
-	game.load.image('levelInaccessible',constants.levelInaccessibleUrl);
-	game.load.image('endScreen',constants.endScreenUrl);
-	game.load.image('uniRight',constants.uniRightUrl);
-	game.load.image('uniUp',constants.uniUpUrl);
-	game.load.image('uniDown',constants.uniDownUrl);
-	game.load.image('uniLeft',constants.uniLeftUrl);
-	game.load.image('pause',constants.pauseUrl);
-	game.load.image('pauseMenu',constants.pauseMenuUrl);
-	game.load.image('title',constants.titleUrl);
-
-	game.load.image('pauseButtonAide',constants.pauseButtonAideUrl);
-	game.load.image('pauseButtonMenu',constants.pauseButtonMenuUrl);
-	game.load.image('pauseButtonParametres',
-			constants.pauseButtonParametresUrl);
-	game.load.image('pauseButtonRestart',constants.pauseButtonRestartUrl);
-	game.load.image('pauseButtonMute', constants.pauseButtonMuteUrl);
-	game.load.image('soundOn', constants.soundOnUrl);
-	game.load.image('soundOff', constants.soundOffUrl);
-
-	game.load.image('turnUL',constants.turnULUrl);
-	game.load.image('turnUR',constants.turnURUrl);
-	game.load.image('turnDL',constants.turnDLUrl);
-	game.load.image('turnDR',constants.turnDRUrl);
-	game.load.image('energyUp',constants.energyUpUrl);
-	game.load.image('energyDown',constants.energyDownUrl);
-	game.load.image('porous',constants.porousUrl);	
-	for (var i = 1; i <= constants.NUMBER_OF_HELP_SCREEN; i ++){
-		game.load.image('helpScreen' + i,
-				constants.helpScreenUrl[i - 1]);
-	}
 	game.load.image('nextPage',constants.nextPageUrl);
 	game.load.image('prevPage',constants.prevPageUrl);
-	game.load.image('levelA',constants.levelAUrl);
-	game.load.image('levelI',constants.levelIUrl);
-	game.load.image('cross',constants.crossUrl);
-
-	game.load.spritesheet('breakable',constants.breakableUrl,60,60);
-	game.load.spritesheet('salt',constants.saltUrl,60,60);
-	game.load.spritesheet('ball',constants.ballUrl,60,60);
+	
 	game.load.spritesheet('buttonPlay',constants.buttonPlayUrl,133,35);
 	game.load.spritesheet('buttonSelectLevel',
 			constants.buttonSelectLevelUrl, 133, 35);
@@ -174,32 +126,88 @@ function preload(){
 	game.load.spritesheet('buttonReturn',
 			constants.buttonReturnUrl, 133, 35);
 	game.load.spritesheet('buttonNextLevel',
-			constants.buttonNextLevelUrl,249,36);
+			constants.buttonNextLevelUrl,400/3,35);
 	game.load.spritesheet('buttonReplay',
-			constants.buttonReplayUrl,140,35);
-	game.load.spritesheet('buttonRestart',
-			constants.buttonRestartUrl,138,29);	
+			constants.buttonReplayUrl,400/3,35);
 	game.load.spritesheet('buttonNextImage',
 			constants.buttonNextImageUrl,25,50);
 	game.load.spritesheet('buttonPrevImage',
 			constants.buttonPrevImageUrl,25,50);
 	game.load.spritesheet('buttonCloseImage',
 			constants.buttonCloseImageUrl,35,35);
+	game.load.spritesheet('soundButton', constants.soundButtonUrl, 80, 80);
+	game.load.image('buttonHelp', constants.buttonHelpUrl,80,80);
+	game.load.image('buttonRestart', constants.buttonRestartUrl,80,80);
+	game.load.spritesheet('mainMenuButton', 
+			constants.mainMenuButtonUrl,100,80);
+	game.load.image('yes', constants.buttonYesUrl,100,35);
+	game.load.image('no', constants.buttonNoUrl,100,35);
+	
+	//=======================================
+	// Backgrounds
+	//=======================================
+	game.load.image('fond',constants.fondUrl);
+	game.load.image('win',constants.winUrl);
+	game.load.image('fail',constants.failUrl);
+	game.load.image('levelInaccessible',constants.levelInaccessibleUrl);
+	game.load.image('endScreen',constants.endScreenUrl);	
 	game.load.spritesheet('stars',constants.starsUrl,100,25);
-	//Sounds
+	game.load.image('areYouSure', constants.areYouSureUrl, 320, 240);
+	
+	//=======================================
+	// Blocks
+	//=======================================
+	game.load.image('simple',constants.simpleUrl);
+	game.load.image('end',constants.endUrl);
+	game.load.image('hole',constants.holeUrl);
+	game.load.image('uniRight',constants.uniRightUrl);
+	game.load.image('uniUp',constants.uniUpUrl);
+	game.load.image('uniDown',constants.uniDownUrl);
+	game.load.image('uniLeft',constants.uniLeftUrl);
+	game.load.image('turnUL',constants.turnULUrl);
+	game.load.image('turnUR',constants.turnURUrl);
+	game.load.image('turnDL',constants.turnDLUrl);
+	game.load.image('turnDR',constants.turnDRUrl);
+	game.load.image('porous',constants.porousUrl);	
+	game.load.spritesheet('breakable',constants.breakableUrl,60,60);
+	game.load.spritesheet('salt',constants.saltUrl,60,60);
+
+	//=======================================
+	// Ball and energy items
+	//=======================================
+	game.load.spritesheet('ball',constants.ballUrl,60,60);
+	game.load.image('energyUp',constants.energyUpUrl);
+	game.load.image('energyDown',constants.energyDownUrl);
+	
+	//=======================================
+	// Select levels
+	//=======================================
+	game.load.image('levelA',constants.levelAUrl);
+	game.load.image('levelI',constants.levelIUrl);	
+	
+	//=======================================
+	// Main menu
+	//=======================================
+	game.load.image('mainMenuSprite',constants.mainMenuSpriteUrl);
+	game.load.image('title',constants.titleUrl);
+	
+	//=======================================
+	// Help screen
+	//=======================================
+	for (var i = 1; i <= constants.NUMBER_OF_HELP_SCREEN; i ++){
+		game.load.image('helpScreen' + i,
+				constants.helpScreenUrl[i - 1]);
+	}
+	
+	//=======================================
+	// Sounds
+	//=======================================
 	game.load.audio('salted',constants.saltSoundUrl); 
 	game.load.audio('block',constants.blockSoundUrl); 
 	game.load.audio('glass', constants.glassSoundUrl );
 	game.load.audio('drop', constants.dropSoundUrl );
 	game.load.audio('gaz', constants.gazSoundUrl );
-
-	//TaskBar buttons
-	game.load.spritesheet('soundButton', constants.soundButtonUrl, 80, 80);
-	game.load.image('questionMark', constants.questionMarkUrl,80,80);
-	game.load.image('simpleRestart', constants.simpleRestartUrl,80,80);
-	game.load.spritesheet('mainMenuButton', 
-			constants.mainMenuButtonUrl,100,80);
-
+	
 	game.load.onFileComplete.add(updateProgress, this);
 
 	var valueOk = loadValueOk("levels/"+1+".txt");
