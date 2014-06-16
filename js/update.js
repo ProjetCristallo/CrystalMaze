@@ -1,5 +1,5 @@
 function update() {
-	if(playing && !mainMenu && !selectLevelMenu){
+	if(playing){
 		moveBall();
 		textScore.setText("Moves : " + score);
 	}

@@ -1,12 +1,12 @@
 if(constants.USE_CORDOVA){
 	var game = new Phaser.Game(constants.BACKGROUND_WIDTH + 
 			constants.TASKBAR_WIDTH, constants.BACKGROUND_HEIGHT,
-			Phaser.AUTO, '', {preload:preload,create:create,
+			Phaser.AUTO, '', {preload:preload,create:createMenu,
 				update:update});
 }else{
 	var game = new Phaser.Game(constants.BACKGROUND_WIDTH,
 			constants.BACKGROUND_HEIGHT + constants.TASKBAR_HEIGHT,
-			Phaser.AUTO,'', {preload:preload,create:create,
+			Phaser.AUTO,'', {preload:preload,create:createMenu,
 				update:update});
 }
 var ball;
@@ -16,8 +16,6 @@ var endSprite;
 var endScreen;
 
 //Booleans indicating game's state
-var mainMenu = true;
-var selectLevelMenu = false;
 var tutoriel = false;
 
 //Last direction the ball has taken, useful for the turn blocks
@@ -37,7 +35,7 @@ var helpText;
 var helpOnItem;
 
 //Boolean indicating if the player is allowed to play.
-var playing=true;
+var playing=false;
 
 //Levels
 var nbrLevel = 1;
