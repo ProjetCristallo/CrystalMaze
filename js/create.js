@@ -37,7 +37,7 @@ function generateLevel()
 					constants.MARGIN_TASKBAR,
 					2*constants.MARGIN_TASKBAR + 
 					constants.FONT_TASKBAR.SIZE,
-					"Level : "+currentLevel,
+					"Level : "+levelStruct.currentLevel,
 					{font: constants.FONT_TASKBAR.STYLE});
 		} else {
 			textLevel = game.add.text(constants.BACKGROUND_WIDTH +
@@ -104,7 +104,7 @@ function generateLevel()
 					constants.BACKGROUND_HEIGHT+
 					constants.TASKBAR_HEIGHT-
 					constants.MARGIN_TASKBAR,
-					"Level : "+currentLevel,
+					"Level : "+levelStruct.currentLevel,
 					{font: constants.FONT_TASKBAR.STYLE});
 			textLevel.anchor={'x':0,'y':1};
 		} else {
@@ -215,7 +215,7 @@ function createSelectLevel()
 				this, 1, 0, 2);
 		buttonReturn.anchor = {'x':0.5,'y':0.5};
 		// Previous page button
-		if (numPageCourant != 1){
+		if (levelStruct.numPageCourant != 1){
 			buttonArrowLeft = game.add.button(
 					constants.BACKGROUND_WIDTH + 
 					0.5*constants.TASKBAR_WIDTH,
@@ -225,7 +225,7 @@ function createSelectLevel()
 			buttonArrowLeft.anchor = {'x':0.5,'y':0.5};
 		}
 		// Next page button
-		if (numPageCourant != nbrPageTotal){
+		if (levelStruct.numPageCourant != levelStruct.nbrPageTotal){
 			buttonArrowRight = game.add.button(
 					constants.BACKGROUND_WIDTH +
 					0.5*constants.TASKBAR_WIDTH,
@@ -245,7 +245,7 @@ function createSelectLevel()
 				this, 1, 0, 2);
 		buttonReturn.anchor = {'x':0.5,'y':0.5};
 		// Previous page button
-		if (numPageCourant != 1){
+		if (levelStruct.numPageCourant != 1){
 			buttonArrowLeft = game.add.button(
 					0.25*constants.TASKBAR_WIDTH, 
 					constants.BACKGROUND_HEIGHT + 
@@ -255,7 +255,7 @@ function createSelectLevel()
 			buttonArrowLeft.anchor = {'x':0.5,'y':0.5};
 		}
 		// Next page button
-		if (numPageCourant != nbrPageTotal){
+		if (levelStruct.numPageCourant != levelStruct.nbrPageTotal){
 			buttonArrowRight = game.add.button(
 					0.75*constants.TASKBAR_WIDTH, 
 					constants.BACKGROUND_HEIGHT + 
@@ -268,11 +268,12 @@ function createSelectLevel()
 
 	// levels buttons
 	numSprite = 0;
-	for (var i = (numPageCourant - 1) * 9 + 1; 
-			i <= Math.min(numPageCourant * 9,nbrLevel); 
+	for (var i = (levelStruct.numPageCourant - 1) * 9 + 1; 
+			i <= Math.min(levelStruct.numPageCourant * 9,
+				levelStruct.nbrLevel); 
 			i++)
 	{
-		if (i <= nbrLevelAccessible){
+		if (i <= levelStruct.nbrLevelAccessible){
 			buttonLevel = game.add.button(constants.
 					SELECT_LEVEL.MARGIN.X+
 					(numSprite % 3)*

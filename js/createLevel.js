@@ -7,7 +7,7 @@ function createLevel()
         levelName = "tutorial/"+currentLevelTuto+".txt";
 	initializeTutorial();
     } else {
-	levelName = "levels/"+currentLevel+".txt";
+	levelName = "levels/"+levelStruct.currentLevel+".txt";
     }
 	listItem = [];
 	listItem.length = 0;
