@@ -170,7 +170,7 @@ function actionOnClickPlay()
 {
         tutorial = false;
 	mainMenu = false;
-	game.world.removeAll();
+	game.world.removeAll(true);
 	create();
 }
 
@@ -179,7 +179,7 @@ function actionOnClickSelectLevel()
         tutorial = false;
 	selectLevelMenu = true;
 	mainMenu = false;
-	game.world.removeAll();
+	game.world.removeAll(true);
 	create();
 }
 
@@ -187,7 +187,7 @@ function actionOnClickTutorial()
 {
         mainMenu = false;
         tutorial = true;
-	game.world.removeAll();
+	game.world.removeAll(true);
 	create();
 }
 
@@ -196,21 +196,21 @@ function actionOnClickReturn()
 	numPageCourant = 1;
 	selectLevelMenu = false;
 	mainMenu = true;
-	game.world.removeAll();
+	game.world.removeAll(true);
 	create();
 }
 
 function actionOnClickArrowRight()
 {
 	numPageCourant++;
-	game.world.removeAll();
+	game.world.removeAll(true);
 	create();
 }
 
 function actionOnClickArrowLeft()
 {
 	numPageCourant--;
-	game.world.removeAll();
+	game.world.removeAll(true);
 	create();
 }
 
@@ -218,7 +218,7 @@ function actionOnClickLevelAccessible(button)
 {
 	numPageCourant = 1;
 	selectLevelMenu = false;
-	game.world.removeAll();
+	game.world.removeAll(true);
 	currentLevel = button.name;
 	create();
 }
