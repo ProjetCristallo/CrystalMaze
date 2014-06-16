@@ -140,9 +140,17 @@ function actionOnClickMainMenu() {
 	playing = false;
 	ball.body.velocity.x = 0;
 	ball.body.velocity.y = 0;
-	var areYouSure = game.add.sprite(0,0,'areYouSure');
-	var yes = game.add.button(200,200,'yes', actionOnClickMenu);
-	var no = game.add.button(300,300,'no', function() {
+	var areYouSure = game.add.sprite(constants.END_SCREEN.OFFSET.X,
+			constants.END_SCREEN.OFFSET.Y,'areYouSure');
+	var yes = game.add.button(constants.END_SCREEN.OFFSET.X+
+			constants.END_SCREEN.BUTTONS_OFFSET.X,
+			constants.END_SCREEN.OFFSET.Y+
+			constants.END_SCREEN.BUTTONS_OFFSET.Y,'yes', actionOnClickMenu);
+	var no = game.add.button(constants.END_SCREEN.OFFSET.X+
+				constants.END_SCREEN.BUTTONS_OFFSET.X,
+				constants.END_SCREEN.OFFSET.Y+
+				constants.END_SCREEN.BUTTONS_OFFSET.Y+
+				constants.END_SCREEN.BUTTONS_MARGIN,'no', function() {
 		areYouSure.destroy();
 		yes.destroy();
 		no.destroy();
