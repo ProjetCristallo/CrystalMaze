@@ -102,7 +102,9 @@ buttonSelectLevelUrl : ressources/ButtonSelectLevel.png
 buttonReturnUrl : ressources/ButtonReturn.png
 buttonNextLevelUrl : ressources/Button_next_level.png
 buttonReplayUrl : ressources/Button_rejouer.png
-buttonRestartUrl : ressources/Button_restart.png	
+buttonRestartUrl : ressources/Button_restart.png
+buttonNextTutoUrl : ressources/buttonNext.png
+buttonCloseTutoUrl : ressources/buttonClose.png	
 buttonNextImageUrl : ressources/buttonNextImage.png
 buttonPrevImageUrl : ressources/buttonPrevImage.png
 buttonCloseImageUrl : ressources/buttonCloseImage.png
