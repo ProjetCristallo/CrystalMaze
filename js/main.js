@@ -287,7 +287,7 @@ function preload(){
 	}
 
         //Number of tutorial screens for each tutorial levels
-    for (var i=1; i < tutoStruct.nbrLevelTuto; i++){
+    for (var i=1; i <= tutoStruct.nbrLevelTuto; i++){
 	tutoStruct.nbrScreenTuto[i - 1] = 1;
 	while (doesFileExist("ressources/tutorial/tutorial"+i+"-"+
 				tutoStruct.nbrScreenTuto[i - 1]+".png",
