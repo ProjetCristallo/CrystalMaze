@@ -38,26 +38,26 @@ function parser(filename) {
 				addBeginSprite(res[3],x,y);
 				break;
 			case "end":
-				block = end.create(x,y,'end');
+				block = blockGroups.end.create(x,y,'end');
 				game.physics.enable(block,
 						Phaser.Physics.ARCADE);
 				block.body.immovable = true;
 				break;
 			case "hole":
-				block = hole.create(x,y,'hole');
+				block = blockGroups.hole.create(x,y,'hole');
 				game.physics.enable(block,
 						Phaser.Physics.ARCADE);
 				block.body.immovable = true;
 				break;
 			case "simple":
-				block = simple.create(x,y,'simple');
+				block = blockGroups.simple.create(x,y,'simple');
 				game.physics.enable(block,
 						Phaser.Physics.ARCADE);
 				block.body.immovable = true;
 				break;
 			case "item":	
 				var type=res[3];
-				block = item.create(x,y,type);
+				block = blockGroups.item.create(x,y,type);
 				game.physics.enable(block,
 						Phaser.Physics.ARCADE);
 				block.body.immovable = true;
@@ -67,7 +67,7 @@ function parser(filename) {
 				addUniSprite(res[3],x,y);
 				break;
 			case "salt" : 
-				block = salt.create(x,y,'salt');
+				block = blockGroups.salt.create(x,y,'salt');
 				block.animations.add('salt');
 				block.health = parseInt(res[3]);
 				game.physics.enable(block,
@@ -75,7 +75,7 @@ function parser(filename) {
 				block.body.immovable = true;
 				break;
 			case "porous" : 
-				block = porous.create(x,y,'porous');
+				block = blockGroups.porous.create(x,y,'porous');
 				game.physics.enable(block,
 						Phaser.Physics.ARCADE);
 				block.body.immovable = true;
@@ -85,7 +85,8 @@ function parser(filename) {
 				block.body.checkCollision.down = false;
 				break;
 			case "breakable" : 
-				block = breakable.create(x,y,'breakable');
+				block = blockGroups.breakable.create(
+						x,y,'breakable');
 				block.animations.add('breaking');
 				block.health = parseInt(res[3]);
 				game.physics.enable(block,
@@ -144,25 +145,25 @@ function addUniSprite(dir,x,y)
 {
 	switch(dir) {
 		case "up":
-			block = unilateral.create(x,y,'uniUp');
+			block = blockGroups.unilateral.create(x,y,'uniUp');
 			game.physics.enable(block,Phaser.Physics.ARCADE);
 			block.body.immovable = true;
 			block.body.checkCollision.down = false;
 			break;
 		case "down":
-			block = unilateral.create(x,y,'uniDown');
+			block = blockGroups.unilateral.create(x,y,'uniDown');
 			game.physics.enable(block,Phaser.Physics.ARCADE);
 			block.body.immovable = true;
 			block.body.checkCollision.up = false;
 			break;
 		case "right":
-			block = unilateral.create(x,y,'uniRight');
+			block = blockGroups.unilateral.create(x,y,'uniRight');
 			game.physics.enable(block,Phaser.Physics.ARCADE);
 			block.body.immovable = true;
 			block.body.checkCollision.left = false;
 			break;
 		case "left":
-			block = unilateral.create(x,y,'uniLeft');
+			block = blockGroups.unilateral.create(x,y,'uniLeft');
 			game.physics.enable(block,Phaser.Physics.ARCADE);
 			block.body.immovable = true;
 			block.body.checkCollision.right = false;
@@ -181,28 +182,28 @@ function addTurnSprite(orientation,x,y)
 {
 	switch(orientation){
 		case "ul":
-			block = turn.create(x,y,'turnUL');
+			block = blockGroups.turn.create(x,y,'turnUL');
 			game.physics.enable(block,Phaser.Physics.ARCADE);
 			block.body.immovable = true;
 			block.body.checkCollision.up = false;
 			block.body.checkCollision.left = false;
 			break;
 		case "ur":
-			block = turn.create(x,y,'turnUR');
+			block = blockGroups.turn.create(x,y,'turnUR');
 			game.physics.enable(block,Phaser.Physics.ARCADE);
 			block.body.immovable = true;
 			block.body.checkCollision.up = false;
 			block.body.checkCollision.right = false;
 			break;
 		case "dr":
-			block = turn.create(x,y,'turnDR');
+			block = blockGroups.turn.create(x,y,'turnDR');
 			game.physics.enable(block,Phaser.Physics.ARCADE);
 			block.body.immovable = true;
 			block.body.checkCollision.down = false;
 			block.body.checkCollision.right = false;
 			break;
 		case "dl":
-			block = turn.create(x,y,'turnDL');
+			block = blockGroups.turn.create(x,y,'turnDL');
 			game.physics.enable(block,Phaser.Physics.ARCADE);
 			block.body.immovable = true;
 			block.body.checkCollision.down = false;
