@@ -49,6 +49,9 @@ var currentLevel = 1;
 //Tutorial
 var nbrLevelTuto = 1;
 var currentLevelTuto = 1;
+var nbrScreenTuto = new Array();
+var tutoScreens = new Array();
+var posInTuto;
 
 //Swipe handling
 var element = document.body;
@@ -142,6 +145,10 @@ function preload(){
 			constants.mainMenuButtonUrl,100,80);
 	game.load.image('yes', constants.buttonYesUrl,100,35);
 	game.load.image('no', constants.buttonNoUrl,100,35);
+	game.load.spritesheet('buttonNextTuto',
+			constants.buttonNextTutoUrl,133,35);
+        game.load.spritesheet('buttonCloseTuto',
+			constants.buttonCloseTutoUrl,133,35);
 	
 	//=======================================
 	// Backgrounds
@@ -223,16 +230,31 @@ function preload(){
 	}
 	nbrPageTotal = parseInt(1 + (nbrLevel - 1) / 9);
 
+        //Number of tutorial levels
         while (doesFileExist("tutorial/"+nbrLevelTuto+".txt",valueOk) && 
-			nbrLevel < 500){
+			nbrLevelTuto < 500){
 		nbrLevelTuto++;
 	}
-	if(nbrLevel == 500){
+	if(nbrLevelTuto == 500){
 		nbrLevelTuto = 0;
 	}else{
 		nbrLevelTuto--;
 	}
 
+        //Number of tutorial screens for each tutorial levels
+    for (var i=1; i < nbrLevelTuto; i++){
+	nbrScreenTuto[i - 1] = 1;
+	while (doesFileExist("ressources/tutorial/tutorial"+i+"-"+nbrScreenTuto[i - 1]+".png",valueOk) && 
+	       nbrScreenTuto[i - 1] < 500){
+	    game.load.image('tutorial'+i+"-"+nbrScreenTuto[i - 1], "ressources/tutorial/tutorial"+i+"-"+nbrScreenTuto[i - 1]+".png");
+	    nbrScreenTuto[i - 1]++;
+	}
+	if(nbrScreenTuto[i - 1] == 500){
+	    nbrScreenTuto[i - 1] = 0;
+	}else{
+	    nbrScreenTuto[i - 1]--;
+	}
+    }
 	//Number of levels already unlocked
 	if(constants.USE_CORDOVA){
 		stars = window.localStorage.getItem("cookieSmartphone");
