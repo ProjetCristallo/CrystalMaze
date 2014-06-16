@@ -41,7 +41,7 @@ function updateCookieNbrLevel(levelMax) {
 /** Update the cookie "stars".
   * @param {int} curLevel Level that the user has just done.
   */
-function updateCookieStars(curLevel) {
+function updateCookieStars(curLevelUser) {
 	if(constants.USE_CORDOVA){
 		var stars = window.localStorage.getItem("cookieSmartphone");
 	}else{
@@ -50,15 +50,15 @@ function updateCookieStars(curLevel) {
 	if (currentLevel < nbrLevelAccessible) {
 		//we already played the level
 		previousScore = stars.substring(currentLevel-1, currentLevel);
-		if (nbr > previousScore) {
+		if (curLevelUser > previousScore) {
 			var before = stars.substring(0, currentLevel-1);
 			var after = stars.substring((currentLevel),
 					stars.length);
-			stars = before + curLevel + after;
+			stars = before + curLevelUser + after;
 		}
 	} else {
 		//it it the first time we played the level
-		stars = stars + curLevel;
+		stars = stars + curLevelUser;
 	}	
 	if(constants.USE_CORDOVA){
 		window.localStorage.setItem("cookieSmartphone",stars);

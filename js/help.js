@@ -36,6 +36,7 @@ function initializeHelpScreen()
 
 function displayHelp()
 {
+	playing = false;
 	helpScreens[posInHelp-1].revive();
 	helpScreens[posInHelp-1].bringToTop();
 	buttonNext.revive();
@@ -72,6 +73,7 @@ function clickHelpPrev()
 
 function helpClose()
 {
+	playing = true;
 	helpScreens.forEach(function(screen){screen.kill()});
 	buttonNext.kill();
 	buttonPrev.kill();

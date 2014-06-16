@@ -160,18 +160,16 @@ function actionOnClickMainMenu() {
 
 
 function actionOnClickMenu() {
+	playing=false;
 	game.world.removeAll(true);
-	mainMenu = true;
 	currentLevel = 1;
         currentLevelTuto = 1;
-	playing = true;
-	create();
+	createMenu();
 }
 
 function actionOnClickRestart(){
-	playing = true;
 	game.world.removeAll(true);
-	create();
+	generateLevel();
 }
 
 function actionOnClickNextLevel()
@@ -183,66 +181,58 @@ function actionOnClickNextLevel()
 	currentLevelTuto++;
 	textLevel.setText("Tutorial " + currentLevelTuto);
     }
-	playing = true;
 	game.world.removeAll(true);
-	create();
+	generateLevel();
 }
 
 function actionOnClickPlay()
 {
         tutorial = false;
-	mainMenu = false;
 	game.world.removeAll(true);
-	create();
+	generateLevel();
 }
 
 function actionOnClickSelectLevel()
 {
         tutorial = false;
-	selectLevelMenu = true;
-	mainMenu = false;
 	game.world.removeAll(true);
-	create();
+	createSelectLevel();
 }
 
 function actionOnClickTutorial()
 {
-        mainMenu = false;
         tutorial = true;
 	game.world.removeAll(true);
-	create();
+	generateLevel();
 }
 
 function actionOnClickReturn()
 {
 	numPageCourant = 1;
-	selectLevelMenu = false;
-	mainMenu = true;
 	game.world.removeAll(true);
-	create();
+	createMenu();
 }
 
 function actionOnClickArrowRight()
 {
 	numPageCourant++;
 	game.world.removeAll(true);
-	create();
+	createSelectLevel();
 }
 
 function actionOnClickArrowLeft()
 {
 	numPageCourant--;
 	game.world.removeAll(true);
-	create();
+	createSelectLevel();
 }
 
 function actionOnClickLevelAccessible(button)
 {
 	numPageCourant = 1;
-	selectLevelMenu = false;
 	game.world.removeAll(true);
 	currentLevel = button.name;
-	create();
+	generateLevel();
 }
 
 function actionOnClickLevelInaccessible(button)
