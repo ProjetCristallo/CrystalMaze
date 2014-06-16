@@ -121,6 +121,17 @@ var progressPageLoaded = false;
 // text displayed during the loading
 var progressInfo =null;
 
+
+
+function displayBackgroundAndTitle(){
+        mainMenuSprite = game.add.sprite(0, 0, 'mainMenuSprite');
+        title = game.add.sprite(0.5*constants.BACKGROUND_WIDTH,
+                        0.3*constants.BACKGROUND_HEIGHT, 'title');
+        title.anchor={'x':0.5,'y':0.5};
+}
+
+
+
 /** Create and update the display of the loading screen.
   */
 function updateProgress(){
@@ -133,8 +144,7 @@ function updateProgress(){
 	if(!progressPageLoaded && game.cache.checkImageKey('mainMenuSprite') &&
 			game.cache.checkImageKey('title')) 
 	{
-		mainMenuSprite = game.add.sprite(0, 0, 'mainMenuSprite');
-		title = game.add.sprite(11, 50, 'title');
+		displayBackgroundAndTitle();
 		progressInfo = game.add.text(0.5*constants.BACKGROUND_WIDTH,
 				0.7*constants.BACKGROUND_HEIGHT,"0 %",
 				{ font: "65px Arial", align: "center" });

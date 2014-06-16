@@ -175,10 +175,7 @@ function generateLevel()
  */ 
 function createMenu()
 {
-	mainMenuSprite = game.add.sprite(0, 0, 'mainMenuSprite');
-	title = game.add.sprite(0.5*constants.BACKGROUND_WIDTH, 
-			0.3*constants.BACKGROUND_HEIGHT, 'title');
-	title.anchor={'x':0.5,'y':0.5};
+	displayBackgroundAndTitle();
 	buttonJouer = game.add.button(0.5*constants.BACKGROUND_WIDTH,
 			0.65*constants.BACKGROUND_HEIGHT, 'buttonPlay', 
 			actionOnClickPlay, this, 1,0,2);
