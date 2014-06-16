@@ -136,6 +136,28 @@ function loseGame() {
 			this, 2,1,0);
 }
 
+function actionOnClickMainMenu() {
+	playing = false;
+	ball.body.velocity.x = 0;
+	ball.body.velocity.y = 0;
+	var areYouSure = game.add.sprite(constants.END_SCREEN.OFFSET.X,
+			constants.END_SCREEN.OFFSET.Y,'areYouSure');
+	var yes = game.add.button(constants.END_SCREEN.OFFSET.X+
+			constants.END_SCREEN.BUTTONS_OFFSET.X,
+			constants.END_SCREEN.OFFSET.Y+
+			constants.END_SCREEN.BUTTONS_OFFSET.Y,'yes', actionOnClickMenu);
+	var no = game.add.button(constants.END_SCREEN.OFFSET.X+
+				constants.END_SCREEN.BUTTONS_OFFSET.X,
+				constants.END_SCREEN.OFFSET.Y+
+				constants.END_SCREEN.BUTTONS_OFFSET.Y+
+				constants.END_SCREEN.BUTTONS_MARGIN,'no', function() {
+		areYouSure.destroy();
+		yes.destroy();
+		no.destroy();
+		playing = true;
+	});
+}
+
 
 function actionOnClickMenu() {
 	playing=false;
@@ -216,7 +238,7 @@ function actionOnClickLevelAccessible(button)
 function actionOnClickLevelInaccessible(button)
 {
 	screenLevelError = game.add.sprite(0, 0, 'levelInaccessible');
-	cross = game.add.sprite(constants.BACKGROUND_WIDTH,0,'cross');
+	cross = game.add.sprite(constants.BACKGROUND_WIDTH,0,'buttonCloseImage');
 	cross.anchor={'x':1,'y':0};
 	cross.inputEnabled = true;
 	screenLevelError.inputEnabled = true;

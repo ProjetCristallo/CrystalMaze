@@ -1,5 +1,5 @@
 /** Generate and display the current level.
-  */
+ */
 function generateLevel()
 {
 	game.add.tileSprite(0,0,constants.BACKGROUND_WIDTH,
@@ -70,7 +70,7 @@ function generateLevel()
 				constants.BACKGROUND_WIDTH +
 				0.5 * constants.TASKBAR_WIDTH,
 				0.45*constants.TASKBAR_HEIGHT,
-				'questionMark', displayhelp);
+				'buttonHelp', displayhelp);
 		helpButton.anchor={'x':0.5,'y':0};
 		taskBarButtons.push(helpButton);
 		//Restart button
@@ -78,7 +78,7 @@ function generateLevel()
 				constants.BACKGROUND_WIDTH +
 				0.5 * constants.TASKBAR_WIDTH,
 				0.65 * constants.TASKBAR_HEIGHT,
-				'simpleRestart', 
+				'buttonRestart', 
 				actionOnClickRestart);
 		restartButton.anchor={'x':0.5,'y':0};
 		//Main Menu button
@@ -86,7 +86,7 @@ function generateLevel()
 				constants.BACKGROUND_WIDTH +
 				0.5 * constants.TASKBAR_WIDTH,
 				0.8*constants.TASKBAR_HEIGHT, 
-				'mainMenuButton', actionOnClickMenu,
+				'mainMenuButton', actionOnClickMainMenu,
 				this, 0, 0, 1);
 		mainMenuButton.anchor = {'x':0.5,'y':0};
 	}else{
@@ -137,19 +137,19 @@ function generateLevel()
 					constants.TASKBAR_WIDTH,
 					constants.BACKGROUND_HEIGHT+
 					constants.MARGIN_TASKBAR, 
-					'questionMark', help));
+					'buttonHelp', help));
 		//Restart button
 		taskBarButtons.push(game.add.button(0.6*
 					constants.TASKBAR_WIDTH,
 					constants.BACKGROUND_HEIGHT+
 					constants.MARGIN_TASKBAR, 
-					'simpleRestart', actionOnClickRestart));
+					'buttonRestart', actionOnClickRestart));
 		//Main Menu button
 		mainMenuButton = game.add.button(0.8*
 				constants.TASKBAR_WIDTH,
 				constants.BACKGROUND_HEIGHT+
 				constants.MARGIN_TASKBAR, 
-				'mainMenuButton', actionOnClickMenu,
+				'mainMenuButton', actionOnClickMainMenu,
 				this, 0, 0, 1);
 	}
 
@@ -197,7 +197,7 @@ function createMenu()
 }
 
 /** Display the screen for level selection at the correct page.
-  */
+ */
 function createSelectLevel()
 {
 	// Title
