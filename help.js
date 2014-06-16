@@ -4,6 +4,7 @@ function help()
 	//help screen is currently being displayed
 		helpClose();
 	} else {
+		playing = false;
 		posInHelp=1;
 		displayHelp();
 	}
