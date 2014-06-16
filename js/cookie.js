@@ -1,3 +1,9 @@
+/** Add a cookie in the browser.
+  * @param {string} name The name of the cookie.
+  * @param {string} value The value wanted for this cookie.
+  * @param {int} days (optional) Number of days before this cookie is removed.
+  */
+
 function createCookie(name,value,days) {
 	if (days) {
 		var date = new Date();
@@ -8,6 +14,10 @@ function createCookie(name,value,days) {
 	document.cookie = name+"="+value+expires+"; path=/";
 }
 
+/** Read a cookie stored by the user browser.
+  * @param {string} name The name of the cookie to read.
+  * @return {string} The value of the cookie.
+  */
 function readCookie(name) {
 	var nameEQ = name + "=";
 	var ca = document.cookie.split(';');
@@ -21,11 +31,17 @@ function readCookie(name) {
 	return null;
 }
 
-function updateCookieNbrLevel(nbr) {
-	createCookie("levelmax", nbrLevelAccessible, 30);
+/** Update the cookie "levelmax".
+  * @param {int} levelMax The higher level reached by the user.
+  */
+function updateCookieNbrLevel(levelMax) {
+	createCookie("levelmax", levelMax, 30);
 }
 
-function updateCookieStars(nbr) {
+/** Update the cookie "stars".
+  * @param {int} curLevel Level that the user has just done.
+  */
+function updateCookieStars(curLevel) {
 	if(constants.USE_CORDOVA){
 		var stars = window.localStorage.getItem("cookieSmartphone");
 	}else{
@@ -38,11 +54,11 @@ function updateCookieStars(nbr) {
 			var before = stars.substring(0, currentLevel-1);
 			var after = stars.substring((currentLevel),
 					stars.length);
-			stars = before + nbr + after;
+			stars = before + curLevel + after;
 		}
 	} else {
 		//it it the first time we played the level
-		stars = stars + nbr;
+		stars = stars + curLevel;
 	}	
 	if(constants.USE_CORDOVA){
 		window.localStorage.setItem("cookieSmartphone",stars);
@@ -51,6 +67,10 @@ function updateCookieStars(nbr) {
 	}
 }
 
+/** Read the score that the user already achieved in a level.
+  * @param {int} level The level from which we want to know the score.
+  * @return {string} The score of 'level' from the cookie "stars"
+  */
 function readScore(level) {
 	if(constants.USE_CORDOVA){
 		var stars = window.localStorage.getItem("cookieSmartphone");
