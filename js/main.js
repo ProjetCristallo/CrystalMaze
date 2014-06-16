@@ -13,44 +13,56 @@ if(constants.USE_CORDOVA){
 				update:update});
 }
 
-// Sprite representing :
-// - the ball the user play with
+/** Sprite representing the ball the user play with.
+  */
 var ball;
-// - the taskBar background
+/** Sprite representing the taskBar background.
+  */
 var taskBarSprite;
-// - the goal of each level
+/** Sprite representing the goal of each level
+  */
 var endSprite;
-// - the endscreen background
+/** Sprite representing the endscreen background
+  */
 var endScreen;
 
-//Booleans indicating game's state
+/** Booleans indicating the game's state
+  */
 var tutoriel = false;
 
-//Last direction the ball has taken, useful for the turn blocks
+/** Last direction the ball has taken, useful for the turn blocks
+  */
 var lastDir=null;
 
-//Scores to get two or three stars
-var twoStars;
-var threeStars;
+/**Scores to get two or three stars (usage : for 2 stars array[0], 
+  * for 3 array[1]).
+  */ 
+var starsNumber = [];
 
-//Button and screen used for displaying help.
-var helpScreens = new Array();
-var buttonNext;
-var buttonPrev;
-var posInHelp;
-var posText;
-var helpText;
-var helpOnItem;
 
-//Boolean indicating if the player is allowed to play.
+/** Button and screen used for displaying help :
+  * - helpScreens : the different help screens spritesheet.
+  * - buttonNext : the button to go to the next page.
+  * - buttonPrev : the butotn to go to the previous page.
+  * - posInHelp : the current position in the help pages.
+  * - posText : the text indicating the index of the current page.
+  */
+var helpStruct={helpScreens:[],buttonNext:null,buttonPrev:null,posInHelp:null,
+	posText:null};
+
+/** Boolean indicating if the player is allowed to play. 
+  */
 var playing=false;
 
-//Levels
-var nbrLevel = 1;
-var nbrLevelAccessible;
-var numPageCourant = 1;
-var nbrPageTotal = 1;
-var currentLevel = 1;
+/** variable to manage the levels and select level screen.
+  * - nbrLevel : number of level
+  * - nbLevelAccessible : number of level unlocked
+  * - numPageCourant : number of current page in select level screen
+  * - nbrPageTotal : total number of pages in select level screen
+  * - currentLevel : current level used
+  */
+var levelStruct={nbrLevel:1,nbrLevelAccessible:0,numPageCourant:1,
+	nbrPageTotal:1,currentLevel:1};
 
 //Tutorial
 var nbrLevelTuto = 1;
@@ -237,16 +249,16 @@ function preload(){
 
 	// In case the previous assumption was false, we have to define a upper
 	// bound to the number of level to avoid an infinite loop.
-	while (doesFileExist("levels/"+nbrLevel+".txt",valueOk) && 
-			nbrLevel < 500){
-		nbrLevel++;
+	while (doesFileExist("levels/"+levelStruct.nbrLevel+".txt",valueOk) && 
+			levelStruct.nbrLevel < 500){
+		levelStruct.nbrLevel++;
 	}
-	if(nbrLevel == 500){
-		nbrLevel = 0;
+	if(levelStruct.nbrLevel == 500){
+		levelStruct.nbrLevel = 0;
 	}else{
-		nbrLevel--;
+		levelStruct.nbrLevel--;
 	}
-	nbrPageTotal = parseInt(1 + (nbrLevel - 1) / 9);
+	levelStruct.nbrPageTotal = parseInt(1 + (levelStruct.nbrLevel - 1) / 9);
 
         //Number of tutorial levels
 	// In case the previous assumption was false, we have to define a upper
@@ -279,14 +291,14 @@ function preload(){
 	if(constants.USE_CORDOVA){
 		stars = window.localStorage.getItem("cookieSmartphone");
 		if(stars == null){
-			nbrLevelAccessible=1;
+			levelStruct.nbrLevelAccessible=1;
 		}else{
-			nbrLevelAccessible = stars.length+1;
+			levelStruct.nbrLevelAccessible = stars.length+1;
 		}
 	}else{
-		nbrLevelAccessible = readCookie("levelmax");
-		if (nbrLevelAccessible == null) {
-			nbrLevelAccessible = 1;
+		levelStruct.nbrLevelAccessible = readCookie("levelmax");
+		if (levelStruct.nbrLevelAccessible == null) {
+			levelStruct.nbrLevelAccessible = 1;
 		}
 	}	
 

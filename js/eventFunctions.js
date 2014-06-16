@@ -20,7 +20,7 @@ function endLevel(ball, endSprite)
 	if(!hardOverlap(ball,endSprite)){
 		return;
 	}
-	if (!tutorial && currentLevel == nbrLevel) {
+	if (!tutorial && levelStruct.currentLevel == levelStruct.nbrLevel) {
 		endGame(ball, endSprite);
 	} else if (tutorial && currentLevelTuto == nbrLevelTuto){
 	        endTuto(ball, endSprite);
@@ -55,10 +55,10 @@ function endLevel(ball, endSprite)
 		var nbrStars;
 		stars.animations.frame++;
 		nbrStars = 1;
-		if (score <= twoStars) {
+		if (score <= starsNumber[0]) {
 			stars.animations.frame++;
 			nbrStars = 2;
-			if (score <= threeStars) {
+			if (score <= starsNumber[1]) {
 				stars.animations.frame++;
 				nbrStars = 3;
 			}
@@ -66,11 +66,14 @@ function endLevel(ball, endSprite)
 		updateCookieStars(nbrStars);
 
 		//We update the number of unblocked levels	
-		if (currentLevel + 1 > nbrLevelAccessible && 
-				currentLevel + 1 <= nbrLevel)
-	       	{
-			nbrLevelAccessible = currentLevel + 1;
-			updateCookieNbrLevel(nbrLevelAccessible);	
+		if ((levelStruct.currentLevel + 1 > 
+					levelStruct.nbrLevelAccessible) && 
+				(levelStruct.currentLevel + 1 <= 
+				 levelStruct.nbrLevel))
+		{
+			levelStruct.nbrLevelAccessible = 
+				levelStruct.currentLevel + 1;
+			updateCookieNbrLevel(levelStruct.nbrLevelAccessible);	
 		}
 	    }
 	}	
@@ -102,10 +105,10 @@ function endGame(ball, endSprite) {
 	var nbrStars;
 	stars.animations.frame++;
 	nbrStars = 1;
-	if (score <= twoStars) {
+	if (score <= starsNumber[0]) {
 		stars.animations.frame++;
 		nbrStars = 2;
-		if (score <= threeStars) {
+		if (score <= starsNumber[1]) {
 			stars.animations.frame++;
 			nbrStars = 3;
 		}
@@ -113,8 +116,8 @@ function endGame(ball, endSprite) {
 	updateCookieStars(nbrStars);
 
 	//We update the number of unblocked levels	
-	nbrLevelAccessible = currentLevel + 1;
-	updateCookieNbrLevel(nbrLevelAccessible);	
+	levelStruct.nbrLevelAccessible = levelStruct.currentLevel + 1;
+	updateCookieNbrLevel(levelStruct.nbrLevelAccessible);	
 }
 
 /** Handles the end of the tutorial (last level of the tutorial) :
@@ -191,7 +194,7 @@ function actionOnClickMainMenu() {
 function actionOnClickMenu() {
 	playing=false;
 	game.world.removeAll(true);
-	currentLevel = 1;
+	levelStruct.currentLevel = 1;
     currentLevelTuto = 1;
 	createMenu();
 }
@@ -208,8 +211,8 @@ function actionOnClickRestart(){
 function actionOnClickNextLevel()
 {
     if(!tutorial){
-	currentLevel = currentLevel + 1;
-	textLevel.setText("Level " + currentLevel);
+	levelStruct.currentLevel = levelStruct.currentLevel + 1;
+	textLevel.setText("Level " + levelStruct.currentLevel);
     } else {
 	currentLevelTuto++;
 	textLevel.setText("Tutorial " + currentLevelTuto);
@@ -249,7 +252,7 @@ function actionOnClickTutorial()
   */
 function actionOnClickReturn()
 {
-	numPageCourant = 1;
+	levelStruct.numPageCourant = 1;
 	game.world.removeAll(true);
 	createMenu();
 }
@@ -258,7 +261,7 @@ function actionOnClickReturn()
   */
 function actionOnClickArrowRight()
 {
-	numPageCourant++;
+	levelStruct.numPageCourant++;
 	game.world.removeAll(true);
 	createSelectLevel();
 }
@@ -267,7 +270,7 @@ function actionOnClickArrowRight()
   */
 function actionOnClickArrowLeft()
 {
-	numPageCourant--;
+	levelStruct.numPageCourant--;
 	game.world.removeAll(true);
 	createSelectLevel();
 }
@@ -277,9 +280,9 @@ function actionOnClickArrowLeft()
   */
 function actionOnClickLevelAccessible(button)
 {
-	numPageCourant = 1;
+	levelStruct.numPageCourant = 1;
 	game.world.removeAll(true);
-	currentLevel = button.name;
+	levelStruct.currentLevel = button.name;
 	generateLevel();
 }
 

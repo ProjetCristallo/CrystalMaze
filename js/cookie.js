@@ -47,12 +47,14 @@ function updateCookieStars(curLevelUser) {
 	}else{
 		var stars = readCookie("stars");
 	}
-	if (currentLevel < nbrLevelAccessible) {
+	if (levelStruct.currentLevel < levelStruct.nbrLevelAccessible) {
 		//we already played the level
-		previousScore = stars.substring(currentLevel-1, currentLevel);
+		previousScore = stars.substring(levelStruct.currentLevel-1, 
+				levelStruct.currentLevel);
 		if (curLevelUser > previousScore) {
-			var before = stars.substring(0, currentLevel-1);
-			var after = stars.substring((currentLevel),
+			var before = stars.substring(0, 
+					levelStruct.currentLevel-1);
+			var after = stars.substring((levelStruct.currentLevel),
 					stars.length);
 			stars = before + curLevelUser + after;
 		}

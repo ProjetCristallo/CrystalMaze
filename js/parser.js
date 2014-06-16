@@ -14,8 +14,8 @@ function parser(filename) {
 	var arrLines = file.responseText.split("\n");
 	//We check the score for each floor
 	var res = arrLines[0].split(" ");
-	twoStars = res[0];
-	threeStars = res[1];
+	starsNumber[0] = res[0];
+	starsNumber[1] = res[1];
 	// the block of the current line
 	var block;
 	// the different parameter defining the current block
