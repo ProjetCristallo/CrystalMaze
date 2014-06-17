@@ -52,6 +52,16 @@ function playSaltSound() {
 	}
 }
 
+/** If not mute then play the sound corresponding to lostSoundUrl.
+  */
+function playLostSound() {
+	if (!mute) {
+	var noise = game.add.audio('lost',1,true);
+	noise.play('',0,1,false);
+	}
+}
+
+
 /** Change the mute setting (if mute -> unmute, else unmute -> mute).
   */
 function actionOnClickMute() {

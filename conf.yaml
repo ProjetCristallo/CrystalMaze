@@ -148,9 +148,18 @@ areYouSureUrl : ressources/Backgrounds/areYouSure.png
 #===========================================
 # Sounds
 #===========================================
-saltSoundUrl : ressources/sounds/salt.MP3
-blockSoundUrl : ressources/sounds/block.MP3
-glassSoundUrl : ressources/sounds/glass.MP3
-dropSoundUrl : ressources/sounds/drop.MP3
-gazSoundUrl : ressources/sounds/gaz.MP3
+#MP3
+saltSoundMP3Url : ressources/sounds/salt.MP3
+blockSoundMP3Url : ressources/sounds/block.MP3
+glassSoundMP3Url : ressources/sounds/glass.MP3
+dropSoundMP3Url : ressources/sounds/drop.MP3
+gazSoundMP3Url : ressources/sounds/gaz.MP3
+lostSoundMP3Url : ressources/sounds/lost.MP3
 
+#OGG
+saltSoundOGGUrl : ressources/sounds/salt.ogg
+blockSoundOGGUrl : ressources/sounds/block.ogg
+glassSoundOGGUrl : ressources/sounds/glass.ogg
+dropSoundOGGUrl : ressources/sounds/drop.ogg
+gazSoundOGGUrl : ressources/sounds/gaz.ogg
+lostSoundOGGUrl : ressources/sounds/lost.ogg

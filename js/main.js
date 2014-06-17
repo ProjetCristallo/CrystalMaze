@@ -32,7 +32,7 @@ var endScreenTuto;
 
 /** Booleans indicating the game's state
   */
-var tutoriel = false;
+var tutorial = false;
 
 /** Last direction the ball has taken, useful for the turn blocks
   */
@@ -262,11 +262,12 @@ function preload(){
 	//=======================================
 	// Sounds
 	//=======================================
-	game.load.audio('salted',constants.saltSoundUrl); 
-	game.load.audio('block',constants.blockSoundUrl); 
-	game.load.audio('glass', constants.glassSoundUrl );
-	game.load.audio('drop', constants.dropSoundUrl );
-	game.load.audio('gaz', constants.gazSoundUrl );
+	game.load.audio('salted',[constants.saltSoundMP3Url,constants.saltSoundOGGUrl] ); 
+	game.load.audio('block',[constants.blockSoundMP3Url, constants.saltSoundOGGUrl]); 
+	game.load.audio('glass', [constants.glassSoundMP3Url, constants.saltSoundOGGUrl] );
+	game.load.audio('drop', [constants.dropSoundMP3Url, constants.saltSoundOGGUrl] );
+	game.load.audio('gaz', [constants.gazSoundMP3Url, constants.saltSoundOGGUrl] );
+	game.load.audio('lost', [constants.lostSoundMP3Url, constants.saltSoundOGGUrl] );
 	
 	game.load.onFileComplete.add(updateProgress, this);
 	

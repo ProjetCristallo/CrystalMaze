@@ -5,7 +5,6 @@ function initializeTutorial()
 	playing = false;
 	for(var i=0;i<tutoStruct.nbrScreenTuto[tutoStruct.currentLevelTuto - 1];
 		       	i++){
-	    
 	    tutoStruct.tutoScreens[i] = (game.add.sprite(
 		0.03*constants.BACKGROUND_WIDTH,
 		0.03*constants.BACKGROUND_HEIGHT,
@@ -53,6 +52,7 @@ function tutoClose()
     }
     buttonNextTuto.kill();
     buttonCloseTuto.kill();
+    playing = true;
 }
 
 /** Switch to the next tutorial help screen.
