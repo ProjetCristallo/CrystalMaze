@@ -13,7 +13,7 @@ function initializeTutorial()
 					  0.35*constants.BACKGROUND_HEIGHT, 'buttonCloseTuto',
 					  tutoClose,this,0,1,2);
 	buttonNextTuto = game.add.button(0.23*constants.BACKGROUND_WIDTH, 
-				     0.35*constants.BACKGROUND_HEIGHT, 'buttonNextTuto', 
+					 0.35*constants.BACKGROUND_HEIGHT, 'buttonNextTuto', 
 					 clickTutoNext,this,0,1,2);
 }
 
@@ -37,10 +37,8 @@ function displayTutorial()
 function tutoClose()
 {
     playing = true;
-    if(tutoStruct.nbrScreenTuto[tutoStruct.currentLevelTuto - 1] == 1) {
-	tutoStruct.tutoScreens[0].kill();
-    } else {
-	tutoStruct.tutoScreens.forEach(function(screen){screen.kill()});
+    for(var i = 0; i<tutoStruct.nbrScreenTuto[tutoStruct.currentLevelTuto - 1]; i++) {
+	tutoStruct.tutoScreens[i].kill();
     }
     buttonNextTuto.kill();
     buttonCloseTuto.kill();
