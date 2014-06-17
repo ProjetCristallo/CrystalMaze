@@ -139,6 +139,7 @@ fondUrl : ressources/Backgrounds/Fond.png
 winUrl : ressources/Backgrounds/Win.png
 failUrl : ressources/Backgrounds/Fail.png
 endScreenUrl : ressources/Backgrounds/endScreen.png
+endScreenTutoUrl : resources/Backgrounds/endScreenTuto.png
 mainMenuSpriteUrl : ressources/Backgrounds/MainMenu.png
 starsUrl : ressources/Backgrounds/Star.png
 levelInaccessibleUrl : ressources/Backgrounds/menuLevelInaccessible.png

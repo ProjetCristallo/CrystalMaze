@@ -211,7 +211,8 @@ function preload(){
 	game.load.image('win',constants.winUrl);
 	game.load.image('fail',constants.failUrl);
 	game.load.image('levelInaccessible',constants.levelInaccessibleUrl);
-	game.load.image('endScreen',constants.endScreenUrl);	
+	game.load.image('endScreen',constants.endScreenUrl);
+        game.load.image('andScreenTuto',constants.endScreenTutoUrl);
 	game.load.spritesheet('stars',constants.starsUrl,100,25);
 	game.load.image('areYouSure', constants.areYouSureUrl, 320, 240);
 	
