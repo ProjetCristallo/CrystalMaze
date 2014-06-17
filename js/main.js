@@ -121,8 +121,8 @@ var progressPageLoaded = false;
 /** text displayed during the loading. */
 var progressInfo =null;
 
-
-
+/** Display the background and the title of the main menu.
+  */
 function displayBackgroundAndTitle(){
         mainMenuSprite = game.add.sprite(0, 0, 'mainMenuSprite');
         title = game.add.sprite(0.5*constants.BACKGROUND_WIDTH,
