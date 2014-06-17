@@ -15,19 +15,61 @@ qui justifie l'implémentation et présente la structure des dossiers.
 
 \section {Javascript}
 Ces fichiers sont stockés dans le dossier {\em js}.
-
+\begin{itemize}
+	\item
+		\textbf{constants.js} : Permet de charger le fichier de 
+		configuration yaml.\\
+	\item
+		\textbf{cookie.js} : Assure la gestion des cookies (dans le
+		cas d'une utilisation web) ou de la mémoire locale (dans 
+		le cas d'une utilisation mobile), afin de conserver l'état 
+		d'avancement de l'utilisateur dans les niveaux.\\
+	\item
+		\textbf{create.js} : Permet de créer les différents écrans du
+		jeu : le menu principal, le menu de séléction de niveau, et 
+		l'écran correspondant à un début de partie.\\
+	\item
+		\textbf{createLevel.js} : Met à jour l'index des niveaux, 
+		fonctionne pour le tutoriel et le jeu classique.\\
+	\item
+		\textbf{eventFunction.js} : Gère la majorité des événements 
+		associés aux clicks dans les menus et en jeu, et aussi les 
+		actions déclenchées durant une partie (affichage de l'écran de 
+		fin, rencontre avec un bloc).\\
+	\item
+		\textbf{help.js} : Gère les écrans d'aide.\\
+	\item
+		\textbf{main.js} : Charge les différentes ressources 
+		nécéssaires, contient la définition des variables globales 
+		utilisées dans plusieurs fichiers.\\
+	\item
+		\textbf{moveball.js} : Gère les déplacements de la bille 
+		(prise en compte des actions de l'utilisateur, appel des 
+		fonctions adéquates dans {\em eventFunction} en cas de 
+		collision/chevauchement.\\
+		Gère aussi les déplacements et repositionnements nécéssaires 
+		pour les blocs {\em turn}.\\
+	\item
+		\textbf{parser.js} : Permet la lecture et le chargement en 
+		mémoire d'un fichier de niveau.\\
+	\item
+		\textbf{sound.js} : Gère les animations sonores du jeu.\\
+\end{itemize}
 \section {Ressources}
 Le dossier {\em ressources} contient les fichiers png chargées par le jeu,
-elles sont définies dans {\em conf.yaml}.\\
+ils sont définis dans {\em conf.yaml}.\\
 Le dossier {\em ressource-dev} contient les fichiers gimp correspondant à
 ces fichiers png, et peuvent être utilisés pour modifier plus rapidement 
 les ressources.\\
 Les sons associés aux actions sont stockés dans {\em ressources/sounds}, afin 
 d'assurer une compatibilé avec firefox ne pas utiliser de fichier mp3 (ogg
 semble une bonne alternative).\\
+Les niveaux sont eux dans le dossier levels, ils doivent être de la forme 
+"\%nombre.txt" et se suivre. Il est en de même pour les niveaux du tutoriel 
+qui sont dans le dossier tutorial.\\
 
 \section {Justification de l'implémentation}
-\begin{enumerate}
+\begin{itemize}
 	\item
 		\textbf{Cookie.js} :\\
 		On utilise {\em constants.USE\_CORDOVA} pour savoir si on 
@@ -64,5 +106,5 @@ semble une bonne alternative).\\
 		Pour le score il y a simplement {\em checkMoveGroup} qui
 		vérifie la validité du déplacement demandé et permet donc de 
 		créer .\\
-\end{enumerate}
+\end{itemize}
 \end{document}
