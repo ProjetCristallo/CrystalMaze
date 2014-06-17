@@ -26,9 +26,13 @@ var endSprite;
   */
 var endScreen;
 
+/** Sprite representing the endscreen background for the tutorial
+  */
+var endScreenTuto;
+
 /** Booleans indicating the game's state
   */
-var tutoriel = false;
+var tutorial = false;
 
 /** Last direction the ball has taken, useful for the turn blocks
   */
@@ -55,24 +59,32 @@ var helpStruct={helpScreens:[],buttonNext:null,buttonPrev:null,posInHelp:null,
 var playing=false;
 
 /** variable to manage the levels and select level screen.
-  * - nbrLevel : number of level
-  * - nbLevelAccessible : number of level unlocked
-  * - numPageCourant : number of current page in select level screen
-  * - nbrPageTotal : total number of pages in select level screen
-  * - currentLevel : current level used
+  * - nbrLevel : number of level.
+  * - nbLevelAccessible : number of level unlocked.
+  * - numPageCourant : number of current page in select level screen.
+  * - nbrPageTotal : total number of pages in select level screen.
+  * - currentLevel : current level used.
   */
 var levelStruct={nbrLevel:1,nbrLevelAccessible:0,numPageCourant:1,
 	nbrPageTotal:1,currentLevel:1};
 
-//Tutorial
-var nbrLevelTuto = 1;
-var currentLevelTuto = 1;
-var nbrScreenTuto = new Array();
-var tutoScreens = new Array();
-var posInTuto;
+/** variable to manage the tutorial levels.
+  * - nbrLevelTuto : number of level in the tutorial.
+  * - currentLevelTuto : current level used in the tutorial.
+  * - nbrScreenTuto : number of help screens displayed in the tutorial.
+  * - tutoScreens : help screens from the tutorial.
+  * - posInTuto : position in the help screens from the tutorial.
+  */
+var tutoStruct={nbrLevelTuto:1,currentLevelTuto:1,nbrScreenTuto:[],
+	tutoScreens:[],posInTuto:0};
+
 
 //Swipe handling
+
 var element = document.body;
+
+/** Last direction chosen by the user (mobile use unly)
+  */
 var swipe = null;
 Hammer(element).on("swipeleft", function(event) {
 	swipe='left';
@@ -87,27 +99,42 @@ Hammer(element).on("swipeup", function(event) {
 	swipe='up';
 });
 
-// Blocks groups
-var hole;
-var simple;
-var unilateral;
-var breakable;
-var salt;
-var porous;
-var begin;
-var end;
-var item;
+/** variable managing all the blocks groups of the world.
+  * - hole : group of 'hole' sprites.
+  * - simple : groupe of 'simple' sprites.
+  * - unilateral : groupe of 'unilateral' sprites.
+  * - breakable : group of 'breakable' sprites.
+  * - salt : group of 'salt' sprites.
+  * - porous : group of 'porous' sprites.
+  * - end : group of 'end' sprites.
+  * - item : group of 'items' sprites.
+  * - turn : group of 'turn sprites
+  */
+var blockGroups={hole:null,simple:null,unilateral:null,breakable:null,
+	salt:null,porous:null,end:null,item:null,turn:null};
+
+/** score of the current level. */
 var score;
-var turn;
 
-//Music volume
-var mute = 0;
+/** Boolean indicating if the music is on or off. */
+var mute = false;
 
-// boolean indicating if the title and the startup background have already been
-// loaded
+/** boolean indicating if the title and the startup background have already been
+  * loaded. */
 var progressPageLoaded = false;
-// text displayed during the loading
+/** text displayed during the loading. */
 var progressInfo =null;
+
+/** Display the background and the title of the main menu.
+  */
+function displayBackgroundAndTitle(){
+        mainMenuSprite = game.add.sprite(0, 0, 'mainMenuSprite');
+        title = game.add.sprite(0.5*constants.BACKGROUND_WIDTH,
+                        0.3*constants.BACKGROUND_HEIGHT, 'title');
+        title.anchor={'x':0.5,'y':0.5};
+}
+
+
 
 /** Create and update the display of the loading screen.
   */
@@ -121,8 +148,7 @@ function updateProgress(){
 	if(!progressPageLoaded && game.cache.checkImageKey('mainMenuSprite') &&
 			game.cache.checkImageKey('title')) 
 	{
-		mainMenuSprite = game.add.sprite(0, 0, 'mainMenuSprite');
-		title = game.add.sprite(11, 50, 'title');
+		displayBackgroundAndTitle();
 		progressInfo = game.add.text(0.5*constants.BACKGROUND_WIDTH,
 				0.7*constants.BACKGROUND_HEIGHT,"0 %",
 				{ font: "65px Arial", align: "center" });
@@ -136,6 +162,12 @@ function updateProgress(){
   */
 function preload(){
 
+	//=======================================
+	// Main menu
+	//=======================================
+	game.load.image('mainMenuSprite',constants.mainMenuSpriteUrl);
+	game.load.image('title',constants.titleUrl);
+	
 	//=======================================
 	// Buttons
 	//=======================================
@@ -183,7 +215,8 @@ function preload(){
 	game.load.image('win',constants.winUrl);
 	game.load.image('fail',constants.failUrl);
 	game.load.image('levelInaccessible',constants.levelInaccessibleUrl);
-	game.load.image('endScreen',constants.endScreenUrl);	
+	game.load.image('endScreen',constants.endScreenUrl);
+        game.load.image('endScreenTuto',constants.endScreenTutoUrl);
 	game.load.spritesheet('stars',constants.starsUrl,100,25);
 	game.load.image('areYouSure', constants.areYouSureUrl, 320, 240);
 	
@@ -219,12 +252,6 @@ function preload(){
 	game.load.image('levelI',constants.levelIUrl);	
 	
 	//=======================================
-	// Main menu
-	//=======================================
-	game.load.image('mainMenuSprite',constants.mainMenuSpriteUrl);
-	game.load.image('title',constants.titleUrl);
-	
-	//=======================================
 	// Help screen
 	//=======================================
 	for (var i = 1; i <= constants.NUMBER_OF_HELP_SCREEN; i ++){
@@ -235,11 +262,12 @@ function preload(){
 	//=======================================
 	// Sounds
 	//=======================================
-	game.load.audio('salted',constants.saltSoundUrl); 
-	game.load.audio('block',constants.blockSoundUrl); 
-	game.load.audio('glass', constants.glassSoundUrl );
-	game.load.audio('drop', constants.dropSoundUrl );
-	game.load.audio('gaz', constants.gazSoundUrl );
+	game.load.audio('salted',[constants.saltSoundMP3Url,constants.saltSoundOGGUrl] ); 
+	game.load.audio('block',[constants.blockSoundMP3Url, constants.saltSoundOGGUrl]); 
+	game.load.audio('glass', [constants.glassSoundMP3Url, constants.saltSoundOGGUrl] );
+	game.load.audio('drop', [constants.dropSoundMP3Url, constants.saltSoundOGGUrl] );
+	game.load.audio('gaz', [constants.gazSoundMP3Url, constants.saltSoundOGGUrl] );
+	game.load.audio('lost', [constants.lostSoundMP3Url, constants.saltSoundOGGUrl] );
 	
 	game.load.onFileComplete.add(updateProgress, this);
 	
@@ -263,28 +291,33 @@ function preload(){
         //Number of tutorial levels
 	// In case the previous assumption was false, we have to define a upper
 	// bound to the number of level to avoid an infinite loop.
-        while (doesFileExist("tutorial/"+nbrLevelTuto+".txt",valueOk) && 
-			nbrLevelTuto < 500){
-		nbrLevelTuto++;
+        while (doesFileExist("tutorial/"+tutoStruct.nbrLevelTuto+".txt",
+				valueOk) && 
+			tutoStruct.nbrLevelTuto < 500){
+		tutoStruct.nbrLevelTuto++;
 	}
-	if(nbrLevelTuto == 500){
-		nbrLevelTuto = 0;
+	if(tutoStruct.nbrLevelTuto == 500){
+		tutoStruct.nbrLevelTuto = 0;
 	}else{
-		nbrLevelTuto--;
+		tutoStruct.nbrLevelTuto--;
 	}
 
         //Number of tutorial screens for each tutorial levels
-    for (var i=1; i < nbrLevelTuto; i++){
-	nbrScreenTuto[i - 1] = 1;
-	while (doesFileExist("ressources/tutorial/tutorial"+i+"-"+nbrScreenTuto[i - 1]+".png",valueOk) && 
-	       nbrScreenTuto[i - 1] < 500){
-	    game.load.image('tutorial'+i+"-"+nbrScreenTuto[i - 1], "ressources/tutorial/tutorial"+i+"-"+nbrScreenTuto[i - 1]+".png");
-	    nbrScreenTuto[i - 1]++;
+    for (var i=1; i <= tutoStruct.nbrLevelTuto; i++){
+	tutoStruct.nbrScreenTuto[i - 1] = 1;
+	while (doesFileExist("ressources/tutorial/tutorial"+i+"-"+
+				tutoStruct.nbrScreenTuto[i - 1]+".png",
+				valueOk) && 
+	       tutoStruct.nbrScreenTuto[i - 1] < 500){
+	    game.load.image('tutorial'+i+"-"+tutoStruct.nbrScreenTuto[i - 1],
+			    "ressources/tutorial/tutorial"+i+"-"+
+			    tutoStruct.nbrScreenTuto[i - 1]+".png");
+	    tutoStruct.nbrScreenTuto[i - 1]++;
 	}
-	if(nbrScreenTuto[i - 1] == 500){
-	    nbrScreenTuto[i - 1] = 0;
+	if(tutoStruct.nbrScreenTuto[i - 1] == 500){
+	    tutoStruct.nbrScreenTuto[i - 1] = 0;
 	}else{
-	    nbrScreenTuto[i - 1]--;
+	    tutoStruct.nbrScreenTuto[i - 1]--;
 	}
     }
 	//Number of levels already unlocked

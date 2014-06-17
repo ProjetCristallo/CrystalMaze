@@ -1,4 +1,4 @@
-6 4
+15 12
 porous 0 0 
 porous 0 1 
 porous 0 2 

@@ -1,32 +1,36 @@
+/** Initialize the view in tutorial mode, load the ressources.
+  */
 function initializeTutorial()
 {   
-    if(nbrScreenTuto[currentLevelTuto - 1] != 0){
 	playing = false;
-	for(var i=1;i<=nbrScreenTuto[currentLevelTuto - 1]; i++){
-	    
-	    tutoScreens[i-1] = (game.add.sprite(
+	for(var i=0;i<tutoStruct.nbrScreenTuto[tutoStruct.currentLevelTuto - 1];
+		       	i++){
+	    tutoStruct.tutoScreens[i] = (game.add.sprite(
 		0.03*constants.BACKGROUND_WIDTH,
 		0.03*constants.BACKGROUND_HEIGHT,
-		'tutorial'+currentLevelTuto+"-"+i));
+		'tutorial'+tutoStruct.currentLevelTuto+"-"+(i+1)));
 	}
-	posInTuto = 1;
+	tutoStruct.posInTuto = 1;
 	buttonCloseTuto = game.add.button(0.23*constants.BACKGROUND_WIDTH,
-					  0.35*constants.BACKGROUND_HEIGHT, 'buttonCloseTuto',
+					  0.35*constants.BACKGROUND_HEIGHT,
+					  'buttonCloseTuto',
 					  tutoClose,this,0,1,2);
 	buttonNextTuto = game.add.button(0.23*constants.BACKGROUND_WIDTH, 
-				     0.35*constants.BACKGROUND_HEIGHT, 'buttonNextTuto', 
+					 0.35*constants.BACKGROUND_HEIGHT, 
+					 'buttonNextTuto', 
 					 clickTutoNext,this,0,1,2);
-    } else {
-	posInTuto = 0;
-    }
 }
 
+/** Display the appropriate tutorial screen.
+  */
 function displayTutorial()
 {
-    if(posInTuto != 0){
-    	tutoScreens[posInTuto-1].revive();
-	tutoScreens[posInTuto-1].bringToTop();
-	if (posInTuto != nbrScreenTuto[currentLevelTuto - 1])
+    if(tutoStruct.posInTuto != 0){
+	playing = false;
+    	tutoStruct.tutoScreens[tutoStruct.posInTuto-1].revive();
+	tutoStruct.tutoScreens[tutoStruct.posInTuto-1].bringToTop();
+	if (tutoStruct.posInTuto != tutoStruct.
+			nbrScreenTuto[tutoStruct.currentLevelTuto - 1])
 	{
 	    buttonNextTuto.revive();
 	    buttonNextTuto.bringToTop();
@@ -37,18 +41,28 @@ function displayTutorial()
     }
 }
 
+/** Close the tutorial help screen.
+  */
 function tutoClose()
 {
-    tutoScreens.forEach(function(screen){screen.kill()});
+    playing = true;
+    for(var i = 0; i<tutoStruct.nbrScreenTuto[tutoStruct.currentLevelTuto - 1];
+		    i++) {
+	tutoStruct.tutoScreens[i].kill();
+    }
     buttonNextTuto.kill();
     buttonCloseTuto.kill();
+    playing = true;
 }
 
+/** Switch to the next tutorial help screen.
+  */
 function clickTutoNext()
 {
-	posInTuto++;
-	if(posInTuto>nbrScreenTuto[currentLevelTuto - 1]){
-		posInTuto=1;
+	tutoStruct.posInTuto++;
+	if(tutoStruct.posInTuto>tutoStruct.
+			nbrScreenTuto[tutoStruct.currentLevelTuto - 1]){
+		tutoStruct.posInTuto=1;
 	}
 	displayTutorial();
 }

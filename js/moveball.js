@@ -1,5 +1,5 @@
 /** Manage the ball movement
-  */
+ */
 function moveBall() {
 
 	//Imprecisions handling
@@ -30,24 +30,26 @@ function moveBall() {
 	if(!ball.isMoving && !(game.isPaused))
 	{	
 		if((controller.left.isDown || swipe==='left') &&
-			       	checkMoveGroup('left'))
+				checkMoveGroup('left'))
 		{	
 			lastDir = 'left';
 			swipe = null;
 			lastTurnBlocked = null;
 			lastTurn = null;
-			game.physics.arcade.overlap(ball,turn,setLastTurn);
+			game.physics.arcade.overlap(ball,blockGroups.turn,
+					setLastTurn);
 			score++;
 			ball.body.velocity.x = -constants.BALL.SPEED;
 		}
 		else if((controller.right.isDown || swipe==='right') &&
-			       	checkMoveGroup('right'))
+				checkMoveGroup('right'))
 		{	
 			lastDir = 'right';
 			swipe = null;	
 			lastTurnBlocked = null;
 			lastTurn = null;
-			game.physics.arcade.overlap(ball,turn,setLastTurn);
+			game.physics.arcade.overlap(ball,blockGroups.turn,
+					setLastTurn);
 			score++;
 			ball.body.velocity.x = +constants.BALL.SPEED;
 		}
@@ -58,7 +60,8 @@ function moveBall() {
 			swipe = null;	
 			lastTurnBlocked = null;
 			lastTurn = null;
-			game.physics.arcade.overlap(ball,turn,setLastTurn);
+			game.physics.arcade.overlap(ball,blockGroups.turn,
+					setLastTurn);
 			score++;
 			ball.body.velocity.y = -constants.BALL.SPEED;
 		}
@@ -69,7 +72,8 @@ function moveBall() {
 			swipe = null;	
 			lastTurnBlocked = null;
 			lastTurn = null;
-			game.physics.arcade.overlap(ball,turn,setLastTurn);
+			game.physics.arcade.overlap(ball,blockGroups.turn,
+					setLastTurn);
 			score++;
 			ball.body.velocity.y = +constants.BALL.SPEED;
 		}
@@ -77,23 +81,24 @@ function moveBall() {
 	else
 	{
 		//The ball is moving : we check the collisions/overlaps
-		game.physics.arcade.collide(ball, simple, normalBlockCollide, 
-				null, this);
-		game.physics.arcade.collide(ball, breakable, breakBlockCollide,
-				null, this);
-		game.physics.arcade.collide(ball, salt, saltBlockCollide,
-				null, this);
-		game.physics.arcade.overlap(ball, porous, porousBlockOverlap,
-				null, this);
-		game.physics.arcade.overlap(ball, end, endLevel, null, this);
-		game.physics.arcade.collide(ball, unilateral, 
+		game.physics.arcade.collide(ball, blockGroups.simple, 
+				normalBlockCollide,null, this);
+		game.physics.arcade.collide(ball, blockGroups.breakable, 
+				breakBlockCollide,null, this);
+		game.physics.arcade.collide(ball, blockGroups.salt, 
+				saltBlockCollide,null, this);
+		game.physics.arcade.overlap(ball, blockGroups.porous, 
+				porousBlockOverlap,null, this);
+		game.physics.arcade.overlap(ball, blockGroups.end, 
+				endLevel, null, this);
+		game.physics.arcade.collide(ball, blockGroups.unilateral, 
 				normalBlockCollide, null, this);
-		game.physics.arcade.overlap(ball, hole, holeOverlap, 
-				null, this);
-		game.physics.arcade.overlap(ball, item, itemCollide, 
-				null, this);
-		game.physics.arcade.collide(ball, turn, normalBlockCollide, 
-				null, this);
+		game.physics.arcade.overlap(ball, blockGroups.hole, 
+				holeOverlap, null, this);
+		game.physics.arcade.overlap(ball, blockGroups.item, 
+				itemCollide, null, this);
+		game.physics.arcade.collide(ball, blockGroups.turn, 
+				normalBlockCollide,null, this);
 	}	
 	// We check every time for the turn blocks to manage the case where the
 	// ball is blocked right after a turn.
@@ -104,21 +109,21 @@ function moveBall() {
 var lastTurn;
 var lastTurnBlocked;
 /** Set lastTurn to turnBlock, useful to call with overlap on the group turn
-  * @param {sprite} ball The moving ball from the world.
-  * @param {sprite} turnBlock A block from the group turn that was the last to
-  * block the ball.
-  */
+ * @param {sprite} ball The moving ball from the world.
+ * @param {sprite} turnBlock A block from the group turn that was the last to
+ * block the ball.
+ */
 function setLastTurn(ball, turnBlock)
 {
 	lastTurn = turnBlock;
 }
 
 /** Check if the ball should be redirected by a turn block
-  */
+ */
 function checkTurn()
 {
-	for(var i=0; i<turn.length;i++){
-		current = turn.getAt(i);
+	for(var i=0; i<blockGroups.turn.length;i++){
+		current = blockGroups.turn.getAt(i);
 		if(current.alive && current != lastTurn &&
 				game.physics.arcade.distanceBetween
 				(current, ball) < constants.
@@ -131,8 +136,8 @@ function checkTurn()
 }
 
 /** Make the ball turn accordingly to turnBlock
-  * @param {sprite} turnBlock A block tah should change the direction of ball
-  */
+ * @param {sprite} turnBlock A block tah should change the direction of ball
+ */
 function turnBall(turnBlock)
 {
 	//Definition of lastTurnedBlock
@@ -178,11 +183,12 @@ function turnBall(turnBlock)
 	}
 
 	// we check for any overlap (i.e. incorrect move)
-	if(game.physics.arcade.overlap(ball, unilateral, checkUniTurn))
+	if(game.physics.arcade.overlap(ball, blockGroups.unilateral, 
+				checkUniTurn))
 	{
 		return;
 	}
-	else if(game.physics.arcade.overlap(ball, simple))
+	else if(game.physics.arcade.overlap(ball, blockGroups.simple))
 	{
 		ball.body.velocity.x=0;
 		ball.body.velocity.y=0;
@@ -190,7 +196,8 @@ function turnBall(turnBlock)
 		ball.body.y = turnBlock.body.y;
 		return;
 	}
-	else if(game.physics.arcade.overlap(ball, breakable, breakBlockCollide))
+	else if(game.physics.arcade.overlap(ball, blockGroups.breakable, 
+				breakBlockCollide))
 	{
 		ball.body.velocity.x=0;
 		ball.body.velocity.y=0;
@@ -201,8 +208,8 @@ function turnBall(turnBlock)
 	else 
 	{
 		var resetLastTurn = true;
-		for(var i=0; i<turn.length; i++){
-			current = turn.getAt(i);
+		for(var i=0; i<blockGroups.turn.length; i++){
+			current = blockGroups.turn.getAt(i);
 			if(current.alive && current != turnBlock && 
 					game.physics.arcade.overlap(
 						ball,current))
@@ -218,10 +225,10 @@ function turnBall(turnBlock)
 }
 
 /** Manage the overlap due to a turn block redirecting the ball into a 
-  * unilateral block.
-  * @param {sprite} ball The ball redirected by a turn block.
-  * @param {sprite} uniBlock A unilateral block overlapping the ball.
-  */
+ * unilateral block.
+ * @param {sprite} ball The ball redirected by a turn block.
+ * @param {sprite} uniBlock A unilateral block overlapping the ball.
+ */
 function checkUniTurn(ball, uniBlock)
 {
 	if((uniBlock.body.checkCollision.up && (ball.body.velocity.y > 0)) || 
@@ -245,10 +252,10 @@ function checkUniTurn(ball, uniBlock)
 }
 
 /** Check if the asked move is correct in function of a precise block from turn.
-  * @param {sprite} block The turn block to test. 
-  * @param {string} dir The direction wanted (must be 'right', 'left', 'up' or 
-  * 'down').
-  */
+ * @param {sprite} block The turn block to test. 
+ * @param {string} dir The direction wanted (must be 'right', 'left', 'up' or 
+ * 'down').
+ */
 function checkMoveTurn(block,dir)
 {
 	var authorized = checkMove(block, dir);
@@ -269,13 +276,13 @@ function checkMoveTurn(block,dir)
 
 
 /** Check if the asked move is correct in function of any precise block (except
-  * turn blocks).
-  * @param {sprite} block The block to test. 
-  * @param {string} dir The direction wanted (must be 'right', 'up', 'left' or 
-  * 'down').
-  * @param {boolean} booleanPorous Only needed if block is porous (in this case
-  * booleanPorous must be set to true).
-  */
+ * turn blocks).
+ * @param {sprite} block The block to test. 
+ * @param {string} dir The direction wanted (must be 'right', 'up', 'left' or 
+ * 'down').
+ * @param {boolean} booleanPorous Only needed if block is porous (in this case
+ * booleanPorous must be set to true).
+ */
 function checkMove(block, dir, booleanPorous)
 {
 	var authorized = true;
@@ -310,9 +317,9 @@ function checkMove(block, dir, booleanPorous)
 }
 
 /** Check that the movement asked is correct.
-  * @param {string} dir The direction wanted (must be 'up', 'left', 'right' or 
-  * 'down').
-  */
+ * @param {string} dir The direction wanted (must be 'up', 'left', 'right' or 
+ * 'down').
+ */
 function checkMoveGroup(dir)
 {
 	var current;
@@ -329,43 +336,43 @@ function checkMoveGroup(dir)
 				return false;
 			}
 
-	for(var i=0; i<porous.length; i++){
-		current = porous.getAt(i);
+	for(var i=0; i<blockGroups.porous.length; i++){
+		current = blockGroups.porous.getAt(i);
 		if(current.alive && ball.name === "ice") {
 			authorized = authorized && 
 				checkMove(current, dir, true);
 		}
 	}
 
-	for(i=0; i<breakable.length;i++){
-		current = breakable.getAt(i);
+	for(i=0; i<blockGroups.breakable.length;i++){
+		current = blockGroups.breakable.getAt(i);
 		if(current.alive) {
 			authorized = authorized && checkMove(current, dir);
 		}
 	}
 
-	for(i=0; i<salt.length;i++){
-		current = salt.getAt(i);
+	for(i=0; i<blockGroups.salt.length;i++){
+		current = blockGroups.salt.getAt(i);
 		if(current.alive) {
 			authorized = authorized && checkMove(current, dir);
 		}
 	}
 
-	for(i=0; i<simple.length;i++){
-		current = simple.getAt(i);
+	for(i=0; i<blockGroups.simple.length;i++){
+		current = blockGroups.simple.getAt(i);
 		if(current.alive) {
 			authorized = authorized && checkMove(current, dir);
 
 		}
 	}
-	for(i=0; i<unilateral.length; i++){
-		current = unilateral.getAt(i);
+	for(i=0; i<blockGroups.unilateral.length; i++){
+		current = blockGroups.unilateral.getAt(i);
 		if(current.alive) {
 			authorized = authorized && checkMove(current, dir);
 		}
 	}
-	for(i=0; i<turn.length; i++){
-		current = turn.getAt(i);
+	for(i=0; i<blockGroups.turn.length; i++){
+		current = blockGroups.turn.getAt(i);
 		if(current.alive){
 			authorized = authorized && checkMoveTurn(current, dir);
 		}
