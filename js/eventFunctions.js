@@ -141,7 +141,7 @@ function endTuto(ball, endSprite)
  * @param {sprite} endSprite The diamond.
  */
 function loseGame() {
-	playLostSound();
+	playLostSound()
 	playing = false;
 	ball.body.velocity.x=0;
 	ball.body.velocity.y=0;
