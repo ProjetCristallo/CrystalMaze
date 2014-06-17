@@ -37,9 +37,9 @@ function tutoClose()
 {
     playing = true;
     if(tutoStruct.nbrScreenTuto[tutoStruct.currentLevelTuto - 1] == 1) {
-	tutoStruct.tutoScreens[0].kill();
+		tutoStruct.tutoScreens[0].kill();
     } else {
-	tutoStruct.tutoScreens.forEach(function(screen){screen.kill()});
+		tutoStruct.tutoScreens.forEach(function(screen){screen.kill()});
     }
     buttonNextTuto.kill();
     buttonCloseTuto.kill();

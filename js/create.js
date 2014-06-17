@@ -156,10 +156,7 @@ function generateLevel()
 	initializeHelpScreen();
 	helpClose();
 
-	//
-
-
-        playing = true;
+    playing = true;
 	createLevel();
 
 

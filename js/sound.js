@@ -40,6 +40,13 @@ function playSaltSound() {
 	}
 }
 
+function playLostSound() {
+	if (!mute) {
+	var noise = game.add.audio('lost',1,true);
+	noise.play('',0,1,false);
+	}
+}
+
 function actionOnClickMute() {
 	if (mute) {
 		soundButton.setFrames(0,0,1);
