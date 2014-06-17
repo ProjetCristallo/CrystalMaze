@@ -158,11 +158,14 @@ function generateLevel()
 
 	//
 
+
+        playing = true;
 	createLevel();
+
 
 	//Controller
 	controller = game.input.keyboard.createCursorKeys();
-	playing = true;
+
 } 
 
 /** Display the main menu.
