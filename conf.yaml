@@ -1,4 +1,26 @@
-#End Screens
+#Background (game) dimensions
+BACKGROUND_HEIGHT : 480
+BACKGROUND_WIDTH : 600
+
+#BUTTONS
+BUTTON_WIDTH : 133
+BUTTON_HEIGHT : 35
+
+#the size of a tile (block, items and balls)
+TILE_SIZE : 60
+BALL:
+        SPEED : 400
+        ANIMATION_SPEED : 3
+TURN_SENSOR_PERCENTAGE : 0.4
+
+NUMBER_OF_HELP_SCREEN : 6
+
+#END SCREENS
+#end screen offsets stand for the space between the screen and the game bounds.
+#buttons offset stand for the space between the first button and the top left corner of the screen.
+#button margin stands for the vertical space between two buttons.
+#stars margin stands for the vertical space between the top of the screen and the stars
+
 END_SCREEN :
     OFFSET :
         X : 0
@@ -8,7 +30,8 @@ END_SCREEN :
         Y : 250
     BUTTONS_MARGIN : 50
     STARS_MARGIN : 200
-    
+ 
+#SELECT LEVEL   
 #Select Level screen margin stands for the space between the first block 
 #and the game bounds, delta stands for the difference between the first pixel of
 #2 successive blocks, text stands for the relative position of the first letter
@@ -25,30 +48,36 @@ SELECT_LEVEL :
         X : 45
         Y : 40    
     STAR_Y : 70
-BACKGROUND_HEIGHT : 480
-BACKGROUND_WIDTH : 600
-
+    
+#TASKBAR 
 FONT_TASKBAR :
     STYLE : 35px Arial
     SIZE : 35
-#TASKBAR
 TASKBAR_HEIGHT : 100
 TASKBAR_WIDTH : 600
+#margin taskbar stands for the vertical and horizontal 
+#space between the text (score & level) and the top left corner of the taskbar.
 MARGIN_TASKBAR : 15
-PAUSE_BUTTON_WIDTH : 100
-PAUSE_BUTTON_HEIGHT : 200
 
-#IN_GAME_MENU
-IN_GAME_MENU_BUTTON_HEIGHT : 50
-IN_GAME_MENU_MARGIN : 10
+#TASKBAR BUTTONS
+TASKBAR_BUTTON_HEIGHT : 80
+TASKBAR_BUTTON_WIDTH : 80
+TASKBAR_MENU_HEIGHT : 80
+TASKBAR_MENU_WIDTH : 100
 
-TILE_SIZE : 60
-BALL:
-        SPEED : 400
-        ANIMATION_SPEED : 3
-TURN_SENSOR_PERCENTAGE : 0.4
+#STARS DIMENSIONS
+STARS_WIDTH : 100
+STARS_HEIGHT : 25
 
-NUMBER_OF_HELP_SCREEN : 6
+#ARROWS DIMENSIONS
+ARROWS_WIDTH : 50
+ARROWS_HEIGHT : 25
+
+#BUTTON CLOSE DIMENSIONS
+CLOSE_WIDTH : 35
+CLOSE_HEIGHT : 35
+
+
 
 #===========================================
 # Buttons

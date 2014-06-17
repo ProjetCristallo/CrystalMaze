@@ -179,34 +179,48 @@ function preload(){
 	game.load.image('nextPage',constants.nextPageUrl);
 	game.load.image('prevPage',constants.prevPageUrl);
 	
-	game.load.spritesheet('buttonPlay',constants.buttonPlayUrl,133,35);
+	game.load.spritesheet('buttonPlay',constants.buttonPlayUrl,
+		constants.BUTTON_WIDTH, constants.BUTTON_HEIGHT);
 	game.load.spritesheet('buttonSelectLevel',
-			constants.buttonSelectLevelUrl, 133, 35);
+			constants.buttonSelectLevelUrl, 
+			constants.BUTTON_WIDTH, constants.BUTTON_HEIGHT);
 	game.load.spritesheet('buttonTutorial',
-			constants.buttonTutorialUrl, 140, 35);
+			constants.buttonTutorialUrl, 
+			constants.BUTTON_WIDTH, constants.BUTTON_HEIGHT);
 	game.load.spritesheet('buttonReturn',
-			constants.buttonReturnUrl, 133, 35);
+			constants.buttonReturnUrl, 
+			constants.BUTTON_WIDTH, constants.BUTTON_HEIGHT);
 	game.load.spritesheet('buttonNextLevel',
-			constants.buttonNextLevelUrl,400/3,35);
+			constants.buttonNextLevelUrl,
+			constants.BUTTON_WIDTH, constants.BUTTON_HEIGHT);
 	game.load.spritesheet('buttonReplay',
-			constants.buttonReplayUrl,400/3,35);
+			constants.buttonReplayUrl,
+			constants.BUTTON_WIDTH, constants.BUTTON_HEIGHT);
 	game.load.spritesheet('buttonNextImage',
 			constants.buttonNextImageUrl,25,50);
 	game.load.spritesheet('buttonPrevImage',
 			constants.buttonPrevImageUrl,25,50);
 	game.load.spritesheet('buttonCloseImage',
 			constants.buttonCloseImageUrl,35,35);
-	game.load.spritesheet('soundButton', constants.soundButtonUrl, 80, 80);
-	game.load.image('buttonHelp', constants.buttonHelpUrl,80,80);
-	game.load.image('buttonRestart', constants.buttonRestartUrl,80,80);
+	game.load.spritesheet('soundButton', constants.soundButtonUrl, 
+		constants.TASKBAR_BUTTON_WIDTH, constants.TASKBAR_BUTTON_HEIGHT);
+	game.load.image('buttonHelp', constants.buttonHelpUrl,
+		constants.TASKBAR_BUTTON_WIDTH, constants.TASKBAR_BUTTON_HEIGHT);
+	game.load.image('buttonRestart', constants.buttonRestartUrl,
+		constants.TASKBAR_BUTTON_WIDTH, constants.TASKBAR_BUTTON_HEIGHT);
 	game.load.spritesheet('mainMenuButton', 
-			constants.mainMenuButtonUrl,100,80);
-	game.load.spritesheet('yes', constants.buttonYesUrl,400/3,35);
-	game.load.spritesheet('no', constants.buttonNoUrl,400/3,35);
+			constants.mainMenuButtonUrl,
+			constants.TASKBAR_MENU_WIDTH, constants.TASKBAR_MENU_HEIGHT);
+	game.load.spritesheet('yes', constants.buttonYesUrl,
+	constants.BUTTON_WIDTH, constants.BUTTON_HEIGHT);
+	game.load.spritesheet('no', constants.buttonNoUrl,
+	constants.BUTTON_WIDTH, constants.BUTTON_HEIGHT);
 	game.load.spritesheet('buttonNextTuto',
-			constants.buttonNextTutoUrl,133,35);
+			constants.buttonNextTutoUrl,
+			constants.BUTTON_WIDTH, constants.BUTTON_HEIGHT);
         game.load.spritesheet('buttonCloseTuto',
-			constants.buttonCloseTutoUrl,133,35);
+			constants.buttonCloseTutoUrl,
+			constants.BUTTON_WIDTH, constants.BUTTON_HEIGHT);
 	
 	//=======================================
 	// Backgrounds
@@ -216,9 +230,10 @@ function preload(){
 	game.load.image('fail',constants.failUrl);
 	game.load.image('levelInaccessible',constants.levelInaccessibleUrl);
 	game.load.image('endScreen',constants.endScreenUrl);
-        game.load.image('endScreenTuto',constants.endScreenTutoUrl);
-	game.load.spritesheet('stars',constants.starsUrl,100,25);
-	game.load.image('areYouSure', constants.areYouSureUrl, 320, 240);
+    game.load.image('endScreenTuto',constants.endScreenTutoUrl);
+	game.load.spritesheet('stars',constants.starsUrl,
+		constants.STARS_WIDTH, constants.STARS_HEIGHT);
+	game.load.image('areYouSure', constants.areYouSureUrl);
 	
 	//=======================================
 	// Blocks
@@ -235,13 +250,16 @@ function preload(){
 	game.load.image('turnDL',constants.turnDLUrl);
 	game.load.image('turnDR',constants.turnDRUrl);
 	game.load.image('porous',constants.porousUrl);	
-	game.load.spritesheet('breakable',constants.breakableUrl,60,60);
-	game.load.spritesheet('salt',constants.saltUrl,60,60);
+	game.load.spritesheet('breakable',constants.breakableUrl,
+		constants.TILE_SIZE, constants.TILE_SIZE);
+	game.load.spritesheet('salt',constants.saltUrl,
+		constants.TILE_SIZE, constants.TILE_SIZE);
 
 	//=======================================
 	// Ball and energy items
 	//=======================================
-	game.load.spritesheet('ball',constants.ballUrl,60,60);
+	game.load.spritesheet('ball',constants.ballUrl,
+		constants.TILE_SIZE, constants.TILE_SIZE);
 	game.load.image('energyUp',constants.energyUpUrl);
 	game.load.image('energyDown',constants.energyDownUrl);
 	
