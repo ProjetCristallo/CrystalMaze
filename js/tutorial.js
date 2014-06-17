@@ -39,6 +39,7 @@ function displayTutorial()
 
 function tutoClose()
 {
+    playing = true;
     tutoStruct.tutoScreens.forEach(function(screen){screen.kill()});
     buttonNextTuto.kill();
     buttonCloseTuto.kill();
