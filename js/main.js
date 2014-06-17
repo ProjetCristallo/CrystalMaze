@@ -28,7 +28,7 @@ var endScreen;
 
 /** Booleans indicating the game's state
   */
-var tutoriel = false;
+var tutorial = false;
 
 /** Last direction the ball has taken, useful for the turn blocks
   */

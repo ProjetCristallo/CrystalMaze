@@ -1,7 +1,6 @@
 function initializeTutorial()
 {   
     if(tutoStruct.nbrScreenTuto[tutoStruct.currentLevelTuto - 1] != 0){
-	playing = false;
 	for(var i=1;i<=tutoStruct.nbrScreenTuto[tutoStruct.currentLevelTuto - 1]; i++){
 	    
 	    tutoStruct.tutoScreens[i-1] = (game.add.sprite(
@@ -25,16 +24,16 @@ function displayTutorial()
 {
     if(tutoStruct.posInTuto != 0){
     	tutoStruct.tutoScreens[tutoStruct.posInTuto-1].revive();
-	tutoStruct.tutoScreens[tutoStruct.posInTuto-1].bringToTop();
-	if (tutoStruct.posInTuto != tutoStruct.nbrScreenTuto[tutoStruct.currentLevelTuto - 1])
-	{
-	    buttonNextTuto.revive();
-	    buttonNextTuto.bringToTop();
-	} else {
-	    buttonCloseTuto.revive();
-	    buttonCloseTuto.bringToTop();
-	}    
-    }
+		tutoStruct.tutoScreens[tutoStruct.posInTuto-1].bringToTop();
+		if (tutoStruct.posInTuto != tutoStruct.nbrScreenTuto[tutoStruct.currentLevelTuto - 1])
+		{
+	    	buttonNextTuto.revive();
+	    	buttonNextTuto.bringToTop();
+		} else {
+	   	 	buttonCloseTuto.revive();
+	   	 	buttonCloseTuto.bringToTop();
+		}   
+	}
 }
 
 function tutoClose()
@@ -42,6 +41,7 @@ function tutoClose()
     tutoStruct.tutoScreens.forEach(function(screen){screen.kill()});
     buttonNextTuto.kill();
     buttonCloseTuto.kill();
+    playing = true;
 }
 
 function clickTutoNext()
