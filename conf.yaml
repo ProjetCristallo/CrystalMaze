@@ -1,10 +1,10 @@
 #End Screens
 END_SCREEN :
     OFFSET :
-        X : 25
-        Y : 25
+        X : 0
+        Y : 0
     BUTTONS_OFFSET :
-        X : 200
+        X : 225
         Y : 250
     BUTTONS_MARGIN : 50
     STARS_MARGIN : 200
@@ -139,6 +139,7 @@ fondUrl : ressources/Backgrounds/Fond.png
 winUrl : ressources/Backgrounds/Win.png
 failUrl : ressources/Backgrounds/Fail.png
 endScreenUrl : ressources/Backgrounds/endScreen.png
+endScreenTutoUrl : ressources/Backgrounds/endScreenTuto.png
 mainMenuSpriteUrl : ressources/Backgrounds/MainMenu.png
 starsUrl : ressources/Backgrounds/Star.png
 levelInaccessibleUrl : ressources/Backgrounds/menuLevelInaccessible.png

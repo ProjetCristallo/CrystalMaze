@@ -26,6 +26,10 @@ var endSprite;
   */
 var endScreen;
 
+/** Sprite representing the endscreen background for the tutorial
+  */
+var endScreenTuto;
+
 /** Booleans indicating the game's state
   */
 var tutorial = false;
@@ -121,8 +125,8 @@ var progressPageLoaded = false;
 /** text displayed during the loading. */
 var progressInfo =null;
 
-
-
+/** Display the background and the title of the main menu.
+  */
 function displayBackgroundAndTitle(){
         mainMenuSprite = game.add.sprite(0, 0, 'mainMenuSprite');
         title = game.add.sprite(0.5*constants.BACKGROUND_WIDTH,
@@ -211,7 +215,8 @@ function preload(){
 	game.load.image('win',constants.winUrl);
 	game.load.image('fail',constants.failUrl);
 	game.load.image('levelInaccessible',constants.levelInaccessibleUrl);
-	game.load.image('endScreen',constants.endScreenUrl);	
+	game.load.image('endScreen',constants.endScreenUrl);
+        game.load.image('endScreenTuto',constants.endScreenTutoUrl);
 	game.load.spritesheet('stars',constants.starsUrl,100,25);
 	game.load.image('areYouSure', constants.areYouSureUrl, 320, 240);
 	
