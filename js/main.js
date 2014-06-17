@@ -25,6 +25,9 @@ var endSprite;
 /** Sprite representing the endscreen background
   */
 var endScreen;
+
+/** Sprite representing the endscreen background for the tutorial
+  */
 var endScreenTuto;
 
 /** Booleans indicating the game's state

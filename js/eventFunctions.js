@@ -133,13 +133,6 @@ function endTuto(ball, endSprite)
 	ball.body.velocity.y=0;
 
 	endScreenTuto = game.add.sprite(0, 0, 'endScreenTuto');
-
-/*	button2 = game.add.button(constants.END_SCREEN.OFFSET.X+
-			constants.END_SCREEN.BUTTONS_OFFSET.X,
-			constants.END_SCREEN.OFFSET.Y+
-			constants.END_SCREEN.BUTTONS_OFFSET.Y,
-			'buttonReplay', actionOnClickRestart, this, 2,1,0);
-*/
 }
 
 /** Handles the end of the level, when lost :
