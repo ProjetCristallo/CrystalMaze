@@ -1,10 +1,10 @@
 #End Screens
 END_SCREEN :
     OFFSET :
-        X : 25
-        Y : 25
+        X : 0
+        Y : 0
     BUTTONS_OFFSET :
-        X : 200
+        X : 225
         Y : 250
     BUTTONS_MARGIN : 50
     STARS_MARGIN : 200
