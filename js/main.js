@@ -197,11 +197,14 @@ function preload(){
 			constants.buttonReplayUrl,
 			constants.BUTTON_WIDTH, constants.BUTTON_HEIGHT);
 	game.load.spritesheet('buttonNextImage',
-			constants.buttonNextImageUrl,25,50);
+			constants.buttonNextImageUrl,
+			constants.ARROWS_WIDTH,constants.ARROWS_HEIGHT);
 	game.load.spritesheet('buttonPrevImage',
-			constants.buttonPrevImageUrl,25,50);
+			constants.buttonPrevImageUrl,
+			constants.ARROWS_WIDTH,constants.ARROWS_HEIGHT);
 	game.load.spritesheet('buttonCloseImage',
-			constants.buttonCloseImageUrl,35,35);
+			constants.buttonCloseImageUrl,
+			constants.CLOSE_WIDTH, constants.CLOSE_HEIGHT);
 	game.load.spritesheet('soundButton', constants.soundButtonUrl, 
 		constants.TASKBAR_BUTTON_WIDTH, constants.TASKBAR_BUTTON_HEIGHT);
 	game.load.image('buttonHelp', constants.buttonHelpUrl,
