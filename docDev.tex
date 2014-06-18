@@ -27,28 +27,28 @@ Ces fichiers sont stockés dans le dossier {\em js}.
 		d'avancement de l'utilisateur dans les niveaux.\\
 	\item
 		\textbf{create.js} : Permet de créer les différents écrans du
-		jeu : le menu principal, le menu de séléction de niveau, et 
+		jeu : le menu principal, le menu de sélection de niveau, et 
 		l'écran correspondant à un début de partie.\\
 	\item
 		\textbf{createLevel.js} : Met à jour l'index des niveaux, 
 		fonctionne pour le tutoriel et le jeu classique.\\
 	\item
 		\textbf{eventFunction.js} : Gère la majorité des événements 
-		associés aux clicks dans les menus et en jeu, et aussi les 
+		associés aux clics dans les menus et en jeu, ainsi que les 
 		actions déclenchées durant une partie (affichage de l'écran de 
 		fin, rencontre avec un bloc).\\
 	\item
 		\textbf{help.js} : Gère les écrans d'aide.\\
 	\item
 		\textbf{main.js} : Charge les différentes ressources 
-		nécéssaires, contient la définition des variables globales 
+		nécessaires, contient la définition des variables globales 
 		utilisées dans plusieurs fichiers.\\
 	\item
 		\textbf{moveball.js} : Gère les déplacements de la bille 
 		(prise en compte des actions de l'utilisateur, appel des 
 		fonctions adéquates dans {\em eventFunction} en cas de 
-		collision/chevauchement.\\
-		Gère aussi les déplacements et repositionnements nécéssaires 
+		collision/chevauchement).\\
+		Gère aussi les déplacements et repositionnements nécessaires 
 		pour les blocs {\em turn}.\\
 	\item
 		\textbf{parser.js} : Permet la lecture et le chargement en 
@@ -71,17 +71,17 @@ Ces fichiers sont stockés dans le dossier {\em js}.
 		{phaser sur GitHub}\\
 \end{itemize}
 \section {Ressources}
-Le dossier {\em ressources} contient les fichiers png chargées par le jeu,
-ils sont définis dans {\em conf.yaml}.\\
+Le dossier {\em ressources} contient les fichiers png chargés par le jeu.
+Ils sont définis dans {\em conf.yaml}.\\
 Le dossier {\em ressource-dev} contient les fichiers gimp correspondant à
 ces fichiers png, et peuvent être utilisés pour modifier plus rapidement 
 les ressources.\\
-Les sons associés aux actions sont stockés dans {\em ressources/sounds}, afin 
-d'assurer une compatibilé avec firefox ne pas utiliser de fichier mp3 (ogg
+Les sons associés aux actions sont stockés dans {\em ressources/sounds}. Afin 
+d'assurer une compatibilité avec firefox, il est préférable de ne pas utiliser de fichier mp3 (ogg
 semble une bonne alternative).\\
-Les niveaux sont eux dans le dossier levels, ils doivent être de la forme 
+Les niveaux sont eux dans le dossier {\em levels}, ils doivent être de la forme 
 {\em 1.txt, 2.txt},... et se suivre. Il est en de même pour les niveaux du 
-tutoriel qui sont dans le dossier tutorial.\\
+tutoriel qui sont dans le dossier {\em tutorial}.\\
 
 \section {Justification de l'implémentation}
 \begin{itemize}
@@ -104,29 +104,28 @@ tutoriel qui sont dans le dossier tutorial.\\
 		\textbf{main.js} : \\
 		On utilise une fonction pour trouver la valeur correspondant à
 		un retour 'OK' après une requête de type 
-		{\em XMLHTTPRequest.open}, cela permet d'avoir un code
+		{\em XMLHTTPRequest.open}. Cela permet d'avoir un code
 		fonctionnant pour Android (OK = 200, erreur = 0), iOS (OK = 0,
-		erreur = 404) et Desktop (OK = 200, erreur = 404) fonctionnel, 
-		sans utiliser user-agent qui est peu fiable. Cependant cette
-		approche nécéssite de rattraper l'erreur dans le cas où le 
+		erreur = 404) et Desktop (OK = 200, erreur = 404)
+		sans utiliser user-agent qui est peu fiable. Cependant, cette
+		approche nécessite de rattraper l'erreur dans le cas où le 
 		niveau test n'est pas accessible (et donc renvoie une mauvaise 
-		valeur pour OK), pour cela il faut définir une limite maximale
-		pour le nombre de niveau.\\
+		valeur pour OK). Pour cela il faut définir une limite maximale
+		pour le nombre de niveaux.\\
 	\item
 		\textbf{moveball.js} : \\
 		Ce fichier contient toute la gestion des déplacement de la
 		bille, la gestion du score et la gestion des blocs {\em turn}.\\
 		Les blocs {\em turn} sont très sensibles aux lags, il faut
-		donc gèrer les erreurs liées à un manque d'information (peu de 
+		donc gérer les erreurs liées à un manque d'information (peu de 
 		frames disponibles).\\
-		Pour le score il y a simplement {\em checkMoveGroup} qui
-		vérifie la validité du déplacement demandé et permet donc de 
-		créer .\\
+		Pour le score, il y a simplement {\em checkMoveGroup} qui
+		vérifie la validité du déplacement demandé.\\
 \end{itemize}
 
 \section{Compilation des applications mobile}
 
-Afin de générer les applications mobile correspondantes, il vous faut installer $Cordova$. Il faudra penser à recompiler l'application à chaque modification des ressources. Notre code supporte les plates-formes $iOS$ et $Android$. L'installation de $Cordova$ et la compilation des applications en ligne de commande sont détaillées sur le site de \href{http://cordova.apache.org/docs/en/3.5.0/guide_cli_index.md.html#The%20Command-Line%20Interface}{Cordova}.
+Afin de générer les applications mobile correspondantes, il vous faut installer $Cordova$. Il faudra penser à recompiler l'application à chaque modification des ressources. Notre code supporte les plates-formes $iOS$ et $Android$. L'installation de $Cordova$ et la compilation des applications en ligne de commande sont détaillées sur le site de \href{http://cordova.apache.org/docs/en/3.5.0/guide_cli_index.md.html#The%20Command-Line%20Interface}{$Cordova$}.
 	Il faut cloner le \href{https://github.com/ProjetCristallo/alchemist}{dépôt git} dans $www$ à la racine du projet $Cordova$. 
 
 \section{Installation de l'éditeur}
