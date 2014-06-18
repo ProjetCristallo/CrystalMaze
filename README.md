@@ -13,9 +13,9 @@ This project is compatible with [Cordova](http://cordova.apache.org/).
 See the [wiki](https://github.com/ProjetCristallo/CrystalMaze/wiki).
 
 ## Library used
-[Phaser](https://github.com/photonstorm/phaser) : Copyright (c) 2014 Richard Davey, Photon Storm Ltd.  
+[Phaser](http://phaser.io/) : Copyright (c) 2014 Richard Davey, Photon Storm Ltd.  
 [JS-YAML](https://github.com/nodeca/js-yaml) : Copyright (C) 2011, 2013 by Vitaly Puzrin  
-[Hammer](https://github.com/EightMedia/hammer.js): Copyright (C) 2011-2014 by Jorik Tangelder (Eight Media)  
+[Hammer](http://eightmedia.github.io/hammer.js/): Copyright (C) 2011-2014 by Jorik Tangelder (Eight Media)  
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the "Software"), to deal in
