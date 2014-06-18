@@ -1,4 +1,4 @@
-33 29
+31 27
 unilateral 0 3 up
 unilateral 0 5 down
 item 0 7 energyUp
