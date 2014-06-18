@@ -94,12 +94,12 @@ function endGame(ball, endSprite) {
 	button2 = game.add.button(constants.END_SCREEN.OFFSET.X+
 			constants.END_SCREEN.BUTTONS_OFFSET.X,
 			constants.END_SCREEN.OFFSET.Y+
-			constants.END_SCREEN.BUTTONS_OFFSET.Y,
+			1.5*constants.END_SCREEN.BUTTONS_OFFSET.Y,
 			'buttonReplay', actionOnClickRestart, this, 2,1,0);
 	stars = game.add.sprite(constants.END_SCREEN.OFFSET.X+
 			constants.END_SCREEN.BUTTONS_OFFSET.X,
 			constants.END_SCREEN.OFFSET.Y+
-			constants.END_SCREEN.STARS_MARGIN,
+			1.5*constants.END_SCREEN.STARS_MARGIN,
 			'stars');
 	//We check the number of stars to light on
 	var nbrStars;
