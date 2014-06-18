@@ -7,8 +7,6 @@ then
     echo "Vous devez rentrer le numéro du niveau que vous voudrez insérer"
 else
 
-    if [ "$(echo $var | grep "^[ [:digit:] ]*$")" ]  ; then
-
 # Comptage du nombre de fichiers de niveaux présents
 	for fichier in ./*.txt
 	do
@@ -33,7 +31,4 @@ else
 
 	echo "Vous pouvez maintenant le fichier $1.txt dans ce dossier"
 	
-    else
-	echo "vous n'avez pas tapé un nombre ..."
-    fi
 fi

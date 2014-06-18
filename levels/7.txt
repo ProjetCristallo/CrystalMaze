@@ -1,39 +1,36 @@
-19 17
+8 6
+simple 0 1 
 simple 0 2 
-item 0 3 energyUp
-item 0 4 energyDown
-breakable 0 6 2
-end 0 7 
-simple 1 2 
-salt 1 3 2
-simple 1 4 
+simple 0 3 
+turn 0 7 ur
+simple 1 1 
 simple 1 5 
-simple 1 6 
-simple 1 7 
-simple 2 2 
-item 2 3 energyDown
-simple 2 4 
-simple 3 2 
-breakable 3 3 2
-simple 3 4 
-simple 4 2 
-begin 4 3 ice
-simple 4 4 
-simple 5 2 
-simple 5 4 
-simple 6 2 
-breakable 6 3 2
-simple 6 4 
-simple 7 2 
-item 7 3 energyUp
-simple 7 4 
-simple 8 0 
+simple 2 1 
+turn 2 6 ur
+simple 3 0 
+simple 3 1 
+simple 3 5 
+begin 4 0 water
+porous 4 2 
+item 4 3 energyUp
+porous 4 4 
+turn 4 6 ul
+simple 5 0 
+item 5 2 energyDown
+end 5 3 
+item 5 4 energyDown
+porous 6 2 
+item 6 3 energyUp
+porous 6 4 
+turn 6 7 ul
+simple 7 1 
+simple 7 5 
+simple 7 6 
+simple 7 7 
 simple 8 1 
-simple 8 2 
-salt 8 3 2
-simple 8 4 
-item 9 0 energyDown
-item 9 1 energyUp
-item 9 2 energyDown
-item 9 3 energyUp
+simple 8 5 
+turn 9 0 dl
+turn 9 2 ul
+simple 9 3 
 simple 9 4 
+simple 9 5 
