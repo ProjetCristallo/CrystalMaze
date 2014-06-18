@@ -1,18 +1,20 @@
-\documentclass[11pt]{article}
+\documentclass[11pt, english]{article}
+\usepackage{babel}
 \usepackage[utf8]{inputenc}
 \usepackage{hyperref}
+\usepackage[babel=true]{csquotes}
 \setlength{\topmargin}{-.5in}
 \setlength{\textheight}{9in}
 \setlength{\oddsidemargin}{.125in}
 \setlength{\textwidth}{6.25in}
 \begin{document}
-\title{"Crystal Maze", Documentation Graphiste}
+\title{\enquote{Crystal Maze}, Documentation Graphiste}
 \author{Thomas Bombrun, Dimitri Bouleau, Thomas Coeffic, Caroline Ramond, Théo Van-Lede\\
 INPG - Ensimag}
 \renewcommand{\today}{17 Juin 2014}
 \maketitle
 
-Ce document est destiné à un graphiste qui souhaiterait améliorer le jeu "Crystal Maze" d'un point de vue graphique. Il présente les démarches à suivre pour modifier les ressources visuelles du jeu.
+Ce document est destiné à un graphiste qui souhaiterait améliorer le jeu \enquote{Crystal Maze} d'un point de vue graphique. Il présente les démarches à suivre pour modifier les ressources visuelles du jeu.
 
 %--------------------------------
 \section{Arborescence du projet}
@@ -28,7 +30,7 @@ Ainsi, il suffit de changer l'adresse de la ressource dans ce fichier pour que l
 
 %--------------------------
 \section{Modifier la taille des ressources}
-Il est fortement conseillé de garder les dimensions des ressources d'origine au risque de ne plus avoir des boutons/écrans centrés. Dans le cas où vous voudriez changer les dimensions des images, il sera nécessaire de changer les constantes du fichier $www/conf.yaml$. Par exemple, pour changer la taille des boutons "Next Level", "Play" etc, il faudra modifier les champs "BUTTON\_WIDTH" et "BUTTON\_HEIGHT" du fichier $.yaml$.
+Il est fortement conseillé de garder les dimensions des ressources d'origine au risque de ne plus avoir des boutons/écrans centrés. Dans le cas où vous voudriez changer les dimensions des images, il sera nécessaire de changer les constantes du fichier $www/conf.yaml$. Par exemple, pour changer la taille des boutons \enquote{Next Level}, \enquote{Play} etc, il faudra modifier les champs \enquote{BUTTON\_WIDTH} et \enquote{BUTTON\_HEIGHT} du fichier $.yaml$.
 
 %--------------------------
 \section{Ressources xcf}
