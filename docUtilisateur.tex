@@ -7,7 +7,7 @@
 \setlength{\textwidth}{6.25in}
 \begin{document}
 \title{"Crystal Maze", Documentation Graphiste}
-\author{Thomas Bombrun, Dimitri Bouleau, Thomas Coeffic, Caroline Ramond, Th√©o Van-Lede\\
+\author{Thomas Bombrun, Dimitri Bouleau, Thomas Coeffic, Caroline Ramond, Théo Van-Lede\\
 INPG - Ensimag}
 \renewcommand{\today}{17 Juin 2014}
 \maketitle
@@ -20,7 +20,7 @@ Seul le dossier $www$ contient les fichiers à modifier. Les ressources visuelles
 
 %--------------------------
 \section{Ecraser/Ajouter une ressource $.png$}
-Il est conseillé d'écraser les anciennes ressources plutôt que d'en créer de nouvelles, afin de limiter le temps de chargement du jeu. C'est également la solution la plus simple puisqu'elle n'exige aucune manipulation de votre part. Si toutefois vous souhaitez créer de nouvelles ressources, il faudra modifier le fichier de configuration $www/conf.yaml$. Ce fichier contient, entre autres, les adresses de toutes les ressources utilisées pour le jeu sous la forme suivante : \\
+Il est conseillé d'écraser les anciennes ressources plutôt que d'en créer de nouvelles, afin de limiter le temps de chargement du jeu. C'est également la solution la plus simple puisqu'elle n'exige aucune manipulation supplémentaire de votre part. Si toutefois vous souhaitez créer de nouvelles ressources, il faudra modifier le fichier de configuration $www/conf.yaml$. Ce fichier contient, entre autres, les adresses de toutes les ressources utilisées pour le jeu sous la forme suivante : \\
 \begin{verbatim}
 RessourceUrl : adresse_de_la_ressource
 \end{verbatim}
@@ -35,12 +35,8 @@ Il est fortement conseillé de garder les dimensions des ressources d'origine au 
 Il s'agit de ressources dépendantes d'autres ressources : écrans d'aide et tutoriels. Par exemple, le menu d'aide concernant le bloc simple devra être modifié si l'image du bloc simple est modifiée. 
 
 %---------------------------
-\section{Compatibilité mobile}
-Pour que vos modifications soient effectives sur les applications mobiles, il faut recompiler toute l'application. Pour cela, il vous faut :
-\begin{itemize}
-\item Installer Cordova
-\item etc
-\end{itemize}
+\section{Attention : Compatibilité mobile}
+Pour que vos modifications soient effectives sur les applications mobiles, il faut recompiler toute l'application. Pour ce faire, référez-vous à la documentation technique.
 
 \end{document}
 
