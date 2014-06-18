@@ -1,39 +1,37 @@
 12 10
-unilateral 0 3 up
-unilateral 0 4 up
-unilateral 0 5 up
-unilateral 0 6 up
-begin 0 7 steam
-turn 1 5 ur
-turn 1 6 ur
-unilateral 1 7 right
+simple 0 0 
+simple 0 6 
+simple 0 7 
+turn 1 0 dr
+simple 1 6 
+simple 1 7 
+simple 2 3 
 turn 2 6 ur
-unilateral 2 7 right
-simple 3 6 
-unilateral 3 7 right
-simple 4 0 
-item 4 1 energyDown
-unilateral 4 7 right
-simple 5 0 
-porous 5 1 
+simple 2 7 
+simple 3 2 
+simple 3 3 
+simple 3 4 
+simple 4 2 
+end 4 3 
+simple 4 4 
 simple 5 2 
-simple 5 3 
+hole 5 3 
 simple 5 4 
-simple 6 0 
-item 6 1 energyDown
+simple 6 2 
+begin 6 3 water
 simple 6 4 
-simple 7 0 
-porous 7 1 
+unilateral 7 1 right
+simple 7 2 
+porous 7 3 
 simple 7 4 
-hole 8 0 
-item 8 1 energyDown
-porous 8 2 
-item 8 3 energyUp
-porous 8 4 
-item 8 5 energyUp
-hole 9 0 
-end 9 1 
-simple 9 2 
-simple 9 3 
-simple 9 4 
-simple 9 5 
+unilateral 7 5 right
+turn 8 0 dl
+unilateral 8 2 up
+item 8 3 energyDown
+unilateral 8 4 down
+turn 8 6 ul
+item 9 1 energyUp
+unilateral 9 2 down
+porous 9 3 
+unilateral 9 4 up
+item 9 5 energyUp
