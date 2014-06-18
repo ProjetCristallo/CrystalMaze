@@ -88,17 +88,18 @@ tutoriel qui sont dans le dossier tutorial.\\
 	\item
 		\textbf{Cookie.js} :\\
 		On utilise {\em constants.USE\_CORDOVA} pour savoir si on 
-		utilise les cookies stars et levelMax, ou si on utilise
-		la clé stars pour stocker ces données.\\
+		utilise :\\
+		- les cookies : stars et levelMax, \\
+		- la clé stars pour stocker ces données.\\
 		Cela permet d'avoir un code unique pour la plateforme mobile et
 		web.\\
 	\item
 		\textbf{eventFunction.js} :\\
 		Dans toutes les fonctions appelées par overlap (défini dans 
 		phaser.physics.arcade), on renforce la condition en forçant les
-		deux sprites à être au moins à moitié chevauchante pour
+		deux sprites à être au moins à moitié chevauchantes pour
 		effectuer l'action. Cela permet d'éviter les bugs liés à la
-		bille déclenchant deux overlap simultanés.\\
+		bille déclenchant deux overlaps simultanés.\\
 	\item
 		\textbf{main.js} : \\
 		On utilise une fonction pour trouver la valeur correspondant à
@@ -116,8 +117,8 @@ tutoriel qui sont dans le dossier tutorial.\\
 		Ce fichier contient toute la gestion des déplacement de la
 		bille, la gestion du score et la gestion des blocs {\em turn}.\\
 		Les blocs {\em turn} sont très sensibles aux lags, il faut
-		donc prévoir beaucoup de rattrapage d'erreurs liées à des 
-		mauvaises positions.\\
+		donc gèrer les erreurs liées à un manque d'information (peu de 
+		frames disponibles).\\
 		Pour le score il y a simplement {\em checkMoveGroup} qui
 		vérifie la validité du déplacement demandé et permet donc de 
 		créer .\\
@@ -125,11 +126,12 @@ tutoriel qui sont dans le dossier tutorial.\\
 
 \section{Compilation des applications mobile}
 
-Afin de générer les applications mobile correspondantes, il vous faut installer $Cordova$. Il faudra penser à recompiler l'application à chaque modification des ressources. Notre code supporte les plates-formes $iOS$ et $Android$. L'installation de $Cordova$ et la compilation des applications en ligne de commande sont détaillées sur le site de Cordova : \href{http://cordova.apache.org/docs/en/3.5.0/guide_cli_index.md.html#The%20Command-Line%20Interface}.
+Afin de générer les applications mobile correspondantes, il vous faut installer $Cordova$. Il faudra penser à recompiler l'application à chaque modification des ressources. Notre code supporte les plates-formes $iOS$ et $Android$. L'installation de $Cordova$ et la compilation des applications en ligne de commande sont détaillées sur le site de \href{http://cordova.apache.org/docs/en/3.5.0/guide_cli_index.md.html#The%20Command-Line%20Interface}{Cordova}.
+	Il faut cloner le \href{https://github.com/ProjetCristallo/alchemist}{dépôt git} dans $www$ à la racine du projet $Cordova$. 
 
 \section{Installation de l'éditeur}
 \subsection{Sous Windows}
-Récupérez l'archive sur github : \href{https://github.com/ProjetCristallo/Editor/releases}, extrayez-la, puis lancez l'application Editor.
+Récupérez l'archive sur le \href{https://github.com/ProjetCristallo/Editor/releases}{dépôt Editor sur github}, extrayez-la, puis lancez l'application Editor.
 \subsection{Sous Linux}
 Assurez-vous que vous avez installé qt4 ou qt5, extrayez l'archive correspondant à votre version sur github puis lancez l'application Editor.
 \subsection{Sous Mac}
