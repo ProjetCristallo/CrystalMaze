@@ -8,6 +8,7 @@ This project is compatible with [Cordova](http://cordova.apache.org/).
   <img src="https://raw.githubusercontent.com/ProjetCristallo/CrystalMaze/master/screenshots/screenshot2.png" alt="Screenshot 2" width="300"/>
 </p>
 
+To deploy on a server you should extract the file from the [version 1.0](https://github.com/ProjetCristallo/CrystalMaze/releases).
 
 ## Getting Started
 See the [wiki](https://github.com/ProjetCristallo/CrystalMaze/wiki).
