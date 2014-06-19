@@ -27,6 +27,14 @@ under the License.
 		<meta name="viewport"/>
 		<script type='text/javascript'>
 			readConstants("conf.yaml");
+			if(navigator.userAgent.match( /iPad/i ) || 
+				navigator.userAgent.match( /iPhone/i ) || 
+				navigator.userAgent.match( /iPod/i ) ||
+				navigator.userAgent.match( /Android/i )) {
+				constants.IS_MOBILE = true;
+			}else{
+				constants.IS_MOBILE = false;
+			}
 			if(document.URL.indexOf('http://') === -1 && 
 					document.URL.indexOf('https://')){
 				constants.USE_CORDOVA = true;

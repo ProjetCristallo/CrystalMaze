@@ -1,7 +1,7 @@
 /* Generate the world in function of the platform (different world size and 
  * layout depending of the use of cordova -> usage of the larger screen of
  * the mobile */ 
-if(constants.USE_CORDOVA){
+if(constants.USE_CORDOVA || constants.IS_MOBILE){
 	var game = new Phaser.Game(constants.BACKGROUND_WIDTH + 
 			constants.TASKBAR_WIDTH, constants.BACKGROUND_HEIGHT,
 			Phaser.AUTO, '', {preload:preload,create:createMenu,
@@ -171,7 +171,7 @@ function preload(){
 	//=======================================
 	// Buttons
 	//=======================================
-	if(constants.USE_CORDOVA){
+	if(constants.USE_CORDOVA || constants.IS_MOBILE){
 		game.load.image('taskBar',constants.taskBarSmartphoneUrl);
 	}else{
 		game.load.image('taskBar',constants.taskBarUrl);

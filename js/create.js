@@ -17,7 +17,7 @@ function generateLevel()
 	blockGroups.item = game.add.group();
 	blockGroups.turn = game.add.group();
 	score = 0;	
-	if(constants.USE_CORDOVA){
+	if(constants.USE_CORDOVA || constants.IS_MOBILE){
 		//TaskBar
 		taskBarSprite=blockGroups.simple.create(constants.BACKGROUND_WIDTH,
 				0,'taskBar');
@@ -199,7 +199,7 @@ function createSelectLevel()
 			0.05*constants.BACKGROUND_HEIGHT,
 			"Select Level",{});
 	title.anchor={'x':0.5,'y':0.5};
-	if(constants.USE_CORDOVA){
+	if(constants.USE_CORDOVA || constants.IS_MOBILE){
 		buttonReturn = game.add.button(
 				constants.BACKGROUND_WIDTH +
 				(constants.TASKBAR_WIDTH) / 2,
