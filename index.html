@@ -74,7 +74,95 @@ under the License.
 	    		fileref.setAttribute("rel", "stylesheet");
 	    		fileref.setAttribute("type", "text/css");
 			if(constants.USE_CORDOVA || constants.IS_MOBILE){
-				fileref.setAttribute("href", 
+				fileref.setAttribute("href", 35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+                        }else{
+                                constants.IS_MOBILE = false;
+                        }
+                        if(document.URL.indexOf('http://') === -1 && 
+                                        document.URL.indexOf('https://') === -1)
+                        {
+                                constants.USE_CORDOVA = true;
+                        }else{
+                                constants.USE_CORDOVA = false;
+                        }
+                        if (document.body) {
+                                var width = (document.body.clientWidth);
+                                var height = (document.body.clientHeight);
+                        } else {
+                                var width = (window.innerWidth);
+                                var height = (window.innerHeight);
+                        }
+                        if(constants.USE_CORDOVA || constants.IS_MOBILE){
+                                constants.TASKBAR_WIDTH = 
+                                        2*constants.TASKBAR_HEIGHT;
+                                constants.TASKBAR_HEIGHT = 
+                                        constants.BACKGROUND_HEIGHT;            
+                                if(width < height){
+                                        tmp = width;
+                                        width = height;
+                                        height = tmp;
+                                }
+                                var scaleWidth = width/(constants.BACKGROUND_WIDTH+constants.TASKBAR_WIDTH);
+                                var scaleHeight = height/constants.BACKGROUND_HEIGHT;
+                        }else{
+                                var scaleWidth = width/constants.BACKGROUND_WIDTH;
+                                var scaleHeight = height/(constants.BACKGROUND_HEIGHT+constants.TASKBAR_HEIGHT);
+                        }                       
+                        var scale = Math.min(scaleWidth,scaleHeight);
+                        viewport = document.querySelector("meta[name=viewport]");
+                        viewport.setAttribute('content', 'user-scalable=1, initial-scale='+scale+',maximum-scale=10, minimum-scale=0.2');
+                </script>
+                <script type="text/javascript">
+                        var head = document.getElementsByTagName("head")[0];                            var fileref=document.createElement("link");
+                        fileref.setAttribute("rel", "stylesheet");
+                        fileref.setAttribute("type", "text/css");
+                        if(constants.USE_CORDOVA || constants.IS_MOBILE){
+                                fileref.setAttribute("href", 
+takeo999
+Commit changes
+
 				"css/styleSmartphone.css");
 			}else{
 				fileref.setAttribute("href", "css/style.css");
@@ -102,5 +190,6 @@ under the License.
 		<script type="text/javascript">
 			app.initialize();
 		</script>
+		<a href="doc/index.html"> Documentation</a>
 	</body>
 </html>
