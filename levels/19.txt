@@ -1,4 +1,4 @@
-0 0
+26 20
 simple 0 0 
 simple 0 1 
 simple 0 2 
