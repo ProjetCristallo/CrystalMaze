@@ -36,7 +36,8 @@ under the License.
 				constants.IS_MOBILE = false;
 			}
 			if(document.URL.indexOf('http://') === -1 && 
-					document.URL.indexOf('https://')){
+					document.URL.indexOf('https://') === -1)
+			{
 				constants.USE_CORDOVA = true;
 			}else{
 				constants.USE_CORDOVA = false;
@@ -72,7 +73,7 @@ under the License.
 			var head = document.getElementsByTagName("head")[0];                            var fileref=document.createElement("link");
 	    		fileref.setAttribute("rel", "stylesheet");
 	    		fileref.setAttribute("type", "text/css");
-			if(constants.USE_CORDOVA){
+			if(constants.USE_CORDOVA || constants.IS_MOBILE){
 				fileref.setAttribute("href", 
 				"css/styleSmartphone.css");
 			}else{
