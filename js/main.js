@@ -288,7 +288,7 @@ function preload(){
 	game.load.audio('glass', [constants.glassSoundMP3Url, constants.saltSoundOGGUrl] );
 	game.load.audio('drop', [constants.dropSoundMP3Url, constants.saltSoundOGGUrl] );
 	game.load.audio('gaz', [constants.gazSoundMP3Url, constants.saltSoundOGGUrl] );
-	game.load.audio('lost', [constants.lostSoundMP3Url, constants.saltSoundOGGUrl] );
+	//game.load.audio('lost', [constants.lostSoundMP3Url, constants.saltSoundOGGUrl] );
 	
 	game.load.onFileComplete.add(updateProgress, this);
 	

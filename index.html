@@ -48,7 +48,7 @@ under the License.
 				var width = (window.innerWidth);
 				var height = (window.innerHeight);
 			}
-			if(constants.USE_CORDOVA){
+			if(constants.USE_CORDOVA || constants.IS_MOBILE){
 				constants.TASKBAR_WIDTH = 
 					2*constants.TASKBAR_HEIGHT;
 				constants.TASKBAR_HEIGHT = 
