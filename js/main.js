@@ -45,11 +45,11 @@ var starsNumber = [];
 
 
 /** Button and screen used for displaying help :
-  * - helpScreens : the different help screens spritesheet.
-  * - buttonNext : the button to go to the next page.
-  * - buttonPrev : the butotn to go to the previous page.
-  * - posInHelp : the current position in the help pages.
-  * - posText : the text indicating the index of the current page.
+  *<p> - helpScreens : the different help screens spritesheet.</p>
+  *<p> - buttonNext : the button to go to the next page.</p>
+  *<p> - buttonPrev : the butotn to go to the previous page.</p>
+  *<p> - posInHelp : the current position in the help pages.</p>
+  *<p> - posText : the text indicating the index of the current page.</p>
   */
 var helpStruct={helpScreens:[],buttonNext:null,buttonPrev:null,posInHelp:null,
 	posText:null};
@@ -59,21 +59,21 @@ var helpStruct={helpScreens:[],buttonNext:null,buttonPrev:null,posInHelp:null,
 var playing=false;
 
 /** variable to manage the levels and select level screen.
-  * - nbrLevel : number of level.
-  * - nbLevelAccessible : number of level unlocked.
-  * - numPageCourant : number of current page in select level screen.
-  * - nbrPageTotal : total number of pages in select level screen.
-  * - currentLevel : current level used.
+  *<p> - nbrLevel : number of level.</p>
+  *<p> - nbLevelAccessible : number of level unlocked.</p>
+  *<p> - numPageCourant : number of current page in select level screen.</p>
+  *<p> - nbrPageTotal : total number of pages in select level screen.</p>
+  *<p> - currentLevel : current level used.</p>
   */
 var levelStruct={nbrLevel:1,nbrLevelAccessible:0,numPageCourant:1,
 	nbrPageTotal:1,currentLevel:1};
 
 /** variable to manage the tutorial levels.
-  * - nbrLevelTuto : number of level in the tutorial.
-  * - currentLevelTuto : current level used in the tutorial.
-  * - nbrScreenTuto : number of help screens displayed in the tutorial.
-  * - tutoScreens : help screens from the tutorial.
-  * - posInTuto : position in the help screens from the tutorial.
+  *<p> - nbrLevelTuto : number of level in the tutorial.</p>
+  *<p> - currentLevelTuto : current level used in the tutorial.</p>
+  *<p> - nbrScreenTuto : number of help screens displayed in the tutorial.</p>
+  *<p> - tutoScreens : help screens from the tutorial.</p>
+  *<p> - posInTuto : position in the help screens from the tutorial.</p>
   */
 var tutoStruct={nbrLevelTuto:1,currentLevelTuto:1,nbrScreenTuto:[],
 	tutoScreens:[],posInTuto:0};
@@ -100,15 +100,15 @@ Hammer(element).on("swipeup", function(event) {
 });
 
 /** variable managing all the blocks groups of the world.
-  * - hole : group of 'hole' sprites.
-  * - simple : groupe of 'simple' sprites.
-  * - unilateral : groupe of 'unilateral' sprites.
-  * - breakable : group of 'breakable' sprites.
-  * - salt : group of 'salt' sprites.
-  * - porous : group of 'porous' sprites.
-  * - end : group of 'end' sprites.
-  * - item : group of 'items' sprites.
-  * - turn : group of 'turn sprites
+  *<p> - hole : group of 'hole' sprites.</p>
+  *<p> - simple : groupe of 'simple' sprites.</p>
+  *<p> - unilateral : groupe of 'unilateral' sprites.</p>
+  *<p> - breakable : group of 'breakable' sprites.</p>
+  *<p> - salt : group of 'salt' sprites.</p>
+  *<p> - porous : group of 'porous' sprites.</p>
+  *<p> - end : group of 'end' sprites.</p>
+  *<p> - item : group of 'items' sprites.</p>
+  *<p> - turn : group of 'turn sprites.</p>
   */
 var blockGroups={hole:null,simple:null,unilateral:null,breakable:null,
 	salt:null,porous:null,end:null,item:null,turn:null};
