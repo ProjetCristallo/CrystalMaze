@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Global</title>
+    <title>JSDoc: js/eventFunctions.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -235,7 +235,7 @@
         
             
 <dt>
-    <h4 class="name" id="actionOnClickLevelAccessible"><span class="type-signature"></span>actionOnClickLevelAccessible<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="actionOnClickLevelAccessible"><span class="type-signature"></span>actionOnClickLevelAccessible<span class="signature">(button)</span><span class="type-signature"></span></h4>
 
     
 </dt>
@@ -244,7 +244,6 @@
     
     <div class="description">
         Starts the level corresponding to the button clicked on.
-@ param button A button representing an accessible level.
     </div>
     
 
@@ -252,6 +251,49 @@
 
     
 
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>button</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">A button representing an accessible level.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
     
 
     
@@ -307,7 +349,7 @@
         
             
 <dt>
-    <h4 class="name" id="actionOnClickLevelInaccessible"><span class="type-signature"></span>actionOnClickLevelInaccessible<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="actionOnClickLevelInaccessible"><span class="type-signature"></span>actionOnClickLevelInaccessible<span class="signature">(button)</span><span class="type-signature"></span></h4>
 
     
 </dt>
@@ -318,7 +360,6 @@
         Handles a click on a blocked level :
 Displays the screen "you haven't unblocked this level yet"
 and a cross to close this screen.
-@ param button A button representing a blocked level.
     </div>
     
 
@@ -326,6 +367,49 @@ and a cross to close this screen.
 
     
 
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>button</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">A button representing a blocked level.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
     
 
     
@@ -953,7 +1037,7 @@ if no : resume game.
         
             
 <dt>
-    <h4 class="name" id="breakBlockCollide"><span class="type-signature"></span>breakBlockCollide<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="breakBlockCollide"><span class="type-signature"></span>breakBlockCollide<span class="signature">(ball, breakBlock)</span><span class="type-signature"></span></h4>
 
     
 </dt>
@@ -964,8 +1048,6 @@ if no : resume game.
         Called in case of collision between the ball 
 and a breakable block : if the ball is in solid state, 
 the block is damaged.
-@ param ball The ball.
-@ param breakBlock The breakable block.
     </div>
     
 
@@ -973,6 +1055,67 @@ the block is damaged.
 
     
 
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>ball</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The ball.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>breakBlock</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The breakable block.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
     
 
     
@@ -1460,7 +1603,7 @@ Displays the screen "tutorial finished" and the button "play again"
         
             
 <dt>
-    <h4 class="name" id="holeOverlap"><span class="type-signature"></span>holeOverlap<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="holeOverlap"><span class="type-signature"></span>holeOverlap<span class="signature">(ball, holeSprite)</span><span class="type-signature"></span></h4>
 
     
 </dt>
@@ -1471,8 +1614,6 @@ Displays the screen "tutorial finished" and the button "play again"
         Called in case of overlap between the ball 
 and a hole : if the ball isn't in gaseous state, 
 the level is lost.
-@ param ball The ball.
-@ param holeSprite The hole.
     </div>
     
 
@@ -1480,6 +1621,67 @@ the level is lost.
 
     
 
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>ball</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The ball.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>holeSprite</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The hole.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
     
 
     
@@ -1535,7 +1737,7 @@ the level is lost.
         
             
 <dt>
-    <h4 class="name" id="itemCollide"><span class="type-signature"></span>itemCollide<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="itemCollide"><span class="type-signature"></span>itemCollide<span class="signature">(ball, itemSprite)</span><span class="type-signature"></span></h4>
 
     
 </dt>
@@ -1546,8 +1748,6 @@ the level is lost.
         Called in case of overlap between the ball 
 and an energy item : changes the state of the ball
 according to its current state and the type of item.
-@ param ball The ball.
-@ param itemSprite The item.
     </div>
     
 
@@ -1555,6 +1755,67 @@ according to its current state and the type of item.
 
     
 
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>ball</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The ball.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>itemSprite</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The item.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
     
 
     
@@ -1826,7 +2087,7 @@ and a simple block.
         
             
 <dt>
-    <h4 class="name" id="porousBlockOverlap"><span class="type-signature"></span>porousBlockOverlap<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="porousBlockOverlap"><span class="type-signature"></span>porousBlockOverlap<span class="signature">(ball, porousBlock)</span><span class="type-signature"></span></h4>
 
     
 </dt>
@@ -1837,8 +2098,6 @@ and a simple block.
         Called in case of overlap between the ball 
 and a porous block : if the ball is in solid state, 
 it is blocked.
-@ param ball The ball.
-@ param porousBlock The porous block.
     </div>
     
 
@@ -1846,6 +2105,67 @@ it is blocked.
 
     
 
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>ball</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The ball.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>porousBlock</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The porous block.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
     
 
     
@@ -1901,7 +2221,7 @@ it is blocked.
         
             
 <dt>
-    <h4 class="name" id="saltBlockCollide"><span class="type-signature"></span>saltBlockCollide<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="saltBlockCollide"><span class="type-signature"></span>saltBlockCollide<span class="signature">(ball, saltBlock)</span><span class="type-signature"></span></h4>
 
     
 </dt>
@@ -1912,8 +2232,6 @@ it is blocked.
         Called in case of collision between the ball 
 and a salt block : if the ball is in liquid state, 
 the block is damaged.
-@ param ball The ball.
-@ param saltBlock The salt block.
     </div>
     
 
@@ -1921,6 +2239,67 @@ the block is damaged.
 
     
 
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>ball</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The ball.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>saltBlock</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The salt block.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
     
 
     
@@ -1995,7 +2374,7 @@ the block is damaged.
 <br clear="both">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha8</a> on Wed Jun 18 2014 14:51:38 GMT+0200 (CEST)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha8</a> on Sat Jun 21 2014 10:41:21 GMT+0200 (CEST)
 </footer>
 
 <script> prettyPrint(); </script>

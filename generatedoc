@@ -51,7 +51,9 @@ do
     echo '        <li>
         <a href="index_'${i##*/}'.html">'${i##*/}'</a>
     </li>' >> $dest/final_index.html
-    
+
+    sed 's:<title>JSDoc\: Global</title>:<title>JSDoc\: '$i'</title>:' <$dest/index_"${i##*/}".html >temp
+    mv temp $dest/index_"${i##*/}".html
     sed 's:<h1 class="page-title">Global</h1>:<h1 class="page-title">'$i'</h1>:' <$dest/index_"${i##*/}".html >temp
     mv temp $dest/index_"${i##*/}".html
     sed 's:<h3>Global</h3>:<h3>'$i'</h3>:' <$dest/index_"${i##*/}".html >temp

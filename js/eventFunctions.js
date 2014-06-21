@@ -270,7 +270,7 @@ function actionOnClickArrowLeft()
 }
 
 /** Starts the level corresponding to the button clicked on.
- * @ param button A button representing an accessible level.
+ * @param button A button representing an accessible level.
  */
 function actionOnClickLevelAccessible(button)
 {
@@ -283,7 +283,7 @@ function actionOnClickLevelAccessible(button)
 /** Handles a click on a blocked level :
  * Displays the screen "you haven't unblocked this level yet"
  * and a cross to close this screen.
- * @ param button A button representing a blocked level.
+ * @param button A button representing a blocked level.
  */
 function actionOnClickLevelInaccessible(button)
 {
@@ -314,8 +314,8 @@ function normalBlockCollide()
 /** Called in case of overlap between the ball 
  * and a hole : if the ball isn't in gaseous state, 
  * the level is lost.
- * @ param ball The ball.
- * @ param holeSprite The hole.
+ * @param ball The ball.
+ * @param holeSprite The hole.
  */
 function holeOverlap(ball, holeSprite)
 {
@@ -327,8 +327,8 @@ function holeOverlap(ball, holeSprite)
 /** Called in case of collision between the ball 
  * and a breakable block : if the ball is in solid state, 
  * the block is damaged.
- * @ param ball The ball.
- * @ param breakBlock The breakable block.
+ * @param ball The ball.
+ * @param breakBlock The breakable block.
  */
 function breakBlockCollide(ball, breakBlock)
 {
@@ -344,8 +344,8 @@ function breakBlockCollide(ball, breakBlock)
 /** Called in case of collision between the ball 
  * and a salt block : if the ball is in liquid state, 
  * the block is damaged.
- * @ param ball The ball.
- * @ param saltBlock The salt block.
+ * @param ball The ball.
+ * @param saltBlock The salt block.
  */
 function saltBlockCollide(ball, saltBlock)
 {
@@ -361,8 +361,8 @@ function saltBlockCollide(ball, saltBlock)
 /** Called in case of overlap between the ball 
  * and a porous block : if the ball is in solid state, 
  * it is blocked.
- * @ param ball The ball.
- * @ param porousBlock The porous block.
+ * @param ball The ball.
+ * @param porousBlock The porous block.
  */
 function porousBlockOverlap(ball, porousBlock)
 {
@@ -421,8 +421,8 @@ function porousBlockOverlap(ball, porousBlock)
 /** Called in case of overlap between the ball 
  * and an energy item : changes the state of the ball
  * according to its current state and the type of item.
- * @ param ball The ball.
- * @ param itemSprite The item.
+ * @param ball The ball.
+ * @param itemSprite The item.
  */
 function itemCollide(ball, itemSprite)
 {
